@@ -1,6 +1,6 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Break.dart';
-import 'package:app/util/Project.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/widget/study/StudyContentImagesX1.dart';
 import 'package:app/widget/study/StudyContentImagesX234.dart';
 import 'package:app/widget/study/StudyContentIntroX1.dart';

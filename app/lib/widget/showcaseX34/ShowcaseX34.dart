@@ -1,7 +1,6 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/util/L1.dart';
-import 'package:app/util/Project.dart';
 import 'package:app/widget/showcaseX34/ShowcaseImageX34.dart';
 import 'package:app/widget/showcaseX34/ShowcaseMenuX34.dart';
 import 'package:flutter/material.dart';

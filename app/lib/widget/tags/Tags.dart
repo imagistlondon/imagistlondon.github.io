@@ -6,7 +6,6 @@ import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/P.dart';
 import 'package:app/util/L1.dart';
-import 'package:app/util/Project.dart';
 import 'package:app/widget/tags/TagsImagesX12.dart';
 import 'package:app/widget/tags/TagsImagesX34.dart';
 import 'package:app/widget/tags/TagsMenu.dart';

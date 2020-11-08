@@ -2,7 +2,7 @@ import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/util/L1.dart';
-import 'package:app/util/Project.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/widget/study/StudyArrow.dart';
 import 'package:app/widget/study/StudyClose.dart';
 import 'package:app/widget/study/StudyContent.dart';

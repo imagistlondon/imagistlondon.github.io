@@ -1,6 +1,6 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
-import 'package:app/util/Project.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 

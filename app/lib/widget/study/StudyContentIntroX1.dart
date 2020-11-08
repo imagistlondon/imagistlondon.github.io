@@ -1,7 +1,7 @@
 import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/text/P.dart';
-import 'package:app/util/Project.dart';
+import 'package:app/config/Content.dart';
 import 'package:flutter/material.dart';
 
 class StudyContentIntroX1 extends StatelessWidget {

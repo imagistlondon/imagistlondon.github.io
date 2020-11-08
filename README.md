@@ -52,7 +52,15 @@ This defines various design options for the site. For e.g duration times for ani
 
 --
 
-In github you can edit these files directly and commit them. Then they will automatically be deployed and published to `imagistlondon.github.io` so just refresh the page to see your changes.
+In github you can edit these files directly and commit them. Then they will automatically be deployed and published to https//imagistlondon.github.io so just refresh the page to see your changes.
+
+### Adding Images
+
+Add any images to the `app/assets` folder. You can just upload them via the GitHub UI.
+
+Then in the `Content.dart` you reference any of the images via `assets/my_image.png`.
+
+Please note that only `PNG`, `JPG` or `GIF` are supported (`SVG` images are NOT supported).
 
 ### Development
 

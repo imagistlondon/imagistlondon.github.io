@@ -1,11 +1,8 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
-import 'package:app/util/L1C.dart';
-import 'package:app/util/L2.dart';
-import 'package:app/util/L2C.dart';
 import 'package:app/util/L3.dart';
-import 'package:app/util/Project.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix4_transform/matrix4_transform.dart';
