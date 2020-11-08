@@ -16,15 +16,6 @@ jobs:
           git config --global user.name '@imagistlondon'
           git config --global user.email 'imagistlondon@users.noreply.github.com'
 
-      - name: Create report file
-        run: date +%s > report.txt
-
-      - name: Commit report
-        run: |
-          git add report.txt
-          git commit -m "Automated report"
-          git push
-
       - name: Install Flutter
         run: |
           cd app
@@ -39,4 +30,16 @@ jobs:
           ./flutter/bin/flutter build web --release
           ls -la
 
-      - run: ls -la
+      - name: Delete /docs/*
+        run: |
+          cd docs
+          rm -rf *
+
+      - name: Copy /docs
+        run: cp app/build/web /docs
+
+      - name: Commit /docs
+        run: |
+          git add docs/*
+          git commit -m "docs"
+          git push
