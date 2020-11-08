@@ -26,12 +26,33 @@ The app code is all in the `app` folder.
 
 In here, the main folder is the `app/lib` folder where the main code lives.
 
-
 ### GitHub Actions
 
 Every time a commit is made the `master` branch, a github action runs build a release version of the code and copies the output files to the `/docs` folder.
 
 To see the the definition of this process, you can see `.github/workflows/publish.yml`.
+
+### Making Design Modifications
+
+The main folder you'll be interested in is the `app/lib/config` folder.
+
+In here you will find the following:
+
+- `Break.dart`
+
+This defines the breakpoints of the site, in otherwords how to determine the cutoff points between the different type of devices such as iPhone vs iPad.
+
+- `Content.dart`
+
+In here you will find all the content text. For e.g all the projects etc that appear in the site is here.
+
+- `Design.dart`
+
+This defines various design options for the site. For e.g duration times for animations as well as colors and fonts.
+
+--
+
+In github you can edit these files directly and commit them. Then they will automatically be deployed and published to `imagistlondon.github.io` so just refresh the page to see your changes.
 
 ### Development
 
