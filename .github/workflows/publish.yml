@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  # Builds and publishes artifact (using gradle)
+  Publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # build (will also run tests)
+      - run: |
+          cd app
+          git clone -b master https://github.com/flutter/flutter.git
+          ./flutter/bin/flutter --version
+          ./flutter/bin/flutter config --enable-web
+          ./flutter/bin/flutter build web --release
