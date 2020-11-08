@@ -47,7 +47,9 @@ class ShowcaseLinkX34State extends State<ShowcaseLinkX34> {
 
   //
 
-  void onTap() {}
+  void onTap() {
+    widget.studyEnabledVN.value = widget.project;
+  }
 
   void onEnter(PointerEvent pe) {
     linkEnabledVN.value = true;

@@ -52,7 +52,7 @@ This defines various design options for the site. For e.g duration times for ani
 
 --
 
-In github you can edit these files directly and commit them. Then they will automatically be deployed and published to https//imagistlondon.github.io so just refresh the page to see your changes.
+In github you can edit these files directly and commit them. Then they will automatically be deployed and published to https//imagistlondon.github.io so just refresh the page to see your changes (you may have to clear the browser cache).
 
 ### Adding Images
 

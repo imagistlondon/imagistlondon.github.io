@@ -10,6 +10,9 @@ class StudyContentImagesX234 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // skip if no images
+    if (studyEnabledVN.value.studyImages == null) return SizedBox.shrink();
+
     // CONTAINER
     return Container(
         // PADDING

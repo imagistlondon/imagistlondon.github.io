@@ -24,39 +24,39 @@ class StudyState extends State<Study> {
 
   @override
   Widget build(BuildContext context) {
+    // size
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
 
     // L1
-    return L1(
-        widget.studyEnabledVN,
+    return L1(widget.studyEnabledVN,
         // VISIBLE
-        (studyEnabled) => Visibility(
-            visible: studyEnabled != null,
-            // CONTAINER
-            child: studyEnabled == null
-                ? Container(child: H1(text: 'No Project Selected'))
-                : Container(
-                    color: Design.BACKGROUND_COLOR,
-                    width: width,
-                    height: height,
-                    child: Stack(children: <Widget>[
-                      // content
-                      StudyContent(
-                          indexVN: widget.indexVN,
-                          studyEnabledVN: widget.studyEnabledVN,
-                          scrollController: scrollController),
+        (studyEnabled) {
+      // skip if no study
+      if (studyEnabled == null) return SizedBox.shrink();
 
-                      // X
-                      StudyClose(
-                          indexVN: widget.indexVN,
-                          studyEnabledVN: widget.studyEnabledVN),
+      // CONTAINER
+      return Container(
+          color: Design.BACKGROUND_COLOR,
+          width: width,
+          height: height,
+          child: Stack(children: <Widget>[
+            // content
+            StudyContent(
+                indexVN: widget.indexVN,
+                studyEnabledVN: widget.studyEnabledVN,
+                scrollController: scrollController),
 
-                      // ARROW
-                      StudyArrow(
-                          indexVN: widget.indexVN,
-                          studyEnabledVN: widget.studyEnabledVN,
-                          scrollController: scrollController)
-                    ]))));
+            // X
+            StudyClose(
+                indexVN: widget.indexVN, studyEnabledVN: widget.studyEnabledVN),
+
+            // ARROW
+            StudyArrow(
+                indexVN: widget.indexVN,
+                studyEnabledVN: widget.studyEnabledVN,
+                scrollController: scrollController)
+          ]));
+    });
   }
 }

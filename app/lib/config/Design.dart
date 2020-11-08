@@ -293,6 +293,7 @@ class Design {
   static const double STUDY_CONTENT_INTRO_BLOCK_MIN_WIDTH = 100;
   static const double STUDY_CONTENT_INTRO_BLOCK_MAX_WIDTH = 500;
 
+  // study scroll to top animation (when arrow button clicked)
   static const STUDY_SCROLL_TO_TOP_ANIMATION_DURATION =
       Duration(milliseconds: 200);
   static const STUDY_SCROLL_TO_TOP_ANIMATION_CURVE = Curves.ease;

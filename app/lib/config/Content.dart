@@ -119,7 +119,14 @@ class Content {
             'The brand began as a collaboration between Mallika and her aunt, Maheen Khan - a prominent Pakistani fashion designer with over 50 year\'s experience, who is known as the \'Coco Chanel of the East\'.' +
             '\n\nMallika and Maheen are of Iranian descent, with heritage in Burma, India, Pakistan and Bangladesh and the brand name \'Indoi\' comes from an ancient Greek word meaning \'people of the Indus valley\' - the region from which they come. ' +
             'Kindred spirits in family and fashion, they share a vision for Indoi which is inspired by the cultures, stories and relationships they share.',
-        tags: ['Classic']),
+        studyImages: [
+          ProjectStudyImage(url: 'assets/THUMB_HH_1.jpg'),
+          ProjectStudyImage(url: 'assets/THUMB_HUN_1.jpg'),
+          ProjectStudyImage(url: 'assets/THUMB_INDOI_1.jpg')
+        ],
+        tags: [
+          'Classic'
+        ]),
     Project(
         key: 'nike',
         showcase: true,
