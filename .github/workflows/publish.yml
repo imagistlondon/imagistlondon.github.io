@@ -11,14 +11,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Configure Github
+        run: |
+          git config --global user.name '@imagistlondon'
+          git config --global user.email 'imagistlondon@users.noreply.github.com'
+
       - name: Create report file
         run: date +%s > report.txt
 
       - name: Commit report
         run: |
-          git config --global user.name '@imagistlondon'
-          git config --global user.email 'imagistlondon@users.noreply.github.com'
-          git commit -am "Automated report"
+          git add report.txt
+          git commit -m "Automated report"
           git push
 
       - name: Install Flutter
