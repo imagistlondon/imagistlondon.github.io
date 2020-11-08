@@ -66,8 +66,8 @@ const RESOURCES = {
 "apple-touch-icon.png": "ae03aa0f1a3dba39c37ffd7ae02863bc",
 "font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
-"index.html": "196a7505f516d780fcc48aa2f62f9351",
-"/": "196a7505f516d780fcc48aa2f62f9351",
+"index.html": "e9fed7835a764bf69e0a2c21936439c9",
+"/": "e9fed7835a764bf69e0a2c21936439c9",
 "font-saol-text-light.woff": "af367118659c3dcdb6e18409b688d97a"
 };
 
