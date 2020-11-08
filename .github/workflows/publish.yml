@@ -35,8 +35,8 @@ jobs:
           cd docs
           rm -rf *
 
-      - name: Copy /docs
-        run: cp app/build/web /docs
+      - name: Copy app/build/web/* to docs
+        run: cp -a app/build/web/. docs
 
       - name: Commit /docs
         run: |
