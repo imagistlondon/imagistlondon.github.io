@@ -4,8 +4,6 @@ on:
       - master
 
 jobs:
-
-  # Builds and publishes artifact (using gradle)
   publish:
     runs-on: ubuntu-latest
     steps:
