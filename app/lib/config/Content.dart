@@ -68,7 +68,8 @@ class Content {
   // TERMS
 
   static const String TERMS =
-      'These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. ';
+      'These are the terms. These are the terms. These are the terms. \n\n' +
+          'These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. ';
 
   ///// PROJECTS
 
