@@ -62,12 +62,12 @@ const RESOURCES = {
 "font-saol-text-light.eot": "cf44e4b6266324651556fb56186e6400",
 "manifest.json": "d7805ca91f654e0c376e7256b6bbb430",
 "favicon-32x32.png": "8b9d8a3841cfb6b20fb023430c3117dd",
-"main.dart.js": "4e02e96a6f762e7b315191f25bb764e8",
+"main.dart.js": "bf448d82582c1649b0327504af3dfb8d",
 "apple-touch-icon.png": "ae03aa0f1a3dba39c37ffd7ae02863bc",
 "font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
-"index.html": "486501e5e88ea878f465c7e3bbf5a1a6",
-"/": "486501e5e88ea878f465c7e3bbf5a1a6",
+"index.html": "196a7505f516d780fcc48aa2f62f9351",
+"/": "196a7505f516d780fcc48aa2f62f9351",
 "font-saol-text-light.woff": "af367118659c3dcdb6e18409b688d97a"
 };
 
