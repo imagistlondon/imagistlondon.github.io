@@ -30,15 +30,15 @@ jobs:
           ./flutter/bin/flutter build web --release
           ls -la
 
-      - name: Delete /docs/*
+      - name: Delete docs/*
         run: |
           cd docs
           rm -rf *
 
-      - name: Copy app/build/web/* to docs
-        run: cp -a app/build/web/. docs
+      - name: Copy app/build/web/* to docs/*
+        run: cp -a app/build/web/. docs/
 
-      - name: Commit /docs
+      - name: Commit docs/*
         run: |
           git add docs/*
           git commit -m "docs"
