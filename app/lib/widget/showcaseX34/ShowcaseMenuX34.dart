@@ -77,32 +77,39 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
               onExit: onExit,
 
               // LISTEN
-              child: L1C(
-                  menuEnabledVN,
-                  (menuEnabled, child) => AnimatedContainer(
-                      // duration
-                      duration: Design
-                          .SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DURATION,
-                      // curve
-                      curve:
-                          Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_CURVE,
-                      // transform
-                      transform: menuEnabled ? matrixB : matrixA,
-                      // child
-                      child: child),
+              child:
 
-                  // COLUMN
-                  child: Column(children: <Widget>[
-                    // PROJECT LINKS
-                    for (final Project project in widget.projects)
-                      ShowcaseLinkX34(
-                          indexVN: widget.indexVN,
-                          studyEnabledVN: widget.studyEnabledVN,
-                          projectEnabledVN: widget.projectEnabledVN,
-                          menuEnabledVN: menuEnabledVN,
-                          menuFinishedVN: menuFinishedVN,
-                          project: project)
-                  ])))
+                  // L1C(
+                  //     menuEnabledVN,
+                  //     (menuEnabled, child) => AnimatedContainer(
+                  //         // duration
+                  //         duration: Design
+                  //             .SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DURATION,
+                  //         // curve
+                  //         curve:
+                  //             Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_CURVE,
+                  //         // transform
+                  //         transform: menuEnabled ? matrixB : matrixA,
+                  //         // child
+                  //         child: child),
+
+                  //     // COLUMN
+                  //     child:
+
+                  Column(children: <Widget>[
+                // PROJECT LINKS
+                for (final Project project in widget.projects)
+                  ShowcaseLinkX34(
+                      indexVN: widget.indexVN,
+                      studyEnabledVN: widget.studyEnabledVN,
+                      projectEnabledVN: widget.projectEnabledVN,
+                      menuEnabledVN: menuEnabledVN,
+                      menuFinishedVN: menuFinishedVN,
+                      project: project)
+              ])
+
+              // )
+              )
         ]));
   }
 }

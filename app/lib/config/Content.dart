@@ -78,7 +78,7 @@ class Content {
         showcase: true,
         archive: false,
         title: 'Hemsley & Hemsley',
-        imageThumb: 'assets/image45.png',
+        imageThumb: 'assets/THUMB_HH_1.jpg',
         description: 'Indoi is a new women\'s fashion house, founded by Mallika Chaudhuri. ' +
             'The brand began as a collaboration between Mallika and her aunt, Maheen Khan - a prominent Pakistani fashion designer with over 50 year\'s experience, who is known as the \'Coco Chanel of the East\'.' +
             '\n\nMallika and Maheen are of Iranian descent, with heritage in Burma, India, Pakistan and Bangladesh and the brand name \'Indoi\' comes from an ancient Greek word meaning \'people of the Indus valley\' - the region from which they come. ' +

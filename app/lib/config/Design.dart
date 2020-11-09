@@ -203,7 +203,7 @@ class Design {
   static const SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN = 0.1;
 
   static const SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_DURATION =
-      Duration(milliseconds: 50);
+      Duration(milliseconds: 200);
   static const SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_CURVE = Curves.linear;
 
   static const SHOWCASE_MENU_LINK_OPACITY_LEFT_ANIMATION_DURATION =

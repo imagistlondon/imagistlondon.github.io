@@ -1,6 +1,7 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
+import 'package:app/util/L1.dart';
 import 'package:app/util/L3.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/util/UA.dart';
@@ -72,41 +73,56 @@ class ShowcaseLinkX34State extends State<ShowcaseLinkX34> {
             // PADDING
             padding: PADDING,
             // LISTEN (linkEnabledVN)
-            child:
-                L3(widget.menuEnabledVN, widget.menuFinishedVN, linkEnabledVN,
-                    (menuEnabled, menuFinished, linkEnabled) {
-              return AnimatedContainer(
-                  // DURATION
-                  duration:
-                      Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DURATION,
-                  // CURVE
-                  curve: Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_CURVE,
-                  // TRANSFORM
-                  transform: linkEnabled ? matrixB : matrixA,
-                  // CHILD
-                  child: menuEnabled && !menuFinished && !linkEnabled
-                      ? H1(
-                          text: widget.project.title,
-                          animateOpacity: true,
-                          animationOpacityDown: true,
-                          animationOpacityDuration: Design
-                              .SHOWCASE_MENU_LINK_OPACITY_LEFT_ANIMATION_DURATION,
-                          animationOpacityCurve: Design
-                              .SHOWCASE_MENU_LINK_OPACITY_LEFT_ANIMATION_CURVE,
-                          animationOpacityMin:
-                              Design.SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN,
-                        )
-                      : H1(
-                          text: widget.project.title,
-                          animateOpacity: true,
-                          animationOpacityDown: menuEnabled && !linkEnabled,
-                          animationOpacityDuration: Design
-                              .SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_DURATION,
-                          animationOpacityCurve: Design
-                              .SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_CURVE,
-                          animationOpacityMin:
-                              Design.SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN,
-                        ));
-            })));
+            child: L1(linkEnabledVN, (linkEnabled) {
+              return H1(
+                text: widget.project.title,
+                animateOpacity: true,
+                animationOpacityDown: !linkEnabled,
+                animationOpacityDuration:
+                    Design.SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_DURATION,
+                animationOpacityCurve:
+                    Design.SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_CURVE,
+                animationOpacityMin:
+                    Design.SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN,
+              );
+            })
+
+            //     L3(widget.menuEnabledVN, widget.menuFinishedVN, linkEnabledVN,
+            //         (menuEnabled, menuFinished, linkEnabled) {
+            //   return AnimatedContainer(
+            //       // DURATION
+            //       duration:
+            //           Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DURATION,
+            //       // CURVE
+            //       curve: Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_CURVE,
+            //       // TRANSFORM
+            //       transform: linkEnabled ? matrixB : matrixA,
+            //       // CHILD
+            //       child: menuEnabled && !menuFinished && !linkEnabled
+            //           ? H1(
+            //               text: widget.project.title,
+            //               animateOpacity: true,
+            //               animationOpacityDown: true,
+            //               animationOpacityDuration: Design
+            //                   .SHOWCASE_MENU_LINK_OPACITY_LEFT_ANIMATION_DURATION,
+            //               animationOpacityCurve: Design
+            //                   .SHOWCASE_MENU_LINK_OPACITY_LEFT_ANIMATION_CURVE,
+            //               animationOpacityMin:
+            //                   Design.SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN,
+            //             )
+            //           : H1(
+            //               text: widget.project.title,
+            //               animateOpacity: true,
+            //               animationOpacityDown: menuEnabled && !linkEnabled,
+            //               animationOpacityDuration: Design
+            //                   .SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_DURATION,
+            //               animationOpacityCurve: Design
+            //                   .SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_CURVE,
+            //               animationOpacityMin:
+            //                   Design.SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN,
+            //             ));
+            // })
+
+            ));
   }
 }
