@@ -2,6 +2,7 @@ import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/util/L1.dart';
+import 'package:app/util/L2.dart';
 import 'package:app/util/L3.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/util/UA.dart';
@@ -73,11 +74,12 @@ class ShowcaseLinkX34State extends State<ShowcaseLinkX34> {
             // PADDING
             padding: PADDING,
             // LISTEN (linkEnabledVN)
-            child: L1(linkEnabledVN, (linkEnabled) {
+            child: L2(widget.menuEnabledVN, linkEnabledVN,
+                (menuEnabled, linkEnabled) {
               return H1(
                 text: widget.project.title,
                 animateOpacity: true,
-                animationOpacityDown: !linkEnabled,
+                animationOpacityDown: menuEnabled && !linkEnabled,
                 animationOpacityDuration:
                     Design.SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_DURATION,
                 animationOpacityCurve:
