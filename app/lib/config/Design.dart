@@ -157,7 +157,7 @@ class Design {
 
   // The Studio widget to slide in/out animation
   static const Duration STUDIO_SLIDE_ANIMATION_DURATION =
-      Duration(milliseconds: 100);
+      Duration(milliseconds: 500);
   static const Curve STUDIO_SLIDE_ANIMATION_CURVE = Curves.linear;
 
   // the animation duration to show the underline on hover for anchor links in the text area of Studio
