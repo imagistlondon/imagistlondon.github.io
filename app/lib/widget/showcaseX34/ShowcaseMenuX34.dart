@@ -28,7 +28,6 @@ class ShowcaseMenuX34 extends StatefulWidget {
 class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
   // menuEnabledVN
   final ValueNotifier<bool> menuEnabledVN = ValueNotifier(false);
-  final ValueNotifier<bool> menuFinishedVN = ValueNotifier(false);
 
   // matrixA
   static final Matrix4 matrixA = Matrix4Transform().translate(x: 0).matrix4;
@@ -39,15 +38,8 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
           x: 0 - Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DISTANCE)
       .matrix4;
 
-  //
-
   void onEnter(PointerEvent pe) {
     menuEnabledVN.value = true;
-    Future.delayed(Design.SHOWCASE_MENU_LINK_OPACITY_LEFT_ANIMATION_DURATION,
-        () {
-      print('finished');
-      menuFinishedVN.value = true;
-    });
   }
 
   void onExit(PointerEvent pe) {
@@ -75,28 +67,7 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
           UA(
               onEnter: onEnter,
               onExit: onExit,
-
-              // LISTEN
-              child:
-
-                  // L1C(
-                  //     menuEnabledVN,
-                  //     (menuEnabled, child) => AnimatedContainer(
-                  //         // duration
-                  //         duration: Design
-                  //             .SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DURATION,
-                  //         // curve
-                  //         curve:
-                  //             Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_CURVE,
-                  //         // transform
-                  //         transform: menuEnabled ? matrixB : matrixA,
-                  //         // child
-                  //         child: child),
-
-                  //     // COLUMN
-                  //     child:
-
-                  Column(children: <Widget>[
+              child: Column(children: <Widget>[
                 // PROJECT LINKS
                 for (final Project project in widget.projects)
                   ShowcaseLinkX34(
@@ -104,12 +75,8 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
                       studyEnabledVN: widget.studyEnabledVN,
                       projectEnabledVN: widget.projectEnabledVN,
                       menuEnabledVN: menuEnabledVN,
-                      menuFinishedVN: menuFinishedVN,
                       project: project)
-              ])
-
-              // )
-              )
+              ]))
         ]));
   }
 }

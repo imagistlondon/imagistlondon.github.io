@@ -1,9 +1,7 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
-import 'package:app/util/L1.dart';
 import 'package:app/util/L2.dart';
-import 'package:app/util/L3.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +14,6 @@ class ShowcaseLinkX34 extends StatefulWidget {
       @required this.studyEnabledVN,
       @required this.projectEnabledVN,
       @required this.menuEnabledVN,
-      @required this.menuFinishedVN,
       @required this.project})
       : super(key: key);
 
@@ -24,7 +21,6 @@ class ShowcaseLinkX34 extends StatefulWidget {
   final ValueNotifier<Project> studyEnabledVN;
   final ValueNotifier<Project> projectEnabledVN;
   final ValueNotifier<bool> menuEnabledVN;
-  final ValueNotifier<bool> menuFinishedVN;
   final Project project;
 
   @override
@@ -81,50 +77,12 @@ class ShowcaseLinkX34State extends State<ShowcaseLinkX34> {
                 animateOpacity: true,
                 animationOpacityDown: menuEnabled && !linkEnabled,
                 animationOpacityDuration:
-                    Design.SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_DURATION,
+                    Design.SHOWCASE_MENU_LINK_OPACITY_ANIMATION_DURATION,
                 animationOpacityCurve:
-                    Design.SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_CURVE,
+                    Design.SHOWCASE_MENU_LINK_OPACITY_ANIMATION_CURVE,
                 animationOpacityMin:
                     Design.SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN,
               );
-            })
-
-            //     L3(widget.menuEnabledVN, widget.menuFinishedVN, linkEnabledVN,
-            //         (menuEnabled, menuFinished, linkEnabled) {
-            //   return AnimatedContainer(
-            //       // DURATION
-            //       duration:
-            //           Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DURATION,
-            //       // CURVE
-            //       curve: Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_CURVE,
-            //       // TRANSFORM
-            //       transform: linkEnabled ? matrixB : matrixA,
-            //       // CHILD
-            //       child: menuEnabled && !menuFinished && !linkEnabled
-            //           ? H1(
-            //               text: widget.project.title,
-            //               animateOpacity: true,
-            //               animationOpacityDown: true,
-            //               animationOpacityDuration: Design
-            //                   .SHOWCASE_MENU_LINK_OPACITY_LEFT_ANIMATION_DURATION,
-            //               animationOpacityCurve: Design
-            //                   .SHOWCASE_MENU_LINK_OPACITY_LEFT_ANIMATION_CURVE,
-            //               animationOpacityMin:
-            //                   Design.SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN,
-            //             )
-            //           : H1(
-            //               text: widget.project.title,
-            //               animateOpacity: true,
-            //               animationOpacityDown: menuEnabled && !linkEnabled,
-            //               animationOpacityDuration: Design
-            //                   .SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_DURATION,
-            //               animationOpacityCurve: Design
-            //                   .SHOWCASE_MENU_LINK_OPACITY_RIGHT_ANIMATION_CURVE,
-            //               animationOpacityMin:
-            //                   Design.SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN,
-            //             ));
-            // })
-
-            ));
+            })));
   }
 }
