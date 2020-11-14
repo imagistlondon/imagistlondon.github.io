@@ -81,7 +81,7 @@ class Design {
   static const String HEADER_LOGO_IMAGE = 'assets/img-logo.png';
 
   // the height of the Header logo
-  static const double HEADER_LOGO_SIZE = Design.SPACE * 0.75;
+  static const double HEADER_LOGO_SIZE = Design.SPACE * 0.8;
 
   // The duration in milliseconds for the logo icon to animate (translate x)
   static const Duration HEADER_LOGO_ANIMATION_DURATION =
