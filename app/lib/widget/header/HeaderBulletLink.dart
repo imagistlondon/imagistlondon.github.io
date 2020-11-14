@@ -1,12 +1,13 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/P.dart';
-import 'package:app/util/HTML.dart';
 import 'package:app/util/L1.dart';
+import 'package:app/util/L1C.dart';
+import 'package:app/util/L2.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 
-class HeaderBulletLink extends StatelessWidget {
+class HeaderBulletLink extends StatefulWidget {
   const HeaderBulletLink(
       {Key key,
       @required this.index,
@@ -18,11 +19,19 @@ class HeaderBulletLink extends StatelessWidget {
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
 
+  @override
+  HeaderBulletLinkState createState() => HeaderBulletLinkState();
+}
+
+class HeaderBulletLinkState extends State<HeaderBulletLink> {
+  final ValueNotifier<bool> hoverVN = ValueNotifier(false);
+
   // the dividing space between the bullet and the text
   static const double divider = Design.SPACE * 0.3;
 
   // bullet size (width and height)
   static const double bulletSize = Design.SPACE * 0.45;
+  static const double bulletSizeInner = bulletSize * 0.5;
 
   // selected bullet
   static const BoxDecoration bulletBlack = BoxDecoration(
@@ -35,14 +44,27 @@ class HeaderBulletLink extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(Design.SPACE)),
       border: Border.all(width: 1.0, color: Design.HEADER_BULLET_COLOR));
 
+  // hover inner bullet
+  static final Container bulletBlackInner = Container(
+      width: bulletSizeInner,
+      height: bulletSizeInner,
+      decoration: const BoxDecoration(
+        color: Design.HEADER_BULLET_COLOR,
+        shape: BoxShape.circle,
+      ));
+
   void onTap() {
-    bulletsEnabledVN.value = true;
-    indexVN.value = index;
+    widget.bulletsEnabledVN.value = true;
+    widget.indexVN.value = widget.index;
   }
 
-  void onEnter(PointerEvent pe) {}
+  void onEnter(PointerEvent pe) {
+    hoverVN.value = true;
+  }
 
-  void onExit(PointerEvent pe) {}
+  void onExit(PointerEvent pe) {
+    hoverVN.value = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,29 +80,42 @@ class HeaderBulletLink extends StatelessWidget {
             height: Design.gap(context),
             // LISTEN (bulletsEnabledVN)
             child: L1(
-                bulletsEnabledVN,
+                widget.bulletsEnabledVN,
                 // ANIMATE OPACITY
                 (bulletsEnabled) => AnimatedOpacity(
                     duration: Design.HEADER_WORK_SLIDE_ANIMATION_DURATION,
                     opacity: bulletsEnabled ? 1 : 0,
                     // ROW (BULLET -> TEXT)
                     child: Row(children: <Widget>[
-                      // LISTEN (indexVN)
-                      L1(
-                          indexVN,
-                          // BULLET
+                      // STACK (BULLETS)
+                      Stack(children: <Widget>[
+                        // MAIN BULLET
+                        L1(
+                          widget.indexVN,
                           (_index) => Container(
                               width: bulletSize,
                               height: bulletSize,
-                              decoration: this.index == _index
+                              decoration: widget.index == _index
                                   ? bulletBlack
-                                  : bulletWhite)),
+                                  : bulletWhite),
+                        ),
+                        // HOVER INNER BULLET
+                        Container(
+                            width: bulletSize,
+                            height: bulletSize,
+                            child: Align(
+                                child: L1(
+                                    hoverVN,
+                                    (hover) => hover
+                                        ? bulletBlackInner
+                                        : const SizedBox.shrink())))
+                      ]),
 
                       // SPACE
                       Container(width: divider),
 
                       // TEXT
-                      P(text: index.workDisplay())
+                      P(text: widget.index.workDisplay())
                     ])))));
   }
 }
