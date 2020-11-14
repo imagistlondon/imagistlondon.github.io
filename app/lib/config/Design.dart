@@ -193,15 +193,8 @@ class Design {
   static const Color SHOWCASE_X12_LINK_UNDERLINE_COLOR =
       Color.fromRGBO(10, 10, 10, 1.0);
 
-  // showcase link animation
-  static const SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DURATION =
-      Duration(milliseconds: 50);
-  static const SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_CURVE = Curves.linear;
-  static const SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DISTANCE =
-      Design.SPACE * 3.6;
-
+  // showcase menu link hover opacity
   static const SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN = 0.1;
-
   static const SHOWCASE_MENU_LINK_OPACITY_ANIMATION_DURATION =
       Duration(milliseconds: 200);
   static const SHOWCASE_MENU_LINK_OPACITY_ANIMATION_CURVE = Curves.linear;

@@ -35,16 +35,6 @@ class ShowcaseLinkX34State extends State<ShowcaseLinkX34> {
   static const EdgeInsetsGeometry PADDING = EdgeInsets.only(
       left: Design.SPACE * 9, top: Design.SPACE / 2, bottom: Design.SPACE / 2);
 
-  // matrixA
-  static final Matrix4 matrixA = Matrix4Transform().translate(x: 0).matrix4;
-
-  // matrixB
-  static final Matrix4 matrixB = Matrix4Transform()
-      .translate(x: Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DISTANCE)
-      .matrix4;
-
-  //
-
   void onTap() {
     widget.studyEnabledVN.value = widget.project;
   }

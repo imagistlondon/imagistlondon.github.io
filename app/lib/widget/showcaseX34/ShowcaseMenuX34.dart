@@ -29,15 +29,6 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
   // menuEnabledVN
   final ValueNotifier<bool> menuEnabledVN = ValueNotifier(false);
 
-  // matrixA
-  static final Matrix4 matrixA = Matrix4Transform().translate(x: 0).matrix4;
-
-  // matrixB
-  static final Matrix4 matrixB = Matrix4Transform()
-      .translate(
-          x: 0 - Design.SHOWCASE_MENU_LINK_TRANSLATION_ANIMATION_DISTANCE)
-      .matrix4;
-
   void onEnter(PointerEvent pe) {
     menuEnabledVN.value = true;
   }
