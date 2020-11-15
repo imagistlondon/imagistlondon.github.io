@@ -28,6 +28,7 @@ dependencies:
   matrix4_transform: ^1.1.5
   recase: ^3.0.0
   provider: ^4.3.2+2
+  http: ^0.12.2
 
 flutter:
   uses-material-design: true
