@@ -50,8 +50,10 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
     return Container(
         // 50% WIDTH
         width: width,
-        // COLUMN
-        child: Column(children: <Widget>[
+        // SCROLLABLE
+        child: SingleChildScrollView(
+            // COLUMN
+            child: Column(children: <Widget>[
           // VERTICAL SPACING
           clearance,
           // MENU BLOCK
@@ -67,7 +69,9 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
                       projectEnabledVN: widget.projectEnabledVN,
                       menuEnabledVN: menuEnabledVN,
                       project: project)
-              ]))
-        ]));
+              ])),
+          // VERTICAL SPACING
+          clearance
+        ])));
   }
 }
