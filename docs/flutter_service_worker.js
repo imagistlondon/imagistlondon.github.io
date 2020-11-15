@@ -55,7 +55,7 @@ const RESOURCES = {
 "assets/web/font-saol-text-light.woff2": "598682f2968ad8d33ff48d04c8bafa93",
 "assets/web/font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"assets/NOTICES": "861838aa3859c6014bf67902b5178ed7",
+"assets/NOTICES": "20aaf925d916ce2696d109d34ddd15f0",
 "assets/FontManifest.json": "a506737225df98745abf78d11ebbf28a",
 "assets/AssetManifest.json": "c2cb00f980ac2bb9dcb22586241fa519",
 "font-untitled-sans-web-light.eot": "de9d36fbcdf67c743843c1d6e4d98080",
@@ -63,12 +63,12 @@ const RESOURCES = {
 "font-saol-text-light.eot": "cf44e4b6266324651556fb56186e6400",
 "manifest.json": "d7805ca91f654e0c376e7256b6bbb430",
 "favicon-32x32.png": "8b9d8a3841cfb6b20fb023430c3117dd",
-"main.dart.js": "7e33eb2b6f4c2e2d5dbb46e933992bf9",
+"main.dart.js": "b5bd0f1de994fa33c2480c2e8a336be4",
 "apple-touch-icon.png": "ae03aa0f1a3dba39c37ffd7ae02863bc",
 "font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
-"index.html": "3374fcda4e2870c2d30f7ea62581388a",
-"/": "3374fcda4e2870c2d30f7ea62581388a",
+"index.html": "41218e4b9af71eec8626b57905708c4b",
+"/": "41218e4b9af71eec8626b57905708c4b",
 "font-saol-text-light.woff": "af367118659c3dcdb6e18409b688d97a"
 };
 
