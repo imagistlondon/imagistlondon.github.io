@@ -16,7 +16,7 @@ class StudioFooterTerms extends StatelessWidget {
         lineCurve: Design.STUDIO_ANCHOR_LINE_CURVE,
         lineColor: Design.STUDIO_FOOTER_TEXT_COLOR,
         child: const P(
-            text: Content.STUDIO_TERMS_TITLE,
+            text: Content.STUDIO_TERMS_LINK_TITLE,
             style: const TextStyle(color: Design.STUDIO_FOOTER_TEXT_COLOR)));
   }
 }

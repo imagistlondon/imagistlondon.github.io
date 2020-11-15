@@ -45,12 +45,12 @@ class StudioContent extends StatelessWidget {
 
                 // About:
                 const P(text: Content.STUDIO_ABOUT_TITLE),
-                const P(text: Content.STUDIO_ABOUT),
+                const P(text: Content.STUDIO_ABOUT_TEXT),
                 GAP,
 
                 // Process:
                 const P(text: Content.STUDIO_PROCESS_TITLE),
-                const P(text: Content.STUDIO_PROCESS),
+                const P(text: Content.STUDIO_PROCESS_TEXT),
                 GAP,
 
                 // FOOTER
