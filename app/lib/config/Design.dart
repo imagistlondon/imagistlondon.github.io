@@ -177,9 +177,14 @@ class Design {
   // Home menu subtitle color (faded)
   static const Color HOME_MENU_SUBTITLE_COLOR = Color.fromRGBO(0, 0, 0, 0.4);
 
-  // the animation for the homa page to swtich between projects
+  // the animation for the home page to swtich between projects
   static const Duration HOME_TRANSTION_ANIMATION_DURATION =
       Duration(milliseconds: 5000);
+
+  // the animation details for the cross fade of images
+  static const Duration HOME_OPACITY_ANIMATION_DURATION =
+      Duration(milliseconds: 500);
+  static const Curve HOME_OPACITY_ANIMATION_CURVE = Curves.easeInOut;
 
   ///// SHOWCASE
 

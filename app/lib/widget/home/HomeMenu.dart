@@ -18,6 +18,10 @@ class HomeMenu extends StatelessWidget {
   final ValueNotifier<Project> studyEnabledVN;
   final ValueNotifier<Project> projectEnabledVN;
 
+  void onTap() {
+    studyEnabledVN.value = projectEnabledVN.value;
+  }
+
   void onEnter(PointerEvent pe) {}
 
   void onExit(PointerEvent pe) {}
@@ -25,6 +29,7 @@ class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UA(
+        onTap: onTap,
         onEnter: onEnter,
         onExit: onExit,
         // CONTAINER

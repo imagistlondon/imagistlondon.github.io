@@ -11,12 +11,17 @@ class HomeImage extends StatelessWidget {
       {Key key,
       @required this.indexVN,
       @required this.studyEnabledVN,
-      @required this.projectEnabledVN})
+      @required this.keyProjects,
+      @required this.projectEnabledVN,
+      @required this.projectKeysEnabledVN})
       : super(key: key);
 
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<Project> studyEnabledVN;
+
+  final Map<String, Project> keyProjects;
   final ValueNotifier<Project> projectEnabledVN;
+  final Map<String, ValueNotifier<bool>> projectKeysEnabledVN;
 
   void onTap() {
     studyEnabledVN.value = projectEnabledVN.value;
@@ -24,30 +29,42 @@ class HomeImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // LISTEN
-    return L1(projectEnabledVN, (projectEnabled) {
-      // skip
-      if (projectEnabled == null) return SizedBox.shrink();
+    // height
+    final double height = MediaQuery.of(context).size.height -
+        // HEADER HEIGHT
+        (Design.clearance(context) +
+            // MENU HEIGHT
+            (Break.x12(context) ? Design.SPACE * 4 : 0));
 
-      // image
-      final String image =
-          projectEnabled != null ? projectEnabled.imageThumb : null;
+    // init elements in stack
+    final List<Widget> elements = List();
 
-      // height
-      final double height = MediaQuery.of(context).size.height -
-          // HEADER HEIGHT
-          (Design.clearance(context) +
-              // MENU HEIGHT
-              (Break.x12(context) ? Design.SPACE * 4 : 0));
-
-      // IMAGE
-      return UA(
-          onTap: onTap,
-          child: Image(
-              fit: BoxFit.cover,
-              image: AssetImage(image),
-              width: double.infinity,
-              height: height));
+    // loop through project
+    keyProjects.forEach((key, project) {
+      // LISTEN
+      elements.add(L1(
+          projectKeysEnabledVN[key],
+          (enabled) =>
+              // ANIMATED OPACITY
+              AnimatedOpacity(
+                  // duration
+                  duration: Design.HOME_OPACITY_ANIMATION_DURATION,
+                  // curve
+                  curve: Design.HOME_OPACITY_ANIMATION_CURVE,
+                  // opacity
+                  opacity: enabled ? 1 : 0,
+                  // IMAGE
+                  child: Image(
+                      fit: BoxFit.cover,
+                      image: AssetImage(project.imageThumb),
+                      width: double.infinity,
+                      height: height))));
     });
+
+    // UA
+    return UA(
+        onTap: onTap,
+        // STACK
+        child: Stack(children: elements));
   }
 }
