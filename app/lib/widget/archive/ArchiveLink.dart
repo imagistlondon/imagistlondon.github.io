@@ -36,7 +36,7 @@ class ArchiveLinkState extends State<ArchiveLink> {
       color: Design.ARCHIVE_MENU_LINK_BORDER_COLOR);
 
   // row filler border
-  static const BorderSide borderFiller = BorderSide(
+  static const BorderSide borderFiller = const BorderSide(
       width: Design.ARCHIVE_MENU_LINK_BORDER_WIDTH, color: Colors.transparent);
 
   void onTap() {
@@ -63,6 +63,8 @@ class ArchiveLinkState extends State<ArchiveLink> {
         child: L1C(
             hoverVN,
             (hover, child) => Container(
+                // HEIGHT
+                height: Design.ARCHIVE_MENU_ROW_HEIGHT,
 
                 // DECORATION
                 decoration: BoxDecoration(
@@ -83,24 +85,23 @@ class ArchiveLinkState extends State<ArchiveLink> {
 
             // ROW
             child: Container(
-                // HEIGHT
-                height: Design.ARCHIVE_MENU_ROW_HEIGHT,
+
                 // ROW
                 child: Row(children: <Widget>[
-                  // TITLE
-                  Expanded(
-                      flex: Break.x1(context) ? 4 : 3,
-                      child: P(text: widget.project.title)),
+              // TITLE
+              Expanded(
+                  flex: Break.x1(context) ? 4 : 3,
+                  child: P(text: widget.project.title)),
 
-                  // SUBTITLE
-                  Expanded(
-                      flex: Break.x1(context) ? 6 : 4,
-                      child: P(text: widget.project.subtitle)),
+              // SUBTITLE
+              Expanded(
+                  flex: Break.x1(context) ? 6 : 4,
+                  child: P(text: widget.project.subtitle)),
 
-                  // YEAR
-                  Expanded(
-                      flex: Break.x1(context) ? 2 : 5,
-                      child: P(text: widget.project.year)),
-                ]))));
+              // YEAR
+              Expanded(
+                  flex: Break.x1(context) ? 2 : 5,
+                  child: P(text: widget.project.year)),
+            ]))));
   }
 }
