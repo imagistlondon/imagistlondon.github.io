@@ -10,7 +10,7 @@ class Content {
   static Future<Content> load() async {
     // call
     final String result =
-        (await http.get('http://52.5.4.218/api/getConfig')).body;
+        (await http.get('https://52.5.4.218/api/getConfig')).body;
 
     // convert json to map
     final Map map = json.decode(result);
