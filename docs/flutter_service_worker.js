@@ -40,7 +40,7 @@ const RESOURCES = {
 "assets/assets/01_INDOI_LOGO-01.svg": "482de6d7dcf078837708f70b271355be",
 "assets/assets/05_MalMum_1.png": "9f6c808923c5359e9fa59d91733cafd1",
 "assets/assets/THUMB_INDOI_1.jpg": "e4f9ff4beb8eebbbd2f153fb671e711f",
-"assets/assets/placeholder.png": "83cd44f1190394b57de798f5c9bd7931",
+"assets/assets/placeholder.png": "1632e46a5c79d43f3125ca62c54189cb",
 "assets/assets/08_INDOI_LOGO-01.svg": "08238edcc182b7c8099263fb9630155e",
 "assets/assets/img-logo.svg": "c7bfee46837fe653aa63efe9c9abc193",
 "assets/assets/Indoi_lookbook_3.jpg": "17c6b5b07666ddcb0fa60c335bc7a586",
@@ -68,8 +68,8 @@ const RESOURCES = {
 "apple-touch-icon.png": "ae03aa0f1a3dba39c37ffd7ae02863bc",
 "font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
-"index.html": "b2b3d94083743e252a871fda34c62dec",
-"/": "b2b3d94083743e252a871fda34c62dec",
+"index.html": "371b583fc5f157089140cc15213d3034",
+"/": "371b583fc5f157089140cc15213d3034",
 "font-saol-text-light.woff": "af367118659c3dcdb6e18409b688d97a"
 };
 
