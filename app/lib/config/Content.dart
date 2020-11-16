@@ -74,19 +74,19 @@ class Content {
             year: map[prefix + 'YEAR'] != null ? map[prefix + 'YEAR'] : '20XX',
             homeImage: map[prefix + 'HOME-IMAGE'] != null
                 ? map[prefix + 'HOME-IMAGE']
-                : '',
+                : 'assets/placeholder.png',
             showcaseImage: map[prefix + 'SHOWCASE-IMAGE'] != null
                 ? map[prefix + 'SHOWCASE-IMAGE']
-                : '',
+                : 'assets/placeholder.png',
             archiveImage: map[prefix + 'ARCHIVE-IMAGE'] != null
                 ? map[prefix + 'ARCHIVE-IMAGE']
-                : '',
+                : 'assets/placeholder.png',
             tagImage: map[prefix + 'TAG-IMAGE'] != null
                 ? map[prefix + 'TAG-IMAGE']
-                : '',
+                : 'assets/placeholder.png',
             studyImage: map[prefix + 'STUDY-IMAGE'] != null
                 ? map[prefix + 'STUDY-IMAGE']
-                : '',
+                : 'assets/placeholder.png',
             tags: tags,
             studyImages: studyImages));
       }
@@ -148,21 +148,21 @@ class Content {
           Map.fromIterable(homeProjects, key: (p) => p.key, value: (p) => p),
       HOME_PROJECT_KEY_TO_INDEX: Map.fromIterable(
           List.generate(homeProjects.length, (i) => i),
-          key: (i) => projects[i].key,
+          key: (i) => homeProjects[i].key,
           value: (i) => i),
       SHOWCASE_PROJECTS: showcaseProjects,
       KEY_SHOWCASE_PROJECTS: Map.fromIterable(showcaseProjects,
           key: (p) => p.key, value: (p) => p),
       SHOWCASE_PROJECT_KEY_TO_INDEX: Map.fromIterable(
           List.generate(showcaseProjects.length, (i) => i),
-          key: (i) => projects[i].key,
+          key: (i) => showcaseProjects[i].key,
           value: (i) => i),
       ARCHIVE_PROJECTS: archiveProjects,
       KEY_ARCHIVE_PROJECTS:
           Map.fromIterable(archiveProjects, key: (p) => p.key, value: (p) => p),
       ARCHIVE_PROJECT_KEY_TO_INDEX: Map.fromIterable(
           List.generate(archiveProjects.length, (i) => i),
-          key: (i) => projects[i].key,
+          key: (i) => archiveProjects[i].key,
           value: (i) => i),
     );
   }
@@ -255,11 +255,11 @@ class Project {
       this.subtitle = 'Subtitle',
       this.desc = 'Description',
       this.year = '2020',
-      this.homeImage = '',
-      this.showcaseImage = '',
-      this.archiveImage = '',
-      this.tagImage = '',
-      this.studyImage = '',
+      this.homeImage = 'assets/placeholder.png',
+      this.showcaseImage = 'assets/placeholder.png',
+      this.archiveImage = 'assets/placeholder.png',
+      this.tagImage = 'assets/placeholder.png',
+      this.studyImage = 'assets/placeholder.png',
       this.tags = const [],
       this.studyImages = const []});
 }
