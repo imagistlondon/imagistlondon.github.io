@@ -7592,11 +7592,11 @@ a0=c4.h(c5,l+"TITLE")!=null?c4.h(c5,l+"TITLE"):"Title"
 a1=c4.h(c5,l+"SUBTITLE")!=null?c4.h(c5,l+"SUBTITLE"):"Subtitle"
 a2=c4.h(c5,l+"DESC")!=null?c4.h(c5,l+"DESC"):"Description"
 a3=c4.h(c5,l+"YEAR")!=null?c4.h(c5,l+"YEAR"):"20XX"
-a4=c4.h(c5,l+"HOME-IMAGE")!=null?c4.h(c5,l+"HOME-IMAGE"):""
-a5=c4.h(c5,l+"SHOWCASE-IMAGE")!=null?c4.h(c5,l+"SHOWCASE-IMAGE"):""
-a6=c4.h(c5,l+"ARCHIVE-IMAGE")!=null?c4.h(c5,l+"ARCHIVE-IMAGE"):""
-a7=c4.h(c5,l+"TAG-IMAGE")!=null?c4.h(c5,l+"TAG-IMAGE"):""
-c6.push(new S.d7(d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,c4.h(c5,l+"STUDY-IMAGE")!=null?c4.h(c5,l+"STUDY-IMAGE"):"",k,f))}}o=t.bs
+a4=c4.h(c5,l+"HOME-IMAGE")!=null?c4.h(c5,l+"HOME-IMAGE"):"assets/placeholder.png"
+a5=c4.h(c5,l+"SHOWCASE-IMAGE")!=null?c4.h(c5,l+"SHOWCASE-IMAGE"):"assets/placeholder.png"
+a6=c4.h(c5,l+"ARCHIVE-IMAGE")!=null?c4.h(c5,l+"ARCHIVE-IMAGE"):"assets/placeholder.png"
+a7=c4.h(c5,l+"TAG-IMAGE")!=null?c4.h(c5,l+"TAG-IMAGE"):"assets/placeholder.png"
+c6.push(new S.d7(d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,c4.h(c5,l+"STUDY-IMAGE")!=null?c4.h(c5,l+"STUDY-IMAGE"):"assets/placeholder.png",k,f))}}o=t.bs
 n=o.j("l.E")
 a8=P.aB(new H.al(c6,new S.JN(),o),!0,n)
 a9=P.aB(new H.al(c6,new S.JO(),o),!0,n)
@@ -7630,17 +7630,17 @@ c0=P.iJ(a8,new S.K1(),new S.K2(),b2,b3)
 b5=a8.length
 b7=J.pT(b5,b6)
 for(m=0;m<b5;++m)b7[m]=m
-c1=P.iJ(b7,new S.K3(c6),new S.K4(),b2,b8)
+c1=P.iJ(b7,new S.K3(a8),new S.K4(),b2,b8)
 c2=P.iJ(a9,new S.JQ(),new S.JR(),b2,b3)
 b5=a9.length
 b7=J.pT(b5,b6)
 for(m=0;m<b5;++m)b7[m]=m
-c3=P.iJ(b7,new S.JS(c6),new S.JT(),b2,b8)
+c3=P.iJ(b7,new S.JS(a9),new S.JT(),b2,b8)
 b3=P.iJ(b0,new S.JU(),new S.JV(),b2,b3)
 b5=b0.length
 b7=J.pT(b5,b6)
 for(m=0;m<b5;++m)b7[m]=m
-q=S.a3s(b0,P.iJ(b7,new S.JW(c6),new S.JX(),b2,b8),c,d,a8,c1,b3,c0,b4,c2,o,n,c6,b9,a9,c3,a4,a3,a0,a1,a7,b,a2,a,a6,a5,b1,c4)
+q=S.a3s(b0,P.iJ(b7,new S.JW(b0),new S.JX(),b2,b8),c,d,a8,c1,b3,c0,b4,c2,o,n,c6,b9,a9,c3,a4,a3,a0,a1,a7,b,a2,a,a6,a5,b1,c4)
 s=1
 break
 case 1:return P.a5(q,r)}})
