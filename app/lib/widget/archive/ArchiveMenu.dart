@@ -6,18 +6,18 @@ import 'package:app/widget/archive/ArchiveLink.dart';
 import 'package:flutter/material.dart';
 
 class ArchiveMenu extends StatelessWidget {
-  const ArchiveMenu(
-      {Key key,
-      @required this.indexVN,
-      @required this.studyEnabledVN,
-      @required this.projectEnabledVN,
-      @required this.projects})
-      : super(key: key);
+  const ArchiveMenu({
+    Key key,
+    @required this.contentVN,
+    @required this.indexVN,
+    @required this.studyEnabledVN,
+    @required this.projectEnabledVN,
+  }) : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<Project> studyEnabledVN;
   final ValueNotifier<Project> projectEnabledVN;
-  final List<Project> projects;
 
   void onEnter(PointerEvent pe) {}
 
@@ -36,12 +36,12 @@ class ArchiveMenu extends StatelessWidget {
             onExit: onExit,
             // LINKS
             child: Column(children: <Widget>[
-              for (int i = 0; i < projects.length; i++)
+              for (int i = 0; i < contentVN.value.ARCHIVE_PROJECTS.length; i++)
                 ArchiveLink(
                     indexVN: indexVN,
                     studyEnabledVN: studyEnabledVN,
                     projectEnabledVN: projectEnabledVN,
-                    project: projects[i],
+                    project: contentVN.value.ARCHIVE_PROJECTS[i],
                     first: i == 0)
             ])));
   }

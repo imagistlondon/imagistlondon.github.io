@@ -9,17 +9,17 @@ import 'package:flutter/material.dart';
 class HomeImage extends StatelessWidget {
   const HomeImage(
       {Key key,
+      @required this.contentVN,
       @required this.indexVN,
       @required this.studyEnabledVN,
-      @required this.keyProjects,
       @required this.projectEnabledVN,
       @required this.projectKeysEnabledVN})
       : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<Project> studyEnabledVN;
 
-  final Map<String, Project> keyProjects;
   final ValueNotifier<Project> projectEnabledVN;
   final Map<String, ValueNotifier<bool>> projectKeysEnabledVN;
 
@@ -40,7 +40,7 @@ class HomeImage extends StatelessWidget {
     final List<Widget> elements = List();
 
     // loop through project
-    keyProjects.forEach((key, project) {
+    contentVN.value.KEY_HOME_PROJECTS.forEach((key, project) {
       // LISTEN
       elements.add(L1(
           projectKeysEnabledVN[key],
@@ -56,7 +56,7 @@ class HomeImage extends StatelessWidget {
                   // IMAGE
                   child: Image(
                       fit: BoxFit.cover,
-                      image: AssetImage(project.imageThumb),
+                      image: AssetImage(project.homeImage),
                       width: double.infinity,
                       height: height))));
     });

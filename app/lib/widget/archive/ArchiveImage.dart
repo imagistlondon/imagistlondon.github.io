@@ -8,18 +8,16 @@ import 'package:flutter/material.dart';
 class ArchiveImage extends StatelessWidget {
   const ArchiveImage(
       {Key key,
+      @required this.contentVN,
       @required this.indexVN,
       @required this.studyEnabledVN,
-      @required this.projectEnabledVN,
-      @required this.projects,
-      @required this.projectKeyToIndex})
+      @required this.projectEnabledVN})
       : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<Project> studyEnabledVN;
   final ValueNotifier<Project> projectEnabledVN;
-  final List<Project> projects;
-  final Map<String, int> projectKeyToIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +30,20 @@ class ArchiveImage extends StatelessWidget {
     final double imageHeight = Design.ARCHIVE_MENU_ROW_HEIGHT * imageScale;
 
     // the max row size (so that the image does not overflow the table)
-    final int rowSizeMax = projects.length - imageScale;
+    final int rowSizeMax = contentVN.value.ARCHIVE_PROJECTS.length - imageScale;
 
     // LISTEN
     return L1(projectEnabledVN, (projectEnabled) {
       // pull image to show
       final String image =
-          projectEnabled != null ? projectEnabled.imageThumb : null;
+          projectEnabled != null ? projectEnabled.archiveImage : null;
 
       // skip
       if (image == null) return SizedBox.shrink();
 
       // init imageIndex
-      int imageIndex = projectKeyToIndex[projectEnabled.key];
+      int imageIndex =
+          contentVN.value.ARCHIVE_PROJECT_KEY_TO_INDEX[projectEnabled.key];
 
       // limit the rowSize to max
       if (imageIndex > rowSizeMax) imageIndex = rowSizeMax;

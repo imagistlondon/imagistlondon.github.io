@@ -32,7 +32,7 @@ class ShowcaseImageX34 extends StatelessWidget {
         child: L1(projectEnabledVN, (projectEnabled) {
           // image
           final String image =
-              projectEnabled != null ? projectEnabled.imageThumb : null;
+              projectEnabled != null ? projectEnabled.showcaseImage : null;
 
           // skip
           if (image == null) return SizedBox.shrink();

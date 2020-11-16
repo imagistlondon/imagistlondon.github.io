@@ -10,9 +10,13 @@ import 'package:flutter/material.dart';
 
 class Archive extends StatefulWidget {
   const Archive(
-      {Key key, @required this.indexVN, @required this.studyEnabledVN})
+      {Key key,
+      @required this.contentVN,
+      @required this.indexVN,
+      @required this.studyEnabledVN})
       : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<Project> studyEnabledVN;
 
@@ -23,17 +27,6 @@ class Archive extends StatefulWidget {
 class ArchiveState extends State<Archive> {
   // current project enabled
   final ValueNotifier<Project> projectEnabledVN = ValueNotifier(null);
-
-  // projects
-  static final List<Project> projects =
-      Content.PROJECTS.where((p) => p.archive == true).toList();
-
-  // int range
-  static final List<int> range = List.generate(projects.length, (i) => i);
-
-  // map key -> index
-  static final Map<String, int> projectKeyToIndex =
-      Map.fromIterable(range, key: (i) => projects[i].key, value: (i) => i);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +47,7 @@ class ArchiveState extends State<Archive> {
               // STACK
               Stack(children: <Widget>[
                 // NONE
-                if (projects.isEmpty)
+                if (widget.contentVN.value.ARCHIVE_PROJECTS.isEmpty)
                   Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: Design.gap(context)),
@@ -62,19 +55,18 @@ class ArchiveState extends State<Archive> {
 
                 // MENU
                 ArchiveMenu(
+                    contentVN: widget.contentVN,
                     indexVN: widget.indexVN,
                     studyEnabledVN: widget.studyEnabledVN,
-                    projectEnabledVN: projectEnabledVN,
-                    projects: projects),
+                    projectEnabledVN: projectEnabledVN),
 
                 // IMAGE
                 if (Break.x234(context))
                   ArchiveImage(
+                      contentVN: widget.contentVN,
                       indexVN: widget.indexVN,
                       studyEnabledVN: widget.studyEnabledVN,
-                      projectEnabledVN: projectEnabledVN,
-                      projects: projects,
-                      projectKeyToIndex: projectKeyToIndex)
+                      projectEnabledVN: projectEnabledVN)
               ]),
               // FOOTER SPACING
               spacing

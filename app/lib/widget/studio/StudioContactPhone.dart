@@ -5,18 +5,21 @@ import 'package:app/text/P.dart';
 import 'package:flutter/material.dart';
 
 class StudioContactPhone extends StatelessWidget {
-  const StudioContactPhone({Key key}) : super(key: key);
+  const StudioContactPhone({Key key, @required this.contentVN})
+      : super(key: key);
+
+  final ValueNotifier<Content> contentVN;
 
   @override
   Widget build(BuildContext context) {
-    return const A(
-        url: Content.STUDIO_PHONE,
+    return A(
+        url: contentVN.value.STUDIO_PHONE,
         phone: true,
         lineDuration: Design.STUDIO_ANCHOR_LINE_DURATION,
         lineCurve: Design.STUDIO_ANCHOR_LINE_CURVE,
         lineColor: Design.STUDIO_ANCHOR_LINE_COLOR,
-        child: const P(
-          text: Content.STUDIO_PHONE,
+        child: P(
+          text: contentVN.value.STUDIO_PHONE,
         ));
   }
 }

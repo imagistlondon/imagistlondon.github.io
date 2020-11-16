@@ -4,8 +4,10 @@ import 'package:app/text/H1.dart';
 import 'package:flutter/material.dart';
 
 class Loading extends StatelessWidget {
-  const Loading({Key key, @required this.enabledVN}) : super(key: key);
+  const Loading({Key key, @required this.contentVN, @required this.enabledVN})
+      : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<bool> enabledVN;
 
   @override
@@ -23,10 +25,10 @@ class Loading extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 H1(
-                    text: Content.LOADING_LINE_1,
+                    text: contentVN.value.LOADING_LINE_1,
                     style: TextStyle(color: Design.LOADING_PAGE_TEXT_COLOR)),
                 H1(
-                    text: Content.LOADING_LINE_2,
+                    text: contentVN.value.LOADING_LINE_2,
                     style: TextStyle(color: Design.LOADING_PAGE_TEXT_COLOR))
               ]),
         ));

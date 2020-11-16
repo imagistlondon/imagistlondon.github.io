@@ -5,16 +5,20 @@ import 'package:flutter/material.dart';
 
 class HeaderWorkLink extends StatelessWidget {
   const HeaderWorkLink(
-      {Key key, @required this.indexVN, @required this.bulletsEnabledVN})
+      {Key key,
+      @required this.contentVN,
+      @required this.indexVN,
+      @required this.bulletsEnabledVN})
       : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
 
   @override
   Widget build(BuildContext context) {
     return HeaderLink(
-        text: Content.HEADER_WORK,
+        text: contentVN.value.HEADER_WORK,
         onTap: () {
           bulletsEnabledVN.value = true;
           indexVN.value = Index.WORK_SHOWCASE;

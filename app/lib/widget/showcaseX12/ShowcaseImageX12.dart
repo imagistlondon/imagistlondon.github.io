@@ -27,7 +27,7 @@ class ShowcaseImageX12 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // skip
-    if (project.imageThumb == null) return SizedBox.shrink();
+    if (project.showcaseImage == null) return SizedBox.shrink();
 
     // width
     final double width =
@@ -50,7 +50,7 @@ class ShowcaseImageX12 extends StatelessWidget {
             padding: padding,
             child: Image(
                 fit: BoxFit.cover,
-                image: AssetImage(project.imageThumb),
+                image: AssetImage(project.showcaseImage),
                 width: width,
                 height: height)));
   }

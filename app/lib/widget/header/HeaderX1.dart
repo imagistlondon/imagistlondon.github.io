@@ -1,6 +1,6 @@
 import 'package:app/Index.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
-import 'package:app/widget/header/HeaderBulletLink.dart';
 import 'package:app/widget/header/HeaderBulletLinksX1.dart';
 import 'package:app/widget/header/HeaderLogo.dart';
 import 'package:app/widget/header/HeaderStudioLink.dart';
@@ -10,11 +10,13 @@ import 'package:flutter/material.dart';
 class HeaderX1 extends StatelessWidget {
   const HeaderX1(
       {Key key,
+      @required this.contentVN,
       @required this.indexVN,
       @required this.bulletsEnabledVN,
       @required this.studioEnabledVN})
       : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<bool> studioEnabledVN;
   final ValueNotifier<bool> bulletsEnabledVN;
@@ -41,9 +43,12 @@ class HeaderX1 extends StatelessWidget {
                   children: [
                     // WORK
                     HeaderWorkLink(
-                        indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN),
+                        contentVN: contentVN,
+                        indexVN: indexVN,
+                        bulletsEnabledVN: bulletsEnabledVN),
                     // STUDIO
-                    HeaderStudioLink(studioEnabledVN: studioEnabledVN),
+                    HeaderStudioLink(
+                        contentVN: contentVN, studioEnabledVN: studioEnabledVN),
                   ],
                 ))
               ]),

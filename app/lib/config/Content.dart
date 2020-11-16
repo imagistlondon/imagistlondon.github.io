@@ -1,268 +1,250 @@
-// Defined here is the content.
+// Defined here is the Content
 //
 // Things such as text and images etc. should be added here and referenced.
 
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 class Content {
-  ///// LOADING
+  static Future<Content> load() async {
+    // call
+    final String result =
+        (await http.get('http://52.5.4.218/api/getConfig')).body;
 
-  // loading page text
-  static const String LOADING_LINE_1 =
-      'The appartion of these faces in the crowd:';
-  static const String LOADING_LINE_2 = 'Petals on a wet, black bough.';
+    // convert json to map
+    final Map map = json.decode(result);
 
-  ///// HEADER
+    // init projects
+    final List<Project> projects = List();
 
-  // The header menu link title for work/projects
-  static const String HEADER_WORK = 'Work';
+    // PROJECTS
+    if (map['PROJECT-length'] != null) {
+      // get length
+      final int projectLength = map['PROJECT-length'];
+      print('projectLength: ' + projectLength.toString());
 
-  // The header menu link title for studio
-  static const String HEADER_STUDIO = 'Studio';
+      // loop
+      for (int i = 0; i < projectLength; i++) {
+        // build prefix
+        final String prefix = 'PROJECT-' + i.toString() + '-';
 
-  ///// STUDIO
+        // init tags
+        final List<String> tags = List();
 
-  // The studio email address
-  static const String STUDIO_EMAIL = 'work@imagistlondon.com';
+        // load tags
+        if (map[prefix + 'TAG-length'] != null) {
+          final int tagLength = map[prefix + 'TAG-length'];
+          print(i.toString() + 'tagLength: ' + tagLength.toString());
+          for (int j = 0; j < tagLength; j++) {
+            tags.add(map[prefix + 'TAG-' + j.toString() + '-KEY']);
+          }
+        }
 
-  // The studio phone number
-  static const String STUDIO_PHONE = '+44 (0)20 7650 7819';
+        // init studyImages
+        final List<ProjectStudyImage> studyImages = List();
 
-  // The studio address
-  static const String STUDIO_ADDRESS = '3 Cranmer Road London SW9 6EJ';
-  static const String STUDIO_ADDRESS_GOOGLE_MAPS =
-      'https://www.google.com/maps/place/3+Cranmer+Rd,+Vassal,+London+SW9+6EJ,+UK';
+        // load study images
+        if (map[prefix + 'STUDY-IMAGE-length'] != null) {
+          final int studyImageLength = map[prefix + 'STUDY-IMAGE-length'];
+          for (int j = 0; j < studyImageLength; j++) {
+            studyImages.add(ProjectStudyImage(
+                url: map[prefix + 'STUDY-IMAGE-' + j.toString() + '-URL']));
+          }
+        }
 
-  // The studio instagram username
-  static const String STUDIO_INSTAGRAM = 'imagistlondon';
+        // add project
+        projects.add(Project(
+            key: map[prefix + 'KEY'],
+            home: map[prefix + 'HOME'] != null ? map[prefix + 'HOME'] : false,
+            showcase: map[prefix + 'SHOWCASE'] != null
+                ? map[prefix + 'SHOWCASE']
+                : false,
+            archive: map[prefix + 'ARCHIVE'] != null
+                ? map[prefix + 'ARCHIVE']
+                : false,
+            title:
+                map[prefix + 'TITLE'] != null ? map[prefix + 'TITLE'] : 'Title',
+            subtitle: map[prefix + 'SUBTITLE'] != null
+                ? map[prefix + 'SUBTITLE']
+                : 'Subtitle',
+            desc: map[prefix + 'DESC'] != null
+                ? map[prefix + 'DESC']
+                : 'Description',
+            year: map[prefix + 'YEAR'] != null ? map[prefix + 'YEAR'] : '20XX',
+            homeImage: map[prefix + 'HOME-IMAGE'] != null
+                ? map[prefix + 'HOME-IMAGE']
+                : '',
+            showcaseImage: map[prefix + 'SHOWCASE-IMAGE'] != null
+                ? map[prefix + 'SHOWCASE-IMAGE']
+                : '',
+            archiveImage: map[prefix + 'ARCHIVE-IMAGE'] != null
+                ? map[prefix + 'ARCHIVE-IMAGE']
+                : '',
+            tagImage: map[prefix + 'TAG-IMAGE'] != null
+                ? map[prefix + 'TAG-IMAGE']
+                : '',
+            studyImage: map[prefix + 'STUDY-IMAGE'] != null
+                ? map[prefix + 'STUDY-IMAGE']
+                : '',
+            tags: tags,
+            studyImages: studyImages));
+      }
+    }
 
-  // The studio about section
-  static const String STUDIO_ABOUT_TITLE = 'About:';
-  static const String STUDIO_ABOUT = 'We\'re a small studio. ' +
-      'Four designers, one project manager, one strategist. ' +
-      'While fully aware that it\'s modish to say so, we\'re more family than colleagues. ' +
-      'Quite literally. ' +
-      'Two of us are related, three are close friends from childhood and the latest addition just slot right in. ' +
-      'One of the benefits that comes with knowign each other so well is that we can be truly ourselves together. ' +
-      'If you want to talk about the mrit of identity, try working on a team of size incredibly different individuals who don\'t have to pretend to be anything they\'re not. ' +
-      'It can get messy sometimes (as with all families), but everyone has something entirely unique to offer - and the blend of these distinct personalities is magical.';
+    final List<Project> homeProjects =
+        projects.where((p) => p.home == true).toList();
+    final List<Project> showcaseProjects =
+        projects.where((p) => p.showcase == true).toList();
+    final List<Project> archiveProjects =
+        projects.where((p) => p.archive == true).toList();
 
-  // The studio process section
-  static const String STUDIO_PROCESS_TITLE = 'Process:';
-  static const String STUDIO_PROCESS = 'We\'re passionate, curious and meticulous. ' +
-      'We hold ourselves to extremely high standards. ' +
-      'We\'re sassy and irreverent (mostly with each other). ' +
-      'We laugh - a lot. ' +
-      'We care deeply about our clients and take pride in our long-standing relationships with them. ' +
-      'We\'re all geeky about the things we love, but respected for it. We have excellent taste. ' +
-      'We\'re humble. ' +
-      'We travel through design. ' +
-      'It allows us to step into so many worlds, to walk in other people\'s shoes and live someone else\'s passions, through our own.';
+    return Content(
+      LOADING_LINE_1:
+          map['LOADING_LINE_1'] != null ? map['LOADING_LINE_1'] : '',
+      LOADING_LINE_2:
+          map['LOADING_LINE_2'] != null ? map['LOADING_LINE_2'] : '',
+      HEADER_WORK: map['HEADER_WORK'] != null ? map['HEADER_WORK'] : 'Work',
+      HEADER_STUDIO:
+          map['HEADER_STUDIO'] != null ? map['HEADER_STUDIO'] : 'Studio',
+      STUDIO_EMAIL: map['STUDIO_EMAIL'] != null ? map['STUDIO_EMAIL'] : 'Email',
+      STUDIO_PHONE: map['STUDIO_PHONE'] != null ? map['STUDIO_PHONE'] : 'Phone',
+      STUDIO_ADDRESS:
+          map['STUDIO_ADDRESS'] != null ? map['STUDIO_ADDRESS'] : 'Address',
+      STUDIO_ADDRESS_GOOGLE_MAPS: map['STUDIO_ADDRESS_GOOGLE_MAPS'] != null
+          ? map['STUDIO_ADDRESS_GOOGLE_MAPS']
+          : 'Google Maps Address',
+      STUDIO_INSTAGRAM: map['STUDIO_INSTAGRAM'] != null
+          ? map['STUDIO_INSTAGRAM']
+          : 'Instagram',
+      STUDIO_ABOUT_TITLE: map['STUDIO_ABOUT_TITLE'] != null
+          ? map['STUDIO_ABOUT_TITLE']
+          : 'About',
+      STUDIO_ABOUT_TEXT: map['STUDIO_ABOUT_TEXT'] != null
+          ? map['STUDIO_ABOUT_TEXT']
+          : 'About Text',
+      STUDIO_PROCESS_TITLE: map['STUDIO_PROCESS_TITLE'] != null
+          ? map['STUDIO_PROCESS_TITLE']
+          : 'Process',
+      STUDIO_PROCESS_TEXT: map['STUDIO_PROCESS_TEXT'] != null
+          ? map['STUDIO_PROCESS_TEXT']
+          : 'Process Text',
+      STUDIO_COPYRIGHT_PREFIX: map['STUDIO_COPYRIGHT_PREFIX'] != null
+          ? map['STUDIO_COPYRIGHT_PREFIX']
+          : 'Copyright ',
+      STUDIO_TERMS_LINK_TITLE: map['STUDIO_TERMS_LINK_TITLE'] != null
+          ? map['STUDIO_TERMS_LINK_TITLE']
+          : 'Terms',
+      TERMS: map['TERMS'] != null ? map['TERMS'] : 'Terms',
+      PROJECTS: projects,
+      KEY_PROJECTS:
+          Map.fromIterable(projects, key: (p) => p.key, value: (p) => p),
+      PROJECT_KEY_TO_INDEX: Map.fromIterable(
+          List.generate(projects.length, (i) => i),
+          key: (i) => projects[i].key,
+          value: (i) => i),
+      HOME_PROJECTS: homeProjects,
+      KEY_HOME_PROJECTS:
+          Map.fromIterable(homeProjects, key: (p) => p.key, value: (p) => p),
+      HOME_PROJECT_KEY_TO_INDEX: Map.fromIterable(
+          List.generate(homeProjects.length, (i) => i),
+          key: (i) => projects[i].key,
+          value: (i) => i),
+      SHOWCASE_PROJECTS: showcaseProjects,
+      KEY_SHOWCASE_PROJECTS: Map.fromIterable(showcaseProjects,
+          key: (p) => p.key, value: (p) => p),
+      SHOWCASE_PROJECT_KEY_TO_INDEX: Map.fromIterable(
+          List.generate(showcaseProjects.length, (i) => i),
+          key: (i) => projects[i].key,
+          value: (i) => i),
+      ARCHIVE_PROJECTS: archiveProjects,
+      KEY_ARCHIVE_PROJECTS:
+          Map.fromIterable(archiveProjects, key: (p) => p.key, value: (p) => p),
+      ARCHIVE_PROJECT_KEY_TO_INDEX: Map.fromIterable(
+          List.generate(archiveProjects.length, (i) => i),
+          key: (i) => projects[i].key,
+          value: (i) => i),
+    );
+  }
 
-  // The prefix text for copyright in the footer of the Studio widget
-  static const String STUDIO_COPYRIGHT_PREFIX = 'Copyright © ';
+  final String LOADING_LINE_1;
+  final String LOADING_LINE_2;
+  final String HEADER_WORK;
+  final String HEADER_STUDIO;
+  final String STUDIO_EMAIL;
+  final String STUDIO_PHONE;
+  final String STUDIO_ADDRESS;
+  final String STUDIO_ADDRESS_GOOGLE_MAPS;
+  final String STUDIO_INSTAGRAM;
+  final String STUDIO_ABOUT_TITLE;
+  final String STUDIO_ABOUT_TEXT;
+  final String STUDIO_PROCESS_TITLE;
+  final String STUDIO_PROCESS_TEXT;
+  final String STUDIO_COPYRIGHT_PREFIX;
+  final String STUDIO_TERMS_LINK_TITLE;
+  final String TERMS;
+  final List<Project> PROJECTS;
+  final Map<String, Project> KEY_PROJECTS;
+  final Map<String, int> PROJECT_KEY_TO_INDEX;
+  final List<Project> HOME_PROJECTS;
+  final Map<String, Project> KEY_HOME_PROJECTS;
+  final Map<String, int> HOME_PROJECT_KEY_TO_INDEX;
 
-  // The Terms & Conditions
-  static const String STUDIO_TERMS_TITLE = 'Terms';
+  final List<Project> SHOWCASE_PROJECTS;
+  final Map<String, Project> KEY_SHOWCASE_PROJECTS;
+  final Map<String, int> SHOWCASE_PROJECT_KEY_TO_INDEX;
 
-  // TERMS
+  final List<Project> ARCHIVE_PROJECTS;
+  final Map<String, Project> KEY_ARCHIVE_PROJECTS;
+  final Map<String, int> ARCHIVE_PROJECT_KEY_TO_INDEX;
 
-  static const String TERMS =
-      'These are the terms. These are the terms. These are the terms. \n\n' +
-          'These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. These are the terms. ';
-
-  ///// PROJECTS
-
-  static const List<Project> PROJECTS = [
-    Project(
-        key: 'hemsley_and_hemsley',
-        home: true,
-        showcase: true,
-        archive: false,
-        title: 'Hemsley & Hemsley',
-        imageThumb: 'assets/THUMB_HH_1.jpg',
-        description: 'Indoi is a new women\'s fashion house, founded by Mallika Chaudhuri. ' +
-            'The brand began as a collaboration between Mallika and her aunt, Maheen Khan - a prominent Pakistani fashion designer with over 50 year\'s experience, who is known as the \'Coco Chanel of the East\'.' +
-            '\n\nMallika and Maheen are of Iranian descent, with heritage in Burma, India, Pakistan and Bangladesh and the brand name \'Indoi\' comes from an ancient Greek word meaning \'people of the Indus valley\' - the region from which they come. ' +
-            'Kindred spirits in family and fashion, they share a vision for Indoi which is inspired by the cultures, stories and relationships they share.',
-        studyImages: [
-          ProjectStudyImage(url: 'assets/THUMB_HH_1.jpg'),
-          ProjectStudyImage(url: 'assets/THUMB_HUN_1.jpg'),
-          ProjectStudyImage(url: 'assets/THUMB_STRAZ_1.jpg')
-        ],
-        tags: [
-          'Elegant',
-          'Smart'
-        ]),
-    Project(
-        key: 'the_hundred',
-        home: true,
-        showcase: true,
-        archive: false,
-        title: 'The Hundred',
-        imageThumb: 'assets/THUMB_HUN_1.jpg',
-        tags: ['Smart']),
-    Project(
-        key: 'strazzanti',
-        home: true,
-        showcase: true,
-        archive: false,
-        title: 'Strazzanti',
-        imageThumb: 'assets/THUMB_STRAZ_1.jpg',
-        tags: ['Modern', 'Italian']),
-    Project(
-        key: 'indoi',
-        home: true,
-        showcase: true,
-        archive: false,
-        title: 'Indoi',
-        imageThumb: 'assets/THUMB_INDOI_1.jpg',
-        description: 'Indoi is a new women\'s fashion house, founded by Mallika Chaudhuri. ' +
-            'The brand began as a collaboration between Mallika and her aunt, Maheen Khan - a prominent Pakistani fashion designer with over 50 year\'s experience, who is known as the \'Coco Chanel of the East\'.' +
-            '\n\nMallika and Maheen are of Iranian descent, with heritage in Burma, India, Pakistan and Bangladesh and the brand name \'Indoi\' comes from an ancient Greek word meaning \'people of the Indus valley\' - the region from which they come. ' +
-            'Kindred spirits in family and fashion, they share a vision for Indoi which is inspired by the cultures, stories and relationships they share.',
-        studyImages: [
-          ProjectStudyImage(url: 'assets/THUMB_HH_1.jpg'),
-          ProjectStudyImage(url: 'assets/THUMB_HUN_1.jpg'),
-          ProjectStudyImage(url: 'assets/THUMB_INDOI_1.jpg')
-        ],
-        tags: [
-          'Classic'
-        ]),
-    Project(
-        key: 'nike',
-        showcase: true,
-        archive: false,
-        title: 'Nike',
-        imageThumb: 'assets/THUMB_NIKE_1.jpg',
-        tags: ['Classic']),
-    Project(
-        key: 'coal_drops_yard',
-        showcase: true,
-        archive: false,
-        title: 'Coal Drops Yard',
-        imageThumb: 'assets/THUMB_CDY_1.jpg',
-        tags: []),
-    Project(
-        key: 'wahaca',
-        showcase: true,
-        archive: false,
-        title: 'Wahaca',
-        imageThumb: 'assets/THUMB_WAHACA_1.jpg',
-        tags: ['Shop']),
-    Project(
-        key: 'taskfeed',
-        showcase: true,
-        archive: false,
-        title: 'Taskfeed',
-        imageThumb: 'assets/THUMB_TASKFEED_1.jpg',
-        tags: ['App']),
-    Project(
-        key: 'the_barbican',
-        showcase: false,
-        archive: true,
-        title: 'The Barbican',
-        subtitle: 'Everything you ever wanted to know',
-        year: '2014',
-        imageThumb: 'assets/ARCHIVE_BARBICAN_THUMB.gif',
-        tags: ['Transportation']),
-    Project(
-        key: 'b_and_a',
-        showcase: false,
-        archive: true,
-        title: 'B+A',
-        subtitle: 'Finding order in the unpredictable',
-        year: '2015-',
-        imageThumb: 'assets/ARCHIVE_B+A_THUMB.gif',
-        tags: ['Marketing']),
-    Project(
-        key: 'parfin',
-        showcase: false,
-        archive: true,
-        title: 'Parfin',
-        subtitle: 'Empowering opportunites',
-        year: '2019',
-        imageThumb: 'assets/ARCHIVE_PARFIN_THUMB.png',
-        tags: []),
-    Project(
-        key: 'de_la_rue',
-        showcase: false,
-        archive: true,
-        title: 'De La Rue',
-        subtitle: 'Complexity simplified',
-        year: '2014-',
-        imageThumb: 'assets/ARCHIVE_DLR_THUMB.gif',
-        tags: []),
-    Project(
-        key: 'radio_hair_salon_x_redken',
-        showcase: false,
-        archive: true,
-        title: 'Radio Hair Salon x Redken',
-        subtitle: 'Blonde, bronde and beyond',
-        year: '2018',
-        imageThumb: 'assets/ARCHIVE_RADIO_THUMB.png',
-        tags: ['New York']),
-    Project(
-        key: 'sacca',
-        showcase: false,
-        archive: true,
-        title: 'Sacca',
-        subtitle: 'Japan in the heart of ibiza',
-        year: '2014',
-        imageThumb: 'assets/ARCHIVE_SACCA_THUMB.jpg',
-        tags: ['London']),
-    Project(
-        key: 'manifesto',
-        showcase: false,
-        archive: true,
-        title: 'Manifesto',
-        subtitle: 'Constructing the modern man',
-        year: '2015',
-        imageThumb: 'assets/ARCHIVE_MANIFESTO_THUMB.jpg',
-        tags: ['Design']),
-    Project(
-        key: 'artificial_artists',
-        showcase: false,
-        archive: true,
-        title: 'Artifical Artists',
-        subtitle: 'Liberating creativty through technology',
-        year: '2018',
-        imageThumb: 'assets/ARCHIVE_AA_THUMB.jpg',
-        tags: ['Retail']),
-    Project(
-        key: 'radio_hair_salon',
-        showcase: false,
-        archive: true,
-        title: 'Radio Hair Salon',
-        subtitle: 'Turn up the volume',
-        year: '2014',
-        imageThumb: 'assets/ARCHIVE_RADIO_2_THUMB.jpg',
-        tags: ['Politics']),
-    Project(
-        key: 'thomson_and_scott',
-        showcase: false,
-        archive: true,
-        title: 'Thomson & Scott',
-        subtitle: 'Pure luxury',
-        year: '2018',
-        imageThumb: 'assets/ARCHIVE_TS_THUMB.jpg',
-        tags: ['Fashion']),
-  ];
+  const Content(
+      {this.LOADING_LINE_1 = '',
+      this.LOADING_LINE_2 = '',
+      this.HEADER_WORK = '',
+      this.HEADER_STUDIO = '',
+      this.STUDIO_EMAIL = '',
+      this.STUDIO_PHONE = '',
+      this.STUDIO_ADDRESS = '',
+      this.STUDIO_ADDRESS_GOOGLE_MAPS = '',
+      this.STUDIO_INSTAGRAM = '',
+      this.STUDIO_ABOUT_TITLE = '',
+      this.STUDIO_ABOUT_TEXT = '',
+      this.STUDIO_PROCESS_TITLE = '',
+      this.STUDIO_PROCESS_TEXT = '',
+      this.STUDIO_COPYRIGHT_PREFIX = '',
+      this.STUDIO_TERMS_LINK_TITLE = '',
+      this.TERMS = '',
+      this.PROJECTS = const [],
+      this.KEY_PROJECTS = const {},
+      this.PROJECT_KEY_TO_INDEX = const {},
+      this.HOME_PROJECTS = const [],
+      this.KEY_HOME_PROJECTS = const {},
+      this.HOME_PROJECT_KEY_TO_INDEX = const {},
+      this.SHOWCASE_PROJECTS = const [],
+      this.KEY_SHOWCASE_PROJECTS = const {},
+      this.SHOWCASE_PROJECT_KEY_TO_INDEX = const {},
+      this.ARCHIVE_PROJECTS = const [],
+      this.KEY_ARCHIVE_PROJECTS = const {},
+      this.ARCHIVE_PROJECT_KEY_TO_INDEX = const {}});
 }
 
 class Project {
   final String key;
-  // show in Home
   final bool home;
-  // show in Showcase
   final bool showcase;
-  // show in Archive
   final bool archive;
   final String title;
   final String subtitle;
+  final String desc;
   final String year;
-  final String imageThumb;
-  final String description;
-  final List<ProjectStudyImage> studyImages;
+  final String homeImage;
+  final String showcaseImage;
+  final String archiveImage;
+  final String tagImage;
+  final String studyImage;
   final List<String> tags;
+  final List<ProjectStudyImage> studyImages;
 
   const Project(
       {this.key,
@@ -271,11 +253,15 @@ class Project {
       this.archive = true,
       this.title = 'Title',
       this.subtitle = 'Subtitle',
+      this.desc = 'Description',
       this.year = '2020',
-      this.imageThumb,
-      this.description = 'Description',
-      this.studyImages,
-      this.tags});
+      this.homeImage = '',
+      this.showcaseImage = '',
+      this.archiveImage = '',
+      this.tagImage = '',
+      this.studyImage = '',
+      this.tags = const [],
+      this.studyImages = const []});
 }
 
 class ProjectStudyImage {

@@ -10,16 +10,16 @@ import 'package:matrix4_transform/matrix4_transform.dart';
 class ShowcaseMenuX34 extends StatefulWidget {
   const ShowcaseMenuX34({
     Key key,
+    @required this.contentVN,
     @required this.indexVN,
     @required this.studyEnabledVN,
     @required this.projectEnabledVN,
-    @required this.projects,
   }) : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<Project> studyEnabledVN;
   final ValueNotifier<Project> projectEnabledVN;
-  final List<Project> projects;
 
   @override
   ShowcaseMenuX34State createState() => ShowcaseMenuX34State();
@@ -62,7 +62,8 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
               onExit: onExit,
               child: Column(children: <Widget>[
                 // PROJECT LINKS
-                for (final Project project in widget.projects)
+                for (final Project project
+                    in widget.contentVN.value.SHOWCASE_PROJECTS)
                   ShowcaseLinkX34(
                       indexVN: widget.indexVN,
                       studyEnabledVN: widget.studyEnabledVN,

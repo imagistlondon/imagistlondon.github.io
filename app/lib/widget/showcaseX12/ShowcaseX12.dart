@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 
 class ShowcaseX12 extends StatelessWidget {
   const ShowcaseX12(
-      {Key key, @required this.indexVN, @required this.studyEnabledVN})
+      {Key key,
+      @required this.contentVN,
+      @required this.indexVN,
+      @required this.studyEnabledVN})
       : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<Project> studyEnabledVN;
-
-  // projects
-  static final List<Project> projects =
-      Content.PROJECTS.where((p) => p.showcase == true).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ShowcaseX12 extends StatelessWidget {
               // HEADER CLEARANCE
               clearance,
               // PROJECTS
-              for (final Project project in projects)
+              for (final Project project in contentVN.value.SHOWCASE_PROJECTS)
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

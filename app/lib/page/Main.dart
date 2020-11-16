@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:app/Index.dart';
 import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
@@ -18,7 +16,9 @@ import 'package:app/widget/tags/Tags.dart';
 import 'package:flutter/material.dart';
 
 class Main extends StatefulWidget {
-  const Main({Key key}) : super(key: key);
+  const Main({Key key, @required this.contentVN}) : super(key: key);
+
+  final ValueNotifier<Content> contentVN;
 
   @override
   _MainState createState() => _MainState();
@@ -52,28 +52,40 @@ class _MainState extends State<Main> {
         child: Stack(children: <Widget>[
           // HOME (underneath header as it does not reach it all)
           Home(
+            contentVN: widget.contentVN,
             indexVN: indexVN,
             studyEnabledVN: studyEnabledVN,
             studioEnabledVN: studioEnabledVN,
           ),
 
           // ARCHIVE (underneath header as it scrolls behind header)
-          Archive(indexVN: indexVN, studyEnabledVN: studyEnabledVN),
+          Archive(
+              contentVN: widget.contentVN,
+              indexVN: indexVN,
+              studyEnabledVN: studyEnabledVN),
 
           // TAGS (underneath header as it scrolls behind header)
-          Tags(indexVN: indexVN, studyEnabledVN: studyEnabledVN),
+          Tags(
+              contentVN: widget.contentVN,
+              indexVN: indexVN,
+              studyEnabledVN: studyEnabledVN),
 
           // SHOWCASE-X12
           if (Break.x12(context))
-            ShowcaseX12(indexVN: indexVN, studyEnabledVN: studyEnabledVN),
+            ShowcaseX12(
+                contentVN: widget.contentVN,
+                indexVN: indexVN,
+                studyEnabledVN: studyEnabledVN),
 
           // HEADER
           Break.x1(context)
               ? HeaderX1(
+                  contentVN: widget.contentVN,
                   indexVN: indexVN,
                   bulletsEnabledVN: bulletsEnabledVN,
                   studioEnabledVN: studioEnabledVN)
               : HeaderX234(
+                  contentVN: widget.contentVN,
                   indexVN: indexVN,
                   bulletsEnabledVN: bulletsEnabledVN,
                   studioEnabledVN: studioEnabledVN),
@@ -81,6 +93,7 @@ class _MainState extends State<Main> {
           // SHOWCASE-X34 (ontop of header because of right 50% image)
           if (Break.x34(context))
             ShowcaseX34(
+              contentVN: widget.contentVN,
               indexVN: indexVN,
               studyEnabledVN: studyEnabledVN,
             ),
@@ -89,7 +102,7 @@ class _MainState extends State<Main> {
           Study(indexVN: indexVN, studyEnabledVN: studyEnabledVN),
 
           // STUDIO
-          Studio(studioEnabledVN: studioEnabledVN),
+          Studio(contentVN: widget.contentVN, studioEnabledVN: studioEnabledVN),
 
           // // LOADING
           // Loading(enabledVN: loadingEnabledVN),

@@ -12,11 +12,13 @@ import 'package:flutter/material.dart';
 class Home extends StatefulWidget {
   const Home(
       {Key key,
+      @required this.contentVN,
       @required this.indexVN,
       @required this.studyEnabledVN,
       @required this.studioEnabledVN})
       : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<Project> studyEnabledVN;
   final ValueNotifier<bool> studioEnabledVN;
@@ -26,64 +28,65 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-  // projects
-  static final List<Project> projects =
-      Content.PROJECTS.where((p) => p.home == true).toList();
-
-  // map key -> project
-  static final Map<String, Project> keyProjects =
-      Map.fromIterable(projects, key: (p) => p.key, value: (p) => p);
-
   // current project enabled
-  final ValueNotifier<Project> projectEnabledVN = ValueNotifier(projects[0]);
+  ValueNotifier<Project> projectEnabledVN = ValueNotifier(null);
 
   // project index enabled
   final ValueNotifier<int> projectIndexEnabledVN = ValueNotifier(0);
 
   // map projectKey -> projectEnabled flag
-  final Map<String, ValueNotifier<bool>> projectKeysEnabledVN =
-      Map.fromIterable(projects,
-          key: (p) => p.key, value: (p) => ValueNotifier(false));
+  Map<String, ValueNotifier<bool>> projectKeysEnabledVN = Map();
 
   // ticket to switch projects
   Timer timer;
 
   @override
-  void initState() {
-    super.initState();
-
-    // init first to be true
-    projectKeysEnabledVN[projects[0].key].value = true;
-
-    // timer
-    timer = Timer.periodic(Design.HOME_TRANSTION_ANIMATION_DURATION, (t) {
-      // skip if studio enabled
-      if (widget.studioEnabledVN.value) return;
-
-      // disable old project
-      projectKeysEnabledVN[projectEnabledVN.value.key].value = false;
-
-      // update index
-      projectIndexEnabledVN.value =
-          (projectIndexEnabledVN.value + 1) % projects.length;
-
-      // update project
-      projectEnabledVN.value = projects[projectIndexEnabledVN.value];
-
-      // enable new project
-      projectKeysEnabledVN[projectEnabledVN.value.key].value = true;
-    });
-  }
-
-  @override
   void dispose() {
     super.dispose();
-    timer.cancel();
-    timer = null;
+    if (timer != null) {
+      timer.cancel();
+      timer = null;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    // only if there are projects
+    if (widget.contentVN.value.HOME_PROJECTS.length > 0) {
+      // current project enabled
+      projectEnabledVN = ValueNotifier(widget.contentVN.value.HOME_PROJECTS[0]);
+
+      // map projectKey -> projectEnabled flag
+      projectKeysEnabledVN = Map.fromIterable(
+          widget.contentVN.value.HOME_PROJECTS,
+          key: (p) => p.key,
+          value: (p) => ValueNotifier(false));
+
+      // init first to be true
+      projectKeysEnabledVN[widget.contentVN.value.HOME_PROJECTS[0].key].value =
+          true;
+
+      // timer
+      timer = Timer.periodic(Design.HOME_TRANSTION_ANIMATION_DURATION, (t) {
+        // skip if studio enabled
+        if (widget.studioEnabledVN.value) return;
+
+        // disable old project
+        projectKeysEnabledVN[projectEnabledVN.value.key].value = false;
+
+        // update index
+        projectIndexEnabledVN.value = (projectIndexEnabledVN.value + 1) %
+            widget.contentVN.value.HOME_PROJECTS.length;
+
+        // update project
+        projectEnabledVN.value =
+            widget.contentVN.value.HOME_PROJECTS[projectIndexEnabledVN.value];
+
+        // enable new project
+        projectKeysEnabledVN[projectEnabledVN.value.key].value = true;
+      });
+    }
+
     // LISTEN
     return L1(
         widget.indexVN,
@@ -115,9 +118,9 @@ class HomeState extends State<Home> {
 
                                   // IMAGE
                                   HomeImage(
+                                      contentVN: widget.contentVN,
                                       indexVN: widget.indexVN,
                                       studyEnabledVN: widget.studyEnabledVN,
-                                      keyProjects: keyProjects,
                                       projectEnabledVN: projectEnabledVN,
                                       projectKeysEnabledVN:
                                           projectKeysEnabledVN)
@@ -139,9 +142,9 @@ class HomeState extends State<Home> {
                                   Expanded(
                                       flex: 9,
                                       child: HomeImage(
+                                          contentVN: widget.contentVN,
                                           indexVN: widget.indexVN,
                                           studyEnabledVN: widget.studyEnabledVN,
-                                          keyProjects: keyProjects,
                                           projectEnabledVN: projectEnabledVN,
                                           projectKeysEnabledVN:
                                               projectKeysEnabledVN))

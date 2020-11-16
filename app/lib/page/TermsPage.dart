@@ -6,6 +6,10 @@ import 'package:app/text/P.dart';
 import 'package:flutter/material.dart';
 
 class TermsPage extends StatelessWidget {
+  const TermsPage({Key key, @required this.contentVN}) : super(key: key);
+
+  final ValueNotifier<Content> contentVN;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -16,7 +20,7 @@ class TermsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   H1(text: 'Terms'),
-                  P(text: Content.TERMS)
+                  P(text: contentVN.value.TERMS)
                 ])));
   }
 }

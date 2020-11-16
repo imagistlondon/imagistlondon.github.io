@@ -1,4 +1,5 @@
 import 'package:app/Index.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/widget/header/HeaderBulletLinksX234.dart';
 import 'package:app/widget/header/HeaderLogoX234.dart';
@@ -9,11 +10,13 @@ import 'package:flutter/material.dart';
 class HeaderX234 extends StatelessWidget {
   const HeaderX234(
       {Key key,
+      @required this.contentVN,
       @required this.indexVN,
       @required this.bulletsEnabledVN,
       @required this.studioEnabledVN})
       : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
   final ValueNotifier<bool> studioEnabledVN;
@@ -32,7 +35,9 @@ class HeaderX234 extends StatelessWidget {
 
           // HEADER WORK LINK
           HeaderWorkLinkX234(
-              indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN),
+              contentVN: contentVN,
+              indexVN: indexVN,
+              bulletsEnabledVN: bulletsEnabledVN),
 
           // HEADER BULLET LINKS
           HeaderBulletLinksX234(
@@ -40,6 +45,7 @@ class HeaderX234 extends StatelessWidget {
 
           // HEADER STUDIO LINK
           HeaderStudioLinkX234(
+              contentVN: contentVN,
               indexVN: indexVN,
               bulletsEnabledVN: bulletsEnabledVN,
               studioEnabledVN: studioEnabledVN)

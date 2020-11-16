@@ -11,7 +11,7 @@ class StudyContentThumb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // skip if no image
-    if (studyEnabledVN.value.imageThumb == null) return SizedBox.shrink();
+    if (studyEnabledVN.value.studyImage == null) return SizedBox.shrink();
 
     // width
     final double width = MediaQuery.of(context).size.width;
@@ -28,7 +28,7 @@ class StudyContentThumb extends StatelessWidget {
       width: width,
       height: height,
       fit: BoxFit.cover,
-      image: AssetImage(studyEnabledVN.value.imageThumb),
+      image: AssetImage(studyEnabledVN.value.studyImage),
     );
   }
 }

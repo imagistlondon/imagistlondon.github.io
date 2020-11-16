@@ -6,7 +6,10 @@ import 'package:app/util/HTML.dart';
 import 'package:flutter/material.dart';
 
 class StudioFooterTerms extends StatelessWidget {
-  const StudioFooterTerms({Key key}) : super(key: key);
+  const StudioFooterTerms({Key key, @required this.contentVN})
+      : super(key: key);
+
+  final ValueNotifier<Content> contentVN;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +18,8 @@ class StudioFooterTerms extends StatelessWidget {
         lineDuration: Design.STUDIO_ANCHOR_LINE_DURATION,
         lineCurve: Design.STUDIO_ANCHOR_LINE_CURVE,
         lineColor: Design.STUDIO_FOOTER_TEXT_COLOR,
-        child: const P(
-            text: Content.STUDIO_TERMS_LINK_TITLE,
+        child: P(
+            text: contentVN.value.STUDIO_TERMS_LINK_TITLE,
             style: const TextStyle(color: Design.STUDIO_FOOTER_TEXT_COLOR)));
   }
 }

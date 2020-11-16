@@ -1,4 +1,5 @@
 import 'package:app/Index.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/L1C.dart';
 import 'package:app/widget/header/HeaderStudioLink.dart';
@@ -7,11 +8,13 @@ import 'package:flutter/material.dart';
 class HeaderStudioLinkX234 extends StatelessWidget {
   const HeaderStudioLinkX234(
       {Key key,
+      @required this.contentVN,
       @required this.indexVN,
       @required this.bulletsEnabledVN,
       @required this.studioEnabledVN})
       : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
   final ValueNotifier<bool> studioEnabledVN;
@@ -47,7 +50,8 @@ class HeaderStudioLinkX234 extends StatelessWidget {
                   padding: EdgeInsets.only(
                       right: Design.gap(context) - Design.SPACE),
                   // HeaderStudioLink
-                  child: HeaderStudioLink(studioEnabledVN: studioEnabledVN)))
+                  child: HeaderStudioLink(
+                      contentVN: contentVN, studioEnabledVN: studioEnabledVN)))
         ]);
   }
 }

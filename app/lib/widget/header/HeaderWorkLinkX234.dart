@@ -1,4 +1,5 @@
 import 'package:app/Index.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/L1C.dart';
 import 'package:app/widget/header/HeaderWorkLink.dart';
@@ -7,9 +8,13 @@ import 'package:matrix4_transform/matrix4_transform.dart';
 
 class HeaderWorkLinkX234 extends StatelessWidget {
   const HeaderWorkLinkX234(
-      {Key key, @required this.indexVN, @required this.bulletsEnabledVN})
+      {Key key,
+      @required this.contentVN,
+      @required this.indexVN,
+      @required this.bulletsEnabledVN})
       : super(key: key);
 
+  final ValueNotifier<Content> contentVN;
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
 
@@ -54,7 +59,9 @@ class HeaderWorkLinkX234 extends StatelessWidget {
                       right: Design.gap(context) - Design.SPACE),
                   // HeaderWorkLink
                   child: HeaderWorkLink(
-                      indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN)))
+                      contentVN: contentVN,
+                      indexVN: indexVN,
+                      bulletsEnabledVN: bulletsEnabledVN)))
         ]);
   }
 }

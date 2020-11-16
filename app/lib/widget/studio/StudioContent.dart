@@ -7,7 +7,9 @@ import 'package:app/widget/studio/StudioFooter.dart';
 import 'package:flutter/material.dart';
 
 class StudioContent extends StatelessWidget {
-  const StudioContent({Key key}) : super(key: key);
+  const StudioContent({Key key, @required this.contentVN}) : super(key: key);
+
+  final ValueNotifier<Content> contentVN;
 
   // gap between content
   static const SizedBox GAP = SizedBox(height: Design.STUDIO_CONTENT_SPACING);
@@ -40,21 +42,21 @@ class StudioContent extends StatelessWidget {
                 clearance,
 
                 // CONTACT
-                const StudioContact(),
+                StudioContact(contentVN: contentVN),
                 GAP,
 
                 // About:
-                const P(text: Content.STUDIO_ABOUT_TITLE),
-                const P(text: Content.STUDIO_ABOUT_TEXT),
+                P(text: contentVN.value.STUDIO_ABOUT_TITLE),
+                P(text: contentVN.value.STUDIO_ABOUT_TEXT),
                 GAP,
 
                 // Process:
-                const P(text: Content.STUDIO_PROCESS_TITLE),
-                const P(text: Content.STUDIO_PROCESS_TEXT),
+                P(text: contentVN.value.STUDIO_PROCESS_TITLE),
+                P(text: contentVN.value.STUDIO_PROCESS_TEXT),
                 GAP,
 
                 // FOOTER
-                const StudioFooter(),
+                StudioFooter(contentVN: contentVN),
 
                 // FOOTER CLEARANCE
                 clearance,

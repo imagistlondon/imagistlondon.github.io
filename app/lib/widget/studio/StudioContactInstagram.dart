@@ -5,12 +5,15 @@ import 'package:app/text/P.dart';
 import 'package:flutter/material.dart';
 
 class StudioContactInstagram extends StatelessWidget {
-  const StudioContactInstagram({Key key}) : super(key: key);
+  const StudioContactInstagram({Key key, @required this.contentVN})
+      : super(key: key);
+
+  final ValueNotifier<Content> contentVN;
 
   @override
   Widget build(BuildContext context) {
-    return const A(
-        url: 'https://instagram.com/' + Content.STUDIO_INSTAGRAM,
+    return A(
+        url: 'https://instagram.com/' + contentVN.value.STUDIO_INSTAGRAM,
         lineDuration: Design.STUDIO_ANCHOR_LINE_DURATION,
         lineCurve: Design.STUDIO_ANCHOR_LINE_CURVE,
         lineColor: Design.STUDIO_ANCHOR_LINE_COLOR,
