@@ -7568,7 +7568,7 @@ p.push(q)}return n}},S={
 JM:function(){var s=0,r=P.a7(t.fG),q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,c0,c1,c2,c3,c4,c5,c6
 var $async$JM=P.a3(function(c7,c8){if(c7===1)return P.a4(c8,r)
 while(true)switch(s){case 0:s=3
-return P.ah(G.ahp("http://52.5.4.218/api/getConfig"),$async$JM)
+return P.ah(G.ahp("https://52.5.4.218/api/getConfig"),$async$JM)
 case 3:c4=c8
 c5=C.bg.cn(0,B.ahi(U.afm(c4.e).c.a.h(0,"charset")).cn(0,c4.x))
 c6=H.c([],t.g5)
