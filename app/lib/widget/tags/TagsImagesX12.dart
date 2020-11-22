@@ -23,11 +23,15 @@ class TagsImagesX12 extends StatelessWidget {
   final ValueNotifier<String> tagEnabledVN;
   final ValueNotifier<Set<String>> tagsSelectedVN;
 
-  static const EdgeInsetsGeometry PADDING =
-      EdgeInsets.only(right: Design.TAGS_IMAGES_HORIZONTAL_SPACE);
+  static const EdgeInsetsGeometry PADDING_LEFT =
+      EdgeInsets.only(left: Design.TAGS_IMAGES_HORIZONTAL_SPACE);
 
   @override
   Widget build(BuildContext context) {
+    // margin gap
+    final EdgeInsetsGeometry screenPadding =
+        EdgeInsets.symmetric(horizontal: Design.gap(context));
+
     // LISTEN
     return L2(tagEnabledVN, tagsSelectedVN, (tagEnabled, tagsSelected) {
       // init images
@@ -43,29 +47,32 @@ class TagsImagesX12 extends StatelessWidget {
           images.add(image);
 
       // add placeholder (i.e at least 1 image);
-      if (images.isEmpty) images.add('assets/placeholder.png');
+      if (images.isEmpty) images.add('assets/empty.png');
 
-      print(images);
+      // build image elements
+      final List<Widget> imageElements = List();
+      int i = 0;
+      for (final String image in images) {
+        imageElements.add(Container(
+            // non-first element has left padding
+            padding: i > 0 ? PADDING_LEFT : null,
+            child: TagsImage(image: image)));
+        i++;
+      }
 
-      // SCROLL (HORIZONTAL)
-      return Container(
-          color: Colors.green,
-          width: Design.screenWidth(context),
-          child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                  // ALIGNMENT
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  // CHILDREN
-                  children: <Widget>[
-                    for (final String image in images)
-                      // CONTAINER
-                      Container(
-                          // PADDING
-                          padding: PADDING,
-                          // TagsImage
-                          child: TagsImage(image: image))
-                  ])));
+      // SCROLL
+      return SingleChildScrollView(
+          // (HORIZONTAL)
+          scrollDirection: Axis.horizontal,
+          // CONTAINER
+          child: Container(
+              // MIN SCREEN WIDTH
+              constraints:
+                  BoxConstraints(minWidth: Design.screenWidth(context)),
+              // SRCEEN PADDING
+              padding: screenPadding,
+              // ROW of IMAGE ELEMENTS
+              child: Row(children: imageElements)));
     });
   }
 }

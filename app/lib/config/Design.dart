@@ -238,12 +238,18 @@ class Design {
   static const int TAGS_MENU_LINKS_PER_ROW_X3 = 4;
   static const int TAGS_MENU_LINKS_PER_ROW_X4 = 4;
 
-  // the number of rows for the image to occupy
-  static const int TAGS_IMAGE_SCALE_X12 = 3;
-  static const int TAGS_IMAGE_SCALE_X34 = 4;
+  // the height of the tag image (x1 and x2)
+  static const double TAGS_IMAGE_HEIGHT_X1 = 200;
+  static const double TAGS_IMAGE_HEIGHT_X2 = 300;
 
-  // max width of the tags image
-  static const double TAGS_IMAGE_WIDTH = double.infinity;
+  // the aspect ratio of the tag image (for x1 and x2)
+  static const double TAGS_IMAGE_SCALE_X1 = 5 / 7;
+  static const double TAGS_IMAGE_SCALE_X2 = 5 / 7;
+
+  // the number of rows for the image to occupy (for x3 and x4)
+  static const int TAGS_IMAGE_SCALE_X3 = 4;
+  static const int TAGS_IMAGE_SCALE_X4 = 4;
+
   // how to fit the image
   static const BoxFit TAGS_IMAGE_BOX_FIT = BoxFit.cover;
 

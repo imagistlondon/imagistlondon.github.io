@@ -90,44 +90,45 @@ class TagsState extends State<Tags> {
                     // HEADER SPACING
                     spacing,
                     // CONTENT
-                    Container(
-                        // PADDING
-                        padding: padding,
-                        // ROW
-                        child: Break.x12(context)
-                            ?
+                    Break.x12(context)
+                        ?
 
-                            // X12
-                            Column(children: <Widget>[
-                                TagsImagesX12(
-                                    contentVN: widget.contentVN,
-                                    indexVN: widget.indexVN,
-                                    studyEnabledVN: widget.studyEnabledVN,
-                                    tagEnabledVN: tagEnabledVN,
-                                    tagsSelectedVN: tagsSelectedVN),
-                                _TagsMenu
-                              ])
+                        // X12
+                        Column(children: <Widget>[
+                            // TOP IMAGES ROW
+                            TagsImagesX12(
+                                contentVN: widget.contentVN,
+                                indexVN: widget.indexVN,
+                                studyEnabledVN: widget.studyEnabledVN,
+                                tagEnabledVN: tagEnabledVN,
+                                tagsSelectedVN: tagsSelectedVN),
+                            // GAP
+                            SizedBox(height: Design.gap(context)),
+                            // BOTTOM MENU
+                            Container(padding: padding, child: _TagsMenu)
+                          ])
 
-                            // X34
-                            : Row(
+                        // X34
+                        : Container(
+                            padding: padding,
+                            child: Row(
                                 // (need this when table is smaller than image)
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                    // LEFT HAND MENU
-                                    Expanded(flex: 8, child: _TagsMenu),
-                                    // GAP
-                                    SizedBox(width: Design.SPACE),
-                                    // RIGHT HAND IMAGE
-                                    Expanded(
-                                        flex: 4,
-                                        child: TagsImagesX34(
-                                            contentVN: widget.contentVN,
-                                            indexVN: widget.indexVN,
-                                            studyEnabledVN:
-                                                widget.studyEnabledVN,
-                                            tagEnabledVN: tagEnabledVN,
-                                            tagsSelectedVN: tagsSelectedVN))
-                                  ])),
+                                  // LEFT HAND MENU
+                                  Expanded(flex: 8, child: _TagsMenu),
+                                  // GAP
+                                  const SizedBox(width: Design.SPACE),
+                                  // RIGHT HAND IMAGE
+                                  Expanded(
+                                      flex: 4,
+                                      child: TagsImagesX34(
+                                          contentVN: widget.contentVN,
+                                          indexVN: widget.indexVN,
+                                          studyEnabledVN: widget.studyEnabledVN,
+                                          tagEnabledVN: tagEnabledVN,
+                                          tagsSelectedVN: tagsSelectedVN))
+                                ])),
                     // FOOTER SPACING
                     spacing
                   ]))));

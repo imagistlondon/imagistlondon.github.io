@@ -12,18 +12,28 @@ class TagsImage extends StatelessWidget {
     // skip
     if (image == null) return SizedBox.shrink();
 
-    // the number of row heights the image takes up
-    final int imageScale = Break.x12(context)
-        ? Design.TAGS_IMAGE_SCALE_X12
-        : Design.TAGS_IMAGE_SCALE_X34;
-
-    // image height
-    final double imageHeight = Design.TAGS_MENU_ROW_HEIGHT * imageScale;
-
     return Image(
         fit: Design.TAGS_IMAGE_BOX_FIT,
-        width: Design.TAGS_IMAGE_WIDTH,
-        height: imageHeight,
+        width: Break.decide(
+            context,
+            // x1 (scaled by aspect ration)
+            Design.TAGS_IMAGE_HEIGHT_X1 / Design.TAGS_IMAGE_SCALE_X1,
+            // x2 (scaled by aspect ration)
+            Design.TAGS_IMAGE_HEIGHT_X2 / Design.TAGS_IMAGE_SCALE_X2,
+            // x3 (full width in right part of table)
+            double.infinity,
+            // x4 (full width in right part of table)
+            double.infinity),
+        height: Break.decide(
+            context,
+            // x1 (specific height)
+            Design.TAGS_IMAGE_HEIGHT_X1,
+            // x2 (specific height)
+            Design.TAGS_IMAGE_HEIGHT_X2,
+            // x3 (scale by rows)
+            Design.TAGS_IMAGE_SCALE_X3 * Design.TAGS_MENU_ROW_HEIGHT,
+            // x4
+            Design.TAGS_IMAGE_SCALE_X4 * Design.TAGS_MENU_ROW_HEIGHT),
         image: AssetImage(image));
   }
 }
