@@ -63,7 +63,7 @@ class Design {
   // height of the progress bar
   static const double PROGRESS_BAR_SIZE = 3;
 
-  // duration of the progrss bar to transition
+  // duration of the progress bar to transition
   static const Duration PROGRESS_BAR_ANIMATION_DURATION =
       Duration(milliseconds: 200);
 
@@ -257,7 +257,7 @@ class Design {
   static const double TAGS_IMAGES_VERTICAL_SPACE = 2;
 
   // space between tag images that appear at the top
-  static const double TAGS_IMAGES_HORIZONTAL_SPACE = Design.SPACE;
+  static const double TAGS_IMAGES_HORIZONTAL_SPACE = Design.SPACE * 2;
 
   // border color of the tags menu link
   static const Color TAGS_MENU_LINK_BORDER_COLOR = Color.fromRGBO(0, 0, 0, 0.1);
