@@ -247,8 +247,11 @@ class Design {
   // how to fit the image
   static const BoxFit TAGS_IMAGE_BOX_FIT = BoxFit.cover;
 
-  // space between images that appear in the right
-  static const double TAGS_IMAGES_SPACE = 2;
+  // space between tag images that appear on the right
+  static const double TAGS_IMAGES_VERTICAL_SPACE = 2;
+
+  // space between tag images that appear at the top
+  static const double TAGS_IMAGES_HORIZONTAL_SPACE = Design.SPACE;
 
   // border color of the tags menu link
   static const Color TAGS_MENU_LINK_BORDER_COLOR = Color.fromRGBO(0, 0, 0, 0.1);

@@ -99,10 +99,12 @@ class TagsState extends State<Tags> {
 
                             // X12
                             Column(children: <Widget>[
-                                // TagsImagesX12(
-                                //     tagImages: tagImages,
-                                //     tagEnabledVN: tagEnabledVN,
-                                //     tagsSelectedVN: tagsSelectedVN),
+                                TagsImagesX12(
+                                    contentVN: widget.contentVN,
+                                    indexVN: widget.indexVN,
+                                    studyEnabledVN: widget.studyEnabledVN,
+                                    tagEnabledVN: tagEnabledVN,
+                                    tagsSelectedVN: tagsSelectedVN),
                                 _TagsMenu
                               ])
 

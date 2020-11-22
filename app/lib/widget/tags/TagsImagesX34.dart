@@ -24,7 +24,7 @@ class TagsImagesX34 extends StatelessWidget {
   final ValueNotifier<Set<String>> tagsSelectedVN;
 
   static const EdgeInsetsGeometry PADDING =
-      EdgeInsets.only(bottom: Design.TAGS_IMAGES_SPACE);
+      EdgeInsets.only(bottom: Design.TAGS_IMAGES_VERTICAL_SPACE);
 
   @override
   Widget build(BuildContext context) {

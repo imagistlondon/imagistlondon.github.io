@@ -24,14 +24,12 @@ class TagsImagesX12 extends StatelessWidget {
   final ValueNotifier<Set<String>> tagsSelectedVN;
 
   static const EdgeInsetsGeometry PADDING =
-      EdgeInsets.only(bottom: Design.TAGS_IMAGES_SPACE);
+      EdgeInsets.only(right: Design.TAGS_IMAGES_HORIZONTAL_SPACE);
 
   @override
   Widget build(BuildContext context) {
     // LISTEN
-    return L2(tagEnabledVN, tagsSelectedVN,
-        // COLUMN
-        (tagEnabled, tagsSelected) {
+    return L2(tagEnabledVN, tagsSelectedVN, (tagEnabled, tagsSelected) {
       // init images
       final Set<String> images = LinkedHashSet();
 
@@ -44,19 +42,30 @@ class TagsImagesX12 extends StatelessWidget {
         for (String image in contentVN.value.TAG_IMAGES[tagEnabled])
           images.add(image);
 
-      return Row(
-          // ALIGNMENT
-          crossAxisAlignment: CrossAxisAlignment.start,
-          // CHILDREN
-          children: <Widget>[
-            for (final String image in images)
-              // CONTAINER
-              Container(
-                  // PADDING
-                  padding: PADDING,
-                  // TagsImage
-                  child: TagsImage(image: image))
-          ]);
+      // add placeholder (i.e at least 1 image);
+      if (images.isEmpty) images.add('assets/placeholder.png');
+
+      print(images);
+
+      // SCROLL (HORIZONTAL)
+      return Container(
+          color: Colors.green,
+          width: Design.screenWidth(context),
+          child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  // ALIGNMENT
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // CHILDREN
+                  children: <Widget>[
+                    for (final String image in images)
+                      // CONTAINER
+                      Container(
+                          // PADDING
+                          padding: PADDING,
+                          // TagsImage
+                          child: TagsImage(image: image))
+                  ])));
     });
   }
 }
