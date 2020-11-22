@@ -61,6 +61,8 @@ class HomeImage extends StatelessWidget {
                       height: height))));
     });
 
+    if (elements.isEmpty) elements.add(SizedBox(width: Design.SPACE));
+
     // UA
     return UA(
         onTap: onTap,
