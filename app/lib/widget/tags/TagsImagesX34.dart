@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:app/Index.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/L2.dart';
 import 'package:app/widget/tags/TagsImage.dart';
@@ -7,12 +9,19 @@ import 'package:flutter/material.dart';
 
 class TagsImagesX34 extends StatelessWidget {
   const TagsImagesX34(
-      {Key key, this.tagImages, this.tagEnabledVN, this.tagsSelectedVN})
+      {Key key,
+      @required this.contentVN,
+      @required this.indexVN,
+      @required this.studyEnabledVN,
+      @required this.tagEnabledVN,
+      @required this.tagsSelectedVN})
       : super(key: key);
 
-  final LinkedHashMap<String, LinkedHashSet<String>> tagImages;
+  final ValueNotifier<Content> contentVN;
+  final ValueNotifier<Index> indexVN;
+  final ValueNotifier<Project> studyEnabledVN;
   final ValueNotifier<String> tagEnabledVN;
-  final ValueNotifier<LinkedHashSet<String>> tagsSelectedVN;
+  final ValueNotifier<Set<String>> tagsSelectedVN;
 
   static const EdgeInsetsGeometry PADDING =
       EdgeInsets.only(bottom: Design.TAGS_IMAGES_SPACE);
@@ -28,11 +37,12 @@ class TagsImagesX34 extends StatelessWidget {
 
       // pull all images from selected
       for (String tag in tagsSelected)
-        for (String image in tagImages[tag]) images.add(image);
+        for (String image in contentVN.value.TAG_IMAGES[tag]) images.add(image);
 
       // pull all images from enabled (hovering)
       if (tagEnabled != null)
-        for (String image in tagImages[tagEnabled]) images.add(image);
+        for (String image in contentVN.value.TAG_IMAGES[tagEnabled])
+          images.add(image);
 
       return Column(
           // ALIGNMENT

@@ -20,9 +20,7 @@ class Tags extends StatefulWidget {
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
-
   final ValueNotifier<Index> indexVN;
-
   final ValueNotifier<Project> studyEnabledVN;
 
   @override
@@ -30,41 +28,14 @@ class Tags extends StatefulWidget {
 }
 
 class TagsState extends State<Tags> {
-  // tag -> images
-  final LinkedHashMap<String, LinkedHashSet<String>> tagImages =
-      LinkedHashMap();
-
   // tag currently enabled (hovering)
   final ValueNotifier<String> tagEnabledVN = ValueNotifier(null);
 
   // tags currently selected
-  final ValueNotifier<LinkedHashSet<String>> tagsSelectedVN =
+  final ValueNotifier<Set<String>> tagsSelectedVN =
       ValueNotifier(LinkedHashSet());
 
   static final P none = const P(text: 'No tags found.');
-
-  @override
-  void initState() {
-    super.initState();
-
-    // load tag -> images
-    for (final Project project in widget.contentVN.value.PROJECTS) {
-      // skip if no tags
-      if (project.tags == null || project.tags.isEmpty) continue;
-
-      // skip also if no image
-      if (project.tagImage == null) continue;
-
-      // loop through tags
-      for (final String tag in project.tags) {
-        /// add empty list for key
-        tagImages.putIfAbsent(tag, () => new LinkedHashSet());
-
-        // add project image thumb
-        tagImages[tag].add(project.tagImage);
-      }
-    }
-  }
 
   void tagToggle(final String tag) {
     // add
@@ -87,17 +58,30 @@ class TagsState extends State<Tags> {
     final SizedBox spacing =
         SizedBox(height: Design.clearance(context, bulletsOpen: true));
 
+    // show no content if tag images are empty
+    final bool showNoContent = widget.contentVN.value.TAG_IMAGES.isEmpty;
+
+    // no content widget
+    final Widget noContent = Column(
+        children: <Widget>[spacing, Container(padding: padding, child: none)]);
+
+    // _TagsMenu
+    final TagsMenu _TagsMenu = TagsMenu(
+        contentVN: widget.contentVN,
+        indexVN: widget.indexVN,
+        studyEnabledVN: widget.studyEnabledVN,
+        tagEnabledVN: tagEnabledVN,
+        tagsSelectedVN: tagsSelectedVN,
+        tagToggle: tagToggle);
+
     // LISTEN
     return L1(
         widget.indexVN,
         (index) => Visibility(
             visible: index == Index.WORK_TAGS,
-            child: tagImages.isEmpty
+            child: showNoContent
                 // NO CONTENT
-                ? Column(children: <Widget>[
-                    spacing,
-                    Container(padding: padding, child: none)
-                  ])
+                ? noContent
                 // SCROLLABLE
                 : SingleChildScrollView(
                     child: Column(children: <Widget>[
@@ -117,11 +101,7 @@ class TagsState extends State<Tags> {
                                 //     tagImages: tagImages,
                                 //     tagEnabledVN: tagEnabledVN,
                                 //     tagsSelectedVN: tagsSelectedVN),
-                                TagsMenu(
-                                    tagImages: tagImages,
-                                    tagEnabledVN: tagEnabledVN,
-                                    tagsSelectedVN: tagsSelectedVN,
-                                    tagToggle: tagToggle)
+                                _TagsMenu
                               ])
 
                             // X34
@@ -130,20 +110,17 @@ class TagsState extends State<Tags> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                     // LEFT HAND MENU
-                                    Expanded(
-                                        flex: 8,
-                                        child: TagsMenu(
-                                            tagImages: tagImages,
-                                            tagEnabledVN: tagEnabledVN,
-                                            tagsSelectedVN: tagsSelectedVN,
-                                            tagToggle: tagToggle)),
+                                    Expanded(flex: 8, child: _TagsMenu),
                                     // GAP
                                     SizedBox(width: Design.SPACE),
                                     // RIGHT HAND IMAGE
                                     Expanded(
                                         flex: 4,
                                         child: TagsImagesX34(
-                                            tagImages: tagImages,
+                                            contentVN: widget.contentVN,
+                                            indexVN: widget.indexVN,
+                                            studyEnabledVN:
+                                                widget.studyEnabledVN,
                                             tagEnabledVN: tagEnabledVN,
                                             tagsSelectedVN: tagsSelectedVN))
                                   ])),

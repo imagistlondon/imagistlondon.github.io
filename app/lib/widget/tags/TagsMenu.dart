@@ -1,6 +1,8 @@
 import 'dart:collection';
 
+import 'package:app/Index.dart';
 import 'package:app/config/Break.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/UA.dart';
 import 'package:app/widget/tags/TagsLink.dart';
@@ -9,15 +11,19 @@ import 'package:flutter/material.dart';
 class TagsMenu extends StatelessWidget {
   const TagsMenu(
       {Key key,
-      this.tagImages,
-      this.tagEnabledVN,
-      this.tagsSelectedVN,
-      this.tagToggle})
+      @required this.contentVN,
+      @required this.indexVN,
+      @required this.studyEnabledVN,
+      @required this.tagEnabledVN,
+      @required this.tagsSelectedVN,
+      @required this.tagToggle})
       : super(key: key);
 
-  final LinkedHashMap<String, LinkedHashSet<String>> tagImages;
+  final ValueNotifier<Content> contentVN;
+  final ValueNotifier<Index> indexVN;
+  final ValueNotifier<Project> studyEnabledVN;
   final ValueNotifier<String> tagEnabledVN;
-  final ValueNotifier<LinkedHashSet<String>> tagsSelectedVN;
+  final ValueNotifier<Set<String>> tagsSelectedVN;
   final Function tagToggle;
 
   void onEnter(PointerEvent pe) {}
@@ -41,7 +47,7 @@ class TagsMenu extends StatelessWidget {
     List<Widget> columns = List();
     int i = 0;
     int j = 0;
-    for (String tag in tagImages.keys) {
+    for (String tag in contentVN.value.TAG_IMAGES.keys) {
       if (i > 0 && i % columnSize == 0) {
         rows.add(Row(children: columns));
         columns = List();
@@ -55,6 +61,9 @@ class TagsMenu extends StatelessWidget {
         Expanded(
             flex: 1,
             child: TagsLink(
+                contentVN: contentVN,
+                indexVN: indexVN,
+                studyEnabledVN: studyEnabledVN,
                 tag: tag,
                 tagEnabledVN: tagEnabledVN,
                 tagsSelectedVN: tagsSelectedVN,
