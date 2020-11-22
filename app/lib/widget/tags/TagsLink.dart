@@ -55,16 +55,42 @@ class TagsLinkState extends State<TagsLink> {
   final ValueNotifier<bool> enabledVN = ValueNotifier(false);
 
   void onTap() {
-    widget.tagToggle(widget.tag);
+    if (this.selectable() >= 0) widget.tagToggle(widget.tag);
   }
 
   void onEnter(PointerEvent pe) {
-    widget.tagEnabledVN.value = widget.tag;
-    enabledVN.value = true;
+    if (this.selectable() >= 0) {
+      widget.tagEnabledVN.value = widget.tag;
+      enabledVN.value = true;
+    }
   }
 
   void onExit(PointerEvent pe) {
     enabledVN.value = false;
+  }
+
+  int selectable() {
+    // get tags selected
+    final Set<String> tagsSelected = widget.tagsSelectedVN.value;
+
+    // skip if no tags selected
+    if (tagsSelected == null || tagsSelected.isEmpty) return 1;
+
+    // tag selected
+    if (tagsSelected.contains(widget.tag)) return 0;
+
+    // check for association
+    for (String tagSelected in tagsSelected) {
+      // pull tag associations
+      final Set<String> tagAssociations =
+          widget.contentVN.value.TAG_ASSOCIATIONS[tagSelected];
+
+      // if not in assciated tag then return ommited label
+      if (!tagAssociations.contains(widget.tag)) return -1;
+    }
+
+    // otherwise in all associations so show label
+    return 1;
   }
 
   @override
@@ -109,25 +135,10 @@ class TagsLinkState extends State<TagsLink> {
                     alignment: Alignment.centerLeft,
                     // LISTEN (tagsSelected)
                     child: L1(widget.tagsSelectedVN, (tagsSelected) {
-                      // skip if no tags selected
-                      if (tagsSelected == null || tagsSelected.isEmpty)
-                        return label;
-
-                      // tag selected
-                      if (tagsSelected.contains(widget.tag)) return xLabel;
-
-                      // check for association
-                      for (String tagSelected in tagsSelected) {
-                        // pull tag associations
-                        final Set<String> tagAssociations = widget
-                            .contentVN.value.TAG_ASSOCIATIONS[tagSelected];
-
-                        // if associated tag then return normal label
-                        if (tagAssociations.contains(widget.tag)) return label;
-                      }
-
-                      // oLabel
-                      return oLabel;
+                      final int _selectable = this.selectable();
+                      if (_selectable == 0) return xLabel;
+                      if (_selectable == -1) return oLabel;
+                      return label;
                     })))));
   }
 }

@@ -33,7 +33,7 @@ class TagsImagesX12 extends StatelessWidget {
         // COLUMN
         (tagEnabled, tagsSelected) {
       // init images
-      final List<String> images = List();
+      final Set<String> images = LinkedHashSet();
 
       // pull all images from selected
       for (String tag in tagsSelected)
