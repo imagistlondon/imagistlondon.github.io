@@ -41,10 +41,12 @@ class TagsState extends State<Tags> {
     // add
     if (!tagsSelectedVN.value.contains(tag)) {
       this.tagsSelectedVN.value.add(tag);
+      this.tagsSelectedVN.value = LinkedHashSet.from(this.tagsSelectedVN.value);
     }
     // remove
     else {
       this.tagsSelectedVN.value.remove(tag);
+      this.tagsSelectedVN.value = LinkedHashSet.from(this.tagsSelectedVN.value);
     }
   }
 

@@ -55,7 +55,6 @@ class TagsLinkState extends State<TagsLink> {
   final ValueNotifier<bool> enabledVN = ValueNotifier(false);
 
   void onTap() {
-    print('onTap.' + widget.tag);
     widget.tagToggle(widget.tag);
   }
 
@@ -79,7 +78,8 @@ class TagsLinkState extends State<TagsLink> {
 
     // label
     final Widget label = P(text: widget.tag);
-    final Widget xLabel = Row(children: [xImage, label]);
+    final Widget xLabel =
+        Row(children: [xImage, SizedBox(width: Design.SPACE / 2), label]);
     final Widget oLabel = P(
         text: widget.tag,
         opacity: Design.TAGS_MENU_LINK_DISABLED_OPACITY); // ommited label
@@ -109,7 +109,6 @@ class TagsLinkState extends State<TagsLink> {
                     alignment: Alignment.centerLeft,
                     // LISTEN (tagsSelected)
                     child: L1(widget.tagsSelectedVN, (tagsSelected) {
-                      print('TagsLink.L1.tagsSelected.' + widget.tag);
                       // skip if no tags selected
                       if (tagsSelected == null || tagsSelected.isEmpty)
                         return label;
