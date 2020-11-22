@@ -7580,7 +7580,7 @@ p.push(q)}return n}},S={
 JW:function(){var s=0,r=P.a8(t.fG),q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,c0,c1,c2,c3,c4,c5,c6
 var $async$JW=P.a3(function(c7,c8){if(c7===1)return P.a5(c8,r)
 while(true)switch(s){case 0:s=3
-return P.ah(G.ahN("https://52.5.4.218/api/getConfig"),$async$JW)
+return P.ah(G.ahN("https://cors-anywhere.herokuapp.com/http://52.5.4.218/api/getConfig"),$async$JW)
 case 3:c4=c8
 c5=C.bg.cp(0,B.ahG(U.afL(c4.e).c.a.h(0,"charset")).cp(0,c4.x))
 c6=H.c([],t.g5)
