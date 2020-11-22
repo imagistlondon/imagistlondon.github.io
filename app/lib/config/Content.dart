@@ -2,7 +2,8 @@
 //
 // Things such as text and images etc. should be added here and referenced.
 
-import 'package:flutter/foundation.dart';
+import 'dart:collection';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -23,7 +24,6 @@ class Content {
     if (map['PROJECT-length'] != null) {
       // get length
       final int projectLength = map['PROJECT-length'];
-      print('projectLength: ' + projectLength.toString());
 
       // loop
       for (int i = 0; i < projectLength; i++) {
@@ -36,7 +36,6 @@ class Content {
         // load tags
         if (map[prefix + 'TAG-length'] != null) {
           final int tagLength = map[prefix + 'TAG-length'];
-          print(i.toString() + 'tagLength: ' + tagLength.toString());
           for (int j = 0; j < tagLength; j++) {
             tags.add(map[prefix + 'TAG-' + j.toString() + '-KEY']);
           }
@@ -99,6 +98,39 @@ class Content {
         projects.where((p) => p.showcase == true).toList();
     final List<Project> archiveProjects =
         projects.where((p) => p.archive == true).toList();
+
+    // load tag -> images
+    final Set<String> tags = LinkedHashSet();
+    final Map<String, Set<String>> tagAssociations = LinkedHashMap();
+    final Map<String, Set<String>> tagImages = LinkedHashMap();
+    for (final Project project in projects) {
+      // skip if no tags
+      if (project.tags == null || project.tags.isEmpty) continue;
+
+      // skip also if no image
+      if (project.tagImage == null) continue;
+
+      // loop through tags
+      for (final String tag in project.tags) {
+        // add tag
+        tags.add(tag);
+
+        // add empty list for key
+        tagAssociations.putIfAbsent(tag, () => new LinkedHashSet());
+
+        // add all other tags as associates
+        for (final String _tag in project.tags) {
+          if (tag == _tag) continue;
+          tagAssociations[tag].add(_tag);
+        }
+
+        // add empty list for key
+        tagImages.putIfAbsent(tag, () => new LinkedHashSet());
+
+        // add project image thumb
+        tagImages[tag].add(project.tagImage);
+      }
+    }
 
     return Content(
       LOADING_LINE_1:
@@ -165,6 +197,9 @@ class Content {
           List.generate(archiveProjects.length, (i) => i),
           key: (i) => archiveProjects[i].key,
           value: (i) => i),
+      TAGS: tags,
+      TAG_ASSOCIATIONS: tagAssociations,
+      TAG_IMAGES: tagImages,
     );
   }
 
@@ -199,6 +234,10 @@ class Content {
   final Map<String, Project> KEY_ARCHIVE_PROJECTS;
   final Map<String, int> ARCHIVE_PROJECT_KEY_TO_INDEX;
 
+  final Set<String> TAGS;
+  final Map<String, Set<String>> TAG_ASSOCIATIONS;
+  final Map<String, Set> TAG_IMAGES;
+
   const Content(
       {this.LOADING_LINE_1 = '',
       this.LOADING_LINE_2 = '',
@@ -227,7 +266,10 @@ class Content {
       this.SHOWCASE_PROJECT_KEY_TO_INDEX = const {},
       this.ARCHIVE_PROJECTS = const [],
       this.KEY_ARCHIVE_PROJECTS = const {},
-      this.ARCHIVE_PROJECT_KEY_TO_INDEX = const {}});
+      this.ARCHIVE_PROJECT_KEY_TO_INDEX = const {},
+      this.TAGS = const {},
+      this.TAG_ASSOCIATIONS = const {},
+      this.TAG_IMAGES = const {}});
 }
 
 class Project {
