@@ -258,6 +258,9 @@ class Design {
   static const Color TAGS_MENU_LINK_HOVER_BACKGROUND_COLOR =
       Color.fromRGBO(0, 0, 0, 0.03);
 
+  // tags menu link label opacity when out of scope
+  static const double TAGS_MENU_LINK_DISABLED_OPACITY = 0.3;
+
   ///// STUDY
 
   // study widget background color
