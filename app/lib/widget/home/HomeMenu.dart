@@ -40,18 +40,21 @@ class HomeMenu extends StatelessWidget {
             child: L1(
                 projectEnabledVN,
                 (projectEnabled) =>
-                    // COLUMN
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          // TITLE
-                          P(text: projectEnabled.title),
-                          // SUBTITLE
-                          P(
-                            text: projectEnabled.subtitle,
-                            style: TextStyle(
-                                color: Design.HOME_MENU_SUBTITLE_COLOR),
-                          ),
-                        ]))));
+                    // SKIP
+                    projectEnabled == null
+                        ? SizedBox.shrink()
+                        // COLUMN
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                                // TITLE
+                                P(text: projectEnabled.title),
+                                // SUBTITLE
+                                P(
+                                  text: projectEnabled.subtitle,
+                                  style: TextStyle(
+                                      color: Design.HOME_MENU_SUBTITLE_COLOR),
+                                ),
+                              ]))));
   }
 }
