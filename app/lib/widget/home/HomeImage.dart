@@ -61,6 +61,7 @@ class HomeImage extends StatelessWidget {
                       height: height))));
     });
 
+    // need at least 1 element so Stack can 'size' itself
     if (elements.isEmpty) elements.add(SizedBox(width: Design.SPACE));
 
     // UA
