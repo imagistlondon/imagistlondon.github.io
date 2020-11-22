@@ -66,6 +66,12 @@ class HomeState extends State<Home> {
       projectKeysEnabledVN[widget.contentVN.value.HOME_PROJECTS[0].key].value =
           true;
 
+      // kill any previous timer
+      if (timer != null) {
+        timer.cancel();
+        timer = null;
+      }
+
       // timer
       timer = Timer.periodic(Design.HOME_TRANSTION_ANIMATION_DURATION, (t) {
         // skip if studio enabled
@@ -87,6 +93,20 @@ class HomeState extends State<Home> {
       });
     }
 
+    // MENU
+    final HomeMenu _HomeMenu = HomeMenu(
+        indexVN: widget.indexVN,
+        studyEnabledVN: widget.studyEnabledVN,
+        projectEnabledVN: projectEnabledVN);
+
+    // IMAGE
+    final HomeImage _HomeImage = HomeImage(
+        contentVN: widget.contentVN,
+        indexVN: widget.indexVN,
+        studyEnabledVN: widget.studyEnabledVN,
+        projectEnabledVN: projectEnabledVN,
+        projectKeysEnabledVN: projectKeysEnabledVN);
+
     // LISTEN
     return L1(
         widget.indexVN,
@@ -105,49 +125,16 @@ class HomeState extends State<Home> {
 
                       // BREAK
                       child: Break.x12(context)
-                          ?
                           // X12
-                          Column(
+                          ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                  // MENU
-                                  HomeMenu(
-                                      indexVN: widget.indexVN,
-                                      studyEnabledVN: widget.studyEnabledVN,
-                                      projectEnabledVN: projectEnabledVN),
-
-                                  // IMAGE
-                                  HomeImage(
-                                      contentVN: widget.contentVN,
-                                      indexVN: widget.indexVN,
-                                      studyEnabledVN: widget.studyEnabledVN,
-                                      projectEnabledVN: projectEnabledVN,
-                                      projectKeysEnabledVN:
-                                          projectKeysEnabledVN)
-                                ])
-                          :
+                              children: <Widget>[_HomeMenu, _HomeImage])
                           // X34
-                          Row(
+                          : Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                  // MENU
-                                  Expanded(
-                                      flex: 3,
-                                      child: HomeMenu(
-                                          indexVN: widget.indexVN,
-                                          studyEnabledVN: widget.studyEnabledVN,
-                                          projectEnabledVN: projectEnabledVN)),
-
-                                  // IMAGE
-                                  Expanded(
-                                      flex: 9,
-                                      child: HomeImage(
-                                          contentVN: widget.contentVN,
-                                          indexVN: widget.indexVN,
-                                          studyEnabledVN: widget.studyEnabledVN,
-                                          projectEnabledVN: projectEnabledVN,
-                                          projectKeysEnabledVN:
-                                              projectKeysEnabledVN))
+                                  Expanded(flex: 3, child: _HomeMenu),
+                                  Expanded(flex: 9, child: _HomeImage)
                                 ]))
                 ]))));
   }
