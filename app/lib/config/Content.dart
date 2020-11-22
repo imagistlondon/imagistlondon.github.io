@@ -112,6 +112,9 @@ class Content {
 
       // loop through tags
       for (final String tag in project.tags) {
+        // skip if tag not present
+        if (tag == null || tag == '') continue;
+
         // add tag
         tags.add(tag);
 
