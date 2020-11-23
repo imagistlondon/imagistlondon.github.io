@@ -6,14 +6,19 @@ import 'package:flutter/material.dart';
 
 class StudyClose extends StatelessWidget {
   const StudyClose(
-      {Key key, @required this.indexVN, @required this.studyEnabledVN})
+      {Key key,
+      @required this.indexVN,
+      @required this.studyEnabledVN,
+      @required this.progressFractionVN})
       : super(key: key);
 
   final ValueNotifier<Index> indexVN;
   final ValueNotifier<Project> studyEnabledVN;
+  final ValueNotifier<double> progressFractionVN;
 
   void onTap() {
     studyEnabledVN.value = null;
+    progressFractionVN.value = 0.0;
   }
 
   @override
