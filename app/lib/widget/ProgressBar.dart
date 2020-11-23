@@ -12,14 +12,16 @@ class ProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return L1(
-        progressFractionVN,
-        (progressFraction) => Visibility(
-            visible: progressFraction != null,
-            child: AnimatedContainer(
-                width: progressFraction != null ? progressFraction * max : 0,
-                height: Design.PROGRESS_BAR_SIZE,
-                color: Design.PROGRESS_BAR_COLOR,
-                duration: Design.PROGRESS_BAR_ANIMATION_DURATION)));
+    return L1(progressFractionVN, (progressFraction) {
+      print('ProgressBar.' +
+          (progressFraction != null ? progressFraction.toString() : 'null'));
+      return Visibility(
+          visible: progressFraction != null,
+          child: AnimatedContainer(
+              width: progressFraction != null ? progressFraction * max : 0,
+              height: Design.PROGRESS_BAR_SIZE,
+              color: Design.PROGRESS_BAR_COLOR,
+              duration: Design.PROGRESS_BAR_ANIMATION_DURATION));
+    });
   }
 }
