@@ -242,8 +242,8 @@ class Content {
   final Map<String, Set> TAG_IMAGES;
 
   const Content(
-      {this.LOADING_LINE_1 = '',
-      this.LOADING_LINE_2 = '',
+      {this.LOADING_LINE_1 = 'The apparition of these faces in the crowd:',
+      this.LOADING_LINE_2 = 'Petals on a wet, black bough.',
       this.HEADER_WORK = '',
       this.HEADER_STUDIO = '',
       this.STUDIO_EMAIL = '',

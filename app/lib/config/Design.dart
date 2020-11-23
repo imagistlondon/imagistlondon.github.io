@@ -77,7 +77,7 @@ class Design {
 
   // animation for the loading page fade in/out
   static const Duration LOADING_OPACITY_ANIMATION_DURATION =
-      Duration(milliseconds: 500);
+      Duration(milliseconds: 1000);
   static const Curve LOADING_OPACITY_ANIMATION_CURVE = Curves.easeInOut;
 
   ///// HEADER

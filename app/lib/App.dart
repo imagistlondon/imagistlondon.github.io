@@ -15,6 +15,9 @@ class AppState extends State<App> {
   // content
   final ValueNotifier<Content> contentVN = ValueNotifier(Content());
 
+  // loading
+  final ValueNotifier<bool> loadingVN = ValueNotifier(true);
+
   @override
   void initState() {
     super.initState();
@@ -23,6 +26,7 @@ class AppState extends State<App> {
 
   void loadContent() async {
     contentVN.value = await Content.load();
+    loadingVN.value = false;
   }
 
   @override
@@ -30,7 +34,8 @@ class AppState extends State<App> {
     return MaterialApp(
       title: 'Imagist',
       routes: {
-        '/': (context) => L1(contentVN, (c) => Main(contentVN: contentVN)),
+        '/': (context) => L1(
+            contentVN, (c) => Main(contentVN: contentVN, loadingVN: loadingVN)),
         '/terms': (context) => TermsPage(contentVN: contentVN)
       },
       theme: ThemeData(

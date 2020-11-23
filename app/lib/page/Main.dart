@@ -16,9 +16,11 @@ import 'package:app/widget/tags/Tags.dart';
 import 'package:flutter/material.dart';
 
 class Main extends StatefulWidget {
-  const Main({Key key, @required this.contentVN}) : super(key: key);
+  const Main({Key key, @required this.contentVN, @required this.loadingVN})
+      : super(key: key);
 
   final ValueNotifier<Content> contentVN;
+  final ValueNotifier<bool> loadingVN;
 
   @override
   _MainState createState() => _MainState();
@@ -36,9 +38,6 @@ class _MainState extends State<Main> {
 
   // showing studio
   final ValueNotifier<bool> studioEnabledVN = ValueNotifier(false);
-
-  // showing loading page
-  final ValueNotifier<bool> loadingEnabledVN = ValueNotifier(false);
 
   // progress bar fraction
   final ValueNotifier<double> progressFractionVN = ValueNotifier(0.0);
@@ -104,8 +103,8 @@ class _MainState extends State<Main> {
           // STUDIO
           Studio(contentVN: widget.contentVN, studioEnabledVN: studioEnabledVN),
 
-          // // LOADING
-          // Loading(enabledVN: loadingEnabledVN),
+          // LOADING
+          Loading(contentVN: widget.contentVN, loadingVN: widget.loadingVN),
 
           // // PROGRESS BAR
           // ProgressBar(
