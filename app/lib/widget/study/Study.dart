@@ -27,6 +27,17 @@ class StudyState extends State<Study> {
   final ScrollController scrollController = ScrollController();
 
   @override
+  void initState() {
+    super.initState();
+
+    // scroll listener
+    scrollController.addListener(() {
+      widget.progressFractionVN.value =
+          scrollController.offset / scrollController.position.maxScrollExtent;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     // size
     final double width = MediaQuery.of(context).size.width;
@@ -38,9 +49,6 @@ class StudyState extends State<Study> {
         (studyEnabled) {
       // skip if no study
       if (studyEnabled == null) return SizedBox.shrink();
-
-      // init to 25%
-      widget.progressFractionVN.value = 0.25;
 
       // CONTAINER
       return Container(
@@ -56,7 +64,10 @@ class StudyState extends State<Study> {
 
             // X
             StudyClose(
-                indexVN: widget.indexVN, studyEnabledVN: widget.studyEnabledVN),
+              indexVN: widget.indexVN,
+              studyEnabledVN: widget.studyEnabledVN,
+              progressFractionVN: widget.progressFractionVN,
+            ),
 
             // ARROW
             StudyArrow(
