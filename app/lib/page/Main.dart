@@ -39,6 +39,9 @@ class _MainState extends State<Main> {
   // showing studio
   final ValueNotifier<bool> studioEnabledVN = ValueNotifier(false);
 
+  // showing loading
+  final ValueNotifier<bool> loadingEnabledVN = ValueNotifier(true);
+
   // progress bar fraction
   final ValueNotifier<double> progressFractionVN = ValueNotifier(0.0);
 
@@ -98,18 +101,24 @@ class _MainState extends State<Main> {
             ),
 
           // STUDY
-          Study(indexVN: indexVN, studyEnabledVN: studyEnabledVN),
+          Study(
+              indexVN: indexVN,
+              studyEnabledVN: studyEnabledVN,
+              progressFractionVN: progressFractionVN),
 
           // STUDIO
           Studio(contentVN: widget.contentVN, studioEnabledVN: studioEnabledVN),
 
           // LOADING
-          Loading(contentVN: widget.contentVN, loadingVN: widget.loadingVN),
+          Loading(
+              contentVN: widget.contentVN,
+              loadingVN: widget.loadingVN,
+              loadingEnabledVN: loadingEnabledVN),
 
-          // // PROGRESS BAR
-          // ProgressBar(
-          //     position: progressFraction,
-          //     max: MediaQuery.of(context).size.width)
+          // PROGRESS BAR
+          ProgressBar(
+              progressFractionVN: progressFractionVN,
+              max: MediaQuery.of(context).size.width)
         ]));
   }
 }
