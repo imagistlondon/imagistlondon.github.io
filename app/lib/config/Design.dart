@@ -75,6 +75,11 @@ class Design {
   // loading page text color
   static const Color LOADING_PAGE_TEXT_COLOR = Colors.white;
 
+  // animation for the loading page fade in/out
+  static const Duration LOADING_OPACITY_ANIMATION_DURATION =
+      Duration(milliseconds: 500);
+  static const Curve LOADING_OPACITY_ANIMATION_CURVE = Curves.easeInOut;
+
   ///// HEADER
 
   // The header logo image
