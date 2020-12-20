@@ -10,9 +10,8 @@ import 'dart:convert';
 class Content {
   static Future<Content> load() async {
     // call
-    final String result = (await http.get(
-            'https://cors-anywhere.herokuapp.com/http://52.5.4.218/api/getConfig'))
-        .body;
+    final String result =
+        (await http.get('https://admin.imagistlondon.com/api/getConfig')).body;
 
     // convert json to map
     final Map map = json.decode(result);
@@ -48,8 +47,61 @@ class Content {
         if (map[prefix + 'STUDY-IMAGE-length'] != null) {
           final int studyImageLength = map[prefix + 'STUDY-IMAGE-length'];
           for (int j = 0; j < studyImageLength; j++) {
+            // prefix
+            final String imagePrefix = prefix + 'STUDY-IMAGE-' + j.toString();
+
+            // widthPercent
+            final String widthPercentX1 =
+                map[imagePrefix + '-WIDTH-PERCENT-X1'];
+            final String widthPercentX2 =
+                map[imagePrefix + '-WIDTH-PERCENT-X2'];
+            final String widthPercentX3 =
+                map[imagePrefix + '-WIDTH-PERCENT-X3'];
+            final String widthPercentX4 =
+                map[imagePrefix + '-WIDTH-PERCENT-X4'];
+
+            // minHeight
+            final String minHeightX1 = map[imagePrefix + '-MIN-HEIGHT-X1'];
+            final String minHeightX2 = map[imagePrefix + '-MIN-HEIGHT-X2'];
+            final String minHeightX3 = map[imagePrefix + '-MIN-HEIGHT-X3'];
+            final String minHeightX4 = map[imagePrefix + '-MIN-HEIGHT-X4'];
+
+            // maxHeight
+            final String maxHeightX1 = map[imagePrefix + '-MAX-HEIGHT-X1'];
+            final String maxHeightX2 = map[imagePrefix + '-MAX-HEIGHT-X2'];
+            final String maxHeightX3 = map[imagePrefix + '-MAX-HEIGHT-X3'];
+            final String maxHeightX4 = map[imagePrefix + '-MAX-HEIGHT-X4'];
+
             studyImages.add(ProjectStudyImage(
-                url: map[prefix + 'STUDY-IMAGE-' + j.toString() + '-URL']));
+              url: map[imagePrefix + '-URL'],
+              // widthPercent
+              widthPercentX1:
+                  widthPercentX1 != null ? int.tryParse(widthPercentX1) : null,
+              widthPercentX2:
+                  widthPercentX2 != null ? int.tryParse(widthPercentX2) : null,
+              widthPercentX3:
+                  widthPercentX3 != null ? int.tryParse(widthPercentX3) : null,
+              widthPercentX4:
+                  widthPercentX4 != null ? int.tryParse(widthPercentX4) : null,
+              // minHeight
+              minHeightX1:
+                  minHeightX1 != null ? double.tryParse(minHeightX1) : null,
+              minHeightX2:
+                  minHeightX2 != null ? double.tryParse(minHeightX2) : null,
+              minHeightX3:
+                  minHeightX3 != null ? double.tryParse(minHeightX3) : null,
+              minHeightX4:
+                  minHeightX4 != null ? double.tryParse(minHeightX4) : null,
+              // maxHeight
+              maxHeightX1:
+                  maxHeightX1 != null ? double.tryParse(maxHeightX1) : null,
+              maxHeightX2:
+                  maxHeightX2 != null ? double.tryParse(maxHeightX2) : null,
+              maxHeightX3:
+                  maxHeightX3 != null ? double.tryParse(maxHeightX3) : null,
+              maxHeightX4:
+                  maxHeightX4 != null ? double.tryParse(maxHeightX4) : null,
+            ));
           }
         }
 
@@ -312,6 +364,34 @@ class Project {
 
 class ProjectStudyImage {
   final String url;
+  final int widthPercentX1;
+  final int widthPercentX2;
+  final int widthPercentX3;
+  final int widthPercentX4;
 
-  const ProjectStudyImage({this.url});
+  final double minHeightX1;
+  final double minHeightX2;
+  final double minHeightX3;
+  final double minHeightX4;
+
+  final double maxHeightX1;
+  final double maxHeightX2;
+  final double maxHeightX3;
+  final double maxHeightX4;
+
+  const ProjectStudyImage({
+    this.url,
+    this.widthPercentX1,
+    this.widthPercentX2,
+    this.widthPercentX3,
+    this.widthPercentX4,
+    this.minHeightX1,
+    this.minHeightX2,
+    this.minHeightX3,
+    this.minHeightX4,
+    this.maxHeightX1,
+    this.maxHeightX2,
+    this.maxHeightX3,
+    this.maxHeightX4,
+  });
 }
