@@ -1,3 +1,4 @@
+import 'package:app/config/Break.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/config/Content.dart';
 import 'package:flutter/material.dart';
@@ -17,22 +18,44 @@ class StudyContentImagesX234 extends StatelessWidget {
     return Container(
         // PADDING
         padding: EdgeInsets.all(Design.gap(context)),
-        // COLUMN
-        child: Wrap(children: <Widget>[
-          // LOOP
-          for (final ProjectStudyImage image
-              in studyEnabledVN.value.studyImages)
-            // COLUMN
-            Column(children: <Widget>[
-              // IMAGE
-              Image(
-                  // FULL WIDTH
-                  width: Design.sectionInnerWidth(context),
-                  // URL
-                  image: AssetImage(image.url)),
-              // GAP
-              const SizedBox(height: Design.SPACE)
-            ]),
-        ]));
+        // WRAP
+        child: Wrap(
+            // position elements vertically in center
+            crossAxisAlignment: Design.STUDY_CONTENT_IMAGES_CROSS_ALIGNMENT,
+            children: <Widget>[
+              // LOOP
+              for (final ProjectStudyImage image
+                  in studyEnabledVN.value.studyImages)
+                // CONSTRAINED BOX
+                ConstrainedBox(
+                    constraints: BoxConstraints(
+                        minHeight: Break.decideOr(
+                            context,
+                            image.minHeightX1,
+                            image.minHeightX2,
+                            image.minHeightX3,
+                            image.minHeightX4,
+                            0.0),
+                        maxHeight: Break.decideOr(
+                            context,
+                            image.maxHeightX1,
+                            image.maxHeightX2,
+                            image.maxHeightX3,
+                            image.maxHeightX4,
+                            double.infinity)),
+                    // IMAGE
+                    child: Image(
+                        // fit
+                        fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
+                        // width
+                        width: Design.sectionInnerWidthPercent(
+                            context,
+                            image.widthPercentX1,
+                            image.widthPercentX2,
+                            image.widthPercentX3,
+                            image.widthPercentX4),
+                        // image
+                        image: AssetImage(image.url))),
+            ]));
   }
 }
