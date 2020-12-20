@@ -49,12 +49,12 @@ class Design {
   // the width percentage of section without gap
   static double sectionInnerWidthPercent(
       final BuildContext context,
-      final int widthPercentX1,
-      final int widthPercentX2,
-      final int widthPercentX3,
-      final int widthPercentX4) {
+      final double widthPercentX1,
+      final double widthPercentX2,
+      final double widthPercentX3,
+      final double widthPercentX4) {
     final double w = sectionInnerWidth(context);
-    final int widthPercent = Break.decide(context, widthPercentX1,
+    final double widthPercent = Break.decide(context, widthPercentX1,
         widthPercentX2, widthPercentX3, widthPercentX4);
     return widthPercent != null && widthPercent >= 0 && widthPercent <= 100
         ? (widthPercent / 100) * w
