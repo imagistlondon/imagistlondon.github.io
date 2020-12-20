@@ -90,7 +90,8 @@ class Break {
     return x3(context) || x4(context);
   }
 
-  static Object decide(BuildContext context, var x1, var x2, var x3, var x4) {
+  static Object decide(
+      BuildContext context, Object x1, Object x2, Object x3, Object x4) {
     return Break.x1(context)
         ? x1
         : Break.x2(context)
@@ -98,5 +99,11 @@ class Break {
             : Break.x3(context)
                 ? x3
                 : x4;
+  }
+
+  static Object decideOr(BuildContext context, Object x1, Object x2, Object x3,
+      Object x4, Object or) {
+    final Object chosen = decide(context, x1, x2, x3, x4);
+    return chosen != null ? chosen : or;
   }
 }
