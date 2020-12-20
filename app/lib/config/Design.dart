@@ -46,6 +46,21 @@ class Design {
     return sectionWidth(context) - gap(context);
   }
 
+  // the width percentage of section without gap
+  static double sectionInnerWidthPercent(
+      final BuildContext context,
+      final int widthPercentX1,
+      final int widthPercentX2,
+      final int widthPercentX3,
+      final int widthPercentX4) {
+    final double w = sectionInnerWidth(context);
+    final int widthPercent = Break.decide(context, widthPercentX1,
+        widthPercentX2, widthPercentX3, widthPercentX4);
+    return widthPercent != null && widthPercent >= 0 && widthPercent <= 100
+        ? (widthPercent / 100) * w
+        : w;
+  }
+
   ///// CROSS (CLOSE ICON)
 
   // The cross icon
@@ -307,6 +322,13 @@ class Design {
   static const STUDY_SCROLL_TO_TOP_ANIMATION_DURATION =
       Duration(milliseconds: 200);
   static const STUDY_SCROLL_TO_TOP_ANIMATION_CURVE = Curves.ease;
+
+  // how the images should align on the cross axis
+  static const WrapCrossAlignment STUDY_CONTENT_IMAGES_CROSS_ALIGNMENT =
+      WrapCrossAlignment.center;
+
+  // how to fit the study content image
+  static const BoxFit STUDY_CONTENT_IMAGE_BOX_FIT = BoxFit.cover;
 
   // X1
 
