@@ -75,14 +75,18 @@ class Content {
             studyImages.add(ProjectStudyImage(
               url: map[imagePrefix + '-URL'],
               // widthPercent
-              widthPercentX1:
-                  widthPercentX1 != null ? int.tryParse(widthPercentX1) : null,
-              widthPercentX2:
-                  widthPercentX2 != null ? int.tryParse(widthPercentX2) : null,
-              widthPercentX3:
-                  widthPercentX3 != null ? int.tryParse(widthPercentX3) : null,
-              widthPercentX4:
-                  widthPercentX4 != null ? int.tryParse(widthPercentX4) : null,
+              widthPercentX1: widthPercentX1 != null
+                  ? double.tryParse(widthPercentX1)
+                  : null,
+              widthPercentX2: widthPercentX2 != null
+                  ? double.tryParse(widthPercentX2)
+                  : null,
+              widthPercentX3: widthPercentX3 != null
+                  ? double.tryParse(widthPercentX3)
+                  : null,
+              widthPercentX4: widthPercentX4 != null
+                  ? double.tryParse(widthPercentX4)
+                  : null,
               // minHeight
               minHeightX1:
                   minHeightX1 != null ? double.tryParse(minHeightX1) : null,
@@ -364,10 +368,10 @@ class Project {
 
 class ProjectStudyImage {
   final String url;
-  final int widthPercentX1;
-  final int widthPercentX2;
-  final int widthPercentX3;
-  final int widthPercentX4;
+  final double widthPercentX1;
+  final double widthPercentX2;
+  final double widthPercentX3;
+  final double widthPercentX4;
 
   final double minHeightX1;
   final double minHeightX2;
