@@ -53,12 +53,25 @@ class Design {
       final double widthPercentX2,
       final double widthPercentX3,
       final double widthPercentX4) {
+    // calculate full width
     final double w = sectionInnerWidth(context);
-    final double widthPercent = Break.decide(context, widthPercentX1,
-        widthPercentX2, widthPercentX3, widthPercentX4);
-    return widthPercent != null && widthPercent >= 0 && widthPercent <= 100
-        ? (widthPercent / 100) * w
-        : w;
+
+    // pull desired width percent
+    double widthPercent = Break.decide(context, widthPercentX1, widthPercentX2,
+        widthPercentX3, widthPercentX4);
+
+    // use full width if none
+    if (widthPercent == null) return w;
+
+    // use full width if out of range
+    if (widthPercent < 0 || widthPercent > 100) return w;
+
+    // use accurate divider for thirds
+    if (widthPercent > 33 / 100 && widthPercent < 34 / 100)
+      widthPercent = 1 / 3;
+
+    // return width
+    return (widthPercent / 100) * w;
   }
 
   ///// CROSS (CLOSE ICON)
