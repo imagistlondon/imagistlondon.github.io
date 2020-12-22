@@ -1,6 +1,9 @@
 import 'package:app/config/Break.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/config/Content.dart';
+import 'package:app/text/H1.dart';
+import 'package:app/text/H2.dart';
+import 'package:app/text/P.dart';
 import 'package:app/util/Section.dart';
 import 'package:flutter/material.dart';
 
@@ -89,6 +92,93 @@ class StudyContentBlocks extends StatelessWidget {
           elements.add(SizedBox(width: Design.SPACE, height: Design.SPACE));
         }
 
+        // build title widget
+        final Widget titleWidget = block.title != null
+            ? Container(child: H1(text: block.title))
+            : SizedBox.shrink();
+
+        // build desc widget (if needed)
+        final Widget descWidget = block.desc != null
+            ? Container(child: P(text: block.desc))
+            : SizedBox.shrink();
+
+        // has text
+        final bool hasText = (block.title != null || block.desc != null);
+
+        // text spacer
+        final Widget textSpacer = hasText
+            ? SizedBox(width: Design.SPACE, height: Design.SPACE)
+            : SizedBox.shrink();
+
+        // figure out text align
+        CrossAxisAlignment textAlignX = CrossAxisAlignment.start;
+        if (block.textAlignX == 'CENTER' || block.textAlignX == 'center')
+          textAlignX = CrossAxisAlignment.center;
+        if (block.textAlignX == 'END' || block.textAlignX == 'end')
+          textAlignX = CrossAxisAlignment.end;
+
+        // build text widget
+        final Widget textWidget = Column(
+            crossAxisAlignment: textAlignX,
+            children: [titleWidget, textSpacer, descWidget]);
+
+        // build image widget (if needed)
+        final Widget imageWidget = block.image != null
+            ? Image(
+                // fit
+                fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
+                // image
+                image: AssetImage(block.image))
+            : SizedBox.shrink();
+
+        // whether has content
+        final bool hasContent = hasText && block.image != null;
+
+        // build space widget (if needed)
+        final Widget blockSpacer = hasContent
+            ? SizedBox(width: Design.SPACE, height: Design.SPACE)
+            : SizedBox.shrink();
+
+        // calculate width split (for rows)
+        final double widthSplit =
+            (width / 2) - (hasContent ? Design.SPACE / 2 : 0);
+
+        // figure out text align vertical
+        CrossAxisAlignment textAlignY = CrossAxisAlignment.start;
+        if (block.textAlignY == 'CENTER' || block.textAlignY == 'center')
+          textAlignY = CrossAxisAlignment.center;
+        if (block.textAlignY == 'END' || block.textAlignY == 'end')
+          textAlignY = CrossAxisAlignment.end;
+
+        // LEFT
+        Widget widget = Row(crossAxisAlignment: textAlignY, children: [
+          Container(width: widthSplit, child: textWidget),
+          blockSpacer,
+          Container(width: widthSplit, child: imageWidget)
+        ]);
+
+        // TOP
+        if (block.textPosition == 'TOP')
+          widget = Column(
+              crossAxisAlignment: textAlignX,
+              children: [textWidget, blockSpacer, imageWidget]);
+
+        // RIGHT
+        if (block.textPosition == 'RIGHT')
+          widget = Container(
+              alignment: Alignment.topCenter,
+              child: Row(crossAxisAlignment: textAlignY, children: [
+                Container(width: widthSplit, child: imageWidget),
+                blockSpacer,
+                Container(width: widthSplit, child: textWidget)
+              ]));
+
+        // BOTTOM
+        if (block.textPosition == 'BOTTOM')
+          widget = Column(
+              crossAxisAlignment: textAlignX,
+              children: [imageWidget, blockSpacer, textWidget]);
+
         // add element
         elements.add(
             // CONSTRAINED BOX
@@ -108,14 +198,8 @@ class StudyContentBlocks extends StatelessWidget {
                         block.maxHeightX3,
                         block.maxHeightX4,
                         double.infinity)),
-                // IMAGE
-                child: Image(
-                    // fit
-                    fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
-                    // width
-                    width: width,
-                    // image
-                    image: AssetImage(block.image))));
+                // CHILD
+                child: Container(width: width, child: widget)));
       }
     }
 
@@ -135,6 +219,7 @@ class StudyContentBlocks extends StatelessWidget {
             child: Wrap(
                 // position elements vertically in center
                 crossAxisAlignment: Design.STUDY_CONTENT_IMAGES_CROSS_ALIGNMENT,
+                // elements
                 children: elements)));
   }
 }
