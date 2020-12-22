@@ -1,6 +1,7 @@
 import 'package:app/config/Break.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/config/Content.dart';
+import 'package:app/util/Section.dart';
 import 'package:flutter/material.dart';
 
 class StudyContentImages extends StatelessWidget {
@@ -63,7 +64,7 @@ class StudyContentImages extends StatelessWidget {
       i++;
 
       // add vertical space
-      elements.add(SizedBox(width: fullWidth, height: Design.SPACE));
+      if (i > 0) elements.add(SizedBox(width: fullWidth, height: Design.SPACE));
 
       // loop through columns
       int j = -1;
@@ -120,12 +121,20 @@ class StudyContentImages extends StatelessWidget {
 
     // CONTAINER
     return Container(
-        // PADDING
-        padding: EdgeInsets.all(Design.gap(context)),
-        // WRAP
-        child: Wrap(
-            // position elements vertically in center
-            crossAxisAlignment: Design.STUDY_CONTENT_IMAGES_CROSS_ALIGNMENT,
-            children: elements));
+        // SCREEN WIDTH
+        width: Design.screenWidth(context),
+        // BACKGROUND COLOR
+        color: Design.STUDY_CONTENT_IMAGES_BACKGROUND_COLOR,
+        // SECTION
+        child: Section(
+            // GAP (HORIZONTAL PADDING)
+            gap: true,
+            // VERTICAL PADDING
+            padding: EdgeInsets.symmetric(vertical: Design.gap(context)),
+            // WRAP
+            child: Wrap(
+                // position elements vertically in center
+                crossAxisAlignment: Design.STUDY_CONTENT_IMAGES_CROSS_ALIGNMENT,
+                children: elements)));
   }
 }
