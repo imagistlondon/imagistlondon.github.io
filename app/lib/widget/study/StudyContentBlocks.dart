@@ -153,12 +153,16 @@ class StudyContentBlocks extends StatelessWidget {
         // text width for the row
         final Widget textWidgetForRow = hasFullContent
             ? Container(width: widthRowSplit, child: textWidget)
-            : textWidget;
+            : hasText
+                ? Container(width: width, child: textWidget)
+                : textWidget;
 
         // image widget for the row
         final Widget imageWidgetForRow = hasFullContent
             ? Container(width: widthRowSplit, child: imageWidget)
-            : imageWidget;
+            : block.image != null
+                ? Container(width: width, child: imageWidget)
+                : imageWidget;
 
         // figure out text align vertical
         CrossAxisAlignment textAlignY = CrossAxisAlignment.start;
