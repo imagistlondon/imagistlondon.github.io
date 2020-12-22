@@ -1,6 +1,7 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
+import 'package:app/widget/study/StudyContentBlocks.dart';
 import 'package:app/widget/study/StudyContentImages.dart';
 import 'package:app/widget/study/StudyContentIntroX1.dart';
 import 'package:app/widget/study/StudyContentIntroX234.dart';
@@ -40,7 +41,10 @@ class StudyContent extends StatelessWidget {
                   : StudyContentIntroX234(studyEnabledVN: studyEnabledVN),
 
               // StudyContentImages
-              StudyContentImages(studyEnabledVN: studyEnabledVN)
+              StudyContentImages(studyEnabledVN: studyEnabledVN),
+
+              // StudyContentBlocks
+              StudyContentBlocks(studyEnabledVN: studyEnabledVN)
             ]));
   }
 }
