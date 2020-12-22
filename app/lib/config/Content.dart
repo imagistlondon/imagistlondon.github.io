@@ -109,6 +109,77 @@ class Content {
           }
         }
 
+        // init studyBlocks
+        final List<ProjectStudyBlock> studyBlocks = List();
+
+        // load study blocks
+        if (map[prefix + 'STUDY-BLOCK-length'] != null) {
+          final int studyBlockLength = map[prefix + 'STUDY-BLOCK-length'];
+          for (int j = 0; j < studyBlockLength; j++) {
+            // prefix
+            final String blockPrefix = prefix + 'STUDY-BLOCK-' + j.toString();
+
+            // widthPercent
+            final String widthPercentX1 =
+                map[blockPrefix + '-WIDTH-PERCENT-X1'];
+            final String widthPercentX2 =
+                map[blockPrefix + '-WIDTH-PERCENT-X2'];
+            final String widthPercentX3 =
+                map[blockPrefix + '-WIDTH-PERCENT-X3'];
+            final String widthPercentX4 =
+                map[blockPrefix + '-WIDTH-PERCENT-X4'];
+
+            // minHeight
+            final String minHeightX1 = map[blockPrefix + '-MIN-HEIGHT-X1'];
+            final String minHeightX2 = map[blockPrefix + '-MIN-HEIGHT-X2'];
+            final String minHeightX3 = map[blockPrefix + '-MIN-HEIGHT-X3'];
+            final String minHeightX4 = map[blockPrefix + '-MIN-HEIGHT-X4'];
+
+            // maxHeight
+            final String maxHeightX1 = map[blockPrefix + '-MAX-HEIGHT-X1'];
+            final String maxHeightX2 = map[blockPrefix + '-MAX-HEIGHT-X2'];
+            final String maxHeightX3 = map[blockPrefix + '-MAX-HEIGHT-X3'];
+            final String maxHeightX4 = map[blockPrefix + '-MAX-HEIGHT-X4'];
+
+            studyBlocks.add(ProjectStudyBlock(
+              title: map[blockPrefix + '-TITLE'],
+              text: map[blockPrefix + '-TEXT'],
+              image: map[blockPrefix + '-IMAGE'],
+              // widthPercent
+              widthPercentX1: widthPercentX1 != null
+                  ? double.tryParse(widthPercentX1)
+                  : null,
+              widthPercentX2: widthPercentX2 != null
+                  ? double.tryParse(widthPercentX2)
+                  : null,
+              widthPercentX3: widthPercentX3 != null
+                  ? double.tryParse(widthPercentX3)
+                  : null,
+              widthPercentX4: widthPercentX4 != null
+                  ? double.tryParse(widthPercentX4)
+                  : null,
+              // minHeight
+              minHeightX1:
+                  minHeightX1 != null ? double.tryParse(minHeightX1) : null,
+              minHeightX2:
+                  minHeightX2 != null ? double.tryParse(minHeightX2) : null,
+              minHeightX3:
+                  minHeightX3 != null ? double.tryParse(minHeightX3) : null,
+              minHeightX4:
+                  minHeightX4 != null ? double.tryParse(minHeightX4) : null,
+              // maxHeight
+              maxHeightX1:
+                  maxHeightX1 != null ? double.tryParse(maxHeightX1) : null,
+              maxHeightX2:
+                  maxHeightX2 != null ? double.tryParse(maxHeightX2) : null,
+              maxHeightX3:
+                  maxHeightX3 != null ? double.tryParse(maxHeightX3) : null,
+              maxHeightX4:
+                  maxHeightX4 != null ? double.tryParse(maxHeightX4) : null,
+            ));
+          }
+        }
+
         // add project
         projects.add(Project(
             key: map[prefix + 'KEY'],
@@ -144,7 +215,8 @@ class Content {
                 ? map[prefix + 'STUDY-IMAGE']
                 : 'assets/placeholder.png',
             tags: tags,
-            studyImages: studyImages));
+            studyImages: studyImages,
+            studyBlocks: studyBlocks));
       }
     }
 
@@ -347,23 +419,26 @@ class Project {
   final String studyImage;
   final List<String> tags;
   final List<ProjectStudyImage> studyImages;
+  final List<ProjectStudyBlock> studyBlocks;
 
-  const Project(
-      {this.key,
-      this.home = false,
-      this.showcase = false,
-      this.archive = true,
-      this.title = 'Title',
-      this.subtitle = 'Subtitle',
-      this.desc = 'Description',
-      this.year = '2020',
-      this.homeImage = 'assets/placeholder.png',
-      this.showcaseImage = 'assets/placeholder.png',
-      this.archiveImage = 'assets/placeholder.png',
-      this.tagImage = 'assets/placeholder.png',
-      this.studyImage = 'assets/placeholder.png',
-      this.tags = const [],
-      this.studyImages = const []});
+  const Project({
+    this.key,
+    this.home = false,
+    this.showcase = false,
+    this.archive = true,
+    this.title = 'Title',
+    this.subtitle = 'Subtitle',
+    this.desc = 'Description',
+    this.year = '2020',
+    this.homeImage = 'assets/placeholder.png',
+    this.showcaseImage = 'assets/placeholder.png',
+    this.archiveImage = 'assets/placeholder.png',
+    this.tagImage = 'assets/placeholder.png',
+    this.studyImage = 'assets/placeholder.png',
+    this.tags = const [],
+    this.studyImages = const [],
+    this.studyBlocks = const [],
+  });
 }
 
 class ProjectStudyImage {
@@ -385,6 +460,44 @@ class ProjectStudyImage {
 
   const ProjectStudyImage({
     this.url,
+    this.widthPercentX1,
+    this.widthPercentX2,
+    this.widthPercentX3,
+    this.widthPercentX4,
+    this.minHeightX1,
+    this.minHeightX2,
+    this.minHeightX3,
+    this.minHeightX4,
+    this.maxHeightX1,
+    this.maxHeightX2,
+    this.maxHeightX3,
+    this.maxHeightX4,
+  });
+}
+
+class ProjectStudyBlock {
+  final String title;
+  final String text;
+  final String image;
+  final double widthPercentX1;
+  final double widthPercentX2;
+  final double widthPercentX3;
+  final double widthPercentX4;
+
+  final double minHeightX1;
+  final double minHeightX2;
+  final double minHeightX3;
+  final double minHeightX4;
+
+  final double maxHeightX1;
+  final double maxHeightX2;
+  final double maxHeightX3;
+  final double maxHeightX4;
+
+  const ProjectStudyBlock({
+    this.title,
+    this.text,
+    this.image,
     this.widthPercentX1,
     this.widthPercentX2,
     this.widthPercentX3,
