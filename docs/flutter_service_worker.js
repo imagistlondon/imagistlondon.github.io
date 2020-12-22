@@ -66,11 +66,11 @@ const RESOURCES = {
 "assets/AssetManifest.json": "34e9b5b9385a2ded0da14067d2549ed8",
 "assets/FontManifest.json": "a506737225df98745abf78d11ebbf28a",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"index.html": "a071e9ee16614015449007ed07399d24",
-"/": "a071e9ee16614015449007ed07399d24",
+"index.html": "d8cdf30a04c3199b51a455ca266150aa",
+"/": "d8cdf30a04c3199b51a455ca266150aa",
 "font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
-"main.dart.js": "d6afa3240421cd3f352259e7d1733ed7",
+"main.dart.js": "aafb1eadb0a1c2328dd0ece344419a19",
 "font-saol-text-light.eot": "cf44e4b6266324651556fb56186e6400"
 };
 
