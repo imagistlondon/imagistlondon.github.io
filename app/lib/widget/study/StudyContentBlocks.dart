@@ -92,14 +92,21 @@ class StudyContentBlocks extends StatelessWidget {
           elements.add(SizedBox(width: Design.SPACE, height: Design.SPACE));
         }
 
+        // figure out text align
+        TextAlign textAlign = TextAlign.left;
+        if (block.textAlignX == 'CENTER' || block.textAlignX == 'center')
+          textAlign = TextAlign.center;
+        if (block.textAlignX == 'END' || block.textAlignX == 'end')
+          textAlign = TextAlign.right;
+
         // build title widget
         final Widget titleWidget = block.title != null
-            ? Container(child: H1(text: block.title))
+            ? Container(child: H1(text: block.title, textAlign: textAlign))
             : SizedBox.shrink();
 
         // build desc widget (if needed)
         final Widget descWidget = block.desc != null
-            ? Container(child: P(text: block.desc))
+            ? Container(child: P(text: block.desc, textAlign: textAlign))
             : SizedBox.shrink();
 
         // has text
