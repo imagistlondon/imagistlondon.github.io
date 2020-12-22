@@ -2,10 +2,10 @@ import 'package:app/config/Break.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/text/H1.dart';
-import 'package:app/text/H2.dart';
 import 'package:app/text/P.dart';
 import 'package:app/util/Section.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class StudyContentBlocks extends StatelessWidget {
   const StudyContentBlocks({Key key, @required this.studyEnabledVN})
@@ -132,16 +132,26 @@ class StudyContentBlocks extends StatelessWidget {
             : SizedBox.shrink();
 
         // whether has content
-        final bool hasContent = hasText && block.image != null;
+        final bool hasContent = hasText || block.image != null;
+        final bool hasFullContent = hasText && block.image != null;
 
         // build space widget (if needed)
-        final Widget blockSpacer = hasContent
+        final Widget blockSpacer = hasFullContent
             ? SizedBox(width: Design.SPACE, height: Design.SPACE)
             : SizedBox.shrink();
 
         // calculate width split (for rows)
-        final double widthSplit =
-            (width / 2) - (hasContent ? Design.SPACE / 2 : 0);
+        final double widthRowSplit = (width / 2) - (Design.SPACE / 2);
+
+        // text width for the row
+        final Widget textWidgetForRow = hasFullContent
+            ? Container(width: widthRowSplit, child: textWidget)
+            : Container(width: width, child: textWidget);
+
+        // image widget for the row
+        final Widget imageWidgetForRow = hasFullContent
+            ? Container(width: widthRowSplit, child: imageWidget)
+            : Container(width: width, child: imageWidget);
 
         // figure out text align vertical
         CrossAxisAlignment textAlignY = CrossAxisAlignment.start;
@@ -151,11 +161,9 @@ class StudyContentBlocks extends StatelessWidget {
           textAlignY = CrossAxisAlignment.end;
 
         // LEFT
-        Widget widget = Row(crossAxisAlignment: textAlignY, children: [
-          Container(width: widthSplit, child: textWidget),
-          blockSpacer,
-          Container(width: widthSplit, child: imageWidget)
-        ]);
+        Widget widget = Row(
+            crossAxisAlignment: textAlignY,
+            children: [textWidgetForRow, blockSpacer, imageWidgetForRow]);
 
         // TOP
         if (block.textPosition == 'TOP')
@@ -165,13 +173,9 @@ class StudyContentBlocks extends StatelessWidget {
 
         // RIGHT
         if (block.textPosition == 'RIGHT')
-          widget = Container(
-              alignment: Alignment.topCenter,
-              child: Row(crossAxisAlignment: textAlignY, children: [
-                Container(width: widthSplit, child: imageWidget),
-                blockSpacer,
-                Container(width: widthSplit, child: textWidget)
-              ]));
+          widget = Row(
+              crossAxisAlignment: textAlignY,
+              children: [imageWidgetForRow, blockSpacer, textWidgetForRow]);
 
         // BOTTOM
         if (block.textPosition == 'BOTTOM')
@@ -199,7 +203,12 @@ class StudyContentBlocks extends StatelessWidget {
                         block.maxHeightX4,
                         double.infinity)),
                 // CHILD
-                child: Container(width: width, child: widget)));
+                child: Container(
+                    color:
+                        Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+                            .withOpacity(1.0),
+                    width: width,
+                    child: widget)));
       }
     }
 
