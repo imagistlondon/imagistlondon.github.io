@@ -143,7 +143,10 @@ class Content {
 
             studyBlocks.add(ProjectStudyBlock(
               title: map[blockPrefix + '-TITLE'],
-              text: map[blockPrefix + '-TEXT'],
+              desc: map[blockPrefix + '-DESC'],
+              textPosition: map[blockPrefix + '-TEXT-POSITION'],
+              textAlignX: map[blockPrefix + '-TEXT-ALIGN-X'],
+              textAlignY: map[blockPrefix + '-TEXT-ALIGN-Y'],
               image: map[blockPrefix + '-IMAGE'],
               // widthPercent
               widthPercentX1: widthPercentX1 != null
@@ -477,7 +480,10 @@ class ProjectStudyImage {
 
 class ProjectStudyBlock {
   final String title;
-  final String text;
+  final String desc;
+  final String textPosition;
+  final String textAlignX;
+  final String textAlignY;
   final String image;
   final double widthPercentX1;
   final double widthPercentX2;
@@ -496,7 +502,10 @@ class ProjectStudyBlock {
 
   const ProjectStudyBlock({
     this.title,
-    this.text,
+    this.desc,
+    this.textPosition,
+    this.textAlignX,
+    this.textAlignY,
     this.image,
     this.widthPercentX1,
     this.widthPercentX2,
