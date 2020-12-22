@@ -99,18 +99,23 @@ class StudyContentBlocks extends StatelessWidget {
         if (block.textAlignX == 'END' || block.textAlignX == 'end')
           textAlign = TextAlign.right;
 
+        final bool hasTitle = block.title != null && block.title != "";
+        final bool hasDesc = block.desc != null && block.desc != "";
+        final bool hasText = hasTitle || hasDesc;
+        final bool hasFullText = hasTitle && hasDesc;
+        final bool hasImage = block.image != null && block.image != "";
+        final bool hasContent = hasText || hasImage;
+        final bool hasFullContent = hasText && hasImage;
+
         // build title widget
-        final Widget titleWidget = block.title != null
+        final Widget titleWidget = hasTitle
             ? Container(child: H1(text: block.title, textAlign: textAlign))
             : SizedBox.shrink();
 
         // build desc widget (if needed)
-        final Widget descWidget = block.desc != null
+        final Widget descWidget = hasDesc
             ? Container(child: P(text: block.desc, textAlign: textAlign))
             : SizedBox.shrink();
-
-        // has text
-        final bool hasText = (block.title != null || block.desc != null);
 
         // text spacer
         final Widget textSpacer = hasText
@@ -130,17 +135,13 @@ class StudyContentBlocks extends StatelessWidget {
             children: [titleWidget, textSpacer, descWidget]);
 
         // build image widget (if needed)
-        final Widget imageWidget = block.image != null
+        final Widget imageWidget = hasImage
             ? Image(
                 // fit
                 fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
                 // image
                 image: AssetImage(block.image))
             : SizedBox.shrink();
-
-        // whether has content
-        final bool hasContent = hasText || block.image != null;
-        final bool hasFullContent = hasText && block.image != null;
 
         // build space widget (if needed)
         final Widget blockSpacer = hasFullContent
@@ -160,7 +161,7 @@ class StudyContentBlocks extends StatelessWidget {
         // image widget for the row
         final Widget imageWidgetForRow = hasFullContent
             ? Container(width: widthRowSplit, child: imageWidget)
-            : block.image != null
+            : hasImage
                 ? Container(width: width, child: imageWidget)
                 : imageWidget;
 
