@@ -15,7 +15,7 @@ const RESOURCES = {
 "apple-touch-icon.png": "ae03aa0f1a3dba39c37ffd7ae02863bc",
 "assets/web/font-saol-text-light.woff2": "598682f2968ad8d33ff48d04c8bafa93",
 "assets/web/font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
-"assets/NOTICES": "e9055bc1ad809fc86ccef3287259144a",
+"assets/NOTICES": "7aa2695635b6a3eeffa67f041d341d35",
 "assets/assets/THUMB_NIKE_1.jpg": "b5c67d5c5f505b730bdc19eb48232fff",
 "assets/assets/THUMB_TASKFEED_1.jpg": "b999690e1d98d1e66935ee47e52b1da9",
 "assets/assets/ARCHIVE_BARBICAN_THUMB.gif": "b10b9c76c844160ff4a9f0eb16f13905",
@@ -66,11 +66,11 @@ const RESOURCES = {
 "assets/AssetManifest.json": "34e9b5b9385a2ded0da14067d2549ed8",
 "assets/FontManifest.json": "a506737225df98745abf78d11ebbf28a",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"index.html": "d8cdf30a04c3199b51a455ca266150aa",
-"/": "d8cdf30a04c3199b51a455ca266150aa",
+"index.html": "201baed85ac9f85a39df596d0129d1eb",
+"/": "201baed85ac9f85a39df596d0129d1eb",
 "font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
-"main.dart.js": "aafb1eadb0a1c2328dd0ece344419a19",
+"main.dart.js": "a2fb23e12841b3719da0afef3cd85f5a",
 "font-saol-text-light.eot": "cf44e4b6266324651556fb56186e6400"
 };
 
