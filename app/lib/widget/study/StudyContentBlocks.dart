@@ -216,9 +216,9 @@ class StudyContentBlocks extends StatelessWidget {
                         double.infinity)),
                 // CHILD
                 child: Container(
-                    color:
-                        Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
-                            .withOpacity(1.0),
+                    // color:
+                    //     Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+                    //         .withOpacity(1.0),
                     width: width,
                     child: widget)));
       }
