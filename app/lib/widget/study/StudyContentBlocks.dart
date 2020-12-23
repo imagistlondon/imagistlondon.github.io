@@ -66,8 +66,9 @@ class StudyContentBlocks extends StatelessWidget {
     for (final List<ProjectStudyBlock> rowBlocks in grid) {
       i++;
 
-      // add vertical space
-      if (i > 0) elements.add(SizedBox(width: fullWidth, height: Design.SPACE));
+      // add vertical space (using gap)
+      if (i > 0)
+        elements.add(SizedBox(width: fullWidth, height: Design.gap(context)));
 
       // loop through columns
       int j = -1;
