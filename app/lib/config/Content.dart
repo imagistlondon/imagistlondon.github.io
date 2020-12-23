@@ -61,10 +61,10 @@ class Content {
                 map[imagePrefix + '-WIDTH_PERCENT_X4'];
 
             // minHeight
-            final String minHeightX1 = map[imagePrefix + '-MIN-HEIGHT-X1'];
-            final String minHeightX2 = map[imagePrefix + '-MIN-HEIGHT-X2'];
-            final String minHeightX3 = map[imagePrefix + '-MIN-HEIGHT-X3'];
-            final String minHeightX4 = map[imagePrefix + '-MIN-HEIGHT-X4'];
+            final String minHeightX1 = map[imagePrefix + '-MIN_HEIGHT_X1'];
+            final String minHeightX2 = map[imagePrefix + '-MIN_HEIGHT_X2'];
+            final String minHeightX3 = map[imagePrefix + '-MIN_HEIGHT_X3'];
+            final String minHeightX4 = map[imagePrefix + '-MIN_HEIGHT_X4'];
 
             // maxHeight
             final String maxHeightX1 = map[imagePrefix + '-MAX_HEIGHT_X1'];
@@ -130,10 +130,10 @@ class Content {
                 map[blockPrefix + '-WIDTH_PERCENT_X4'];
 
             // minHeight
-            final String minHeightX1 = map[blockPrefix + '-MIN-HEIGHT-X1'];
-            final String minHeightX2 = map[blockPrefix + '-MIN-HEIGHT-X2'];
-            final String minHeightX3 = map[blockPrefix + '-MIN-HEIGHT-X3'];
-            final String minHeightX4 = map[blockPrefix + '-MIN-HEIGHT-X4'];
+            final String minHeightX1 = map[blockPrefix + '-MIN_HEIGHT_X1'];
+            final String minHeightX2 = map[blockPrefix + '-MIN_HEIGHT_X2'];
+            final String minHeightX3 = map[blockPrefix + '-MIN_HEIGHT_X3'];
+            final String minHeightX4 = map[blockPrefix + '-MIN_HEIGHT_X4'];
 
             // maxHeight
             final String maxHeightX1 = map[blockPrefix + '-MAX_HEIGHT_X1'];
@@ -144,9 +144,9 @@ class Content {
             studyBlocks.add(ProjectStudyBlock(
               title: map[blockPrefix + '-TITLE'],
               desc: map[blockPrefix + '-DESC'],
-              textPosition: map[blockPrefix + '-TEXT-POSITION'],
-              textAlignX: map[blockPrefix + '-TEXT-ALIGN-X'],
-              textAlignY: map[blockPrefix + '-TEXT-ALIGN-Y'],
+              textPosition: map[blockPrefix + '-TEXT_POSITION'],
+              textAlignX: map[blockPrefix + '-TEXT_ALIGN_X'],
+              textAlignY: map[blockPrefix + '-TEXT_ALIGN_Y'],
               image: map[blockPrefix + '-IMAGE'],
               // widthPercent
               widthPercentX1: widthPercentX1 != null
