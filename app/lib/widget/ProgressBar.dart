@@ -13,8 +13,8 @@ class ProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return L1(progressFractionVN, (progressFraction) {
-      print('ProgressBar.' +
-          (progressFraction != null ? progressFraction.toString() : 'null'));
+      // print('ProgressBar.' +
+      //     (progressFraction != null ? progressFraction.toString() : 'null'));
       return Visibility(
           visible: progressFraction != null,
           child: AnimatedContainer(
