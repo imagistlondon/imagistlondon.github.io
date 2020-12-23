@@ -44,21 +44,21 @@ class Content {
         final List<ProjectStudyImage> studyImages = List();
 
         // load study images
-        if (map[prefix + 'STUDY-IMAGE-length'] != null) {
-          final int studyImageLength = map[prefix + 'STUDY-IMAGE-length'];
+        if (map[prefix + 'STUDY_IMAGE-length'] != null) {
+          final int studyImageLength = map[prefix + 'STUDY_IMAGE-length'];
           for (int j = 0; j < studyImageLength; j++) {
             // prefix
-            final String imagePrefix = prefix + 'STUDY-IMAGE-' + j.toString();
+            final String imagePrefix = prefix + 'STUDY_IMAGE-' + j.toString();
 
             // widthPercent
             final String widthPercentX1 =
-                map[imagePrefix + '-WIDTH-PERCENT-X1'];
+                map[imagePrefix + '-WIDTH_PERCENT_X1'];
             final String widthPercentX2 =
-                map[imagePrefix + '-WIDTH-PERCENT-X2'];
+                map[imagePrefix + '-WIDTH_PERCENT_X2'];
             final String widthPercentX3 =
-                map[imagePrefix + '-WIDTH-PERCENT-X3'];
+                map[imagePrefix + '-WIDTH_PERCENT_X3'];
             final String widthPercentX4 =
-                map[imagePrefix + '-WIDTH-PERCENT-X4'];
+                map[imagePrefix + '-WIDTH_PERCENT_X4'];
 
             // minHeight
             final String minHeightX1 = map[imagePrefix + '-MIN-HEIGHT-X1'];
@@ -67,10 +67,10 @@ class Content {
             final String minHeightX4 = map[imagePrefix + '-MIN-HEIGHT-X4'];
 
             // maxHeight
-            final String maxHeightX1 = map[imagePrefix + '-MAX-HEIGHT-X1'];
-            final String maxHeightX2 = map[imagePrefix + '-MAX-HEIGHT-X2'];
-            final String maxHeightX3 = map[imagePrefix + '-MAX-HEIGHT-X3'];
-            final String maxHeightX4 = map[imagePrefix + '-MAX-HEIGHT-X4'];
+            final String maxHeightX1 = map[imagePrefix + '-MAX_HEIGHT_X1'];
+            final String maxHeightX2 = map[imagePrefix + '-MAX_HEIGHT_X2'];
+            final String maxHeightX3 = map[imagePrefix + '-MAX_HEIGHT_X3'];
+            final String maxHeightX4 = map[imagePrefix + '-MAX_HEIGHT_X4'];
 
             studyImages.add(ProjectStudyImage(
               url: map[imagePrefix + '-URL'],
@@ -113,21 +113,21 @@ class Content {
         final List<ProjectStudyBlock> studyBlocks = List();
 
         // load study blocks
-        if (map[prefix + 'STUDY-BLOCK-length'] != null) {
-          final int studyBlockLength = map[prefix + 'STUDY-BLOCK-length'];
+        if (map[prefix + 'STUDY_BLOCK-length'] != null) {
+          final int studyBlockLength = map[prefix + 'STUDY_BLOCK-length'];
           for (int j = 0; j < studyBlockLength; j++) {
             // prefix
-            final String blockPrefix = prefix + 'STUDY-BLOCK-' + j.toString();
+            final String blockPrefix = prefix + 'STUDY_BLOCK-' + j.toString();
 
             // widthPercent
             final String widthPercentX1 =
-                map[blockPrefix + '-WIDTH-PERCENT-X1'];
+                map[blockPrefix + '-WIDTH_PERCENT_X1'];
             final String widthPercentX2 =
-                map[blockPrefix + '-WIDTH-PERCENT-X2'];
+                map[blockPrefix + '-WIDTH_PERCENT_X2'];
             final String widthPercentX3 =
-                map[blockPrefix + '-WIDTH-PERCENT-X3'];
+                map[blockPrefix + '-WIDTH_PERCENT_X3'];
             final String widthPercentX4 =
-                map[blockPrefix + '-WIDTH-PERCENT-X4'];
+                map[blockPrefix + '-WIDTH_PERCENT_X4'];
 
             // minHeight
             final String minHeightX1 = map[blockPrefix + '-MIN-HEIGHT-X1'];
@@ -136,10 +136,10 @@ class Content {
             final String minHeightX4 = map[blockPrefix + '-MIN-HEIGHT-X4'];
 
             // maxHeight
-            final String maxHeightX1 = map[blockPrefix + '-MAX-HEIGHT-X1'];
-            final String maxHeightX2 = map[blockPrefix + '-MAX-HEIGHT-X2'];
-            final String maxHeightX3 = map[blockPrefix + '-MAX-HEIGHT-X3'];
-            final String maxHeightX4 = map[blockPrefix + '-MAX-HEIGHT-X4'];
+            final String maxHeightX1 = map[blockPrefix + '-MAX_HEIGHT_X1'];
+            final String maxHeightX2 = map[blockPrefix + '-MAX_HEIGHT_X2'];
+            final String maxHeightX3 = map[blockPrefix + '-MAX_HEIGHT_X3'];
+            final String maxHeightX4 = map[blockPrefix + '-MAX_HEIGHT_X4'];
 
             studyBlocks.add(ProjectStudyBlock(
               title: map[blockPrefix + '-TITLE'],
@@ -202,20 +202,20 @@ class Content {
                 ? map[prefix + 'DESC']
                 : 'Description',
             year: map[prefix + 'YEAR'] != null ? map[prefix + 'YEAR'] : '20XX',
-            homeImage: map[prefix + 'HOME-IMAGE'] != null
-                ? map[prefix + 'HOME-IMAGE']
+            homeImage: map[prefix + 'HOME_IMAGE'] != null
+                ? map[prefix + 'HOME_IMAGE']
                 : 'assets/placeholder.png',
-            showcaseImage: map[prefix + 'SHOWCASE-IMAGE'] != null
-                ? map[prefix + 'SHOWCASE-IMAGE']
+            showcaseImage: map[prefix + 'SHOWCASE_IMAGE'] != null
+                ? map[prefix + 'SHOWCASE_IMAGE']
                 : 'assets/placeholder.png',
-            archiveImage: map[prefix + 'ARCHIVE-IMAGE'] != null
-                ? map[prefix + 'ARCHIVE-IMAGE']
+            archiveImage: map[prefix + 'ARCHIVE_IMAGE'] != null
+                ? map[prefix + 'ARCHIVE_IMAGE']
                 : 'assets/placeholder.png',
-            tagImage: map[prefix + 'TAG-IMAGE'] != null
-                ? map[prefix + 'TAG-IMAGE']
+            tagImage: map[prefix + 'TAG_IMAGE'] != null
+                ? map[prefix + 'TAG_IMAGE']
                 : 'assets/placeholder.png',
-            studyImage: map[prefix + 'STUDY-IMAGE'] != null
-                ? map[prefix + 'STUDY-IMAGE']
+            studyImage: map[prefix + 'STUDY_IMAGE'] != null
+                ? map[prefix + 'STUDY_IMAGE']
                 : 'assets/placeholder.png',
             tags: tags,
             studyImages: studyImages,
