@@ -31753,7 +31753,7 @@ l=0}o[m].push(i)
 l+=r}c2=t.t
 h=H.c([],c2)
 for(q=o.length,k=-1,j=0;j<o.length;o.length===q||(0,H.F)(o),++j){g=o[j];++k
-if(k>0)h.push(new T.cm(p,20,c1,c1))
+if(k>0)h.push(new T.cm(p,c4.u(s).f.a.a<768?40:60,c1,c1))
 for(n=C.c.gH(g),f=-1;n.n();){e=n.gw(n);++f
 r=S.L0(c4,e.r,e.x,e.y,e.z)
 d=g.length
