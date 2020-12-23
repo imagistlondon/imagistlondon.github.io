@@ -7725,20 +7725,20 @@ for(o=t.i0,n=t.tp,m=t.i,l=0;l<p;++l){k="PROJECT-"+C.f.i(l)+"-"
 j=H.c([],m)
 if(e6.h(e7,k+"TAG-length")!=null){i=e6.h(e7,k+"TAG-length")
 for(h=0;h<i;++h)j.push(e6.h(e7,k+"TAG-"+C.f.i(h)+"-KEY"))}g=H.c([],n)
-if(e6.h(e7,k+"STUDY-IMAGE-length")!=null){f=e6.h(e7,k+"STUDY-IMAGE-length")
-for(h=0;h<f;++h){e=k+"STUDY-IMAGE-"+C.f.i(h)
-d=e6.h(e7,e+"-WIDTH-PERCENT-X1")
-c=e6.h(e7,e+"-WIDTH-PERCENT-X2")
-b=e6.h(e7,e+"-WIDTH-PERCENT-X3")
-a=e6.h(e7,e+"-WIDTH-PERCENT-X4")
+if(e6.h(e7,k+"STUDY_IMAGE-length")!=null){f=e6.h(e7,k+"STUDY_IMAGE-length")
+for(h=0;h<f;++h){e=k+"STUDY_IMAGE-"+C.f.i(h)
+d=e6.h(e7,e+"-WIDTH_PERCENT_X1")
+c=e6.h(e7,e+"-WIDTH_PERCENT_X2")
+b=e6.h(e7,e+"-WIDTH_PERCENT_X3")
+a=e6.h(e7,e+"-WIDTH_PERCENT_X4")
 a0=e6.h(e7,e+"-MIN-HEIGHT-X1")
 a1=e6.h(e7,e+"-MIN-HEIGHT-X2")
 a2=e6.h(e7,e+"-MIN-HEIGHT-X3")
 a3=e6.h(e7,e+"-MIN-HEIGHT-X4")
-a4=e6.h(e7,e+"-MAX-HEIGHT-X1")
-a5=e6.h(e7,e+"-MAX-HEIGHT-X2")
-a6=e6.h(e7,e+"-MAX-HEIGHT-X3")
-a7=e6.h(e7,e+"-MAX-HEIGHT-X4")
+a4=e6.h(e7,e+"-MAX_HEIGHT_X1")
+a5=e6.h(e7,e+"-MAX_HEIGHT_X2")
+a6=e6.h(e7,e+"-MAX_HEIGHT_X3")
+a7=e6.h(e7,e+"-MAX_HEIGHT_X4")
 a8=e6.h(e7,e+"-URL")
 a9=d!=null?H.bP(d):null
 b0=c!=null?H.bP(c):null
@@ -7752,20 +7752,20 @@ b7=a4!=null?H.bP(a4):null
 b8=a5!=null?H.bP(a5):null
 b9=a6!=null?H.bP(a6):null
 g.push(new S.r6(a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,a7!=null?H.bP(a7):null))}}c0=H.c([],o)
-if(e6.h(e7,k+"STUDY-BLOCK-length")!=null){c1=e6.h(e7,k+"STUDY-BLOCK-length")
-for(h=0;h<c1;++h){c2=k+"STUDY-BLOCK-"+C.f.i(h)
-d=e6.h(e7,c2+"-WIDTH-PERCENT-X1")
-c=e6.h(e7,c2+"-WIDTH-PERCENT-X2")
-b=e6.h(e7,c2+"-WIDTH-PERCENT-X3")
-a=e6.h(e7,c2+"-WIDTH-PERCENT-X4")
+if(e6.h(e7,k+"STUDY_BLOCK-length")!=null){c1=e6.h(e7,k+"STUDY_BLOCK-length")
+for(h=0;h<c1;++h){c2=k+"STUDY_BLOCK-"+C.f.i(h)
+d=e6.h(e7,c2+"-WIDTH_PERCENT_X1")
+c=e6.h(e7,c2+"-WIDTH_PERCENT_X2")
+b=e6.h(e7,c2+"-WIDTH_PERCENT_X3")
+a=e6.h(e7,c2+"-WIDTH_PERCENT_X4")
 a0=e6.h(e7,c2+"-MIN-HEIGHT-X1")
 a1=e6.h(e7,c2+"-MIN-HEIGHT-X2")
 a2=e6.h(e7,c2+"-MIN-HEIGHT-X3")
 a3=e6.h(e7,c2+"-MIN-HEIGHT-X4")
-a4=e6.h(e7,c2+"-MAX-HEIGHT-X1")
-a5=e6.h(e7,c2+"-MAX-HEIGHT-X2")
-a6=e6.h(e7,c2+"-MAX-HEIGHT-X3")
-a7=e6.h(e7,c2+"-MAX-HEIGHT-X4")
+a4=e6.h(e7,c2+"-MAX_HEIGHT_X1")
+a5=e6.h(e7,c2+"-MAX_HEIGHT_X2")
+a6=e6.h(e7,c2+"-MAX_HEIGHT_X3")
+a7=e6.h(e7,c2+"-MAX_HEIGHT_X4")
 a8=e6.h(e7,c2+"-TITLE")
 a9=e6.h(e7,c2+"-DESC")
 b0=e6.h(e7,c2+"-TEXT-POSITION")
@@ -7791,11 +7791,11 @@ b2=e6.h(e7,k+"TITLE")!=null?e6.h(e7,k+"TITLE"):"Title"
 b3=e6.h(e7,k+"SUBTITLE")!=null?e6.h(e7,k+"SUBTITLE"):"Subtitle"
 b4=e6.h(e7,k+"DESC")!=null?e6.h(e7,k+"DESC"):"Description"
 b5=e6.h(e7,k+"YEAR")!=null?e6.h(e7,k+"YEAR"):"20XX"
-b6=e6.h(e7,k+"HOME-IMAGE")!=null?e6.h(e7,k+"HOME-IMAGE"):"assets/placeholder.png"
-b7=e6.h(e7,k+"SHOWCASE-IMAGE")!=null?e6.h(e7,k+"SHOWCASE-IMAGE"):"assets/placeholder.png"
-b8=e6.h(e7,k+"ARCHIVE-IMAGE")!=null?e6.h(e7,k+"ARCHIVE-IMAGE"):"assets/placeholder.png"
-b9=e6.h(e7,k+"TAG-IMAGE")!=null?e6.h(e7,k+"TAG-IMAGE"):"assets/placeholder.png"
-e8.push(new S.di(a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,e6.h(e7,k+"STUDY-IMAGE")!=null?e6.h(e7,k+"STUDY-IMAGE"):"assets/placeholder.png",j,g,c0))}}o=t.bs
+b6=e6.h(e7,k+"HOME_IMAGE")!=null?e6.h(e7,k+"HOME_IMAGE"):"assets/placeholder.png"
+b7=e6.h(e7,k+"SHOWCASE_IMAGE")!=null?e6.h(e7,k+"SHOWCASE_IMAGE"):"assets/placeholder.png"
+b8=e6.h(e7,k+"ARCHIVE_IMAGE")!=null?e6.h(e7,k+"ARCHIVE_IMAGE"):"assets/placeholder.png"
+b9=e6.h(e7,k+"TAG_IMAGE")!=null?e6.h(e7,k+"TAG_IMAGE"):"assets/placeholder.png"
+e8.push(new S.di(a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,e6.h(e7,k+"STUDY_IMAGE")!=null?e6.h(e7,k+"STUDY_IMAGE"):"assets/placeholder.png",j,g,c0))}}o=t.bs
 n=o.j("l.E")
 c8=P.av(new H.ap(e8,new S.Kb(),o),!0,n)
 c9=P.av(new H.ap(e8,new S.Kc(),o),!0,n)
