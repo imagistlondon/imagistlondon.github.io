@@ -32,4 +32,3 @@ class StudyContentIntroX1 extends StatelessWidget {
             ]));
   }
 }
-
