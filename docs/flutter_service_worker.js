@@ -90,8 +90,13 @@ const RESOURCES = {
 "assets/FontManifest.json": "a506737225df98745abf78d11ebbf28a",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
 <<<<<<< HEAD
+<<<<<<< HEAD
 "index.html": "8e7e111074d3f006620cfdd6e6225325",
 "/": "8e7e111074d3f006620cfdd6e6225325",
+=======
+"index.html": "fe489d20186553947c35062c2c898401",
+"/": "fe489d20186553947c35062c2c898401",
+>>>>>>> parent of 3c25362... docs
 =======
 "index.html": "fe489d20186553947c35062c2c898401",
 "/": "fe489d20186553947c35062c2c898401",
