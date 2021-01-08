@@ -17,7 +17,7 @@ jobs:
       - name: Install Flutter
         run: |
           cd app
-          git clone -b master https://github.com/flutter/flutter.git
+          git clone --depth 1 --branch 1.22.5 https://github.com/flutter/flutter.git
           ./flutter/bin/flutter --version
           ./flutter/bin/flutter config --enable-web
           ls -la
