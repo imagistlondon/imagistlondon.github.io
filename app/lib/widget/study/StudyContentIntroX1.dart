@@ -25,6 +25,7 @@ class StudyContentIntroX1 extends StatelessWidget {
               H1(text: studyEnabledVN.value.title),
               // subtitle
               H1(text: studyEnabledVN.value.subtitle),
+                style: TextStyle(color: Colors.black.withOpacity(0.4)),
               // gap
               const SizedBox(height: Design.SPACE),
               // description

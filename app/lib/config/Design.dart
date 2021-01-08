@@ -136,7 +136,7 @@ class Design {
   // The duration in milliseconds for the Header hover underline animation
   static const Duration HEADER_LINK_UNDERLINE_ANIMATION_DURATION =
       Duration(milliseconds: 100);
-  static const Curve HEADER_LINK_UNDERLINE_ANIMATION_CURVE = Curves.linear;
+  static const Curve HEADER_LINK_UNDERLINE_ANIMATION_CURVE = Curves.easeInOut;
 
   // The animation Header work bullets to slide in
   static const Duration HEADER_WORK_SLIDE_ANIMATION_DURATION =
@@ -146,7 +146,7 @@ class Design {
   // Header bullets (for X1) slide in transation
   static const Duration HEADER_X1_BULLETS_ANIMATION_DURATION =
       Duration(milliseconds: 200);
-  static const Curve HEADER_X1_BULLETS_ANIMATION_CURVE = Curves.linear;
+  static const Curve HEADER_X1_BULLETS_ANIMATION_CURVE = Curves.easeInOut;
 
   // header links widths (needed for animation translation)
   static const double HEADER_STUDIO_LINK_WIDTH = Design.SPACE * 5;
@@ -196,7 +196,7 @@ class Design {
   // the animation duration to show the underline on hover for anchor links in the text area of Studio
   static const Duration STUDIO_ANCHOR_LINE_DURATION =
       Duration(milliseconds: 200);
-  static const Curve STUDIO_ANCHOR_LINE_CURVE = Curves.linear;
+  static const Curve STUDIO_ANCHOR_LINE_CURVE = Curves.easeInOut;
   static const Color STUDIO_ANCHOR_LINE_COLOR = Color.fromRGBO(20, 20, 20, 1);
 
   // Studio footer text color
@@ -225,7 +225,7 @@ class Design {
   static const Duration SHOWCASE_X12_LINK_UNDERLINE_ANIMATION_DURATION =
       Duration(milliseconds: 100);
   static const Curve SHOWCASE_X12_LINK_UNDERLINE_ANIMATION_CURVE =
-      Curves.linear;
+      Curves.easeInOut;
 
   // the color for the Showcase X12 underline
   static const Color SHOWCASE_X12_LINK_UNDERLINE_COLOR =
@@ -235,7 +235,7 @@ class Design {
   static const SHOWCASE_MENU_LINK_OPACITY_ANIMATION_MIN = 0.1;
   static const SHOWCASE_MENU_LINK_OPACITY_ANIMATION_DURATION =
       Duration(milliseconds: 200);
-  static const SHOWCASE_MENU_LINK_OPACITY_ANIMATION_CURVE = Curves.linear;
+  static const SHOWCASE_MENU_LINK_OPACITY_ANIMATION_CURVE = Curves.easeInOut;
 
   ///// ARCHIVE
 
