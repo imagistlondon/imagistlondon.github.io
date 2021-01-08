@@ -24,11 +24,7 @@ class StudyContentIntroX1 extends StatelessWidget {
               // title
               H1(text: studyEnabledVN.value.title),
               // subtitle
-              H1(
-                text: studyEnabledVN.value.subtitle,
-                style: TextStyle(
-                  color: Design.HOME_MENU_SUBTITLE_COLOR),
-              ),
+              H1(text: studyEnabledVN.value.subtitle),
               // gap
               const SizedBox(height: Design.SPACE),
               // description
@@ -36,3 +32,4 @@ class StudyContentIntroX1 extends StatelessWidget {
             ]));
   }
 }
+
