@@ -24,7 +24,11 @@ class StudyContentIntroX1 extends StatelessWidget {
               // title
               H1(text: studyEnabledVN.value.title),
               // subtitle
-              H1(text: studyEnabledVN.value.subtitle),
+              H1(
+                text: studyEnabledVN.value.subtitle,
+                style: TextStyle(
+                  color: Design.HOME_MENU_SUBTITLE_COLOR),
+              ),
               // gap
               const SizedBox(height: Design.SPACE),
               // description
