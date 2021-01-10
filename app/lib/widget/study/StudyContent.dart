@@ -2,7 +2,6 @@ import 'package:app/Index.dart';
 import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/widget/study/StudyContentBlocks.dart';
-import 'package:app/widget/study/StudyContentImages.dart';
 import 'package:app/widget/study/StudyContentIntroX1.dart';
 import 'package:app/widget/study/StudyContentIntroX234.dart';
 import 'package:app/widget/study/StudyContentThumb.dart';
@@ -40,11 +39,11 @@ class StudyContent extends StatelessWidget {
                   ? StudyContentIntroX1(studyEnabledVN: studyEnabledVN)
                   : StudyContentIntroX234(studyEnabledVN: studyEnabledVN),
 
-              // StudyContentImages
-              StudyContentImages(studyEnabledVN: studyEnabledVN),
+              // StudyContentBlocks (A)
+              StudyContentBlocks(studyEnabledVN: studyEnabledVN, letter: 'A'),
 
-              // StudyContentBlocks
-              StudyContentBlocks(studyEnabledVN: studyEnabledVN)
+              // StudyContentBlocks (B)
+              StudyContentBlocks(studyEnabledVN: studyEnabledVN, letter: 'B')
             ]));
   }
 }

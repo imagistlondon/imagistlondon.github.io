@@ -8,15 +8,19 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class StudyContentBlocks extends StatelessWidget {
-  const StudyContentBlocks({Key key, @required this.studyEnabledVN})
+  const StudyContentBlocks(
+      {Key key, @required this.studyEnabledVN, @required this.letter})
       : super(key: key);
 
   final ValueNotifier<Project> studyEnabledVN;
+  final String letter;
 
   @override
   Widget build(BuildContext context) {
     // skip if no blocks
-    if (studyEnabledVN.value.studyBlocks == null) return SizedBox.shrink();
+    if (studyEnabledVN.value.studyBlocks == null ||
+        studyEnabledVN.value.studyBlocks[letter] == null)
+      return SizedBox.shrink();
 
     // calculate fill width
     final double fullWidth = Design.sectionInnerWidth(context);
@@ -35,7 +39,8 @@ class StudyContentBlocks extends StatelessWidget {
 
     // allocate rows
     int i = -1;
-    for (final ProjectStudyBlock block in studyEnabledVN.value.studyBlocks) {
+    for (final ProjectStudyBlock block
+        in studyEnabledVN.value.studyBlocks[letter]) {
       i++;
 
       // calculate width

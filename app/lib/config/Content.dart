@@ -40,146 +40,86 @@ class Content {
           }
         }
 
-        // init studyImages
-        final List<ProjectStudyImage> studyImages = List();
-
-        // load study images
-        if (map[prefix + 'STUDY_IMAGE-length'] != null) {
-          final int studyImageLength = map[prefix + 'STUDY_IMAGE-length'];
-          for (int j = 0; j < studyImageLength; j++) {
-            // prefix
-            final String imagePrefix = prefix + 'STUDY_IMAGE-' + j.toString();
-
-            // widthPercent
-            final String widthPercentX1 =
-                map[imagePrefix + '-WIDTH_PERCENT_X1'];
-            final String widthPercentX2 =
-                map[imagePrefix + '-WIDTH_PERCENT_X2'];
-            final String widthPercentX3 =
-                map[imagePrefix + '-WIDTH_PERCENT_X3'];
-            final String widthPercentX4 =
-                map[imagePrefix + '-WIDTH_PERCENT_X4'];
-
-            // minHeight
-            final String minHeightX1 = map[imagePrefix + '-MIN_HEIGHT_X1'];
-            final String minHeightX2 = map[imagePrefix + '-MIN_HEIGHT_X2'];
-            final String minHeightX3 = map[imagePrefix + '-MIN_HEIGHT_X3'];
-            final String minHeightX4 = map[imagePrefix + '-MIN_HEIGHT_X4'];
-
-            // maxHeight
-            final String maxHeightX1 = map[imagePrefix + '-MAX_HEIGHT_X1'];
-            final String maxHeightX2 = map[imagePrefix + '-MAX_HEIGHT_X2'];
-            final String maxHeightX3 = map[imagePrefix + '-MAX_HEIGHT_X3'];
-            final String maxHeightX4 = map[imagePrefix + '-MAX_HEIGHT_X4'];
-
-            studyImages.add(ProjectStudyImage(
-              url: map[imagePrefix + '-URL'],
-              // widthPercent
-              widthPercentX1: widthPercentX1 != null
-                  ? double.tryParse(widthPercentX1)
-                  : null,
-              widthPercentX2: widthPercentX2 != null
-                  ? double.tryParse(widthPercentX2)
-                  : null,
-              widthPercentX3: widthPercentX3 != null
-                  ? double.tryParse(widthPercentX3)
-                  : null,
-              widthPercentX4: widthPercentX4 != null
-                  ? double.tryParse(widthPercentX4)
-                  : null,
-              // minHeight
-              minHeightX1:
-                  minHeightX1 != null ? double.tryParse(minHeightX1) : null,
-              minHeightX2:
-                  minHeightX2 != null ? double.tryParse(minHeightX2) : null,
-              minHeightX3:
-                  minHeightX3 != null ? double.tryParse(minHeightX3) : null,
-              minHeightX4:
-                  minHeightX4 != null ? double.tryParse(minHeightX4) : null,
-              // maxHeight
-              maxHeightX1:
-                  maxHeightX1 != null ? double.tryParse(maxHeightX1) : null,
-              maxHeightX2:
-                  maxHeightX2 != null ? double.tryParse(maxHeightX2) : null,
-              maxHeightX3:
-                  maxHeightX3 != null ? double.tryParse(maxHeightX3) : null,
-              maxHeightX4:
-                  maxHeightX4 != null ? double.tryParse(maxHeightX4) : null,
-            ));
-          }
-        }
-
         // init studyBlocks
-        final List<ProjectStudyBlock> studyBlocks = List();
+        final Map<String, List<ProjectStudyBlock>> studyBlocks = Map();
+        studyBlocks['A'] = List();
+        studyBlocks['B'] = List();
 
         // load study blocks
-        if (map[prefix + 'STUDY_BLOCK-length'] != null) {
-          final int studyBlockLength = map[prefix + 'STUDY_BLOCK-length'];
-          for (int j = 0; j < studyBlockLength; j++) {
-            // prefix
-            final String blockPrefix = prefix + 'STUDY_BLOCK-' + j.toString();
+        for (final String letter in studyBlocks.keys) {
+          // pull studyblock ref
+          final List<ProjectStudyBlock> studyBlocksX = studyBlocks[letter];
 
-            // widthPercent
-            final String widthPercentX1 =
-                map[blockPrefix + '-WIDTH_PERCENT_X1'];
-            final String widthPercentX2 =
-                map[blockPrefix + '-WIDTH_PERCENT_X2'];
-            final String widthPercentX3 =
-                map[blockPrefix + '-WIDTH_PERCENT_X3'];
-            final String widthPercentX4 =
-                map[blockPrefix + '-WIDTH_PERCENT_X4'];
+          if (map[prefix + 'STUDY_BLOCK_' + letter + '-length'] != null) {
+            final int studyBlockLength =
+                map[prefix + 'STUDY_BLOCK_' + letter + '-length'];
+            for (int j = 0; j < studyBlockLength; j++) {
+              // prefix
+              final String blockPrefix =
+                  prefix + 'STUDY_BLOCK_' + letter + '-' + j.toString();
 
-            // minHeight
-            final String minHeightX1 = map[blockPrefix + '-MIN_HEIGHT_X1'];
-            final String minHeightX2 = map[blockPrefix + '-MIN_HEIGHT_X2'];
-            final String minHeightX3 = map[blockPrefix + '-MIN_HEIGHT_X3'];
-            final String minHeightX4 = map[blockPrefix + '-MIN_HEIGHT_X4'];
-
-            // maxHeight
-            final String maxHeightX1 = map[blockPrefix + '-MAX_HEIGHT_X1'];
-            final String maxHeightX2 = map[blockPrefix + '-MAX_HEIGHT_X2'];
-            final String maxHeightX3 = map[blockPrefix + '-MAX_HEIGHT_X3'];
-            final String maxHeightX4 = map[blockPrefix + '-MAX_HEIGHT_X4'];
-
-            studyBlocks.add(ProjectStudyBlock(
-              title: map[blockPrefix + '-TITLE'],
-              desc: map[blockPrefix + '-DESC'],
-              textPosition: map[blockPrefix + '-TEXT_POSITION'],
-              textAlignX: map[blockPrefix + '-TEXT_ALIGN_X'],
-              textAlignY: map[blockPrefix + '-TEXT_ALIGN_Y'],
-              image: map[blockPrefix + '-IMAGE'],
               // widthPercent
-              widthPercentX1: widthPercentX1 != null
-                  ? double.tryParse(widthPercentX1)
-                  : null,
-              widthPercentX2: widthPercentX2 != null
-                  ? double.tryParse(widthPercentX2)
-                  : null,
-              widthPercentX3: widthPercentX3 != null
-                  ? double.tryParse(widthPercentX3)
-                  : null,
-              widthPercentX4: widthPercentX4 != null
-                  ? double.tryParse(widthPercentX4)
-                  : null,
+              final String widthPercentX1 =
+                  map[blockPrefix + '-WIDTH_PERCENT_X1'];
+              final String widthPercentX2 =
+                  map[blockPrefix + '-WIDTH_PERCENT_X2'];
+              final String widthPercentX3 =
+                  map[blockPrefix + '-WIDTH_PERCENT_X3'];
+              final String widthPercentX4 =
+                  map[blockPrefix + '-WIDTH_PERCENT_X4'];
+
               // minHeight
-              minHeightX1:
-                  minHeightX1 != null ? double.tryParse(minHeightX1) : null,
-              minHeightX2:
-                  minHeightX2 != null ? double.tryParse(minHeightX2) : null,
-              minHeightX3:
-                  minHeightX3 != null ? double.tryParse(minHeightX3) : null,
-              minHeightX4:
-                  minHeightX4 != null ? double.tryParse(minHeightX4) : null,
+              final String minHeightX1 = map[blockPrefix + '-MIN_HEIGHT_X1'];
+              final String minHeightX2 = map[blockPrefix + '-MIN_HEIGHT_X2'];
+              final String minHeightX3 = map[blockPrefix + '-MIN_HEIGHT_X3'];
+              final String minHeightX4 = map[blockPrefix + '-MIN_HEIGHT_X4'];
+
               // maxHeight
-              maxHeightX1:
-                  maxHeightX1 != null ? double.tryParse(maxHeightX1) : null,
-              maxHeightX2:
-                  maxHeightX2 != null ? double.tryParse(maxHeightX2) : null,
-              maxHeightX3:
-                  maxHeightX3 != null ? double.tryParse(maxHeightX3) : null,
-              maxHeightX4:
-                  maxHeightX4 != null ? double.tryParse(maxHeightX4) : null,
-            ));
+              final String maxHeightX1 = map[blockPrefix + '-MAX_HEIGHT_X1'];
+              final String maxHeightX2 = map[blockPrefix + '-MAX_HEIGHT_X2'];
+              final String maxHeightX3 = map[blockPrefix + '-MAX_HEIGHT_X3'];
+              final String maxHeightX4 = map[blockPrefix + '-MAX_HEIGHT_X4'];
+
+              studyBlocksX.add(ProjectStudyBlock(
+                title: map[blockPrefix + '-TITLE'],
+                desc: map[blockPrefix + '-DESC'],
+                textPosition: map[blockPrefix + '-TEXT_POSITION'],
+                textAlignX: map[blockPrefix + '-TEXT_ALIGN_X'],
+                textAlignY: map[blockPrefix + '-TEXT_ALIGN_Y'],
+                image: map[blockPrefix + '-IMAGE'],
+                // widthPercent
+                widthPercentX1: widthPercentX1 != null
+                    ? double.tryParse(widthPercentX1)
+                    : null,
+                widthPercentX2: widthPercentX2 != null
+                    ? double.tryParse(widthPercentX2)
+                    : null,
+                widthPercentX3: widthPercentX3 != null
+                    ? double.tryParse(widthPercentX3)
+                    : null,
+                widthPercentX4: widthPercentX4 != null
+                    ? double.tryParse(widthPercentX4)
+                    : null,
+                // minHeight
+                minHeightX1:
+                    minHeightX1 != null ? double.tryParse(minHeightX1) : null,
+                minHeightX2:
+                    minHeightX2 != null ? double.tryParse(minHeightX2) : null,
+                minHeightX3:
+                    minHeightX3 != null ? double.tryParse(minHeightX3) : null,
+                minHeightX4:
+                    minHeightX4 != null ? double.tryParse(minHeightX4) : null,
+                // maxHeight
+                maxHeightX1:
+                    maxHeightX1 != null ? double.tryParse(maxHeightX1) : null,
+                maxHeightX2:
+                    maxHeightX2 != null ? double.tryParse(maxHeightX2) : null,
+                maxHeightX3:
+                    maxHeightX3 != null ? double.tryParse(maxHeightX3) : null,
+                maxHeightX4:
+                    maxHeightX4 != null ? double.tryParse(maxHeightX4) : null,
+              ));
+            }
           }
         }
 
@@ -218,7 +158,6 @@ class Content {
                 ? map[prefix + 'STUDY_IMAGE']
                 : 'assets/placeholder.png',
             tags: tags,
-            studyImages: studyImages,
             studyBlocks: studyBlocks));
       }
     }
@@ -421,8 +360,7 @@ class Project {
   final String tagImage;
   final String studyImage;
   final List<String> tags;
-  final List<ProjectStudyImage> studyImages;
-  final List<ProjectStudyBlock> studyBlocks;
+  final Map<String, List<ProjectStudyBlock>> studyBlocks;
 
   const Project({
     this.key,
@@ -439,42 +377,7 @@ class Project {
     this.tagImage = 'assets/placeholder.png',
     this.studyImage = 'assets/placeholder.png',
     this.tags = const [],
-    this.studyImages = const [],
-    this.studyBlocks = const [],
-  });
-}
-
-class ProjectStudyImage {
-  final String url;
-  final double widthPercentX1;
-  final double widthPercentX2;
-  final double widthPercentX3;
-  final double widthPercentX4;
-
-  final double minHeightX1;
-  final double minHeightX2;
-  final double minHeightX3;
-  final double minHeightX4;
-
-  final double maxHeightX1;
-  final double maxHeightX2;
-  final double maxHeightX3;
-  final double maxHeightX4;
-
-  const ProjectStudyImage({
-    this.url,
-    this.widthPercentX1,
-    this.widthPercentX2,
-    this.widthPercentX3,
-    this.widthPercentX4,
-    this.minHeightX1,
-    this.minHeightX2,
-    this.minHeightX3,
-    this.minHeightX4,
-    this.maxHeightX1,
-    this.maxHeightX2,
-    this.maxHeightX3,
-    this.maxHeightX4,
+    this.studyBlocks = const {},
   });
 }
 
