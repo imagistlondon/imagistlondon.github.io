@@ -88,10 +88,10 @@ const RESOURCES = {
 "assets/AssetManifest.json": "608ab5360cbea82c81a0bfcc88be8c4e",
 "assets/FontManifest.json": "a506737225df98745abf78d11ebbf28a",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"index.html": "8c4f644a551ab3977dc7a826af3d7204",
-"/": "8c4f644a551ab3977dc7a826af3d7204",
+"index.html": "f1f3e05c51870203c2355e4b604da839",
+"/": "f1f3e05c51870203c2355e4b604da839",
 "font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
-"main.dart.js": "ed1bef4f6ca9731e01781bd5e7938b60",
+"main.dart.js": "47f2de68912b5a81e87531fce57158b1",
 "font-saol-text-light.eot": "cf44e4b6266324651556fb56186e6400"
 };
 
