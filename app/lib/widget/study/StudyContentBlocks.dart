@@ -72,8 +72,8 @@ class StudyContentBlocks extends StatelessWidget {
       i++;
 
       // add vertical space (using gap)
-      if (i > 0)
-        elements.add(SizedBox(width: fullWidth, height: Design.gap(context)));
+      // if (i > 0) elements.add(SizedBox(width: fullWidth, height: Design.gap(context)));
+      if (i > 0) elements.add(SizedBox(width: fullWidth, height: Design.SPACE));
 
       // loop through columns
       int j = -1;
@@ -142,11 +142,38 @@ class StudyContentBlocks extends StatelessWidget {
 
         // build image widget (if needed)
         final Widget imageWidget = hasImage
-            ? Image(
-                // fit
-                fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
-                // image
-                image: AssetImage(block.image))
+            ?
+            // CONSTRAINED BOX
+            ConstrainedBox(
+                constraints: BoxConstraints(
+                    minHeight: Break.decideOr(
+                        context,
+                        block.imageMinHeightX1,
+                        block.imageMinHeightX2,
+                        block.imageMinHeightX3,
+                        block.imageMinHeightX4,
+                        0.0),
+                    maxHeight: Break.decideOr(
+                        context,
+                        block.imageMaxHeightX1,
+                        block.imageMaxHeightX2,
+                        block.imageMaxHeightX3,
+                        block.imageMaxHeightX4,
+                        double.infinity)),
+                // IMAGE
+                child: Image(
+                    // fit
+                    fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
+                    // width
+                    width: width,
+                    // image
+                    image: AssetImage(block.image)))
+
+            // Image(
+            //     // fit
+            //     fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
+            //     // image
+            //     image: AssetImage(block.image))
             : SizedBox.shrink();
 
         // build space widget (if needed)
@@ -222,9 +249,9 @@ class StudyContentBlocks extends StatelessWidget {
                         double.infinity)),
                 // CHILD
                 child: Container(
-                    // color:
-                    //     Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
-                    //         .withOpacity(1.0),
+                    color:
+                        Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+                            .withOpacity(1.0),
                     width: width,
                     child: widget)));
       }

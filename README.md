@@ -74,7 +74,7 @@ Please note that only `PNG`, `JPG` or `GIF` are supported (`SVG` images are NOT 
 
 ```
 cd app
-flutter channel stable
+flutter channel beta
 flutter upgrade
 flutter config --enable-web
 flutter doctor
@@ -84,7 +84,9 @@ or
 
 ```
 cd app
-flutter version 1.22.5
+flutter channel beta
+flutter downgrade
+# choose v1.22.5
 flutter config --enable-web
 flutter doctor
 ```

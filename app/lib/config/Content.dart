@@ -58,6 +58,26 @@ class Content {
               final String blockPrefix =
                   prefix + 'STUDY_BLOCK_' + letter + '-' + j.toString();
 
+              // imageMinHeight
+              final String imageMinHeightX1 =
+                  map[blockPrefix + '-IMAGE_MIN_HEIGHT_X1'];
+              final String imageMinHeightX2 =
+                  map[blockPrefix + '-IMAGE_MIN_HEIGHT_X2'];
+              final String imageMinHeightX3 =
+                  map[blockPrefix + '-IMAGE_MIN_HEIGHT_X3'];
+              final String imageMinHeightX4 =
+                  map[blockPrefix + '-IMAGE_MIN_HEIGHT_X4'];
+
+              // imageMaxHeight
+              final String imageMaxHeightX1 =
+                  map[blockPrefix + '-IMAGE_MAX_HEIGHT_X1'];
+              final String imageMaxHeightX2 =
+                  map[blockPrefix + '-IMAGE_MAX_HEIGHT_X2'];
+              final String imageMaxHeightX3 =
+                  map[blockPrefix + '-IMAGE_MAX_HEIGHT_X3'];
+              final String imageMaxHeightX4 =
+                  map[blockPrefix + '-IMAGE_MAX_HEIGHT_X4'];
+
               // widthPercent
               final String widthPercentX1 =
                   map[blockPrefix + '-WIDTH_PERCENT_X1'];
@@ -171,8 +191,9 @@ class Content {
 
     // load tag -> images
     final Set<String> tags = LinkedHashSet();
-    final Map<String, Set<String>> tagAssociations = LinkedHashMap();
-    final Map<String, Set<String>> tagImages = LinkedHashMap();
+    final Map<String, Set<String>> tagAssociations = SplayTreeMap();
+    final Map<String, Set<String>> tagImages = SplayTreeMap();
+    final Map<String, String> tagImageToKey = SplayTreeMap();
     for (final Project project in projects) {
       // skip if no tags
       if (project.tags == null || project.tags.isEmpty) continue;
@@ -202,6 +223,9 @@ class Content {
 
         // add project image thumb
         tagImages[tag].add(project.tagImage);
+
+        // set tagImage -> project key
+        tagImageToKey[project.tagImage] = project.key;
       }
     }
 
@@ -273,6 +297,7 @@ class Content {
       TAGS: tags,
       TAG_ASSOCIATIONS: tagAssociations,
       TAG_IMAGES: tagImages,
+      TAG_IMAGE_TO_KEY: tagImageToKey,
     );
   }
 
@@ -295,6 +320,7 @@ class Content {
   final List<Project> PROJECTS;
   final Map<String, Project> KEY_PROJECTS;
   final Map<String, int> PROJECT_KEY_TO_INDEX;
+
   final List<Project> HOME_PROJECTS;
   final Map<String, Project> KEY_HOME_PROJECTS;
   final Map<String, int> HOME_PROJECT_KEY_TO_INDEX;
@@ -309,7 +335,8 @@ class Content {
 
   final Set<String> TAGS;
   final Map<String, Set<String>> TAG_ASSOCIATIONS;
-  final Map<String, Set> TAG_IMAGES;
+  final Map<String, Set<String>> TAG_IMAGES;
+  final Map<String, String> TAG_IMAGE_TO_KEY;
 
   const Content(
       {this.LOADING_LINE_1 = 'The apparition of these faces in the crowd:',
@@ -342,7 +369,8 @@ class Content {
       this.ARCHIVE_PROJECT_KEY_TO_INDEX = const {},
       this.TAGS = const {},
       this.TAG_ASSOCIATIONS = const {},
-      this.TAG_IMAGES = const {}});
+      this.TAG_IMAGES = const {},
+      this.TAG_IMAGE_TO_KEY = const {}});
 }
 
 class Project {
@@ -388,6 +416,17 @@ class ProjectStudyBlock {
   final String textAlignX;
   final String textAlignY;
   final String image;
+
+  final double imageMinHeightX1;
+  final double imageMinHeightX2;
+  final double imageMinHeightX3;
+  final double imageMinHeightX4;
+
+  final double imageMaxHeightX1;
+  final double imageMaxHeightX2;
+  final double imageMaxHeightX3;
+  final double imageMaxHeightX4;
+
   final double widthPercentX1;
   final double widthPercentX2;
   final double widthPercentX3;
@@ -410,6 +449,14 @@ class ProjectStudyBlock {
     this.textAlignX,
     this.textAlignY,
     this.image,
+    this.imageMinHeightX1,
+    this.imageMinHeightX2,
+    this.imageMinHeightX3,
+    this.imageMinHeightX4,
+    this.imageMaxHeightX1,
+    this.imageMaxHeightX2,
+    this.imageMaxHeightX3,
+    this.imageMaxHeightX4,
     this.widthPercentX1,
     this.widthPercentX2,
     this.widthPercentX3,

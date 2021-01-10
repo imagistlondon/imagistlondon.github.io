@@ -55,7 +55,11 @@ class TagsImagesX34 extends StatelessWidget {
                   // PADDING
                   padding: PADDING,
                   // TagsImage
-                  child: TagsImage(image: image))
+                  child: TagsImage(
+                      contentVN: contentVN,
+                      indexVN: indexVN,
+                      studyEnabledVN: studyEnabledVN,
+                      image: image))
           ]);
     });
   }

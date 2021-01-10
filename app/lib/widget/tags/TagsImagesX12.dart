@@ -56,7 +56,11 @@ class TagsImagesX12 extends StatelessWidget {
         imageElements.add(Container(
             // non-first element has left padding
             padding: i > 0 ? PADDING_LEFT : null,
-            child: TagsImage(image: image)));
+            child: TagsImage(
+                contentVN: contentVN,
+                indexVN: indexVN,
+                studyEnabledVN: studyEnabledVN,
+                image: image)));
         i++;
       }
 
