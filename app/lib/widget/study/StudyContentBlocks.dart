@@ -235,7 +235,9 @@ class StudyContentBlocks extends StatelessWidget {
         // SCREEN WIDTH
         width: Design.screenWidth(context),
         // BACKGROUND COLOR
-        color: Design.STUDY_CONTENT_BLOCKS_BACKGROUND_COLOR,
+        color: letter == 'A'
+            ? Design.STUDY_CONTENT_BLOCKS_A_BACKGROUND_COLOR
+            : Design.STUDY_CONTENT_BLOCKS_B_BACKGROUND_COLOR,
         // SECTION
         child: Section(
             // GAP (HORIZONTAL PADDING)

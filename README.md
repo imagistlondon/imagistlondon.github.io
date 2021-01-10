@@ -73,6 +73,7 @@ Please note that only `PNG`, `JPG` or `GIF` are supported (`SVG` images are NOT 
 - Setup flutter:
 
 ```
+cd app
 flutter channel stable
 flutter upgrade
 flutter config --enable-web
@@ -82,7 +83,8 @@ flutter doctor
 or
 
 ```
-flutter channel 1.22.5
+cd app
+flutter version 1.22.5
 flutter config --enable-web
 flutter doctor
 ```

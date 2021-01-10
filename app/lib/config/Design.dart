@@ -343,11 +343,11 @@ class Design {
   // how to fit the study content image
   static const BoxFit STUDY_CONTENT_IMAGE_BOX_FIT = BoxFit.cover;
 
-  // background color for the images area in the study
-  static const Color STUDY_CONTENT_IMAGES_BACKGROUND_COLOR = BACKGROUND_COLOR;
+  // background color for the study content blocks A
+  static const Color STUDY_CONTENT_BLOCKS_A_BACKGROUND_COLOR = BACKGROUND_COLOR;
 
-  // background color for the study conent blocks area
-  static const Color STUDY_CONTENT_BLOCKS_BACKGROUND_COLOR =
+  // background color for the study conent blocks B area
+  static const Color STUDY_CONTENT_BLOCKS_B_BACKGROUND_COLOR =
       Color.fromRGBO(243, 232, 224, 1);
 
   // X1
