@@ -86,7 +86,7 @@ class Design {
   ///// PROGRESS BAR
 
   // progress bar color
-  static const Color PROGRESS_BAR_COLOR = Color.fromRGBO(231, 63, 41, 1);
+  static const Color PROGRESS_BAR_COLOR = Color.fromRGBO(255, 0, 103, 1);
 
   // height of the progress bar
   static const double PROGRESS_BAR_SIZE = 3;
@@ -140,12 +140,12 @@ class Design {
 
   // The animation Header work bullets to slide in
   static const Duration HEADER_WORK_SLIDE_ANIMATION_DURATION =
-      Duration(milliseconds: 200);
-  static const Curve HEADER_WORK_SLIDE_ANIMATION_CURVE = Curves.easeIn;
+      Duration(milliseconds: 500);
+  static const Curve HEADER_WORK_SLIDE_ANIMATION_CURVE = Curves.easeInOut;
 
   // Header bullets (for X1) slide in transation
   static const Duration HEADER_X1_BULLETS_ANIMATION_DURATION =
-      Duration(milliseconds: 200);
+      Duration(milliseconds: 500);
   static const Curve HEADER_X1_BULLETS_ANIMATION_CURVE = Curves.easeInOut;
 
   // header links widths (needed for animation translation)
