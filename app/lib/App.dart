@@ -1,9 +1,7 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
-import 'package:app/page/Main.dart';
-import 'package:app/page/TermsPage.dart';
-import 'package:app/util/L1.dart';
+import 'package:app/Window.dart';
 import 'package:flutter/material.dart';
 
 // App
@@ -27,40 +25,60 @@ class AppState extends State<App> {
 
   void loadContent() async {
     contentVN.value = await Content.load();
+    print('App.loadContent.done');
     loadingVN.value = false;
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // TITLE
       title: 'Imagist',
-      routes: {
-        '/': (context) => L1(
-            contentVN,
-            (c) => Main(
+
+      // ROUTES
+      onGenerateRoute: (settings) {
+        print('App.onGenerateRoute.init:' + settings.name);
+
+        // define path
+        final String path = settings.name;
+        final List<String> parts = path.split('/');
+
+        // define initial
+        Index initIndex = Index.HOME;
+        String initStudyKey;
+
+        // terms
+        if (path.startsWith('/terms'))
+          initIndex = Index.TERMS;
+
+        // work/showcase
+        else if (path.startsWith('/showcase'))
+          initIndex = Index.WORK_SHOWCASE;
+
+        // work/archive
+        else if (path.startsWith('/archive'))
+          initIndex = Index.WORK_ARCHIVE;
+
+        // work/tags
+        else if (path.startsWith('/tags'))
+          initIndex = Index.WORK_TAGS;
+
+        // study
+        else if (path.startsWith('/study')) {
+          initIndex = Index.HOME;
+          initStudyKey = parts.isNotEmpty ? parts.last : null;
+        }
+
+        // build route
+        return MaterialPageRoute(
+            builder: (context) => Window(
                 contentVN: contentVN,
                 loadingVN: loadingVN,
-                initIndex: Index.HOME)),
-        '/archive': (context) => L1(
-            contentVN,
-            (c) => Main(
-                contentVN: contentVN,
-                loadingVN: loadingVN,
-                initIndex: Index.WORK_ARCHIVE)),
-        '/showcase': (context) => L1(
-            contentVN,
-            (c) => Main(
-                contentVN: contentVN,
-                loadingVN: loadingVN,
-                initIndex: Index.WORK_SHOWCASE)),
-        '/tags': (context) => L1(
-            contentVN,
-            (c) => Main(
-                contentVN: contentVN,
-                loadingVN: loadingVN,
-                initIndex: Index.WORK_TAGS)),
-        '/terms': (context) => TermsPage(contentVN: contentVN)
+                initIndex: initIndex,
+                initStudyKey: initStudyKey));
       },
+
+      // THEME
       theme: ThemeData(
           textTheme: TextTheme(
               headline1: Design.X4_H1,
