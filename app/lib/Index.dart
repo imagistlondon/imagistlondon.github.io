@@ -1,6 +1,6 @@
 import 'package:recase/recase.dart';
 
-enum Index { HOME, WORK_SHOWCASE, WORK_ARCHIVE, WORK_TAGS }
+enum Index { HOME, TERMS, WORK_SHOWCASE, WORK_ARCHIVE, WORK_TAGS }
 
 extension IndexExtension on Index {
   String display() {
@@ -10,6 +10,10 @@ extension IndexExtension on Index {
   String workDisplay() {
     return new ReCase(this.toString().replaceFirst('Index.WORK_', ''))
         .titleCase;
+  }
+
+  bool isWork() {
+    return this.toString().contains('WORK');
   }
 }
 
