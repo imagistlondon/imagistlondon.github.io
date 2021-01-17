@@ -43,30 +43,35 @@ class AppState extends State<App> {
         final String path = settings.name;
         final List<String> parts = path.split('/');
 
+        print('App.onGenerateRoute.parts:' + parts.toString());
+
+        final String part1 = parts.length >= 2 ? parts[1] : null;
+        final String part2 = parts.length >= 3 ? parts[2] : null;
+        final String part3 = parts.length >= 4 ? parts[3] : null;
+
         // define initial
         Index initIndex = Index.HOME;
         String initStudyKey;
 
         // terms
-        if (path.startsWith('/terms'))
-          initIndex = Index.TERMS;
+        if (part1 == 'terms') initIndex = Index.TERMS;
 
         // work/showcase
-        else if (path.startsWith('/showcase'))
-          initIndex = Index.WORK_SHOWCASE;
+        if (part1 == 'showcase') initIndex = Index.WORK_SHOWCASE;
 
         // work/archive
-        else if (path.startsWith('/archive'))
-          initIndex = Index.WORK_ARCHIVE;
+        if (part1 == 'archive') initIndex = Index.WORK_ARCHIVE;
 
         // work/tags
-        else if (path.startsWith('/tags'))
-          initIndex = Index.WORK_TAGS;
+        if (part1 == 'tags') initIndex = Index.WORK_TAGS;
 
-        // study
-        else if (path.startsWith('/study')) {
-          initIndex = Index.HOME;
-          initStudyKey = parts.isNotEmpty ? parts.last : null;
+        // study (from /)
+        if (part1 == ('study')) {
+          initStudyKey = part2;
+        }
+        // study (from /x)
+        if (part2 == ('study')) {
+          initStudyKey = part3;
         }
 
         // build route
