@@ -22,7 +22,7 @@ class Design {
 
   // margin (negative space of page)
   static double gap(final BuildContext context) {
-    return Break.x1(context) ? Design.SPACE * 2 : Design.SPACE * 3;
+    return Break.x1(context) ? Design.SPACE : Design.SPACE * 3;
   }
 
   // full screen width
