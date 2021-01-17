@@ -150,6 +150,7 @@ const RESOURCES = {
 "assets/fonts/font-saol-text-light.woff2": "598682f2968ad8d33ff48d04c8bafa93",
 "assets/NOTICES": "0291a82e47f2350276d6dc4e74765b7c",
 "assets/AssetManifest.json": "dc706fc1cd08fedab12dc33a2ad67ff2",
+"404.html": "14df463363d4e4ac4f04dc85fe0765a2",
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
 "apple-touch-icon.png": "ae03aa0f1a3dba39c37ffd7ae02863bc",
 "favicon-32x32.png": "8b9d8a3841cfb6b20fb023430c3117dd",
@@ -157,8 +158,8 @@ const RESOURCES = {
 "main.dart.js": "0c08cc2bdaaa4188b70e728606112060",
 "android-chrome-192x192.png": "b86e1bedfeba2b7f0ee344c2c4007125",
 "manifest.json": "1063745475257257f2aa77a8c929cd93",
-"index.html": "2f0c540eaa7a9743d3be38dc2d00ac85",
-"/": "2f0c540eaa7a9743d3be38dc2d00ac85",
+"index.html": "e3a9d3b217171afc89a44f010ad219e9",
+"/": "e3a9d3b217171afc89a44f010ad219e9",
 "favicon.ico": "19a0349ef88d75cb2624b98a4e03e2fa"
 };
 
