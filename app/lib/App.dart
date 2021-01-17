@@ -36,6 +36,8 @@ class AppState extends State<App> {
       routes: {
         '/': (context) => L1(
             contentVN, (c) => Main(contentVN: contentVN, loadingVN: loadingVN)),
+        '/archive': (context) => L1(
+            contentVN, (c) => Main(contentVN: contentVN, loadingVN: loadingVN)),
         '/terms': (context) => TermsPage(contentVN: contentVN)
       },
       theme: ThemeData(
