@@ -80,17 +80,6 @@ flutter config --enable-web
 flutter doctor
 ```
 
-or
-
-```
-cd app
-flutter channel beta
-flutter downgrade
-# choose v1.22.5
-flutter config --enable-web
-flutter doctor
-```
-
 - Run the app:
 
 In Visual Studio Code, select `main.dart` and select the Play button in top right. This will open Chrome.
