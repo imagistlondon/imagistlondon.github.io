@@ -154,11 +154,11 @@ const RESOURCES = {
 "apple-touch-icon.png": "ae03aa0f1a3dba39c37ffd7ae02863bc",
 "favicon-32x32.png": "8b9d8a3841cfb6b20fb023430c3117dd",
 "android-chrome-512x512.png": "78b6fbf11ebd07343a7b1584195bbee7",
-"main.dart.js": "226e465cabb06938dfd2708c56641ed2",
+"main.dart.js": "028f83c87142eee73aca2a96d46e4b44",
 "android-chrome-192x192.png": "b86e1bedfeba2b7f0ee344c2c4007125",
 "manifest.json": "1063745475257257f2aa77a8c929cd93",
-"index.html": "09bac3f7d03a1f5d18c75991ea7ffe6e",
-"/": "09bac3f7d03a1f5d18c75991ea7ffe6e",
+"index.html": "f3edcd2d3e9f0480b0c3bef7add1a49e",
+"/": "f3edcd2d3e9f0480b0c3bef7add1a49e",
 "favicon.ico": "19a0349ef88d75cb2624b98a4e03e2fa"
 };
 
