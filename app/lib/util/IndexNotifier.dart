@@ -11,10 +11,17 @@ class IndexNotifier extends ChangeNotifier implements ValueListenable<Index> {
   Index get value => _value;
   Index _value;
   set value(Index newValue) {
+    // skip if nothing new
     if (_value == newValue) return;
+
+    // set new value
     _value = newValue;
+
+    // move to new history
     html.window.history
         .pushState(null, newValue.toString(), Indexes.INDEX_URLS[newValue]);
+
+    // notify
     notifyListeners();
   }
 

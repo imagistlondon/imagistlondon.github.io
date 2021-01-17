@@ -21,4 +21,12 @@ class Indexes {
   static List<Index> works() {
     return Index.values.where((i) => i.toString().contains('WORK_')).toList();
   }
+
+  static Map<Index, String> INDEX_URLS = {
+    Index.HOME: '/',
+    Index.TERMS: '/terms',
+    Index.WORK_SHOWCASE: '/showcase',
+    Index.WORK_ARCHIVE: 'archive',
+    Index.WORK_TAGS: '/tags'
+  };
 }
