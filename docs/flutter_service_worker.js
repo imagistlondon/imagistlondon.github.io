@@ -148,18 +148,19 @@ const RESOURCES = {
 "assets/web/font-saol-text-light.woff2": "598682f2968ad8d33ff48d04c8bafa93",
 "assets/FontManifest.json": "a506737225df98745abf78d11ebbf28a",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"assets/NOTICES": "987734eb69a83b4f00949fe8c4a7729a",
-"assets/AssetManifest.json": "2a1e1cfaf4ab660420ac15f616220c18",
+"assets/NOTICES": "cbb49d16b8747a04d7a498bdafa861dc",
+"assets/AssetManifest.json": "f22954aae79ad34325935adda176360f",
+"version.json": "fb800d37cb51ce25f91a8114a375508b",
 "apple-touch-icon.png": "ae03aa0f1a3dba39c37ffd7ae02863bc",
 "favicon-32x32.png": "8b9d8a3841cfb6b20fb023430c3117dd",
 "android-chrome-512x512.png": "78b6fbf11ebd07343a7b1584195bbee7",
-"main.dart.js": "40f09489d3e8fe2bf832a383bb501ecc",
+"main.dart.js": "1e70bcead8b56bba140d79190c3525de",
 "android-chrome-192x192.png": "b86e1bedfeba2b7f0ee344c2c4007125",
 "font-untitled-sans-web-light.woff": "a770caa853bc25f2fa64b5ba65fc3f59",
-"manifest.json": "d7805ca91f654e0c376e7256b6bbb430",
+"manifest.json": "1063745475257257f2aa77a8c929cd93",
 "font-saol-text-light.woff": "af367118659c3dcdb6e18409b688d97a",
-"index.html": "a72fbd3b00c4314f2e3dbe461200eede",
-"/": "a72fbd3b00c4314f2e3dbe461200eede",
+"index.html": "1506bec919395e69f0a92ea1ea35bb68",
+"/": "1506bec919395e69f0a92ea1ea35bb68",
 "font-untitled-sans-web-light.eot": "de9d36fbcdf67c743843c1d6e4d98080",
 "font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "font-saol-text-light.woff2": "598682f2968ad8d33ff48d04c8bafa93",
@@ -178,6 +179,7 @@ const CORE = [
 "assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
+  self.skipWaiting();
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
       return cache.addAll(
@@ -246,6 +248,9 @@ self.addEventListener("activate", function(event) {
 // The fetch handler redirects requests for RESOURCE files to the service
 // worker cache.
 self.addEventListener("fetch", (event) => {
+  if (event.request.method !== 'GET') {
+    return;
+  }
   var origin = self.location.origin;
   var key = event.request.url.substring(origin.length + 1);
   // Redirect URLs to the index.html
@@ -255,9 +260,10 @@ self.addEventListener("fetch", (event) => {
   if (event.request.url == origin || event.request.url.startsWith(origin + '/#') || key == '') {
     key = '/';
   }
-  // If the URL is not the RESOURCE list, skip the cache.
+  // If the URL is not the RESOURCE list then return to signal that the
+  // browser should take over.
   if (!RESOURCES[key]) {
-    return event.respondWith(fetch(event.request));
+    return;
   }
   // If the URL is the index.html, perform an online-first request.
   if (key == '/') {
@@ -281,10 +287,12 @@ self.addEventListener('message', (event) => {
   // SkipWaiting can be used to immediately activate a waiting service worker.
   // This will also require a page refresh triggered by the main worker.
   if (event.data === 'skipWaiting') {
-    return self.skipWaiting();
+    self.skipWaiting();
+    return;
   }
-  if (event.message === 'downloadOffline') {
+  if (event.data === 'downloadOffline') {
     downloadOffline();
+    return;
   }
 });
 
