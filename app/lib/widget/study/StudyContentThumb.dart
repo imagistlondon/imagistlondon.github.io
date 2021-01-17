@@ -1,12 +1,12 @@
 import 'package:app/config/Design.dart';
-import 'package:app/config/Content.dart';
+import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:flutter/material.dart';
 
 class StudyContentThumb extends StatelessWidget {
   const StudyContentThumb({Key key, @required this.studyEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Project> studyEnabledVN;
+  final StudyEnabledNotifier studyEnabledVN;
 
   @override
   Widget build(BuildContext context) {

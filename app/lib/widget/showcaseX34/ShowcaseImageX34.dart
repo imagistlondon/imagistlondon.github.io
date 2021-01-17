@@ -1,6 +1,7 @@
-import 'package:app/Index.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/config/Content.dart';
+import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:flutter/material.dart';
 
 class ShowcaseImageX34 extends StatelessWidget {
@@ -11,8 +12,8 @@ class ShowcaseImageX34 extends StatelessWidget {
       @required this.projectEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Index> indexVN;
-  final ValueNotifier<Project> studyEnabledVN;
+  final IndexNotifier indexVN;
+  final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<Project> projectEnabledVN;
 
   @override

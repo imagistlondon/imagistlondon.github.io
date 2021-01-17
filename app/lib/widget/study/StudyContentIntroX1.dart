@@ -1,14 +1,14 @@
 import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/text/P.dart';
-import 'package:app/config/Content.dart';
+import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:flutter/material.dart';
 
 class StudyContentIntroX1 extends StatelessWidget {
   const StudyContentIntroX1({Key key, @required this.studyEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Project> studyEnabledVN;
+  final StudyEnabledNotifier studyEnabledVN;
 
   @override
   Widget build(BuildContext context) {

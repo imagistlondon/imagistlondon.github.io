@@ -1,6 +1,6 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
-import 'package:app/util/HTML.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +9,7 @@ class HeaderLogo extends StatefulWidget {
       {Key key, @required this.indexVN, @required this.bulletsEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Index> indexVN;
+  final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
 
   @override

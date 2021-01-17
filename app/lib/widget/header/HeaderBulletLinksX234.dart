@@ -1,5 +1,6 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1C.dart';
 import 'package:app/widget/header/HeaderBulletLink.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class HeaderBulletLinksX234 extends StatelessWidget {
       {Key key, @required this.indexVN, @required this.bulletsEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Index> indexVN;
+  final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
 
   // matrixA

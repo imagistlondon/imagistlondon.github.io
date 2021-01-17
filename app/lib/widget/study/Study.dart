@@ -1,7 +1,7 @@
-import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
-import 'package:app/config/Content.dart';
+import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/widget/study/StudyArrow.dart';
 import 'package:app/widget/study/StudyClose.dart';
 import 'package:app/widget/study/StudyContent.dart';
@@ -15,8 +15,8 @@ class Study extends StatefulWidget {
       @required this.progressFractionVN})
       : super(key: key);
 
-  final ValueNotifier<Index> indexVN;
-  final ValueNotifier<Project> studyEnabledVN;
+  final IndexNotifier indexVN;
+  final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<double> progressFractionVN;
 
   @override

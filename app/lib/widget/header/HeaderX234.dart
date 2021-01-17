@@ -1,6 +1,6 @@
-import 'package:app/Index.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/header/HeaderBulletLinksX234.dart';
 import 'package:app/widget/header/HeaderLogoX234.dart';
 import 'package:app/widget/header/HeaderStudioLinkX234.dart';
@@ -17,7 +17,7 @@ class HeaderX234 extends StatelessWidget {
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
-  final ValueNotifier<Index> indexVN;
+  final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
   final ValueNotifier<bool> studioEnabledVN;
 

@@ -1,9 +1,8 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/P.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
-import 'package:app/util/L1C.dart';
-import 'package:app/util/L2.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +15,7 @@ class HeaderBulletLink extends StatefulWidget {
       : super(key: key);
 
   final Index index;
-  final ValueNotifier<Index> indexVN;
+  final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
 
   @override

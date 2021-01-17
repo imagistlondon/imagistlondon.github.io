@@ -4,6 +4,7 @@ import 'package:app/config/Content.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/text/P.dart';
 import 'package:app/util/Section.dart';
+import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -12,7 +13,7 @@ class StudyContentBlocks extends StatelessWidget {
       {Key key, @required this.studyEnabledVN, @required this.letter})
       : super(key: key);
 
-  final ValueNotifier<Project> studyEnabledVN;
+  final StudyEnabledNotifier studyEnabledVN;
   final String letter;
 
   @override

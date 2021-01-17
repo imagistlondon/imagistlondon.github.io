@@ -1,5 +1,6 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Content.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/header/HeaderLink.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class HeaderWorkLink extends StatelessWidget {
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
-  final ValueNotifier<Index> indexVN;
+  final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
 
   @override

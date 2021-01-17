@@ -2,7 +2,9 @@ import 'package:app/Index.dart';
 import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
+import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/widget/archive/Archive.dart';
 import 'package:app/widget/header/HeaderX1.dart';
 import 'package:app/widget/header/HeaderX234.dart';
@@ -37,13 +39,13 @@ class Window extends StatefulWidget {
 
 class WindowState extends State<Window> {
   // page indexes
-  final ValueNotifier<Index> indexVN = ValueNotifier(Index.HOME);
+  final IndexNotifier indexVN = IndexNotifier(Index.HOME);
 
   // header bullets showing
   final ValueNotifier<bool> bulletsEnabledVN = ValueNotifier(false);
 
   // study project
-  final ValueNotifier<Project> studyEnabledVN = ValueNotifier(null);
+  final StudyEnabledNotifier studyEnabledVN = StudyEnabledNotifier(null);
 
   // showing studio
   final ValueNotifier<bool> studioEnabledVN = ValueNotifier(false);

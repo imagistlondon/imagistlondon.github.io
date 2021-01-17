@@ -4,6 +4,7 @@ import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/text/P.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class Terms extends StatelessWidget {
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
-  final ValueNotifier<Index> indexVN;
+  final IndexNotifier indexVN;
 
   @override
   Widget build(BuildContext context) {

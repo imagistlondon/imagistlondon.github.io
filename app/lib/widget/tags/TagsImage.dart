@@ -1,7 +1,8 @@
-import 'package:app/Index.dart';
 import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
+import 'package:app/util/IndexNotifier.dart';
+import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +16,8 @@ class TagsImage extends StatelessWidget {
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
-  final ValueNotifier<Index> indexVN;
-  final ValueNotifier<Project> studyEnabledVN;
+  final IndexNotifier indexVN;
+  final StudyEnabledNotifier studyEnabledVN;
   final String image;
 
   void onTap() {

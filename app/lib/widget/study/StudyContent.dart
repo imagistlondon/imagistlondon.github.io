@@ -1,6 +1,6 @@
-import 'package:app/Index.dart';
 import 'package:app/config/Break.dart';
-import 'package:app/config/Content.dart';
+import 'package:app/util/IndexNotifier.dart';
+import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/widget/study/StudyContentBlocks.dart';
 import 'package:app/widget/study/StudyContentIntroX1.dart';
 import 'package:app/widget/study/StudyContentIntroX234.dart';
@@ -15,8 +15,8 @@ class StudyContent extends StatelessWidget {
       @required this.scrollController})
       : super(key: key);
 
-  final ValueNotifier<Index> indexVN;
-  final ValueNotifier<Project> studyEnabledVN;
+  final IndexNotifier indexVN;
+  final StudyEnabledNotifier studyEnabledVN;
   final ScrollController scrollController;
 
   @override

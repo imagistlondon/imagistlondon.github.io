@@ -1,4 +1,4 @@
-import 'package:app/Index.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/header/HeaderLogo.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,7 @@ class HeaderLogoX234 extends StatelessWidget {
       {Key key, @required this.indexVN, @required this.bulletsEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Index> indexVN;
+  final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
 
   @override

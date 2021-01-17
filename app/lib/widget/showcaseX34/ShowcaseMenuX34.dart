@@ -1,11 +1,10 @@
-import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
-import 'package:app/util/L1C.dart';
 import 'package:app/config/Content.dart';
+import 'package:app/util/IndexNotifier.dart';
+import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/UA.dart';
 import 'package:app/widget/showcaseX34/ShowcaseLinkX34.dart';
 import 'package:flutter/material.dart';
-import 'package:matrix4_transform/matrix4_transform.dart';
 
 class ShowcaseMenuX34 extends StatefulWidget {
   const ShowcaseMenuX34({
@@ -17,8 +16,8 @@ class ShowcaseMenuX34 extends StatefulWidget {
   }) : super(key: key);
 
   final ValueNotifier<Content> contentVN;
-  final ValueNotifier<Index> indexVN;
-  final ValueNotifier<Project> studyEnabledVN;
+  final IndexNotifier indexVN;
+  final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<Project> projectEnabledVN;
 
   @override
