@@ -1,3 +1,4 @@
+import 'package:app/Index.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/page/Main.dart';
@@ -35,9 +36,29 @@ class AppState extends State<App> {
       title: 'Imagist',
       routes: {
         '/': (context) => L1(
-            contentVN, (c) => Main(contentVN: contentVN, loadingVN: loadingVN)),
+            contentVN,
+            (c) => Main(
+                contentVN: contentVN,
+                loadingVN: loadingVN,
+                initIndex: Index.HOME)),
         '/archive': (context) => L1(
-            contentVN, (c) => Main(contentVN: contentVN, loadingVN: loadingVN)),
+            contentVN,
+            (c) => Main(
+                contentVN: contentVN,
+                loadingVN: loadingVN,
+                initIndex: Index.WORK_ARCHIVE)),
+        '/showcase': (context) => L1(
+            contentVN,
+            (c) => Main(
+                contentVN: contentVN,
+                loadingVN: loadingVN,
+                initIndex: Index.WORK_SHOWCASE)),
+        '/tags': (context) => L1(
+            contentVN,
+            (c) => Main(
+                contentVN: contentVN,
+                loadingVN: loadingVN,
+                initIndex: Index.WORK_TAGS)),
         '/terms': (context) => TermsPage(contentVN: contentVN)
       },
       theme: ThemeData(

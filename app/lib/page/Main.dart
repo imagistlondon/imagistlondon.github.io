@@ -16,11 +16,16 @@ import 'package:app/widget/tags/Tags.dart';
 import 'package:flutter/material.dart';
 
 class Main extends StatefulWidget {
-  const Main({Key key, @required this.contentVN, @required this.loadingVN})
+  const Main(
+      {Key key,
+      @required this.contentVN,
+      @required this.loadingVN,
+      @required this.initIndex})
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
   final ValueNotifier<bool> loadingVN;
+  final Index initIndex;
 
   @override
   _MainState createState() => _MainState();
@@ -44,6 +49,13 @@ class _MainState extends State<Main> {
 
   // progress bar fraction
   final ValueNotifier<double> progressFractionVN = ValueNotifier(0.0);
+
+  @override
+  void initState() {
+    super.initState();
+    indexVN.value = widget.initIndex; // start index
+    bulletsEnabledVN.value = widget.initIndex.toString().contains('WORK');
+  }
 
   @override
   Widget build(BuildContext context) {
