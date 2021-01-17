@@ -37,9 +37,9 @@ flutter:
   fonts:
     - family: SaolText
       fonts:
-        - asset: web/font-saol-text-light.woff2
+        - asset: fonts/font-saol-text-light.woff2
           weight: 300
     - family: UntitledSans
       fonts:
-        - asset: web/font-untitled-sans-web-light.woff2
+        - asset: fonts/font-untitled-sans-web-light.woff2
           weight: 300
