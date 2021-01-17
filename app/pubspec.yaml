@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
   url_launcher: '5.7.10'
   intl: '0.16.1'
   matrix4_transform: '1.1.6'
