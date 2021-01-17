@@ -137,7 +137,9 @@ class WindowState extends State<Window> {
 
             // STUDIO
             Studio(
-                contentVN: widget.contentVN, studioEnabledVN: studioEnabledVN),
+                contentVN: widget.contentVN,
+                indexVN: indexVN,
+                studioEnabledVN: studioEnabledVN),
 
             // LOADING
             Loading(

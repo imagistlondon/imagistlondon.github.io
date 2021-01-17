@@ -2,14 +2,22 @@ import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/P.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/studio/StudioContact.dart';
 import 'package:app/widget/studio/StudioFooter.dart';
 import 'package:flutter/material.dart';
 
 class StudioContent extends StatelessWidget {
-  const StudioContent({Key key, @required this.contentVN}) : super(key: key);
+  const StudioContent({
+    Key key,
+    @required this.contentVN,
+    @required this.indexVN,
+    @required this.studioEnabledVN,
+  }) : super(key: key);
 
   final ValueNotifier<Content> contentVN;
+  final IndexNotifier indexVN;
+  final ValueNotifier<bool> studioEnabledVN;
 
   // gap between content
   static const SizedBox GAP = SizedBox(height: Design.STUDIO_CONTENT_SPACING);
@@ -56,7 +64,10 @@ class StudioContent extends StatelessWidget {
                 GAP,
 
                 // FOOTER
-                StudioFooter(contentVN: contentVN),
+                StudioFooter(
+                    contentVN: contentVN,
+                    indexVN: indexVN,
+                    studioEnabledVN: studioEnabledVN),
 
                 // FOOTER CLEARANCE
                 clearance,

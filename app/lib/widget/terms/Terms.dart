@@ -1,11 +1,11 @@
 import 'package:app/Index.dart';
-import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/text/P.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
+import 'package:app/util/Section.dart';
 import 'package:flutter/material.dart';
 
 class Terms extends StatelessWidget {
@@ -17,25 +17,31 @@ class Terms extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // clearance
+    final SizedBox clearance =
+        SizedBox(height: Design.clearance(context, bulletsOpen: true));
+
     // LISTEN
     return L1(
         indexVN,
         (index) => Visibility(
             visible: index == Index.TERMS,
-            // CENTER
-            child: Center(
-                // CONTAINER
-                child: Container(
-                    constraints: BoxConstraints(maxWidth: Break.X2),
-                    padding: EdgeInsets.all(Design.gap(context)),
-                    // COLUMNS
+            // SCROLL
+            child: SingleChildScrollView(
+                // COLUMN
+                child: Section(
+                    gap: true,
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
+                          // VERTICAL SPACING
+                          clearance,
                           // H1
-                          H1(text: 'Terms'),
+                          H1(text: 'Terms & Conditions'),
                           // TEXT
-                          P(text: contentVN.value.TERMS)
+                          P(text: contentVN.value.TERMS),
+                          // VERTICAL SPACING
+                          clearance
                         ])))));
   }
 }

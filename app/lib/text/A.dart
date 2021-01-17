@@ -1,5 +1,4 @@
 import 'package:app/config/Design.dart';
-import 'package:app/util/HTML.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/util/UA.dart';
 import 'package:app/util/URL.dart';
@@ -10,6 +9,7 @@ class A extends StatefulWidget {
   const A(
       {Key key,
       this.url,
+      this.onTap,
       this.child,
       this.email = false,
       this.phone = false,
@@ -19,6 +19,7 @@ class A extends StatefulWidget {
       : super(key: key);
 
   final String url;
+  final Function onTap;
   final Widget child;
   final bool email;
   final bool phone;
@@ -34,11 +35,16 @@ class _AState extends State<A> {
   final ValueNotifier<bool> hoverVN = ValueNotifier(false);
 
   void onTap() async {
-    widget.email
-        ? URL.openEmail(widget.url)
-        : widget.phone
-            ? URL.openPhone(widget.url)
-            : URL.open(widget.url);
+    if (widget.onTap != null) {
+      widget.onTap();
+    }
+    if (widget.url != null) {
+      widget.email
+          ? URL.openEmail(widget.url)
+          : widget.phone
+              ? URL.openPhone(widget.url)
+              : URL.open(widget.url);
+    }
   }
 
   void onEnter(PointerEvent pe) {

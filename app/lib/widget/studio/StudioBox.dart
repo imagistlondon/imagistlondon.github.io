@@ -1,6 +1,7 @@
 import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
+import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1C.dart';
 import 'package:app/widget/studio/StudioClose.dart';
 import 'package:app/widget/studio/StudioContent.dart';
@@ -9,10 +10,14 @@ import 'package:matrix4_transform/matrix4_transform.dart';
 
 class StudioBox extends StatelessWidget {
   const StudioBox(
-      {Key key, @required this.contentVN, @required this.studioEnabledVN})
+      {Key key,
+      @required this.contentVN,
+      @required this.indexVN,
+      @required this.studioEnabledVN})
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
+  final IndexNotifier indexVN;
 
   // enabled flag (showing)
   final ValueNotifier<bool> studioEnabledVN;
@@ -60,7 +65,10 @@ class StudioBox extends StatelessWidget {
                   // STACK
                   child: Stack(children: <Widget>[
                     // CONTEXT
-                    StudioContent(contentVN: contentVN),
+                    StudioContent(
+                        contentVN: contentVN,
+                        indexVN: indexVN,
+                        studioEnabledVN: studioEnabledVN),
                     // CLOSE (X)
                     StudioClose(studioEnabledVN: studioEnabledVN),
                   ]))
