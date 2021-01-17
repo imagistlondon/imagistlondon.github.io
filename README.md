@@ -6,6 +6,7 @@ This works as a github page (https://pages.github.com).
 
 It is coded against the flutter platform (Flutter Docs: https://flutter.dev/docs)
 
+
 ### GitHub Pages
 
 The github account is `@imagistlondon`, thus we have defined a repository with the form `<username>.github.io` or specifically `imagistlondon.github.io`.
