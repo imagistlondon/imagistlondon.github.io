@@ -157,8 +157,8 @@ const RESOURCES = {
 "main.dart.js": "bd478a5021c89983a42c97dca83e21d1",
 "android-chrome-192x192.png": "b86e1bedfeba2b7f0ee344c2c4007125",
 "manifest.json": "1063745475257257f2aa77a8c929cd93",
-"index.html": "f5fd9dad47364367ca054182d7907f54",
-"/": "f5fd9dad47364367ca054182d7907f54",
+"index.html": "39417bf193caf4cda06fb61a6937ec07",
+"/": "39417bf193caf4cda06fb61a6937ec07",
 "favicon.ico": "19a0349ef88d75cb2624b98a4e03e2fa"
 };
 
