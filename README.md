@@ -78,6 +78,7 @@ flutter channel beta
 flutter upgrade
 flutter config --enable-web
 flutter doctor
+flutter pub get
 ```
 
 - Run the app:
