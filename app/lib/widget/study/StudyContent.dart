@@ -22,28 +22,33 @@ class StudyContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // SCROLL
-    return SingleChildScrollView(
-        // CONTROLLER
+    return Scrollbar(
         controller: scrollController,
-        // COLUMN
-        child: Column(
-            // ALIGNMENT
-            mainAxisAlignment: MainAxisAlignment.start,
-            // CHILDREN
-            children: <Widget>[
-              // StudyContentThumb
-              StudyContentThumb(studyEnabledVN: studyEnabledVN),
+        isAlwaysShown: true,
+        child: SingleChildScrollView(
+            // CONTROLLER
+            controller: scrollController,
+            // COLUMN
+            child: Column(
+                // ALIGNMENT
+                mainAxisAlignment: MainAxisAlignment.start,
+                // CHILDREN
+                children: <Widget>[
+                  // StudyContentThumb
+                  StudyContentThumb(studyEnabledVN: studyEnabledVN),
 
-              // StudyContentIntro
-              Break.x1(context)
-                  ? StudyContentIntroX1(studyEnabledVN: studyEnabledVN)
-                  : StudyContentIntroX234(studyEnabledVN: studyEnabledVN),
+                  // StudyContentIntro
+                  Break.x1(context)
+                      ? StudyContentIntroX1(studyEnabledVN: studyEnabledVN)
+                      : StudyContentIntroX234(studyEnabledVN: studyEnabledVN),
 
-              // StudyContentBlocks (A)
-              StudyContentBlocks(studyEnabledVN: studyEnabledVN, letter: 'A'),
+                  // StudyContentBlocks (A)
+                  StudyContentBlocks(
+                      studyEnabledVN: studyEnabledVN, letter: 'A'),
 
-              // StudyContentBlocks (B)
-              StudyContentBlocks(studyEnabledVN: studyEnabledVN, letter: 'B')
-            ]));
+                  // StudyContentBlocks (B)
+                  StudyContentBlocks(
+                      studyEnabledVN: studyEnabledVN, letter: 'B')
+                ])));
   }
 }
