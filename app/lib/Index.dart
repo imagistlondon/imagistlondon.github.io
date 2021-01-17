@@ -29,4 +29,12 @@ class Indexes {
     Index.WORK_ARCHIVE: 'archive',
     Index.WORK_TAGS: '/tags'
   };
+
+  static Map<String, Index> URL_INDEXES = {
+    '/': Index.HOME,
+    '/terms': Index.TERMS,
+    '/showcase': Index.WORK_SHOWCASE,
+    '/archive': Index.WORK_ARCHIVE,
+    '/tags': Index.WORK_TAGS
+  };
 }

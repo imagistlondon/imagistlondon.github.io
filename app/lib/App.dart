@@ -43,8 +43,6 @@ class AppState extends State<App> {
         final String path = settings.name;
         final List<String> parts = path.split('/');
 
-        print('App.onGenerateRoute.parts:' + parts.toString());
-
         final String part1 = parts.length >= 2 ? parts[1] : null;
         final String part2 = parts.length >= 3 ? parts[2] : null;
         final String part3 = parts.length >= 4 ? parts[3] : null;
