@@ -116,12 +116,16 @@ class StudyContentBlocks extends StatelessWidget {
 
         // build title widget
         final Widget titleWidget = hasTitle
-            ? Container(child: H1(text: block.title, textAlign: textAlign))
+            ? Container(
+                child: H1(
+                    text: block.title, textAlign: textAlign, selectable: true))
             : SizedBox.shrink();
 
         // build desc widget (if needed)
         final Widget descWidget = hasDesc
-            ? Container(child: P(text: block.desc, textAlign: textAlign))
+            ? Container(
+                child:
+                    P(text: block.desc, textAlign: textAlign, selectable: true))
             : SizedBox.shrink();
 
         // text spacer
