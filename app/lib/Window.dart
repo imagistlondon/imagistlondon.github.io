@@ -93,12 +93,14 @@ class WindowState extends State<Window> {
             Archive(
                 contentVN: widget.contentVN,
                 indexVN: indexVN,
+                bulletsEnabledVN: bulletsEnabledVN,
                 studyEnabledVN: studyEnabledVN),
 
             // TAGS (underneath header as it scrolls behind header)
             Tags(
                 contentVN: widget.contentVN,
                 indexVN: indexVN,
+                bulletsEnabledVN: bulletsEnabledVN,
                 studyEnabledVN: studyEnabledVN),
 
             // SHOWCASE-X12
@@ -106,6 +108,7 @@ class WindowState extends State<Window> {
               ShowcaseX12(
                   contentVN: widget.contentVN,
                   indexVN: indexVN,
+                  bulletsEnabledVN: bulletsEnabledVN,
                   studyEnabledVN: studyEnabledVN),
 
             // HEADER
