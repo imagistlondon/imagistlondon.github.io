@@ -33,8 +33,7 @@ class ArchiveState extends State<Archive> {
   @override
   Widget build(BuildContext context) {
     // header/footer spacing
-    final SizedBox spacing =
-        SizedBox(height: Design.clearance(context, bulletsOpen: true));
+    final SizedBox spacing = SizedBox(height: Design.clearance(context));
 
     // LISTEN
     return L1(
