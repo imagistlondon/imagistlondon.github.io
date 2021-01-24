@@ -32153,8 +32153,7 @@ if(b.t(r).f.a.a<768)s=20
 else{if(!B.ay(b))B.aD(b)
 s=60}if(b.t(r).f.a.a<768)r=20
 else{if(!B.ay(b))B.aD(b)
-r=60}r-=20
-return T.cf(H.c([new Y.o1(this.gb0(),new V.at(s,r,s,r),C.px,null)],t.t),C.v,C.be)}}
+r=40}return T.cf(H.c([new Y.o1(this.gb0(),new V.at(s,r,s,r),C.px,null)],t.t),C.v,C.be)}}
 Z.CP.prototype={
 C:function(a,b){var s=null,r=this.e,q=this.d,p=b.t(t.w).f.a.a<768?new V.CQ(q,s):new N.CR(q,s)
 return new E.tf(E.ls(T.bH(H.c([new K.CS(q,s),p,new V.tQ(q,"A",s),new V.tQ(q,"B",s)],t.t),C.v,C.q),r,C.m),r,!0,s)}}
