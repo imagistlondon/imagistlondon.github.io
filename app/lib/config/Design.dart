@@ -153,27 +153,29 @@ class Design {
   static const double HEADER_BULLETS_WIDTH = Design.SPACE * 16;
 
   // spacing for header (vertical height of header)
-  static const double HEADER_CLEARANCE_X1 = Design.SPACE * 5;
-  static const double HEADER_CLEARANCE_PLUS_BULLETS_X1 = Design.SPACE * 12;
-  static const double HEADER_CLEARANCE = Design.SPACE * 8;
-  static double clearance(final BuildContext context,
-      {final bool bulletsOpen: false}) {
-    return Break.x1(context)
-        ? !bulletsOpen
-            ? HEADER_CLEARANCE_X1
-            : HEADER_CLEARANCE_PLUS_BULLETS_X1
-        : HEADER_CLEARANCE;
+  static const double HEADER_CLEARANCE_X1 = Design.SPACE * 4;
+  static const double HEADER_CLEARANCE_X2 = Design.SPACE * 8;
+  static const double HEADER_CLEARANCE_X3 = Design.SPACE * 8;
+  static const double HEADER_CLEARANCE_X4 = Design.SPACE * 8;
+  static double clearance(final BuildContext context) {
+    return Break.decide(context, HEADER_CLEARANCE_X1, HEADER_CLEARANCE_X2,
+        HEADER_CLEARANCE_X3, HEADER_CLEARANCE_X4);
   }
 
   ///// STUDIO
 
   // spacing for studio header
   static const double STUDIO_HEADER_CLEARANCE_X1 = Design.SPACE * 5;
-  static const double STUDIO_HEADER_CLEARANCE = Design.SPACE * 8;
+  static const double STUDIO_HEADER_CLEARANCE_X2 = Design.SPACE * 8;
+  static const double STUDIO_HEADER_CLEARANCE_X3 = Design.SPACE * 8;
+  static const double STUDIO_HEADER_CLEARANCE_X4 = Design.SPACE * 8;
   static double studioClearance(final BuildContext context) {
-    return Break.x1(context)
-        ? STUDIO_HEADER_CLEARANCE_X1
-        : STUDIO_HEADER_CLEARANCE;
+    return Break.decide(
+        context,
+        STUDIO_HEADER_CLEARANCE_X1,
+        STUDIO_HEADER_CLEARANCE_X2,
+        STUDIO_HEADER_CLEARANCE_X3,
+        STUDIO_HEADER_CLEARANCE_X4);
   }
 
   // studio widget background color
@@ -290,7 +292,7 @@ class Design {
   static const double TAGS_IMAGES_VERTICAL_SPACE = 2;
 
   // space between tag images that appear at the top
-  static const double TAGS_IMAGES_HORIZONTAL_SPACE = Design.SPACE * 2;
+  static const double TAGS_IMAGES_HORIZONTAL_SPACE = Design.SPACE;
 
   // border color of the tags menu link
   static const Color TAGS_MENU_LINK_BORDER_COLOR = Color.fromRGBO(0, 0, 0, 0.1);
