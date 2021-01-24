@@ -20,9 +20,15 @@ class Design {
   // max width for section (includes margin)
   static const double SECTION_MAX_WIDTH = 1200;
 
+  // the margin gutter spacing throughout app
+  static const double GAP_X1 = Design.SPACE;
+  static const double GAP_X2 = Design.SPACE * 3;
+  static const double GAP_X3 = Design.SPACE * 3;
+  static const double GAP_X4 = Design.SPACE * 3;
+
   // margin (negative space of page)
   static double gap(final BuildContext context) {
-    return Break.x1(context) ? Design.SPACE : Design.SPACE * 3;
+    return Break.decide(context, GAP_X1, GAP_X2, GAP_X3, GAP_X4);
   }
 
   // full screen width
@@ -183,6 +189,16 @@ class Design {
 
   // the color of the cross icon to close the studio
   static const Color STUDIO_X_COLOR = Color.fromRGBO(5, 5, 5, 1);
+
+  // top spacing/clearance for studio X icon
+  static const double STUDIO_X_CLEARANCE_X1 = GAP_X1;
+  static const double STUDIO_X_CLEARANCE_X2 = GAP_X2 - Design.SPACE;
+  static const double STUDIO_X_CLEARANCE_X3 = GAP_X3 - Design.SPACE;
+  static const double STUDIO_X_CLEARANCE_X4 = GAP_X4 - Design.SPACE;
+  static double studioCloseClearance(final BuildContext context) {
+    return Break.decide(context, STUDIO_X_CLEARANCE_X1, STUDIO_X_CLEARANCE_X2,
+        STUDIO_X_CLEARANCE_X3, STUDIO_X_CLEARANCE_X4);
+  }
 
   // studio widget opposite background color
   static const Color STUDIO_OFFSET_COLOR = Color.fromRGBO(189, 189, 189, 0.4);
