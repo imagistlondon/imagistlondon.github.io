@@ -40,7 +40,7 @@ class TagsState extends State<Tags> {
   final ValueNotifier<Set<String>> tagsSelectedVN =
       ValueNotifier(LinkedHashSet());
 
-  static final P none = const P(text: 'No tags found.');
+  static final P none = const P(text: 'No tags found.', selectable: true);
 
   void tagToggle(final String tag) {
     // add
