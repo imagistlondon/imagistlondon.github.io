@@ -545,4 +545,28 @@ class Design {
       height: 1.6,
       color: Design.COLOR,
       decoration: TextDecoration.none);
+
+  static TextStyle H1(final BuildContext context) {
+    try {
+      return Break.decide(context, X1_H1, X2_H1, X3_H1, X4_H1);
+    } catch (e) {
+      return X4_H1;
+    }
+  }
+
+  static TextStyle H2(final BuildContext context) {
+    try {
+      return Break.decide(context, X1_H2, X2_H2, X3_H2, X4_H2);
+    } catch (e) {
+      return X4_H2;
+    }
+  }
+
+  static TextStyle P(final BuildContext context) {
+    try {
+      return Break.decide(context, X1_P, X2_P, X3_P, X4_P);
+    } catch (e) {
+      return X4_P;
+    }
+  }
 }
