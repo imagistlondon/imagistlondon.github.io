@@ -28,7 +28,7 @@ class StudyContentIntroX1 extends StatelessWidget {
               // gap
               const SizedBox(height: Design.SPACE),
               // description
-              P(text: studyEnabledVN.value.desc, selectable: true),
+              P(text: studyEnabledVN.value.desc, markdown: true),
             ]));
   }
 }

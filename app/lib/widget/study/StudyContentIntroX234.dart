@@ -48,7 +48,7 @@ class StudyContentIntroX234 extends StatelessWidget {
               widthFactor: Design.STUDY_CONTENT_INTRO_BLOCK_WIDTH_FACTOR,
               minWidth: Design.STUDY_CONTENT_INTRO_BLOCK_MIN_WIDTH,
               maxWidth: Design.STUDY_CONTENT_INTRO_BLOCK_MAX_WIDTH,
-              child: P(text: studyEnabledVN.value.desc, selectable: true)),
+              child: P(text: studyEnabledVN.value.desc, markdown: true)),
         ]);
   }
 }

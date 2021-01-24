@@ -126,7 +126,7 @@ class StudyContentBlocks extends StatelessWidget {
         final Widget descWidget = hasDesc
             ? Container(
                 child:
-                    P(text: block.desc, textAlign: textAlign, selectable: true))
+                    P(text: block.desc, textAlign: textAlign, markdown: true))
             : SizedBox.shrink();
 
         // text spacer
