@@ -4,8 +4,8 @@ import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/header/HeaderLink.dart';
 import 'package:flutter/material.dart';
 
-class HeaderWorkLink extends StatelessWidget {
-  const HeaderWorkLink(
+class HeaderWorkLinkX1 extends StatelessWidget {
+  const HeaderWorkLinkX1(
       {Key key,
       @required this.contentVN,
       @required this.indexVN,

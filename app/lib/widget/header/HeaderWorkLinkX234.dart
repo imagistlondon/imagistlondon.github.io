@@ -2,7 +2,7 @@ import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1C.dart';
-import 'package:app/widget/header/HeaderWorkLink.dart';
+import 'package:app/widget/header/HeaderWorkLinkX1.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix4_transform/matrix4_transform.dart';
 
@@ -58,7 +58,7 @@ class HeaderWorkLinkX234 extends StatelessWidget {
                   padding: EdgeInsets.only(
                       right: Design.gap(context) - Design.SPACE),
                   // HeaderWorkLink
-                  child: HeaderWorkLink(
+                  child: HeaderWorkLinkX1(
                       contentVN: contentVN,
                       indexVN: indexVN,
                       bulletsEnabledVN: bulletsEnabledVN)))
