@@ -35,7 +35,7 @@ class StudyClose extends StatelessWidget {
             // PADDING
             padding: EdgeInsets.symmetric(
                 horizontal: Design.gap(context),
-                vertical: Design.gap(context) - Design.SPACE),
+                vertical: Design.studyCloseClearance(context)),
             // COLOR
             color: Design.STUDY_X_COLOR,
           )

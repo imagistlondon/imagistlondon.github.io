@@ -397,6 +397,16 @@ class Design {
   static const Color STUDY_CONTENT_BLOCKS_B_BACKGROUND_COLOR =
       Color.fromRGBO(243, 232, 224, 1);
 
+  // top spacing/clearance for studio X icon
+  static const double STUDY_X_CLEARANCE_X1 = GAP_X1;
+  static const double STUDY_X_CLEARANCE_X2 = GAP_X2 - Design.SPACE;
+  static const double STUDY_X_CLEARANCE_X3 = GAP_X3 - Design.SPACE;
+  static const double STUDY_X_CLEARANCE_X4 = GAP_X4 - Design.SPACE;
+  static double studyCloseClearance(final BuildContext context) {
+    return Break.decide(context, STUDY_X_CLEARANCE_X1, STUDY_X_CLEARANCE_X2,
+        STUDY_X_CLEARANCE_X3, STUDY_X_CLEARANCE_X4);
+  }
+
   // X1
 
   // <h1>
