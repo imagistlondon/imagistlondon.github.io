@@ -18,8 +18,7 @@ class Terms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // clearance
-    final SizedBox clearance =
-        SizedBox(height: Design.clearance(context, bulletsOpen: true));
+    final SizedBox clearance = SizedBox(height: Design.clearance(context));
 
     // LISTEN
     return L1(
