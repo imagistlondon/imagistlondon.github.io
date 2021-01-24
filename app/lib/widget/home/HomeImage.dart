@@ -1,5 +1,6 @@
 import 'package:app/config/Break.dart';
 import 'package:app/config/Design.dart';
+import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/config/Content.dart';
@@ -60,7 +61,7 @@ class HomeImage extends StatelessWidget {
                   // IMAGE
                   child: Image(
                       fit: BoxFit.cover,
-                      image: AssetImage(project.homeImage),
+                      image: Images.of(project.homeImage),
                       width: double.infinity,
                       height: height))));
     });

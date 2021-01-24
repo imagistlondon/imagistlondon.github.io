@@ -1,4 +1,5 @@
 import 'package:app/config/Design.dart';
+import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1C.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
@@ -25,8 +26,8 @@ class StudyArrowState extends State<StudyArrow> {
   final ValueNotifier<bool> hoverVN = ValueNotifier(false);
 
   // IMAGE
-  static const IMAGE = Image(
-      image: const AssetImage(Design.STUDY_ARROW_IMAGE),
+  static Image IMAGE = Image(
+      image: Images.of(Design.STUDY_ARROW_IMAGE),
       width: Design.STUDY_ARROW_WIDTH,
       color: Design.STUDY_ARROW_COLOR);
 

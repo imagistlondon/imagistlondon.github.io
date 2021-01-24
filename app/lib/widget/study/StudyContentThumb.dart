@@ -1,4 +1,5 @@
 import 'package:app/config/Design.dart';
+import 'package:app/util/Images.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ class StudyContentThumb extends StatelessWidget {
       width: width,
       height: height,
       fit: BoxFit.cover,
-      image: AssetImage(studyEnabledVN.value.studyImage),
+      image: Images.of(studyEnabledVN.value.studyImage),
     );
   }
 }

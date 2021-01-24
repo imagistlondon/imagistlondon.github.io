@@ -1,3 +1,4 @@
+import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/config/Content.dart';
@@ -40,7 +41,7 @@ class ShowcaseImageX34 extends StatelessWidget {
 
           // IMAGE
           return Image(
-              height: height, fit: BoxFit.cover, image: AssetImage(image));
+              height: height, fit: BoxFit.cover, image: Images.of(image));
         }));
   }
 }

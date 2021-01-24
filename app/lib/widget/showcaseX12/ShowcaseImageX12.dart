@@ -1,5 +1,6 @@
 import 'package:app/config/Design.dart';
 import 'package:app/config/Content.dart';
+import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/UA.dart';
@@ -51,7 +52,7 @@ class ShowcaseImageX12 extends StatelessWidget {
             padding: padding,
             child: Image(
                 fit: BoxFit.cover,
-                image: AssetImage(project.showcaseImage),
+                image: Images.of(project.showcaseImage),
                 width: width,
                 height: height)));
   }

@@ -3,6 +3,7 @@ import 'package:app/config/Design.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/text/P.dart';
+import 'package:app/util/Images.dart';
 import 'package:app/util/Section.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:flutter/material.dart';
@@ -172,13 +173,13 @@ class StudyContentBlocks extends StatelessWidget {
                     // width
                     width: width,
                     // image
-                    image: AssetImage(block.image)))
+                    image: Images.of(block.image)))
 
             // Image(
             //     // fit
             //     fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
             //     // image
-            //     image: AssetImage(block.image))
+            //     image: Images.of(block.image))
             : SizedBox.shrink();
 
         // build space widget (if needed)

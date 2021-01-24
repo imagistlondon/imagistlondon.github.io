@@ -1,6 +1,7 @@
 import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
+import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
@@ -75,7 +76,7 @@ class ArchiveImage extends StatelessWidget {
                       fit: Design.ARCHIVE_IMAGE_BOX_FIT,
                       width: Design.ARCHIVE_IMAGE_WIDTH,
                       height: imageHeight,
-                      image: AssetImage(image)))
+                      image: Images.of(image)))
             ])
           ]));
     });

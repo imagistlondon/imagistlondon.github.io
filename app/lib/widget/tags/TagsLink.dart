@@ -1,6 +1,7 @@
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/P.dart';
+import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/util/L1C.dart';
@@ -45,8 +46,8 @@ class TagsLinkState extends State<TagsLink> {
       width: Design.TAGS_MENU_LINK_BORDER_WIDTH, color: Colors.transparent);
 
   // X image
-  static const Image xImage = Image(
-      image: const AssetImage(Design.ICON_CROSS),
+  static Image xImage = Image(
+      image: Images.of(Design.ICON_CROSS),
       color: Design.COLOR,
       height: Design.TAGS_MENU_ROW_HEIGHT / 6);
 

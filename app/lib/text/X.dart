@@ -1,4 +1,5 @@
 import 'package:app/config/Design.dart';
+import 'package:app/util/Images.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,7 @@ class _XState extends State<X> {
                     transform: hover ? matrixB : matrixA,
                     // IMAGE
                     child: Image(
-                      image: const AssetImage(Design.ICON_CROSS),
+                      image: Images.of(Design.ICON_CROSS),
                       height: xEdge,
                       color: widget.color,
                     )))));

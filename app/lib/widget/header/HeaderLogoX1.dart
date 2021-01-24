@@ -1,5 +1,6 @@
 import 'package:app/Index.dart';
 import 'package:app/config/Design.dart';
+import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
@@ -78,8 +79,8 @@ class HeaderLogoX1State extends State<HeaderLogoX1>
                       offset: animation.value, child: child);
                 },
                 // IMAGE
-                child: const Image(
-                    image: const AssetImage(Design.HEADER_LOGO_IMAGE),
+                child: Image(
+                    image: Images.of(Design.HEADER_LOGO_IMAGE),
                     height: Design.HEADER_LOGO_SIZE))));
   }
 }

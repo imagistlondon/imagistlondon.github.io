@@ -1,6 +1,7 @@
 import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
+import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/UA.dart';
@@ -63,6 +64,6 @@ class TagsImage extends StatelessWidget {
                 Design.TAGS_IMAGE_SCALE_X3 * Design.TAGS_MENU_ROW_HEIGHT,
                 // x4
                 Design.TAGS_IMAGE_SCALE_X4 * Design.TAGS_MENU_ROW_HEIGHT),
-            image: AssetImage(image)));
+            image: Images.of(image)));
   }
 }
