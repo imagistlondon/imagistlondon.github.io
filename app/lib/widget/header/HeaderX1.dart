@@ -2,9 +2,9 @@ import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/header/HeaderBulletLinksX1.dart';
-import 'package:app/widget/header/HeaderLogo.dart';
-import 'package:app/widget/header/HeaderStudioLink.dart';
-import 'package:app/widget/header/HeaderWorkLink.dart';
+import 'package:app/widget/header/HeaderLogoX1.dart';
+import 'package:app/widget/header/HeaderStudioLinkX1.dart';
+import 'package:app/widget/header/HeaderWorkLinkX1.dart';
 import 'package:flutter/material.dart';
 
 class HeaderX1 extends StatelessWidget {
@@ -24,38 +24,28 @@ class HeaderX1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        // PADDING
-        padding:
-            EdgeInsets.symmetric(vertical: Design.gap(context) - Design.SPACE),
-
         // COLUMN
         child: Column(children: <Widget>[
-          // X1 MAIN HEADER ROW
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                // LOGO
-                HeaderLogo(
-                    indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN),
-                Container(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    // WORK
-                    HeaderWorkLink(
-                        contentVN: contentVN,
-                        indexVN: indexVN,
-                        bulletsEnabledVN: bulletsEnabledVN),
-                    // STUDIO
-                    HeaderStudioLink(
-                        contentVN: contentVN, studioEnabledVN: studioEnabledVN),
-                  ],
-                ))
-              ]),
-
-          // X1 WORK BULLETS
-          HeaderBulletLinksX1(
-              indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN)
-        ]));
+      // X1 MAIN HEADER ROW
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+        // LOGO
+        HeaderLogoX1(indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN),
+        // LINKS
+        Container(
+            child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // WORK
+            HeaderWorkLinkX1(
+                contentVN: contentVN,
+                indexVN: indexVN,
+                bulletsEnabledVN: bulletsEnabledVN),
+            // STUDIO
+            HeaderStudioLinkX1(
+                contentVN: contentVN, studioEnabledVN: studioEnabledVN),
+          ],
+        ))
+      ]),
+    ]));
   }
 }
