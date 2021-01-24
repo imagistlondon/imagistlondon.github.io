@@ -73,11 +73,16 @@ class HomeImage extends StatelessWidget {
         onTap: onTap,
         onPanUpdate: (details) {
           print('details.delta: ' + details.delta.toString());
-          if (details.delta.dx > Design.SWIPE_THRESHOLD) {
+          if (details.delta.dx < -Design.SWIPE_THRESHOLD) {
+            print('swiped-left');
+            moveProject();
+          } else if (details.delta.dx > Design.SWIPE_THRESHOLD) {
             print('swiped-right');
             moveProject();
-          }
-          if (details.delta.dy < -Design.SWIPE_THRESHOLD) {
+          } else if (details.delta.dy > Design.SWIPE_THRESHOLD) {
+            print('swiped-down');
+            moveProject();
+          } else if (details.delta.dy < -Design.SWIPE_THRESHOLD) {
             print('swiped-up');
             moveProject();
           }
