@@ -35,9 +35,9 @@ class StudyContentIntroX234 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     // title
-                    H1(text: studyEnabledVN.value.title),
+                    H1(text: studyEnabledVN.value.title, selectable: true),
                     // subtitle
-                    H1(text: studyEnabledVN.value.subtitle)
+                    H1(text: studyEnabledVN.value.subtitle, selectable: true)
                   ])),
 
           // gap
@@ -48,7 +48,7 @@ class StudyContentIntroX234 extends StatelessWidget {
               widthFactor: Design.STUDY_CONTENT_INTRO_BLOCK_WIDTH_FACTOR,
               minWidth: Design.STUDY_CONTENT_INTRO_BLOCK_MIN_WIDTH,
               maxWidth: Design.STUDY_CONTENT_INTRO_BLOCK_MAX_WIDTH,
-              child: P(text: studyEnabledVN.value.desc)),
+              child: P(text: studyEnabledVN.value.desc, selectable: true)),
         ]);
   }
 }

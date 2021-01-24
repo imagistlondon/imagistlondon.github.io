@@ -54,13 +54,13 @@ class StudioContent extends StatelessWidget {
                 GAP,
 
                 // About:
-                P(text: contentVN.value.STUDIO_ABOUT_TITLE),
-                P(text: contentVN.value.STUDIO_ABOUT_TEXT),
+                P(text: contentVN.value.STUDIO_ABOUT_TITLE, selectable: true),
+                P(text: contentVN.value.STUDIO_ABOUT_TEXT, selectable: true),
                 GAP,
 
                 // Process:
-                P(text: contentVN.value.STUDIO_PROCESS_TITLE),
-                P(text: contentVN.value.STUDIO_PROCESS_TEXT),
+                P(text: contentVN.value.STUDIO_PROCESS_TITLE, selectable: true),
+                P(text: contentVN.value.STUDIO_PROCESS_TEXT, selectable: true),
                 GAP,
 
                 // FOOTER

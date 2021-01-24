@@ -15,6 +15,7 @@ class StudioFooterCopyright extends StatelessWidget {
     return P(
         style: const TextStyle(color: Design.STUDIO_FOOTER_TEXT_COLOR),
         text: contentVN.value.STUDIO_COPYRIGHT_PREFIX +
-            DateFormat('yyyy').format(DateTime.now()));
+            DateFormat('yyyy').format(DateTime.now()),
+        selectable: true);
   }
 }

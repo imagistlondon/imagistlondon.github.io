@@ -37,9 +37,9 @@ class Terms extends StatelessWidget {
                           // VERTICAL SPACING
                           clearance,
                           // H1
-                          H1(text: 'Terms & Conditions'),
+                          H1(text: 'Terms & Conditions', selectable: true),
                           // TEXT
-                          P(text: contentVN.value.TERMS),
+                          P(text: contentVN.value.TERMS, selectable: true),
                           // VERTICAL SPACING
                           clearance
                         ])))));

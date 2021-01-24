@@ -53,7 +53,8 @@ class ArchiveState extends State<Archive> {
                   Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: Design.gap(context)),
-                      child: const P(text: 'No projects found.')),
+                      child: const P(
+                          text: 'No projects found.', selectable: true)),
 
                 // MENU
                 ArchiveMenu(
