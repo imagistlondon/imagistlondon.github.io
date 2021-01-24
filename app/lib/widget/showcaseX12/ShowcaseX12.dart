@@ -23,8 +23,7 @@ class ShowcaseX12 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // HEADER CLEARANCE
-    final SizedBox clearance =
-        SizedBox(height: Design.clearance(context, bulletsOpen: true));
+    final SizedBox clearance = SizedBox(height: Design.clearance(context));
 
     // LISTEN
     return L1(
