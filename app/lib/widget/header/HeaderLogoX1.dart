@@ -4,8 +4,8 @@ import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 
-class HeaderLogo extends StatefulWidget {
-  const HeaderLogo(
+class HeaderLogoX1 extends StatefulWidget {
+  const HeaderLogoX1(
       {Key key, @required this.indexVN, @required this.bulletsEnabledVN})
       : super(key: key);
 
@@ -13,10 +13,10 @@ class HeaderLogo extends StatefulWidget {
   final ValueNotifier<bool> bulletsEnabledVN;
 
   @override
-  HeaderLogoState createState() => HeaderLogoState();
+  HeaderLogoX1State createState() => HeaderLogoX1State();
 }
 
-class HeaderLogoState extends State<HeaderLogo>
+class HeaderLogoX1State extends State<HeaderLogoX1>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<Offset> animation;

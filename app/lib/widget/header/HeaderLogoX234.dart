@@ -1,5 +1,5 @@
 import 'package:app/util/IndexNotifier.dart';
-import 'package:app/widget/header/HeaderLogo.dart';
+import 'package:app/widget/header/HeaderLogoX1.dart';
 import 'package:flutter/material.dart';
 
 class HeaderLogoX234 extends StatelessWidget {
@@ -19,7 +19,7 @@ class HeaderLogoX234 extends StatelessWidget {
         // CHILDREN
         children: <Widget>[
           // HeaderLogo
-          HeaderLogo(indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN)
+          HeaderLogoX1(indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN)
         ]);
   }
 }
