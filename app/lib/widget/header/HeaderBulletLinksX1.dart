@@ -19,9 +19,9 @@ class HeaderBulletLinksX1 extends StatelessWidget {
     return L1C(
         bulletsEnabledVN,
         // ANIMATED CONTAINER
-        (bulletsEnabled, child) => AnimatedContainer(
+        (bulletsEnabled, child) => AnimatedOpacity(
             // HEIGHT
-            height: !bulletsEnabled ? 0 : Design.SPACE * 8,
+            opacity: !bulletsEnabled ? 0 : 1,
             // DURATION
             duration: Design.HEADER_X1_BULLETS_ANIMATION_DURATION,
             // CURVE
@@ -29,7 +29,9 @@ class HeaderBulletLinksX1 extends StatelessWidget {
             child: child),
         // CHILD
         child: Container(
-            padding: EdgeInsets.all(Design.gap(context)),
+            // padding
+            padding: EdgeInsets.all(Design.GAP_X1),
+            // child
             child: Column(children: <Widget>[
               for (final Index index in Indexes.works())
                 HeaderBulletLink(
