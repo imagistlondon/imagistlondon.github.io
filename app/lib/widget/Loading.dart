@@ -71,16 +71,27 @@ class LoadingState extends State<Loading> {
           // BACKGROUND COLOR
           color: Design.LOADING_PAGE_COLOR,
           // TEXT LINES
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                H1(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
+              Widget>[
+            // LINE 1
+            Container(
+                // padding
+                padding: EdgeInsets.symmetric(horizontal: Design.gap(context)),
+                // H1
+                child: H1(
                     text: widget.contentVN.value.LOADING_LINE_1,
-                    style: TextStyle(color: Design.LOADING_PAGE_TEXT_COLOR)),
-                H1(
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Design.LOADING_PAGE_TEXT_COLOR))),
+            // LINE 2
+            Container(
+                // padding
+                padding: EdgeInsets.symmetric(horizontal: Design.gap(context)),
+                // H1
+                child: H1(
                     text: widget.contentVN.value.LOADING_LINE_2,
-                    style: TextStyle(color: Design.LOADING_PAGE_TEXT_COLOR))
-              ]),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Design.LOADING_PAGE_TEXT_COLOR)))
+          ]),
         ));
   }
 }
