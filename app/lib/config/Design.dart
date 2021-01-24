@@ -159,13 +159,38 @@ class Design {
   static const double HEADER_BULLETS_WIDTH = Design.SPACE * 16;
 
   // spacing for header (vertical height of header)
-  static const double HEADER_CLEARANCE_X1 = Design.SPACE * 4;
+  static const double HEADER_CLEARANCE_X1 = Design.SPACE * 3;
   static const double HEADER_CLEARANCE_X2 = Design.SPACE * 8;
   static const double HEADER_CLEARANCE_X3 = Design.SPACE * 8;
   static const double HEADER_CLEARANCE_X4 = Design.SPACE * 8;
   static double clearance(final BuildContext context) {
     return Break.decide(context, HEADER_CLEARANCE_X1, HEADER_CLEARANCE_X2,
         HEADER_CLEARANCE_X3, HEADER_CLEARANCE_X4);
+  }
+
+  // spacing for header link
+  static const double HEADER_LINK_HEIGHT_X1 = Design.SPACE * 3;
+  static const double HEADER_LINK_HEIGHT_X2 = Design.SPACE * 3;
+  static const double HEADER_LINK_HEIGHT_X3 = Design.SPACE * 3;
+  static const double HEADER_LINK_HEIGHT_X4 = Design.SPACE * 3;
+  static double headerLinkHeight(final BuildContext context) {
+    return Break.decide(context, HEADER_LINK_HEIGHT_X1, HEADER_LINK_HEIGHT_X2,
+        HEADER_LINK_HEIGHT_X3, HEADER_LINK_HEIGHT_X4);
+  }
+
+  // spacing for header bullet link
+  static const double HEADER_BULLET_HEIGHT_X1 =
+      HEADER_LINK_HEIGHT_X1 - Design.SPACE;
+  static const double HEADER_BULLET_HEIGHT_X2 = HEADER_LINK_HEIGHT_X2;
+  static const double HEADER_BULLET_HEIGHT_X3 = HEADER_LINK_HEIGHT_X3;
+  static const double HEADER_BULLET_HEIGHT_X4 = HEADER_LINK_HEIGHT_X4;
+  static double headerBulletHeight(final BuildContext context) {
+    return Break.decide(
+        context,
+        HEADER_BULLET_HEIGHT_X1,
+        HEADER_BULLET_HEIGHT_X2,
+        HEADER_BULLET_HEIGHT_X3,
+        HEADER_BULLET_HEIGHT_X4);
   }
 
   ///// STUDIO
