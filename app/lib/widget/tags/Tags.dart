@@ -8,6 +8,7 @@ import 'package:app/text/P.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
+import 'package:app/widget/header/HeaderBulletLinksX1.dart';
 import 'package:app/widget/tags/TagsImagesX12.dart';
 import 'package:app/widget/tags/TagsImagesX34.dart';
 import 'package:app/widget/tags/TagsMenu.dart';
@@ -18,11 +19,13 @@ class Tags extends StatefulWidget {
       {Key key,
       @required this.contentVN,
       @required this.indexVN,
+      @required this.bulletsEnabledVN,
       @required this.studyEnabledVN})
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
+  final ValueNotifier<bool> bulletsEnabledVN;
   final StudyEnabledNotifier studyEnabledVN;
 
   @override
@@ -90,6 +93,12 @@ class TagsState extends State<Tags> {
                     child: Column(children: <Widget>[
                     // HEADER SPACING
                     spacing,
+                    // HEADER BULLETS X1
+                    Break.x1(context)
+                        ? HeaderBulletLinksX1(
+                            indexVN: widget.indexVN,
+                            bulletsEnabledVN: widget.bulletsEnabledVN)
+                        : SizedBox.shrink(),
                     // CONTENT
                     Break.x12(context)
                         ?
