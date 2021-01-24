@@ -1,4 +1,3 @@
-import 'package:app/config/Design.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:html';
