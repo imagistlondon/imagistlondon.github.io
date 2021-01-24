@@ -8,6 +8,7 @@ import 'package:app/util/L1.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/widget/archive/ArchiveImage.dart';
 import 'package:app/widget/archive/ArchiveMenu.dart';
+import 'package:app/widget/header/HeaderBulletLinksX1.dart';
 import 'package:flutter/material.dart';
 
 class Archive extends StatefulWidget {
@@ -15,11 +16,13 @@ class Archive extends StatefulWidget {
       {Key key,
       @required this.contentVN,
       @required this.indexVN,
+      @required this.bulletsEnabledVN,
       @required this.studyEnabledVN})
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
+  final ValueNotifier<bool> bulletsEnabledVN;
   final StudyEnabledNotifier studyEnabledVN;
 
   @override
@@ -45,6 +48,12 @@ class ArchiveState extends State<Archive> {
                 child: Column(children: <Widget>[
               // HEADER SPACING
               spacing,
+              // HEADER BULLETS X1
+              Break.x1(context)
+                  ? HeaderBulletLinksX1(
+                      indexVN: widget.indexVN,
+                      bulletsEnabledVN: widget.bulletsEnabledVN)
+                  : SizedBox.shrink(),
               // STACK
               Stack(children: <Widget>[
                 // NONE
