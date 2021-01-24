@@ -9,12 +9,14 @@ class H2 extends StatelessWidget {
       this.text = 'Text',
       this.textAlign = TextAlign.left,
       this.style,
+      this.selectable = false,
       this.opacity})
       : super(key: key);
 
   final String text;
   final TextAlign textAlign;
   final TextStyle style;
+  final bool selectable;
   final double opacity;
 
   @override
@@ -28,6 +30,8 @@ class H2 extends StatelessWidget {
     // opacity
     if (opacity != null) s = s.copyWith(color: s.color.withOpacity(opacity));
 
-    return Text(text, textAlign: textAlign, style: s);
+    return selectable
+        ? SelectableText(text, textAlign: textAlign, style: s)
+        : Text(text, textAlign: textAlign, style: s);
   }
 }

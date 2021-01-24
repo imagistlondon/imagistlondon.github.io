@@ -9,6 +9,7 @@ class H1 extends StatelessWidget {
     this.text = 'Text',
     this.textAlign = TextAlign.left,
     this.style,
+    this.selectable = false,
     this.opacity,
     this.animateOpacity = false,
     this.animationOpacityDuration = const Duration(milliseconds: 100),
@@ -20,6 +21,7 @@ class H1 extends StatelessWidget {
   final String text;
   final TextAlign textAlign;
   final TextStyle style;
+  final bool selectable;
   final double opacity;
 
   final bool animateOpacity;
@@ -40,7 +42,9 @@ class H1 extends StatelessWidget {
     if (opacity != null) s = s.copyWith(color: s.color.withOpacity(opacity));
 
     // text
-    final Text h1 = Text(text, textAlign: textAlign, style: s);
+    final Widget h1 = selectable
+        ? SelectableText(text, textAlign: textAlign, style: s)
+        : Text(text, textAlign: textAlign, style: s);
 
     // return normal h1
     if (!animateOpacity) return h1;
