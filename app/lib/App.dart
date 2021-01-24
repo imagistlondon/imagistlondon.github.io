@@ -84,9 +84,16 @@ class AppState extends State<App> {
       // THEME
       theme: ThemeData(
           textTheme: TextTheme(
-              headline1: Design.X4_H1,
-              headline2: Design.X4_H2,
-              bodyText1: Design.X4_P),
+              headline1: Design.H1(context),
+              headline2: Design.H2(context),
+              headline3: Design.H2(context),
+              headline4: Design.H2(context),
+              headline5: Design.H2(context),
+              headline6: Design.H2(context),
+              subtitle1: Design.H2(context),
+              subtitle2: Design.H2(context),
+              bodyText1: Design.X4_P,
+              bodyText2: Design.X4_P),
           fontFamily: 'UntitleSans',
           primaryColor: Design.COLOR,
           backgroundColor: Colors.transparent),
