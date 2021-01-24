@@ -52,8 +52,6 @@ class HomeState extends State<Home> {
   }
 
   void moveProject() {
-    print('moveProject');
-
     // skip if studio enabled
     if (widget.studioEnabledVN.value) return;
 
