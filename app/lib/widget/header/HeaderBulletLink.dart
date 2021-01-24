@@ -76,13 +76,15 @@ class HeaderBulletLinkState extends State<HeaderBulletLink> {
         child: Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: Design.SPACE),
-            height: Design.gap(context),
+            height: Design.headerBulletHeight(context),
             // LISTEN (bulletsEnabledVN)
             child: L1(
                 widget.bulletsEnabledVN,
                 // ANIMATE OPACITY
                 (bulletsEnabled) => AnimatedOpacity(
+                    // duration
                     duration: Design.HEADER_WORK_SLIDE_ANIMATION_DURATION,
+                    // opacity
                     opacity: bulletsEnabled ? 1 : 0,
                     // ROW (BULLET -> TEXT)
                     child: Row(children: <Widget>[
