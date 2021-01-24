@@ -3,12 +3,20 @@ import 'package:flutter/material.dart';
 
 class UA extends StatelessWidget {
   const UA(
-      {Key key, this.onTap, this.onEnter, this.onExit, @required this.child})
+      {Key key,
+      this.onTap,
+      this.onEnter,
+      this.onExit,
+      this.onPanUpdate,
+      this.onHorizontalDragUpdate,
+      @required this.child})
       : super(key: key);
 
   final GestureTapCallback onTap;
   final Function(PointerEvent pe) onEnter;
   final Function(PointerEvent pe) onExit;
+  final GestureDragUpdateCallback onPanUpdate;
+  final GestureDragUpdateCallback onHorizontalDragUpdate;
   final Widget child;
 
   void _onEnter(PointerEvent pe) {
@@ -26,6 +34,8 @@ class UA extends StatelessWidget {
     // TAP
     return GestureDetector(
         onTap: onTap,
+        onPanUpdate: onPanUpdate,
+        onHorizontalDragUpdate: onHorizontalDragUpdate,
         // MOUSE
         child: MouseRegion(
             onEnter: _onEnter,

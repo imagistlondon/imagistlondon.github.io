@@ -51,6 +51,27 @@ class HomeState extends State<Home> {
     }
   }
 
+  void moveProject() {
+    print('moveProject');
+
+    // skip if studio enabled
+    if (widget.studioEnabledVN.value) return;
+
+    // disable old project
+    projectKeysEnabledVN[projectEnabledVN.value.key].value = false;
+
+    // update index
+    projectIndexEnabledVN.value = (projectIndexEnabledVN.value + 1) %
+        widget.contentVN.value.HOME_PROJECTS.length;
+
+    // update project
+    projectEnabledVN.value =
+        widget.contentVN.value.HOME_PROJECTS[projectIndexEnabledVN.value];
+
+    // enable new project
+    projectKeysEnabledVN[projectEnabledVN.value.key].value = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     // only if there are projects
@@ -75,24 +96,8 @@ class HomeState extends State<Home> {
       }
 
       // timer
-      timer = Timer.periodic(Design.HOME_TRANSTION_ANIMATION_DURATION, (t) {
-        // skip if studio enabled
-        if (widget.studioEnabledVN.value) return;
-
-        // disable old project
-        projectKeysEnabledVN[projectEnabledVN.value.key].value = false;
-
-        // update index
-        projectIndexEnabledVN.value = (projectIndexEnabledVN.value + 1) %
-            widget.contentVN.value.HOME_PROJECTS.length;
-
-        // update project
-        projectEnabledVN.value =
-            widget.contentVN.value.HOME_PROJECTS[projectIndexEnabledVN.value];
-
-        // enable new project
-        projectKeysEnabledVN[projectEnabledVN.value.key].value = true;
-      });
+      timer = Timer.periodic(
+          Design.HOME_TRANSTION_ANIMATION_DURATION, (t) => moveProject());
     }
 
     // MENU
@@ -109,7 +114,8 @@ class HomeState extends State<Home> {
         indexVN: widget.indexVN,
         studyEnabledVN: widget.studyEnabledVN,
         projectEnabledVN: projectEnabledVN,
-        projectKeysEnabledVN: projectKeysEnabledVN);
+        projectKeysEnabledVN: projectKeysEnabledVN,
+        moveProject: moveProject);
 
     // LISTEN
     return L1(

@@ -14,7 +14,8 @@ class HomeImage extends StatelessWidget {
       @required this.indexVN,
       @required this.studyEnabledVN,
       @required this.projectEnabledVN,
-      @required this.projectKeysEnabledVN})
+      @required this.projectKeysEnabledVN,
+      @required this.moveProject})
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
@@ -23,6 +24,8 @@ class HomeImage extends StatelessWidget {
 
   final ValueNotifier<Project> projectEnabledVN;
   final Map<String, ValueNotifier<bool>> projectKeysEnabledVN;
+
+  final Function moveProject;
 
   void onTap() {
     studyEnabledVN.value = projectEnabledVN.value;
@@ -68,6 +71,17 @@ class HomeImage extends StatelessWidget {
     // UA
     return UA(
         onTap: onTap,
+        onPanUpdate: (details) {
+          print('details.delta: ' + details.delta.toString());
+          if (details.delta.dx > Design.SWIPE_THRESHOLD) {
+            print('swiped-right');
+            moveProject();
+          }
+          if (details.delta.dy < -Design.SWIPE_THRESHOLD) {
+            print('swiped-up');
+            moveProject();
+          }
+        },
         // STACK
         child: Stack(children: elements));
   }
