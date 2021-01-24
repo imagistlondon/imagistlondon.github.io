@@ -43,8 +43,7 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
     final double width = MediaQuery.of(context).size.width / 2;
 
     // clearance
-    final SizedBox clearance =
-        SizedBox(height: Design.clearance(context, bulletsOpen: true));
+    final SizedBox clearance = SizedBox(height: Design.clearance(context));
 
     return Container(
         // 50% WIDTH
