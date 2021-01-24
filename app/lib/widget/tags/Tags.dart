@@ -59,8 +59,7 @@ class TagsState extends State<Tags> {
         EdgeInsets.symmetric(horizontal: Design.gap(context));
 
     // header/footer spacing
-    final SizedBox spacing =
-        SizedBox(height: Design.clearance(context, bulletsOpen: true));
+    final SizedBox spacing = SizedBox(height: Design.clearance(context));
 
     // show no content if tag images are empty
     final bool showNoContent = widget.contentVN.value.TAG_IMAGES.isEmpty;
