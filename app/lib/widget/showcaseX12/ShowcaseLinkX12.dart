@@ -40,13 +40,6 @@ class ShowcaseLinkX12State extends State<ShowcaseLinkX12> {
 
   @override
   Widget build(BuildContext context) {
-    // padding
-    final EdgeInsetsGeometry padding = EdgeInsets.only(
-        left: Design.gap(context),
-        top: Design.gap(context) - Design.SPACE,
-        right: Design.gap(context),
-        bottom: Design.gap(context));
-
     return UA(
         onTap: onTap,
         onEnter: onEnter,
@@ -54,7 +47,7 @@ class ShowcaseLinkX12State extends State<ShowcaseLinkX12> {
         // CONTAINER
         child: Container(
             // PADDING
-            padding: padding,
+            padding: EdgeInsets.all(Design.gap(context)),
             // LISTEN
             child: L1(
                 hoverVN,
