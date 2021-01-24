@@ -43,7 +43,7 @@ class HeaderLinkState extends State<HeaderLink> {
             // PADDING
             padding: const EdgeInsets.symmetric(horizontal: Design.SPACE),
             // HEIGHT
-            height: Design.gap(context),
+            height: Design.headerLinkHeight(context),
             // LISTEN
             child: L1C(
                 hoverVN,
