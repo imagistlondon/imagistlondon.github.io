@@ -97,9 +97,11 @@ class HomeState extends State<Home> {
 
     // MENU
     final HomeMenu _HomeMenu = HomeMenu(
+        contentVN: widget.contentVN,
         indexVN: widget.indexVN,
         studyEnabledVN: widget.studyEnabledVN,
-        projectEnabledVN: projectEnabledVN);
+        projectEnabledVN: projectEnabledVN,
+        projectKeysEnabledVN: projectKeysEnabledVN);
 
     // IMAGE
     final HomeImage _HomeImage = HomeImage(
