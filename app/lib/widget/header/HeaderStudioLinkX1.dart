@@ -2,8 +2,8 @@ import 'package:app/config/Content.dart';
 import 'package:app/widget/header/HeaderLink.dart';
 import 'package:flutter/material.dart';
 
-class HeaderStudioLink extends StatelessWidget {
-  const HeaderStudioLink(
+class HeaderStudioLinkX1 extends StatelessWidget {
+  const HeaderStudioLinkX1(
       {Key key, @required this.contentVN, @required this.studioEnabledVN})
       : super(key: key);
 

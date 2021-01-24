@@ -2,7 +2,7 @@ import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1C.dart';
-import 'package:app/widget/header/HeaderStudioLink.dart';
+import 'package:app/widget/header/HeaderStudioLinkX1.dart';
 import 'package:flutter/material.dart';
 
 class HeaderStudioLinkX234 extends StatelessWidget {
@@ -50,7 +50,7 @@ class HeaderStudioLinkX234 extends StatelessWidget {
                   padding: EdgeInsets.only(
                       right: Design.gap(context) - Design.SPACE),
                   // HeaderStudioLink
-                  child: HeaderStudioLink(
+                  child: HeaderStudioLinkX1(
                       contentVN: contentVN, studioEnabledVN: studioEnabledVN)))
         ]);
   }
