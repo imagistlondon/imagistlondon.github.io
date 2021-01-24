@@ -29,10 +29,6 @@ class TagsImagesX12 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // margin gap
-    final EdgeInsetsGeometry screenPadding =
-        EdgeInsets.symmetric(horizontal: Design.gap(context));
-
     // LISTEN
     return L2(tagEnabledVN, tagsSelectedVN, (tagEnabled, tagsSelected) {
       // init images
@@ -75,7 +71,7 @@ class TagsImagesX12 extends StatelessWidget {
               constraints:
                   BoxConstraints(minWidth: Design.screenWidth(context)),
               // SRCEEN PADDING
-              padding: screenPadding,
+              padding: EdgeInsets.symmetric(horizontal: Design.gap(context)),
               // ROW of IMAGE ELEMENTS
               child: Row(children: imageElements)));
     });
