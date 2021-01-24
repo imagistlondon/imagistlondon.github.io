@@ -49,7 +49,7 @@ class Design {
 
   // the width of section without gap
   static double sectionInnerWidth(final BuildContext context) {
-    return sectionWidth(context) - gap(context);
+    return sectionWidth(context) - (gap(context) * 2);
   }
 
   // the width percentage of section without gap
@@ -154,12 +154,16 @@ class Design {
       Duration(milliseconds: 500);
   static const Curve HEADER_X1_BULLETS_ANIMATION_CURVE = Curves.easeInOut;
 
+  // padding for the header bullets for X1
+  static const EdgeInsets HEADER_X1_BULLETS_PADDING = EdgeInsets.only(
+      left: Design.GAP_X1, right: Design.GAP_X1, bottom: Design.GAP_X1);
+
   // header links widths (needed for animation translation)
   static const double HEADER_STUDIO_LINK_WIDTH = Design.SPACE * 5;
   static const double HEADER_BULLETS_WIDTH = Design.SPACE * 16;
 
   // spacing for header (vertical height of header)
-  static const double HEADER_CLEARANCE_X1 = Design.SPACE * 3;
+  static const double HEADER_CLEARANCE_X1 = Design.SPACE * 4;
   static const double HEADER_CLEARANCE_X2 = Design.SPACE * 8;
   static const double HEADER_CLEARANCE_X3 = Design.SPACE * 8;
   static const double HEADER_CLEARANCE_X4 = Design.SPACE * 8;

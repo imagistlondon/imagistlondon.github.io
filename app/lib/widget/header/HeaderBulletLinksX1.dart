@@ -30,7 +30,7 @@ class HeaderBulletLinksX1 extends StatelessWidget {
         // CHILD
         child: Container(
             // padding
-            padding: EdgeInsets.all(Design.GAP_X1),
+            padding: Design.HEADER_X1_BULLETS_PADDING,
             // child
             child: Column(children: <Widget>[
               for (final Index index in Indexes.works())
