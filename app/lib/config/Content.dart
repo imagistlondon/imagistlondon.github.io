@@ -4,6 +4,7 @@
 
 import 'dart:collection';
 
+import 'package:app/util/VideoFrame.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -58,6 +59,33 @@ class Content {
               final String blockPrefix =
                   prefix + 'STUDY_BLOCK_' + letter + '-' + j.toString();
 
+              // video provider
+              final VideoProvider videoProvider =
+                  map[blockPrefix + '-VIDEO_PROVIDER'] != null &&
+                          map[blockPrefix + '-VIDEO_PROVIDER'] == 'YOUTUBE'
+                      ? VideoProvider.YOUTUBE
+                      : VideoProvider.VIMEO;
+
+              // videoWidthFactor
+              final String videoWidthFactorX1 =
+                  map[blockPrefix + '-VIDEO_WIDTH_FACTOR_X1'];
+              final String videoWidthFactorX2 =
+                  map[blockPrefix + '-VIDEO_WIDTH_FACTOR_X2'];
+              final String videoWidthFactorX3 =
+                  map[blockPrefix + '-VIDEO_WIDTH_FACTOR_X3'];
+              final String videoWidthFactorX4 =
+                  map[blockPrefix + '-VIDEO_WIDTH_FACTOR_X4'];
+
+              // videoHeightFactor
+              final String videoHeightFactorX1 =
+                  map[blockPrefix + '-VIDEO_HEIGHT_FACTOR_X1'];
+              final String videoHeightFactorX2 =
+                  map[blockPrefix + '-VIDEO_HEIGHT_FACTOR_X2'];
+              final String videoHeightFactorX3 =
+                  map[blockPrefix + '-VIDEO_HEIGHT_FACTOR_X3'];
+              final String videoHeightFactorX4 =
+                  map[blockPrefix + '-VIDEO_HEIGHT_FACTOR_X4'];
+
               // imageMinHeight
               final String imageMinHeightX1 =
                   map[blockPrefix + '-IMAGE_MIN_HEIGHT_X1'];
@@ -106,7 +134,64 @@ class Content {
                 textPosition: map[blockPrefix + '-TEXT_POSITION'],
                 textAlignX: map[blockPrefix + '-TEXT_ALIGN_X'],
                 textAlignY: map[blockPrefix + '-TEXT_ALIGN_Y'],
+                // video
+                videoId: map[blockPrefix + '-VIDEO_ID'],
+                videoProvider: videoProvider,
+                // videoWidthFactor
+                videoWidthFactorX1: videoWidthFactorX1 != null
+                    ? double.tryParse(videoWidthFactorX1)
+                    : null,
+                videoWidthFactorX2: videoWidthFactorX2 != null
+                    ? double.tryParse(videoWidthFactorX2)
+                    : null,
+                videoWidthFactorX3: videoWidthFactorX3 != null
+                    ? double.tryParse(videoWidthFactorX3)
+                    : null,
+                videoWidthFactorX4: videoWidthFactorX4 != null
+                    ? double.tryParse(videoWidthFactorX4)
+                    : null,
+                // videoHeightFactor
+                videoHeightFactorX1: videoHeightFactorX1 != null
+                    ? double.tryParse(videoHeightFactorX1)
+                    : null,
+                videoHeightFactorX2: videoHeightFactorX2 != null
+                    ? double.tryParse(videoHeightFactorX2)
+                    : null,
+                videoHeightFactorX3: videoHeightFactorX3 != null
+                    ? double.tryParse(videoHeightFactorX3)
+                    : null,
+                videoHeightFactorX4: videoHeightFactorX4 != null
+                    ? double.tryParse(videoHeightFactorX4)
+                    : null,
+
+                // image
                 image: map[blockPrefix + '-IMAGE'],
+                // imageMinHeight
+                imageMinHeightX1: imageMinHeightX1 != null
+                    ? double.tryParse(imageMinHeightX1)
+                    : null,
+                imageMinHeightX2: imageMinHeightX2 != null
+                    ? double.tryParse(imageMinHeightX2)
+                    : null,
+                imageMinHeightX3: imageMinHeightX3 != null
+                    ? double.tryParse(imageMinHeightX3)
+                    : null,
+                imageMinHeightX4: imageMinHeightX4 != null
+                    ? double.tryParse(imageMinHeightX4)
+                    : null,
+                // imageMaxHeight
+                imageMaxHeightX1: imageMaxHeightX1 != null
+                    ? double.tryParse(imageMaxHeightX1)
+                    : null,
+                imageMaxHeightX2: imageMaxHeightX2 != null
+                    ? double.tryParse(imageMaxHeightX2)
+                    : null,
+                imageMaxHeightX3: imageMaxHeightX3 != null
+                    ? double.tryParse(imageMaxHeightX3)
+                    : null,
+                imageMaxHeightX4: imageMaxHeightX4 != null
+                    ? double.tryParse(imageMaxHeightX4)
+                    : null,
                 // widthPercent
                 widthPercentX1: widthPercentX1 != null
                     ? double.tryParse(widthPercentX1)
@@ -415,6 +500,19 @@ class ProjectStudyBlock {
   final String textPosition;
   final String textAlignX;
   final String textAlignY;
+
+  final String videoId;
+  final VideoProvider videoProvider;
+  final double videoWidthFactorX1;
+  final double videoWidthFactorX2;
+  final double videoWidthFactorX3;
+  final double videoWidthFactorX4;
+
+  final double videoHeightFactorX1;
+  final double videoHeightFactorX2;
+  final double videoHeightFactorX3;
+  final double videoHeightFactorX4;
+
   final String image;
 
   final double imageMinHeightX1;
@@ -448,6 +546,16 @@ class ProjectStudyBlock {
     this.textPosition,
     this.textAlignX,
     this.textAlignY,
+    this.videoId,
+    this.videoProvider,
+    this.videoWidthFactorX1,
+    this.videoWidthFactorX2,
+    this.videoWidthFactorX3,
+    this.videoWidthFactorX4,
+    this.videoHeightFactorX1,
+    this.videoHeightFactorX2,
+    this.videoHeightFactorX3,
+    this.videoHeightFactorX4,
     this.image,
     this.imageMinHeightX1,
     this.imageMinHeightX2,
