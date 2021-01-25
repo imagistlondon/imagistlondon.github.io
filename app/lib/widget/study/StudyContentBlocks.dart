@@ -6,6 +6,7 @@ import 'package:app/text/P.dart';
 import 'package:app/util/Images.dart';
 import 'package:app/util/Section.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
+import 'package:app/util/VideoFrame.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -111,9 +112,14 @@ class StudyContentBlocks extends StatelessWidget {
         final bool hasDesc = block.desc != null && block.desc != "";
         final bool hasText = hasTitle || hasDesc;
         final bool hasFullText = hasTitle && hasDesc;
+
+        final bool hasVideo = block.videoId != null && block.videoId != "";
         final bool hasImage = block.image != null && block.image != "";
-        final bool hasContent = hasText || hasImage;
-        final bool hasFullContent = hasText && hasImage;
+
+        final bool hasMedia = hasVideo || hasImage;
+
+        final bool hasContent = hasText || hasImage || hasVideo;
+        final bool hasFullContent = hasText && hasMedia;
 
         // build title widget
         final Widget titleWidget = hasTitle
@@ -146,6 +152,31 @@ class StudyContentBlocks extends StatelessWidget {
             crossAxisAlignment: textAlignX,
             children: [titleWidget, textSpacer, descWidget]);
 
+        // build video widget
+        final Widget videoWidget = hasVideo
+            ?
+            // CONTAINER
+            Container(
+                // VIDEO FRAME
+                child: VideoFrame(
+                // provider
+                provider: block.videoProvider,
+                // id
+                id: block.videoId,
+                // width
+                width: width,
+                // height (calculated by factor)
+                height: width *
+                    Break.decideOr(
+                        context,
+                        block.videoHeightFactorX1,
+                        block.videoHeightFactorX2,
+                        block.videoHeightFactorX3,
+                        block.videoHeightFactorX4,
+                        9 / 16),
+              ))
+            : SizedBox.shrink();
+
         // build image widget (if needed)
         final Widget imageWidget = hasImage
             ?
@@ -174,13 +205,10 @@ class StudyContentBlocks extends StatelessWidget {
                     width: width,
                     // image
                     image: Images.of(block.image)))
-
-            // Image(
-            //     // fit
-            //     fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
-            //     // image
-            //     image: Images.of(block.image))
             : SizedBox.shrink();
+
+        // media widget
+        final Widget mediaWidget = hasVideo ? videoWidget : imageWidget;
 
         // build space widget (if needed)
         final Widget blockSpacer = hasFullContent
@@ -197,12 +225,23 @@ class StudyContentBlocks extends StatelessWidget {
                 ? Container(width: width, child: textWidget)
                 : textWidget;
 
+        // video widget for the row
+        final Widget videoWidgetForRow = hasFullContent
+            ? Container(width: widthRowSplit, child: videoWidget)
+            : hasVideo
+                ? Container(width: width, child: videoWidget)
+                : videoWidget;
+
         // image widget for the row
         final Widget imageWidgetForRow = hasFullContent
             ? Container(width: widthRowSplit, child: imageWidget)
             : hasImage
                 ? Container(width: width, child: imageWidget)
                 : imageWidget;
+
+        // media widget for row
+        final Widget mediaWidgetForRow =
+            hasVideo ? videoWidgetForRow : imageWidgetForRow;
 
         // figure out text align vertical
         CrossAxisAlignment textAlignY = CrossAxisAlignment.start;
@@ -214,25 +253,25 @@ class StudyContentBlocks extends StatelessWidget {
         // LEFT
         Widget widget = Row(
             crossAxisAlignment: textAlignY,
-            children: [textWidgetForRow, blockSpacer, imageWidgetForRow]);
+            children: [textWidgetForRow, blockSpacer, mediaWidgetForRow]);
 
         // TOP
         if (block.textPosition == 'TOP')
           widget = Column(
               crossAxisAlignment: textAlignX,
-              children: [textWidget, blockSpacer, imageWidget]);
+              children: [textWidget, blockSpacer, mediaWidget]);
 
         // RIGHT
         if (block.textPosition == 'RIGHT')
           widget = Row(
               crossAxisAlignment: textAlignY,
-              children: [imageWidgetForRow, blockSpacer, textWidgetForRow]);
+              children: [mediaWidgetForRow, blockSpacer, textWidgetForRow]);
 
         // BOTTOM
         if (block.textPosition == 'BOTTOM')
           widget = Column(
               crossAxisAlignment: textAlignX,
-              children: [imageWidget, blockSpacer, textWidget]);
+              children: [mediaWidget, blockSpacer, textWidget]);
 
         // add element
         elements.add(
