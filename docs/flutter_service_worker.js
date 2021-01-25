@@ -157,10 +157,10 @@ const RESOURCES = {
 "assets/fonts/font-saol-text-light.woff2": "598682f2968ad8d33ff48d04c8bafa93",
 "assets/fonts/font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"index.html": "5a46d57c412f88b575faaebfc13adcdf",
-"/": "5a46d57c412f88b575faaebfc13adcdf",
+"index.html": "9d8a8c40b53608c30576980c21199530",
+"/": "9d8a8c40b53608c30576980c21199530",
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
-"main.dart.js": "076f9ea8bf3caabc05b12331dd2c04dc",
+"main.dart.js": "0aacfa3d4c054b3cf317747832efc7b2",
 "404.html": "f4e3edb53349945387e617abbd0fd231"
 };
 
