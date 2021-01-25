@@ -43,9 +43,12 @@ class VideoFrame extends StatelessWidget {
     );
 
     // wrap in html element view
-    return HtmlElementView(
-      key: UniqueKey(),
-      viewType: registryId,
-    );
+    return SizedBox(
+        width: width,
+        height: height,
+        child: HtmlElementView(
+          key: UniqueKey(),
+          viewType: registryId,
+        ));
   }
 }
