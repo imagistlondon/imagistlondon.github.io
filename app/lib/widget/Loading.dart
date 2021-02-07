@@ -5,6 +5,7 @@ import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/util/L1C.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix4_transform/matrix4_transform.dart';
 
 class Loading extends StatefulWidget {
   const Loading(
@@ -35,8 +36,19 @@ class LoadingState extends State<Loading> {
     }
   }
 
+  // stationary
+  static final Matrix4 matrixA = Matrix4Transform().down(0).matrix4;
+
   @override
   Widget build(BuildContext context) {
+    // calculate sizes
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+
+    // move up
+    final Matrix4 matrixB =
+        Matrix4Transform().up(MediaQuery.of(context).size.height).matrix4;
+
     // LISTEN (loadingEnabled)
     return L1C(
         widget.loadingEnabledVN,
@@ -51,23 +63,26 @@ class LoadingState extends State<Loading> {
                   timer.cancel();
                   timer = null;
                 }
-                timer = Timer(Design.LOADING_OPACITY_ANIMATION_DURATION, () {
+                timer = Timer(Design.LOADING_TRANSLATE_ANIMATION_DURATION, () {
                   widget.loadingEnabledVN.value = false;
                 });
               }
 
-              // ANIMATED OPACITY
-              return AnimatedOpacity(
-                  duration: Design.LOADING_OPACITY_ANIMATION_DURATION,
-                  curve: Design.LOADING_OPACITY_ANIMATION_CURVE,
-                  opacity: loading ? 1 : 0,
+              // ANIMATED CONTAINER
+              return AnimatedContainer(
+                  // duration
+                  duration: Design.LOADING_TRANSLATE_ANIMATION_DURATION,
+                  // curve
+                  curve: Design.LOADING_TRANSLATE_ANIMATION_CURVE,
+                  // transform
+                  transform: loading ? matrixA : matrixB,
                   child: child);
             }, child: child)),
         // CONTAINER
         child: Container(
           // FULL SCREEN SIZE
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: width,
+          height: height,
           // BACKGROUND COLOR
           color: Design.LOADING_PAGE_COLOR,
           // TEXT LINES
