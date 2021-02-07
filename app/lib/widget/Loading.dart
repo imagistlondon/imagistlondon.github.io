@@ -36,7 +36,7 @@ class LoadingState extends State<Loading> {
     }
   }
 
-  // stationary
+  // static
   static final Matrix4 matrixA = Matrix4Transform().down(0).matrix4;
 
   @override
