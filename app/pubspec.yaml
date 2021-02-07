@@ -32,6 +32,7 @@ dependencies:
   recase: '3.0.1'
   provider: '4.3.2+3'
   http: '0.12.2'
+  transparent_image: '1.0.0'
 
 flutter:
   uses-material-design: true

@@ -2,6 +2,7 @@ import 'package:app/Index.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/Window.dart';
+import 'package:app/util/Images.dart';
 import 'package:flutter/material.dart';
 
 // App
@@ -20,17 +21,49 @@ class AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-    loadContent();
   }
 
-  void loadContent() async {
+  void loadContent(final BuildContext context) async {
     contentVN.value = await Content.load();
-    print('App.loadContent.done');
+    print('App.loadContent.api.done');
+
+    // precache images
+    for (final Project project in contentVN.value.PROJECTS) {
+      // homeImage
+      Images.precache(project.homeImage, context);
+
+      // showcaseImage
+      Images.precache(project.showcaseImage, context);
+
+      // archiveImage
+      Images.precache(project.archiveImage, context);
+
+      // tagImage
+      Images.precache(project.tagImage, context);
+
+      // studyImage
+      Images.precache(project.studyImage, context);
+
+      // studyBlocks
+      if (project.studyBlocks != null) {
+        project.studyBlocks.forEach((key, studyBlocks) {
+          for (final ProjectStudyBlock studyBlock in studyBlocks) {
+            Images.precache(studyBlock.image, context);
+          }
+        });
+      }
+    }
+
+    print('App.loadContent.images.done');
     loadingVN.value = false;
   }
 
   @override
   Widget build(BuildContext context) {
+    // load content
+    loadContent(context);
+
+    // APP
     return MaterialApp(
       // TITLE
       title: 'Imagist',

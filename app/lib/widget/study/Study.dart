@@ -1,4 +1,3 @@
-import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
@@ -58,9 +57,6 @@ class StudyState extends State<Study> {
     return L1(widget.studyEnabledVN,
         // VISIBLE
         (studyEnabled) {
-      // // skip if no study
-      // if (studyEnabled == null) return SizedBox.shrink();
-
       // if new study, rebuild child
       if (studyEnabled != null) {
         child = Container(
