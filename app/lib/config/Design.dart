@@ -358,6 +358,11 @@ class Design {
   // study widget background color
   static const Color STUDY_BACKGROUND_COLOR = Design.BACKGROUND_COLOR;
 
+  // animation for the study page fade in/out
+  static const Duration STUDY_TRANSLATE_ANIMATION_DURATION =
+      Duration(milliseconds: 500);
+  static const Curve STUDY_TRANSLATE_ANIMATION_CURVE = Curves.easeInOut;
+
   // study main thumb image height
   static const double STUDY_THUMB_DEFAULT_HEIGHT_RATIO =
       2 / 3; //66.6% of height
