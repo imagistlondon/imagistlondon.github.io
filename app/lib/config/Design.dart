@@ -222,8 +222,8 @@ class Design {
   static const Curve HEADER_X1_BULLETS_ANIMATION_CURVE = Curves.easeInOut;
 
   // padding for the header bullets for X1
-  static const EdgeInsets HEADER_X1_BULLETS_PADDING = EdgeInsets.only(
-      left: Design.GAP_X1, right: Design.GAP_X1, bottom: Design.GAP_X1);
+  static const EdgeInsets HEADER_X1_BULLETS_PADDING =
+      EdgeInsets.only(right: Design.GAP_X1, bottom: Design.GAP_X1);
 
   // header links widths (needed for animation translation)
   static const double HEADER_STUDIO_LINK_WIDTH = Design.SPACE * 5;
@@ -471,6 +471,12 @@ class Design {
 
   // how to fit the study content image
   static const BoxFit STUDY_CONTENT_IMAGE_BOX_FIT = BoxFit.cover;
+
+  // the animation details for the cross fade of images
+  static const Duration STUDY_CONTENT_IMAGE_OPACITY_ANIMATION_DURATION =
+      Duration(milliseconds: 500);
+  static const Curve STUDY_CONTENT_IMAGE_OPACITY_ANIMATION_CURVE =
+      Curves.easeInOut;
 
   // background color for the study content blocks A
   static const Color STUDY_CONTENT_BLOCKS_A_BACKGROUND_COLOR = BACKGROUND_COLOR;
