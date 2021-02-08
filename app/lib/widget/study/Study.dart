@@ -72,10 +72,10 @@ class StudyState extends State<Study> {
 
               // X
               StudyClose(
-                indexVN: widget.indexVN,
-                studyEnabledVN: widget.studyEnabledVN,
-                progressFractionVN: widget.progressFractionVN,
-              ),
+                  indexVN: widget.indexVN,
+                  studyEnabledVN: widget.studyEnabledVN,
+                  progressFractionVN: widget.progressFractionVN,
+                  scrollController: scrollController),
 
               // ARROW
               StudyArrow(
