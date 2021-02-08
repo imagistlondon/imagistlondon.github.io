@@ -39,6 +39,69 @@ class Design {
     return MediaQuery.of(context).size.width;
   }
 
+  // the width percentage of screen
+  static double screenWidthPercent(
+      final BuildContext context,
+      final double widthPercentX1,
+      final double widthPercentX2,
+      final double widthPercentX3,
+      final double widthPercentX4,
+      final double defaultWidthPercent) {
+    // calculate full width
+    final double w = screenWidth(context);
+
+    // pull desired width percent
+    double widthPercent = Break.decideOr(context, widthPercentX1,
+        widthPercentX2, widthPercentX3, widthPercentX4, defaultWidthPercent);
+
+    // use default width if none
+    if (widthPercent == null) return (defaultWidthPercent / 100) * w;
+
+    // use full width if out of range
+    if (widthPercent < 0 || widthPercent > 100) return w;
+
+    // use accurate divider for thirds
+    if (widthPercent > 33 / 100 && widthPercent < 34 / 100)
+      widthPercent = 1 / 3;
+
+    // return width
+    return (widthPercent / 100) * w;
+  }
+
+  // the width of screen without gap
+  static double screenInnerWidth(final BuildContext context) {
+    return screenWidth(context) - (gap(context) * 2);
+  }
+
+  // the width percentage of screen without gap
+  static double screenInnerWidthPercent(
+      final BuildContext context,
+      final double widthPercentX1,
+      final double widthPercentX2,
+      final double widthPercentX3,
+      final double widthPercentX4,
+      final double defaultWidthPercent) {
+    // calculate full width
+    final double w = screenInnerWidth(context);
+
+    // pull desired width percent
+    double widthPercent = Break.decideOr(context, widthPercentX1,
+        widthPercentX2, widthPercentX3, widthPercentX4, defaultWidthPercent);
+
+    // use default width if none
+    if (widthPercent == null) return (defaultWidthPercent / 100) * w;
+
+    // use full width if out of range
+    if (widthPercent < 0 || widthPercent > 100) return w;
+
+    // use accurate divider for thirds
+    if (widthPercent > 33 / 100 && widthPercent < 34 / 100)
+      widthPercent = 1 / 3;
+
+    // return width
+    return (widthPercent / 100) * w;
+  }
+
   // full screen height
   static double screenHeight(final BuildContext context) {
     return MediaQuery.of(context).size.height;
@@ -61,16 +124,17 @@ class Design {
       final double widthPercentX1,
       final double widthPercentX2,
       final double widthPercentX3,
-      final double widthPercentX4) {
+      final double widthPercentX4,
+      final double defaultWidthPercent) {
     // calculate full width
     final double w = sectionInnerWidth(context);
 
     // pull desired width percent
-    double widthPercent = Break.decide(context, widthPercentX1, widthPercentX2,
-        widthPercentX3, widthPercentX4);
+    double widthPercent = Break.decideOr(context, widthPercentX1,
+        widthPercentX2, widthPercentX3, widthPercentX4, defaultWidthPercent);
 
-    // use full width if none
-    if (widthPercent == null) return w;
+    // use default width if none
+    if (widthPercent == null) return (defaultWidthPercent / 100) * w;
 
     // use full width if out of range
     if (widthPercent < 0 || widthPercent > 100) return w;
@@ -391,9 +455,19 @@ class Design {
       Duration(milliseconds: 200);
   static const STUDY_SCROLL_TO_TOP_ANIMATION_CURVE = Curves.ease;
 
-  // how the images should align on the cross axis
-  static const WrapCrossAlignment STUDY_CONTENT_IMAGES_CROSS_ALIGNMENT =
+  // how the blocks should align
+  // (a) the horizontal alignment of elements in the same row
+  static const WrapAlignment STUDY_CONTENT_BLOCKS_ALIGNMENT =
+      WrapAlignment.center;
+  // (b)
+  static const WrapAlignment STUDY_CONTENT_BLOCKS_RUN_ALIGNMENT =
+      WrapAlignment.start;
+  // (c) the vertical alignment of the elements in the same row
+  static const WrapCrossAlignment STUDY_CONTENT_BLOCKS_CROSS_ALIGNMENT =
       WrapCrossAlignment.center;
+
+  // default width percent of content blocks (if none provided)
+  static const double STUDY_CONTENT_BLOCKS_DEFAULT_WIDTH_PERCENT = 80;
 
   // how to fit the study content image
   static const BoxFit STUDY_CONTENT_IMAGE_BOX_FIT = BoxFit.cover;

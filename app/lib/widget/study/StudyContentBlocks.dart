@@ -4,7 +4,6 @@ import 'package:app/config/Content.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/text/P.dart';
 import 'package:app/util/Images.dart';
-import 'package:app/util/Section.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/VideoFrame.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ class StudyContentBlocks extends StatelessWidget {
       return SizedBox.shrink();
 
     // calculate fill width
-    final double fullWidth = Design.sectionInnerWidth(context);
+    final double fullWidth = Design.screenWidth(context);
 
     // current row of blocks
     int rowIndex = 0;
@@ -46,13 +45,14 @@ class StudyContentBlocks extends StatelessWidget {
         in studyEnabledVN.value.studyBlocks[letter]) {
       i++;
 
-      // calculate width
-      double width = Design.sectionInnerWidthPercent(
+      // calculate block width
+      double width = Design.screenWidthPercent(
           context,
           block.widthPercentX1,
           block.widthPercentX2,
           block.widthPercentX3,
-          block.widthPercentX4);
+          block.widthPercentX4,
+          Design.STUDY_CONTENT_BLOCKS_DEFAULT_WIDTH_PERCENT);
 
       // at end of row or with new element would be too long (move to new row)
       if (columnPosition == fullWidth || (columnPosition + width > fullWidth)) {
@@ -82,13 +82,14 @@ class StudyContentBlocks extends StatelessWidget {
       int j = -1;
       for (final ProjectStudyBlock block in rowBlocks) {
         j++;
-        // calculate width
-        double width = Design.sectionInnerWidthPercent(
+        // calculate block width
+        double width = Design.screenWidthPercent(
             context,
             block.widthPercentX1,
             block.widthPercentX2,
             block.widthPercentX3,
-            block.widthPercentX4);
+            block.widthPercentX4,
+            Design.STUDY_CONTENT_BLOCKS_DEFAULT_WIDTH_PERCENT);
 
         // remove spacer width
         if (rowBlocks.length > 1) {
@@ -310,17 +311,17 @@ class StudyContentBlocks extends StatelessWidget {
         color: letter == 'A'
             ? Design.STUDY_CONTENT_BLOCKS_A_BACKGROUND_COLOR
             : Design.STUDY_CONTENT_BLOCKS_B_BACKGROUND_COLOR,
-        // SECTION
-        child: Section(
-            // GAP (HORIZONTAL PADDING)
-            gap: true,
-            // VERTICAL PADDING
-            padding: EdgeInsets.symmetric(vertical: Design.gap(context)),
-            // WRAP
-            child: Wrap(
-                // position elements vertically in center
-                crossAxisAlignment: Design.STUDY_CONTENT_IMAGES_CROSS_ALIGNMENT,
-                // elements
-                children: elements)));
+        // VERTICAL PADDING
+        padding: EdgeInsets.symmetric(vertical: Design.gap(context)),
+        // WRAP
+        child: Wrap(
+            //
+            alignment: Design.STUDY_CONTENT_BLOCKS_ALIGNMENT,
+            //
+            runAlignment: Design.STUDY_CONTENT_BLOCKS_RUN_ALIGNMENT,
+            // position elements vertically in center
+            crossAxisAlignment: Design.STUDY_CONTENT_BLOCKS_CROSS_ALIGNMENT,
+            // elements
+            children: elements));
   }
 }
