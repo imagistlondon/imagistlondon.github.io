@@ -1,15 +1,18 @@
+import 'dart:async';
+
 import 'package:app/config/Break.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/text/H1.dart';
 import 'package:app/text/P.dart';
 import 'package:app/util/Images.dart';
+import 'package:app/util/L1.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/VideoFrame.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-class StudyContentBlocks extends StatelessWidget {
+class StudyContentBlocks extends StatefulWidget {
   const StudyContentBlocks(
       {Key key, @required this.studyEnabledVN, @required this.letter})
       : super(key: key);
@@ -18,10 +21,32 @@ class StudyContentBlocks extends StatelessWidget {
   final String letter;
 
   @override
+  StudyContentBlocksState createState() => StudyContentBlocksState();
+}
+
+class StudyContentBlocksState extends State<StudyContentBlocks> {
+  List<Timer> timers = [];
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    // clear timers
+    if (timers != null && timers.isNotEmpty) {
+      for (final Timer timer in timers) {
+        if (timer != null) {
+          timer.cancel();
+        }
+      }
+      timers.clear();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     // skip if no blocks
-    if (studyEnabledVN.value.studyBlocks == null ||
-        studyEnabledVN.value.studyBlocks[letter] == null)
+    if (widget.studyEnabledVN.value.studyBlocks == null ||
+        widget.studyEnabledVN.value.studyBlocks[widget.letter] == null)
       return SizedBox.shrink();
 
     // calculate fill width
@@ -34,15 +59,15 @@ class StudyContentBlocks extends StatelessWidget {
     double columnPosition = 0;
 
     // grid
-    final List<List<ProjectStudyBlock>> grid = List();
+    final List<List<ProjectStudyBlock>> grid = [];
 
     // init first row
-    grid.add(List());
+    grid.add([]);
 
     // allocate rows
     int i = -1;
     for (final ProjectStudyBlock block
-        in studyEnabledVN.value.studyBlocks[letter]) {
+        in widget.studyEnabledVN.value.studyBlocks[widget.letter]) {
       i++;
 
       // calculate block width
@@ -57,7 +82,7 @@ class StudyContentBlocks extends StatelessWidget {
       // at end of row or with new element would be too long (move to new row)
       if (columnPosition == fullWidth || (columnPosition + width > fullWidth)) {
         rowIndex++;
-        grid.add(List());
+        grid.add([]);
         columnPosition = 0;
       }
 
@@ -67,7 +92,7 @@ class StudyContentBlocks extends StatelessWidget {
     }
 
     // init elements
-    final List<Widget> elements = List();
+    final List<Widget> elements = [];
 
     // loop through rows
     i = -1;
@@ -116,6 +141,8 @@ class StudyContentBlocks extends StatelessWidget {
 
         final bool hasVideo = block.videoId != null && block.videoId != "";
         final bool hasImage = block.image != null && block.image != "";
+        final bool hasMultiImages =
+            hasImage && block.image2 != null && block.image2 != "";
 
         final bool hasMedia = hasVideo || hasImage;
 
@@ -179,33 +206,73 @@ class StudyContentBlocks extends StatelessWidget {
             : SizedBox.shrink();
 
         // build image widget (if needed)
+
+        // value notifier for the current in view block image (for multi images)
+        final ValueNotifier<int> blockImageIndexVN = ValueNotifier(0);
+
+        // add timer to switch between image indexes
+        if (hasMultiImages) {
+          timers.add(Timer.periodic(
+              Design.STUDY_CONTENT_IMAGE_TRANSTION_ANIMATION_DURATION, (t) {
+            // increment
+            blockImageIndexVN.value =
+                (blockImageIndexVN.value + 1) % block.images.length;
+
+            // print
+            print('blockImageIndexVN:' + blockImageIndexVN.value.toString());
+          }));
+        }
+
+        // build image widget (if needed)
         final Widget imageWidget = hasImage
             ?
-            // CONSTRAINED BOX
-            ConstrainedBox(
-                constraints: BoxConstraints(
-                    minHeight: Break.decideOr(
-                        context,
-                        block.imageMinHeightX1,
-                        block.imageMinHeightX2,
-                        block.imageMinHeightX3,
-                        block.imageMinHeightX4,
-                        0.0),
-                    maxHeight: Break.decideOr(
-                        context,
-                        block.imageMaxHeightX1,
-                        block.imageMaxHeightX2,
-                        block.imageMaxHeightX3,
-                        block.imageMaxHeightX4,
-                        double.infinity)),
-                // IMAGE
-                child: Image(
-                    // fit
-                    fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
-                    // width
-                    width: width,
-                    // image
-                    image: Images.of(block.image)))
+            // IMAGE
+            Stack(children: <Widget>[
+                for (int imageIndex = 0;
+                    imageIndex < block.images.length;
+                    imageIndex++)
+                  // CONSTRAINED BOX
+                  ConstrainedBox(
+                      constraints: BoxConstraints(
+                          minHeight: Break.decideOr(
+                              context,
+                              block.imageMinHeightX1,
+                              block.imageMinHeightX2,
+                              block.imageMinHeightX3,
+                              block.imageMinHeightX4,
+                              0.0),
+                          maxHeight: Break.decideOr(
+                              context,
+                              block.imageMaxHeightX1,
+                              block.imageMaxHeightX2,
+                              block.imageMaxHeightX3,
+                              block.imageMaxHeightX4,
+                              double.infinity)),
+                      // L1
+                      child: L1(
+                          blockImageIndexVN,
+                          (imageIndexEnabled) =>
+                              // ANIMATED OPACITY
+                              AnimatedOpacity(
+                                  // duration
+                                  duration: Design
+                                      .STUDY_CONTENT_IMAGE_OPACITY_ANIMATION_DURATION,
+                                  // curve
+                                  curve: Design
+                                      .STUDY_CONTENT_IMAGE_OPACITY_ANIMATION_CURVE,
+                                  // opacity
+                                  opacity:
+                                      imageIndexEnabled == imageIndex ? 1 : 0,
+                                  // IMAGE
+                                  child: Image(
+                                      // fit
+                                      fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
+                                      // width
+                                      width: width,
+                                      // image
+                                      image: Images.of(
+                                          block.images[imageIndex])))))
+              ])
             : SizedBox.shrink();
 
         // media widget
@@ -308,7 +375,7 @@ class StudyContentBlocks extends StatelessWidget {
         // SCREEN WIDTH
         width: Design.screenWidth(context),
         // BACKGROUND COLOR
-        color: letter == 'A'
+        color: widget.letter == 'A'
             ? Design.STUDY_CONTENT_BLOCKS_A_BACKGROUND_COLOR
             : Design.STUDY_CONTENT_BLOCKS_B_BACKGROUND_COLOR,
         // VERTICAL PADDING

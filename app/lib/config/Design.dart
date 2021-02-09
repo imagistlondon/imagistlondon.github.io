@@ -473,6 +473,8 @@ class Design {
   static const BoxFit STUDY_CONTENT_IMAGE_BOX_FIT = BoxFit.cover;
 
   // the animation details for the cross fade of images
+  static const Duration STUDY_CONTENT_IMAGE_TRANSTION_ANIMATION_DURATION =
+      Duration(milliseconds: 5000);
   static const Duration STUDY_CONTENT_IMAGE_OPACITY_ANIMATION_DURATION =
       Duration(milliseconds: 500);
   static const Curve STUDY_CONTENT_IMAGE_OPACITY_ANIMATION_CURVE =

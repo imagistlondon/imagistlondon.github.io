@@ -128,6 +128,15 @@ class Content {
               final String maxHeightX3 = map[blockPrefix + '-MAX_HEIGHT_X3'];
               final String maxHeightX4 = map[blockPrefix + '-MAX_HEIGHT_X4'];
 
+              // images
+              final List<String> images = [];
+              if (map[blockPrefix + '-IMAGE'] != null)
+                images.add(map[blockPrefix + '-IMAGE']);
+              if (map[blockPrefix + '-IMAGE2'] != null)
+                images.add(map[blockPrefix + '-IMAGE2']);
+              if (map[blockPrefix + '-IMAGE3'] != null)
+                images.add(map[blockPrefix + '-IMAGE3']);
+
               studyBlocksX.add(ProjectStudyBlock(
                 title: map[blockPrefix + '-TITLE'],
                 desc: map[blockPrefix + '-DESC'],
@@ -166,6 +175,10 @@ class Content {
 
                 // image
                 image: map[blockPrefix + '-IMAGE'],
+                image2: map[blockPrefix + '-IMAGE2'],
+                image3: map[blockPrefix + '-IMAGE3'],
+                images: images,
+
                 // imageMinHeight
                 imageMinHeightX1: imageMinHeightX1 != null
                     ? double.tryParse(imageMinHeightX1)
@@ -514,6 +527,9 @@ class ProjectStudyBlock {
   final double videoHeightFactorX4;
 
   final String image;
+  final String image2;
+  final String image3;
+  final List<String> images;
 
   final double imageMinHeightX1;
   final double imageMinHeightX2;
@@ -557,6 +573,9 @@ class ProjectStudyBlock {
     this.videoHeightFactorX3,
     this.videoHeightFactorX4,
     this.image,
+    this.image2,
+    this.image3,
+    this.images,
     this.imageMinHeightX1,
     this.imageMinHeightX2,
     this.imageMinHeightX3,
