@@ -10,7 +10,7 @@ class Images {
 
     // provider
     final ImageProvider provider = (src == null || src == '')
-        ? Image.memory(kTransparentImage)
+        ? MemoryImage(kTransparentImage)
         : (src.startsWith('assets/') ? AssetImage(src) : NetworkImage(src));
 
     // add to cache
