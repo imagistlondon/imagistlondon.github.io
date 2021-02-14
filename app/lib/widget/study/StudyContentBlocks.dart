@@ -160,7 +160,7 @@ class StudyContentBlocksState extends State<StudyContentBlocks> {
         final Widget descWidget = hasDesc
             ? Container(
                 child:
-                    P(text: block.desc, textAlign: textAlign, markdown: true))
+                    P(text: block.desc, textAlign: textAlign, selectable: true))
             : SizedBox.shrink();
 
         // text spacer
