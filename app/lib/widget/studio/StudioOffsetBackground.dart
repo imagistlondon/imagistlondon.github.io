@@ -54,12 +54,21 @@ class StudioOffsetBackgroundState extends State<StudioOffsetBackground> {
         curve: Design.STUDIO_SLIDE_ANIMATION_CURVE,
         // OPACITY
         opacity: studioEnabled ? 1 : 0,
+
         // CHILD (LISTEN TO ANIMATION END)
         child: L1(
             studioAnimationEndedVN,
-            (studioAnimationEnded) => Container(
-                height: !studioEnabled && studioAnimationEnded ? 0 : height,
-                color: Design.STUDIO_OFFSET_COLOR)),
+            (studioAnimationEnded) =>
+                // COLOR FILTERED (BLEND MODE)
+                ColorFiltered(
+                    // blend mode multoply
+                    colorFilter: ColorFilter.mode(
+                        Design.STUDIO_OFFSET_COLOR, BlendMode.multiply),
+                    // normal black background
+                    child: Container(
+                        height:
+                            !studioEnabled && studioAnimationEnded ? 0 : height,
+                        color: Design.STUDIO_OFFSET_COLOR))),
       );
     });
   }
