@@ -3,11 +3,11 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "main.dart.js": "2e6fbe458d663ae9b34d3a72989a621d",
+  "main.dart.js": "35ec6717bc2a99bcd1f4f828629fbda2",
 "favicon.ico": "19a0349ef88d75cb2624b98a4e03e2fa",
 "apple-touch-icon.png": "ae03aa0f1a3dba39c37ffd7ae02863bc",
 "favicon-32x32.png": "8b9d8a3841cfb6b20fb023430c3117dd",
-"assets/NOTICES": "c3e2670f70e7205d520645697367d087",
+"assets/NOTICES": "561cea89bf64bb5081af6b62960ec579",
 "assets/fonts/font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "assets/fonts/font-saol-text-light.woff2": "598682f2968ad8d33ff48d04c8bafa93",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
@@ -158,8 +158,8 @@ const RESOURCES = {
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
 "manifest.json": "1063745475257257f2aa77a8c929cd93",
 "404.html": "f4e3edb53349945387e617abbd0fd231",
-"index.html": "885b8c04eab1dc5c50c954f041158213",
-"/": "885b8c04eab1dc5c50c954f041158213",
+"index.html": "ce26cf0bdb68fe059745e803f2cbf582",
+"/": "ce26cf0bdb68fe059745e803f2cbf582",
 "android-chrome-512x512.png": "78b6fbf11ebd07343a7b1584195bbee7",
 "android-chrome-192x192.png": "b86e1bedfeba2b7f0ee344c2c4007125"
 };
@@ -305,7 +305,7 @@ async function downloadOffline() {
     }
     currentContent[key] = true;
   }
-  for (var resourceKey in Object.keys(RESOURCES)) {
+  for (var resourceKey of Object.keys(RESOURCES)) {
     if (!currentContent[resourceKey]) {
       resources.push(resourceKey);
     }
