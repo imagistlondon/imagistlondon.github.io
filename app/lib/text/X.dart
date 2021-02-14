@@ -1,10 +1,7 @@
 import 'package:app/config/Design.dart';
 import 'package:app/util/Images.dart';
-import 'package:app/util/L1.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
-
-import 'package:matrix4_transform/matrix4_transform.dart';
 
 // X to close something
 class X extends StatefulWidget {
@@ -19,28 +16,39 @@ class X extends StatefulWidget {
   _XState createState() => _XState();
 }
 
-class _XState extends State<X> {
-  final ValueNotifier<bool> hoverVN = ValueNotifier(false);
-
+class _XState extends State<X> with TickerProviderStateMixin {
   // size of X
   static const double xEdge = Design.SPACE * 2;
-  static const Size xSize = Size(xEdge, xEdge);
 
-  // matrixA
-  static final Matrix4 matrixA =
-      Matrix4Transform().rotateByCenterDegrees(0, xSize).matrix4;
+  // animation rotaion
+  AnimationController controller;
+  Animation<double> animation;
 
-  // matrixB
-  static final Matrix4 matrixB =
-      Matrix4Transform().rotateByCenterDegrees(-90, xSize).matrix4;
+  @override
+  void initState() {
+    super.initState();
+
+    // animation controller
+    controller = AnimationController(
+      duration: Design.ICON_CROSS_ANIMATION_DURATION,
+      vsync: this,
+    );
+
+    // 90 degree turn
+    animation = Tween<double>(begin: 0, end: -90 / 360).animate(controller);
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
 
   void onEnter(PointerEvent pe) {
-    hoverVN.value = true;
+    controller.forward(from: 0);
   }
 
-  void onExit(PointerEvent pe) {
-    hoverVN.value = false;
-  }
+  void onExit(PointerEvent pe) {}
 
   @override
   Widget build(BuildContext context) {
@@ -52,21 +60,15 @@ class _XState extends State<X> {
         // PADDED CONTAINER
         child: Container(
             padding: widget.padding,
-            // LISTENER
-            child: L1(
-                hoverVN,
-                // ANIMATED CONTAINER
-                (hover) => AnimatedContainer(
-                    duration: hover
-                        ? Design.ICON_CROSS_ANIMATION_DURATION
-                        : const Duration(milliseconds: 0),
-                    // TRANSFORM
-                    transform: hover ? matrixB : matrixA,
-                    // IMAGE
-                    child: Image(
-                      image: Images.of(Design.ICON_CROSS),
-                      height: xEdge,
-                      color: widget.color,
-                    )))));
+            // ROTATION TRANSITION
+            child: RotationTransition(
+                turns: animation,
+                // IMAGE
+                child: Image(
+                  image: Images.of(Design.ICON_CROSS),
+                  width: xEdge,
+                  height: xEdge,
+                  color: widget.color,
+                ))));
   }
 }
