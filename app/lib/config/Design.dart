@@ -298,6 +298,8 @@ class Design {
 
   // studio widget opposite background color
   static const Color STUDIO_OFFSET_COLOR = Color.fromRGBO(189, 189, 189, 0.4);
+  static const ColorFilter STUDIO_OFFSET_BLEND_MODE =
+      ColorFilter.mode(Design.STUDIO_OFFSET_COLOR, BlendMode.multiply);
 
   // studio width (for x2, x3, x4)
   static const double STUDIO_SIZE = Design.SPACE * 30;

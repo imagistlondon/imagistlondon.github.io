@@ -61,9 +61,8 @@ class StudioOffsetBackgroundState extends State<StudioOffsetBackground> {
             (studioAnimationEnded) =>
                 // COLOR FILTERED (BLEND MODE)
                 ColorFiltered(
-                    // blend mode multoply
-                    colorFilter: ColorFilter.mode(
-                        Design.STUDIO_OFFSET_COLOR, BlendMode.multiply),
+                    // blend mode
+                    colorFilter: Design.STUDIO_OFFSET_BLEND_MODE,
                     // normal black background
                     child: Container(
                         height:
