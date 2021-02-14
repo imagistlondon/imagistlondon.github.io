@@ -522,6 +522,10 @@ class Design {
       letterSpacing: 0.05,
       color: Design.COLOR,
       decoration: TextDecoration.none);
+  static const TextStyle X1_H3 = X1_H2;
+  static const TextStyle X1_H4 = X1_H2;
+  static const TextStyle X1_H5 = X1_H2;
+  static const TextStyle X1_H6 = X1_H2;
 
   // <p>
   static const TextStyle X1_P = TextStyle(
@@ -556,6 +560,10 @@ class Design {
       letterSpacing: 0.05,
       color: Design.COLOR,
       decoration: TextDecoration.none);
+  static const TextStyle X2_H3 = X2_H2;
+  static const TextStyle X2_H4 = X2_H2;
+  static const TextStyle X2_H5 = X2_H2;
+  static const TextStyle X2_H6 = X2_H2;
 
   // <p>
   static const TextStyle X2_P = TextStyle(
@@ -590,6 +598,10 @@ class Design {
       letterSpacing: 0.05,
       color: Design.COLOR,
       decoration: TextDecoration.none);
+  static const TextStyle X3_H3 = X3_H2;
+  static const TextStyle X3_H4 = X3_H2;
+  static const TextStyle X3_H5 = X3_H2;
+  static const TextStyle X3_H6 = X3_H2;
 
   // <p>
   static const TextStyle X3_P = TextStyle(
@@ -624,6 +636,10 @@ class Design {
       letterSpacing: 0.05,
       color: Design.COLOR,
       decoration: TextDecoration.none);
+  static const TextStyle X4_H3 = X4_H2;
+  static const TextStyle X4_H4 = X4_H2;
+  static const TextStyle X4_H5 = X4_H2;
+  static const TextStyle X4_H6 = X4_H2;
 
   // <p>
   static const TextStyle X4_P = TextStyle(
@@ -648,6 +664,38 @@ class Design {
       return Break.decide(context, X1_H2, X2_H2, X3_H2, X4_H2);
     } catch (e) {
       return X4_H2;
+    }
+  }
+
+  static TextStyle H3(final BuildContext context) {
+    try {
+      return Break.decide(context, X1_H3, X2_H3, X3_H3, X4_H3);
+    } catch (e) {
+      return X4_H3;
+    }
+  }
+
+  static TextStyle H4(final BuildContext context) {
+    try {
+      return Break.decide(context, X1_H4, X2_H4, X3_H4, X4_H4);
+    } catch (e) {
+      return X4_H4;
+    }
+  }
+
+  static TextStyle H5(final BuildContext context) {
+    try {
+      return Break.decide(context, X1_H5, X2_H5, X3_H5, X4_H5);
+    } catch (e) {
+      return X4_H5;
+    }
+  }
+
+  static TextStyle H6(final BuildContext context) {
+    try {
+      return Break.decide(context, X1_H6, X2_H6, X3_H6, X4_H6);
+    } catch (e) {
+      return X4_H6;
     }
   }
 
