@@ -44,14 +44,15 @@ class AppState extends State<App> {
       // studyImage
       Images.precache(project.studyImage, context);
 
+      // disabled as it adds too much to intial page download
       // studyBlocks
-      if (project.studyBlocks != null) {
-        project.studyBlocks.forEach((key, studyBlocks) {
-          for (final ProjectStudyBlock studyBlock in studyBlocks) {
-            Images.precache(studyBlock.image, context);
-          }
-        });
-      }
+      // if (project.studyBlocks != null) {
+      //   project.studyBlocks.forEach((key, studyBlocks) {
+      //     for (final ProjectStudyBlock studyBlock in studyBlocks) {
+      //       Images.precache(studyBlock.image, context);
+      //     }
+      //   });
+      // }
     }
 
     print('App.loadContent.images.done');
