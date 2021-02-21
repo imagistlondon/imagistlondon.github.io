@@ -46,18 +46,18 @@ class AppState extends State<App> {
   }
 
   void loadContent(final BuildContext context) async {
-    progressFractionVN.value = 0.05;
+    // progressFractionVN.value = 0.05;
 
-    // slowly increase the progress bar
-    timerBarInitialLoadFake =
-        Timer.periodic(Design.LOADING_BAR_INITIAL_LOAD_FAKE_DURATION, (t) {
-      // limit to a maximum
-      if (progressFractionVN.value < Design.LOADING_BAR_INITIAL_LOAD_FAKE_MAX) {
-        // increment
-        progressFractionVN.value = progressFractionVN.value +
-            Design.LOADING_BAR_INITIAL_LOAD_FAKE_INCREMENT;
-      }
-    });
+    // // slowly increase the progress bar
+    // timerBarInitialLoadFake =
+    //     Timer.periodic(Design.LOADING_BAR_INITIAL_LOAD_FAKE_DURATION, (t) {
+    //   // limit to a maximum
+    //   if (progressFractionVN.value < Design.LOADING_BAR_INITIAL_LOAD_FAKE_MAX) {
+    //     // increment
+    //     progressFractionVN.value = progressFractionVN.value +
+    //         Design.LOADING_BAR_INITIAL_LOAD_FAKE_INCREMENT;
+    //   }
+    // });
 
     // load
     contentVN.value = await Content.load();
@@ -98,24 +98,24 @@ class AppState extends State<App> {
       // }
 
       // increment progress
-      progressFractionVN.value = progressFractionVN.value + projectProgessValue;
+      // progressFractionVN.value = progressFractionVN.value + projectProgessValue;
     }
     print('App.loadContent.images.done');
 
     // stop the initial load faker
-    timerBarInitialLoadFake.cancel();
-    timerBarInitialLoadFake = null;
+    // timerBarInitialLoadFake.cancel();
+    // timerBarInitialLoadFake = null;
 
     // finalize
-    progressFractionVN.value = 1;
+    // progressFractionVN.value = 1;
     loadingVN.value = false;
     print('App.loadContent.done');
 
     // delay removal of progress bar
-    timerBarCloseDelay = Timer(Design.LOADING_BAR_CLOSE_DELAY_DURATION, () {
-      print('App.loadContent.progress.close');
-      progressFractionVN.value = 0;
-    });
+    // timerBarCloseDelay = Timer(Design.LOADING_BAR_CLOSE_DELAY_DURATION, () {
+    //   print('App.loadContent.progress.close');
+    //   progressFractionVN.value = 0;
+    // });
   }
 
   @override
