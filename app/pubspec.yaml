@@ -28,7 +28,7 @@ dependencies:
   flutter_markdown: '0.5.2'
   url_launcher: '5.7.10'
   intl: '0.16.1'
-  matrix4_transform: '1.1.6'
+  matrix4_transform: '1.1.7'
   recase: '3.0.1'
   provider: '4.3.2+3'
   http: '0.12.2'
