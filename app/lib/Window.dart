@@ -24,12 +24,14 @@ class Window extends StatefulWidget {
       {Key key,
       @required this.contentVN,
       @required this.loadingVN,
+      @required this.progressFractionVN,
       @required this.initIndex,
       this.initStudyKey})
       : super(key: key);
 
   final ValueNotifier<Content> contentVN;
   final ValueNotifier<bool> loadingVN;
+  final ValueNotifier<double> progressFractionVN;
   final Index initIndex;
   final String initStudyKey;
 
@@ -52,9 +54,6 @@ class WindowState extends State<Window> {
 
   // showing loading
   final ValueNotifier<bool> loadingEnabledVN = ValueNotifier(true);
-
-  // progress bar fraction
-  final ValueNotifier<double> progressFractionVN = ValueNotifier(0.0);
 
   @override
   void initState() {
@@ -136,7 +135,7 @@ class WindowState extends State<Window> {
             Study(
                 indexVN: indexVN,
                 studyEnabledVN: studyEnabledVN,
-                progressFractionVN: progressFractionVN),
+                progressFractionVN: widget.progressFractionVN),
 
             // STUDIO
             Studio(
@@ -152,7 +151,7 @@ class WindowState extends State<Window> {
 
             // PROGRESS BAR
             ProgressBar(
-                progressFractionVN: progressFractionVN,
+                progressFractionVN: widget.progressFractionVN,
                 max: MediaQuery.of(context).size.width)
           ]));
     });

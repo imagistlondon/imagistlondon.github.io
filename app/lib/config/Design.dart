@@ -181,6 +181,10 @@ class Design {
       Duration(milliseconds: 1000);
   static const Curve LOADING_TRANSLATE_ANIMATION_CURVE = Curves.easeInOut;
 
+  // when loading completes, this will delay the closing of the loading bar
+  static const Duration LOADING_BAR_CLOSE_DELAY_DURATION =
+      Duration(milliseconds: 500);
+
   ///// HEADER
 
   // The header logo image

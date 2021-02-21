@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/Index.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
@@ -18,14 +20,28 @@ class AppState extends State<App> {
   // loading
   final ValueNotifier<bool> loadingVN = ValueNotifier(true);
 
+  // progress bar fraction
+  final ValueNotifier<double> progressFractionVN = ValueNotifier(0.0);
+
   @override
   void initState() {
     super.initState();
   }
 
   void loadContent(final BuildContext context) async {
+    progressFractionVN.value = 0.05;
+
+    // load
     contentVN.value = await Content.load();
     print('App.loadContent.api.done');
+    progressFractionVN.value = 0.5;
+
+    // calculate remaining progress
+    final double remainingProgess = 1 - progressFractionVN.value;
+
+    // calculate each project progress value
+    final double projectProgessValue =
+        (1 / contentVN.value.PROJECTS.length) * remainingProgess;
 
     // precache images
     for (final Project project in contentVN.value.PROJECTS) {
@@ -53,10 +69,22 @@ class AppState extends State<App> {
       //     }
       //   });
       // }
-    }
 
+      // increment progress
+      progressFractionVN.value = progressFractionVN.value + projectProgessValue;
+    }
     print('App.loadContent.images.done');
+
+    // finalize
+    progressFractionVN.value = 1;
     loadingVN.value = false;
+    print('App.loadContent.done');
+
+    // delay removal of progress bar
+    Timer(Design.LOADING_TRANSLATE_ANIMATION_DURATION, () {
+      print('App.loadContent.progress.close');
+      progressFractionVN.value = 0;
+    });
   }
 
   @override
@@ -111,6 +139,7 @@ class AppState extends State<App> {
             builder: (context) => Window(
                 contentVN: contentVN,
                 loadingVN: loadingVN,
+                progressFractionVN: progressFractionVN,
                 initIndex: initIndex,
                 initStudyKey: initStudyKey));
       },
