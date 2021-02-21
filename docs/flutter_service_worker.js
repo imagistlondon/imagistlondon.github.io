@@ -10,8 +10,7 @@ const RESOURCES = {
 "assets/NOTICES": "6891e8663676658d47583c5096164482",
 "assets/fonts/font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "assets/fonts/font-saol-text-light.woff2": "598682f2968ad8d33ff48d04c8bafa93",
-"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"assets/FontManifest.json": "1a331df5c5b92fa7020dd366ad7c3334",
+"assets/FontManifest.json": "880846c6a612f468ebb7fadec2c57444",
 "assets/AssetManifest.json": "dc706fc1cd08fedab12dc33a2ad67ff2",
 "assets/assets/Indoi_Lookbook_01.jpg": "1db48a37a8da8b160b659adb9916bfa9",
 "assets/assets/Manifesto_Identity_05.png": "906f78292444d68289b5de66f28472fb",
@@ -157,8 +156,8 @@ const RESOURCES = {
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
 "manifest.json": "1063745475257257f2aa77a8c929cd93",
 "404.html": "f4e3edb53349945387e617abbd0fd231",
-"index.html": "e2b0d751f64854b038ad3584e35499f9",
-"/": "e2b0d751f64854b038ad3584e35499f9",
+"index.html": "2b1bf8712779b795594314aa72fb386a",
+"/": "2b1bf8712779b795594314aa72fb386a",
 "android-chrome-512x512.png": "78b6fbf11ebd07343a7b1584195bbee7",
 "android-chrome-192x192.png": "b86e1bedfeba2b7f0ee344c2c4007125"
 };
