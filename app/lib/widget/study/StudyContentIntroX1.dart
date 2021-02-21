@@ -22,9 +22,17 @@ class StudyContentIntroX1 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // title
-              H1(text: studyEnabledVN.value.title, selectable: true),
+              H1(
+                  text: studyEnabledVN.value.title,
+                  selectable: true,
+                  style:
+                      TextStyle(color: Design.STUDY_CONTENT_INTRO_TITLE_COLOR)),
               // subtitle
-              H1(text: studyEnabledVN.value.subtitle, selectable: true),
+              H1(
+                  text: studyEnabledVN.value.subtitle,
+                  selectable: true,
+                  style: TextStyle(
+                      color: Design.STUDY_CONTENT_INTRO_SUBTITLE_COLOR)),
               // gap
               const SizedBox(height: Design.SPACE),
               // description

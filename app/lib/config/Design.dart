@@ -449,6 +449,9 @@ class Design {
   static const double STUDY_ARROW_ANIMATION_HEIGHT_SCALE = 0.6;
 
   // study content intro block
+  static const Color STUDY_CONTENT_INTRO_TITLE_COLOR = Design.COLOR;
+  static const Color STUDY_CONTENT_INTRO_SUBTITLE_COLOR =
+      Color.fromRGBO(0, 0, 0, 0.4);
   static const double STUDY_CONTENT_INTRO_BLOCK_WIDTH_FACTOR = 0.4;
   static const double STUDY_CONTENT_INTRO_BLOCK_MIN_WIDTH = 100;
   static const double STUDY_CONTENT_INTRO_BLOCK_MAX_WIDTH = 500;
