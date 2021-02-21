@@ -178,7 +178,7 @@ class Design {
 
   // animation for the loading page fade in/out
   static const Duration LOADING_TRANSLATE_ANIMATION_DURATION =
-      Duration(milliseconds: 500);
+      Duration(milliseconds: 1000);
   static const Curve LOADING_TRANSLATE_ANIMATION_CURVE = Curves.easeInOut;
 
   ///// HEADER
@@ -426,7 +426,7 @@ class Design {
 
   // animation for the study page fade in/out
   static const Duration STUDY_TRANSLATE_ANIMATION_DURATION =
-      Duration(milliseconds: 500);
+      Duration(milliseconds: 1000);
   static const Curve STUDY_TRANSLATE_ANIMATION_CURVE = Curves.easeInOut;
 
   // study main thumb image height
@@ -444,7 +444,8 @@ class Design {
   static const double STUDY_ARROW_WIDTH = Design.SPACE * 2;
   static const double STUDY_ARROW_TRANSLATION_OFFSET = Design.SPACE;
   static const Duration STUDY_ARROW_ANIMATION_DURATION =
-      Duration(milliseconds: 100);
+      Duration(milliseconds: 200);
+  static const Curve STUDY_ARROW_ANIMATION_CURVE = Curves.easeInOut;
   static const double STUDY_ARROW_ANIMATION_HEIGHT_SCALE = 0.6;
 
   // study content intro block
@@ -454,8 +455,8 @@ class Design {
 
   // study scroll to top animation (when arrow button clicked)
   static const STUDY_SCROLL_TO_TOP_ANIMATION_DURATION =
-      Duration(milliseconds: 200);
-  static const STUDY_SCROLL_TO_TOP_ANIMATION_CURVE = Curves.ease;
+      Duration(milliseconds: 500);
+  static const STUDY_SCROLL_TO_TOP_ANIMATION_CURVE = Curves.easeInOut;
 
   // how the blocks should align
   // (a) the horizontal alignment of elements in the same row

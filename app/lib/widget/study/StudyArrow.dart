@@ -77,6 +77,7 @@ class StudyArrowState extends State<StudyArrow> {
                                     // DURATION
                                     duration:
                                         Design.STUDY_ARROW_ANIMATION_DURATION,
+                                    curve: Design.STUDY_ARROW_ANIMATION_CURVE,
                                     alignment: Alignment.topCenter,
                                     widthFactor: 1.0,
                                     heightFactor: hover
