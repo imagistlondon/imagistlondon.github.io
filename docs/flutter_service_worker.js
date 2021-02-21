@@ -3,16 +3,16 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "main.dart.js": "9ab1a5c4da0435a9e3f759e25e1d29e4",
+  "main.dart.js": "9def6d95c16c1dc024dbc8ac8fa64cae",
 "favicon.ico": "19a0349ef88d75cb2624b98a4e03e2fa",
 "apple-touch-icon.png": "ae03aa0f1a3dba39c37ffd7ae02863bc",
 "favicon-32x32.png": "8b9d8a3841cfb6b20fb023430c3117dd",
-"assets/NOTICES": "561cea89bf64bb5081af6b62960ec579",
+"assets/NOTICES": "6891e8663676658d47583c5096164482",
 "assets/fonts/font-untitled-sans-web-light.woff2": "ab8dc13c2dd328a8498a7e573269da16",
 "assets/fonts/font-saol-text-light.woff2": "598682f2968ad8d33ff48d04c8bafa93",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
 "assets/FontManifest.json": "1a331df5c5b92fa7020dd366ad7c3334",
-"assets/AssetManifest.json": "87b74729ef7b22f46f4970c91d64ff7a",
+"assets/AssetManifest.json": "dc706fc1cd08fedab12dc33a2ad67ff2",
 "assets/assets/Indoi_Lookbook_01.jpg": "1db48a37a8da8b160b659adb9916bfa9",
 "assets/assets/Manifesto_Identity_05.png": "906f78292444d68289b5de66f28472fb",
 "assets/assets/Manifesto_Identity_04.png": "66d023e1b8088110bf844160e8930adb",
@@ -154,12 +154,11 @@ const RESOURCES = {
 "assets/assets/CDY_LAYERS_PROCESS_02.jpg": "fa6a07eac0c3d67929f3f8e8a11bcc2c",
 "assets/assets/empty.png": "c9477b1f1820f9acfb93eebb2e6679c2",
 "assets/assets/img-cross.svg": "93599771837f1051944c2000ba67779a",
-"assets/packages/flutter_markdown/assets/logo.png": "67642a0b80f3d50277c44cde8f450e50",
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
 "manifest.json": "1063745475257257f2aa77a8c929cd93",
 "404.html": "f4e3edb53349945387e617abbd0fd231",
-"index.html": "92c83c15dad5066ea97f99f45a84d4e1",
-"/": "92c83c15dad5066ea97f99f45a84d4e1",
+"index.html": "e2b0d751f64854b038ad3584e35499f9",
+"/": "e2b0d751f64854b038ad3584e35499f9",
 "android-chrome-512x512.png": "78b6fbf11ebd07343a7b1584195bbee7",
 "android-chrome-192x192.png": "b86e1bedfeba2b7f0ee344c2c4007125"
 };
