@@ -25,7 +25,7 @@ jobs:
       - name: Build Release
         run: |
           cd app
-          ./flutter/bin/flutter build web --release --source-maps
+          ./flutter/bin/flutter build web --web-renderer canvaskit --release --source-maps
           ls -la
 
       - name: Delete docs/*
