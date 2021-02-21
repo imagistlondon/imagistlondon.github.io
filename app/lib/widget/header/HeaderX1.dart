@@ -1,8 +1,5 @@
 import 'package:app/config/Content.dart';
-import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
-import 'package:app/widget/header/HeaderBulletLinksX1.dart';
-import 'package:app/widget/header/HeaderLogoX1.dart';
 import 'package:app/widget/header/HeaderStudioLinkX1.dart';
 import 'package:app/widget/header/HeaderWorkLinkX1.dart';
 import 'package:flutter/material.dart';
@@ -27,9 +24,7 @@ class HeaderX1 extends StatelessWidget {
         // COLUMN
         child: Column(children: <Widget>[
       // X1 MAIN HEADER ROW
-      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
-        // LOGO
-        HeaderLogoX1(indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN),
+      Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
         // LINKS
         Container(
             child: Row(

@@ -11,6 +11,9 @@ import 'package:app/widget/header/HeaderX234.dart';
 import 'package:app/widget/home/Home.dart';
 import 'package:app/widget/Loading.dart';
 import 'package:app/widget/ProgressBar.dart';
+import 'package:app/widget/logo/LogoImage.dart';
+import 'package:app/widget/logo/LogoX1.dart';
+import 'package:app/widget/logo/LogoX234.dart';
 import 'package:app/widget/showcaseX34/ShowcaseX34.dart';
 import 'package:app/widget/showcaseX12/ShowcaseX12.dart';
 import 'package:app/widget/studio/Studio.dart';
@@ -130,6 +133,12 @@ class WindowState extends State<Window> {
                 indexVN: indexVN,
                 studyEnabledVN: studyEnabledVN,
               ),
+
+            // LOGO
+            Break.x1(context)
+                ? LogoX1(indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN)
+                : LogoX234(
+                    indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN),
 
             // STUDY
             Study(

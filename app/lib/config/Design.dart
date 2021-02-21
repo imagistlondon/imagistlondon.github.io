@@ -205,7 +205,8 @@ class Design {
   // The duration in milliseconds for the logo icon to animate (translate x)
   static const Duration HEADER_LOGO_ANIMATION_DURATION =
       Duration(milliseconds: 50);
-  static const double HEADER_LOGO_ANIMATION_TRANSLATION = Design.SPACE * -0.50;
+  static const double HEADER_LOGO_ANIMATION_TRANSLATION =
+      Design.SPACE * -0.50; // make me 0 to disable
 
   // header link text color
   static const Color HEADER_LINK_COLOR = Color.fromRGBO(0, 0, 0, 0.7);

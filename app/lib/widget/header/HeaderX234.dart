@@ -2,7 +2,6 @@ import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/header/HeaderBulletLinksX234.dart';
-import 'package:app/widget/header/HeaderLogoX234.dart';
 import 'package:app/widget/header/HeaderStudioLinkX234.dart';
 import 'package:app/widget/header/HeaderWorkLinkX234.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +29,6 @@ class HeaderX234 extends StatelessWidget {
       // STACK
       child: Stack(
         children: <Widget>[
-          // HEADER LOGO
-          HeaderLogoX234(indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN),
-
           // HEADER WORK LINK
           HeaderWorkLinkX234(
               contentVN: contentVN,
