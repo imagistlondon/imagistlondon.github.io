@@ -436,11 +436,11 @@ class Design {
   static const double STUDY_THUMB_MAX_HEIGHT = 1000;
 
   // the color of the cross icon to close the study
-  static const Color STUDY_X_COLOR = Color.fromRGBO(5, 5, 5, 1);
+  static const Color STUDY_X_COLOR = Color.fromRGBO(171, 167, 171, 1);
 
   // study arrow image
   static const String STUDY_ARROW_IMAGE = 'assets/img-arrow.png';
-  static const Color STUDY_ARROW_COLOR = Design.COLOR;
+  static const Color STUDY_ARROW_COLOR = Color.fromRGBO(171, 167, 171, 1);
   static const double STUDY_ARROW_WIDTH = Design.SPACE * 2;
   static const double STUDY_ARROW_TRANSLATION_OFFSET = Design.SPACE;
   static const Duration STUDY_ARROW_ANIMATION_DURATION =
