@@ -23,6 +23,23 @@ class AppState extends State<App> {
   // progress bar fraction
   final ValueNotifier<double> progressFractionVN = ValueNotifier(0.0);
 
+  // ticket to switch projects
+  Timer timerBarInitialLoadFake;
+  Timer timerBarCloseDelay;
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (timerBarInitialLoadFake != null) {
+      timerBarInitialLoadFake.cancel();
+      timerBarInitialLoadFake = null;
+    }
+    if (timerBarCloseDelay != null) {
+      timerBarCloseDelay.cancel();
+      timerBarCloseDelay = null;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -31,10 +48,20 @@ class AppState extends State<App> {
   void loadContent(final BuildContext context) async {
     progressFractionVN.value = 0.05;
 
+    // slowly increase the progress bar
+    timerBarInitialLoadFake =
+        Timer.periodic(Design.LOADING_BAR_INITIAL_LOAD_FAKE_DURATION, (t) {
+      // limit to a maximum
+      if (progressFractionVN.value < Design.LOADING_BAR_INITIAL_LOAD_FAKE_MAX) {
+        // increment
+        progressFractionVN.value = progressFractionVN.value +
+            Design.LOADING_BAR_INITIAL_LOAD_FAKE_INCREMENT;
+      }
+    });
+
     // load
     contentVN.value = await Content.load();
     print('App.loadContent.api.done');
-    progressFractionVN.value = 0.5;
 
     // calculate remaining progress
     final double remainingProgess = 1 - progressFractionVN.value;
@@ -75,13 +102,17 @@ class AppState extends State<App> {
     }
     print('App.loadContent.images.done');
 
+    // stop the initial load faker
+    timerBarInitialLoadFake.cancel();
+    timerBarInitialLoadFake = null;
+
     // finalize
     progressFractionVN.value = 1;
     loadingVN.value = false;
     print('App.loadContent.done');
 
     // delay removal of progress bar
-    Timer(Design.LOADING_TRANSLATE_ANIMATION_DURATION, () {
+    timerBarCloseDelay = Timer(Design.LOADING_BAR_CLOSE_DELAY_DURATION, () {
       print('App.loadContent.progress.close');
       progressFractionVN.value = 0;
     });

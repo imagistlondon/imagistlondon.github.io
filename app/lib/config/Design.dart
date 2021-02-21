@@ -181,6 +181,12 @@ class Design {
       Duration(milliseconds: 1000);
   static const Curve LOADING_TRANSLATE_ANIMATION_CURVE = Curves.easeInOut;
 
+  // fakes the initial progress bar loading when download the content from the CMS
+  static const double LOADING_BAR_INITIAL_LOAD_FAKE_MAX = 0.75;
+  static const Duration LOADING_BAR_INITIAL_LOAD_FAKE_DURATION =
+      Duration(milliseconds: 20);
+  static const double LOADING_BAR_INITIAL_LOAD_FAKE_INCREMENT = 0.01;
+
   // when loading completes, this will delay the closing of the loading bar
   static const Duration LOADING_BAR_CLOSE_DELAY_DURATION =
       Duration(milliseconds: 500);
