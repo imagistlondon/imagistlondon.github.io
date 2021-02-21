@@ -23,9 +23,9 @@ class AppState extends State<App> {
   // progress bar fraction
   final ValueNotifier<double> progressFractionVN = ValueNotifier(0.0);
 
-  // ticket to switch projects
   Timer timerBarInitialLoadFake;
   Timer timerBarCloseDelay;
+  Timer timerFinalizeDelay;
 
   @override
   void dispose() {
@@ -38,6 +38,10 @@ class AppState extends State<App> {
       timerBarCloseDelay.cancel();
       timerBarCloseDelay = null;
     }
+    if (timerFinalizeDelay != null) {
+      timerFinalizeDelay.cancel();
+      timerFinalizeDelay = null;
+    }
   }
 
   @override
@@ -46,18 +50,16 @@ class AppState extends State<App> {
   }
 
   void loadContent(final BuildContext context) async {
-    // progressFractionVN.value = 0.05;
-
-    // // slowly increase the progress bar
-    // timerBarInitialLoadFake =
-    //     Timer.periodic(Design.LOADING_BAR_INITIAL_LOAD_FAKE_DURATION, (t) {
-    //   // limit to a maximum
-    //   if (progressFractionVN.value < Design.LOADING_BAR_INITIAL_LOAD_FAKE_MAX) {
-    //     // increment
-    //     progressFractionVN.value = progressFractionVN.value +
-    //         Design.LOADING_BAR_INITIAL_LOAD_FAKE_INCREMENT;
-    //   }
-    // });
+    // slowly increase the progress bar
+    timerBarInitialLoadFake =
+        Timer.periodic(Design.LOADING_BAR_INITIAL_LOAD_FAKE_DURATION, (t) {
+      // limit to a maximum
+      if (progressFractionVN.value < Design.LOADING_BAR_INITIAL_LOAD_FAKE_MAX) {
+        // increment
+        progressFractionVN.value = progressFractionVN.value +
+            Design.LOADING_BAR_INITIAL_LOAD_FAKE_INCREMENT;
+      }
+    });
 
     // load
     contentVN.value = await Content.load();
@@ -98,24 +100,27 @@ class AppState extends State<App> {
       // }
 
       // increment progress
-      // progressFractionVN.value = progressFractionVN.value + projectProgessValue;
+      progressFractionVN.value = progressFractionVN.value + projectProgessValue;
     }
     print('App.loadContent.images.done');
 
     // stop the initial load faker
-    // timerBarInitialLoadFake.cancel();
-    // timerBarInitialLoadFake = null;
-
-    // finalize
-    // progressFractionVN.value = 1;
-    loadingVN.value = false;
-    print('App.loadContent.done');
+    timerBarInitialLoadFake.cancel();
+    timerBarInitialLoadFake = null;
 
     // delay removal of progress bar
-    // timerBarCloseDelay = Timer(Design.LOADING_BAR_CLOSE_DELAY_DURATION, () {
-    //   print('App.loadContent.progress.close');
-    //   progressFractionVN.value = 0;
-    // });
+    timerBarCloseDelay = Timer(Design.LOADING_BAR_CLOSE_DELAY_DURATION, () {
+      print('App.loadContent.progress.close');
+      progressFractionVN.value = null;
+    });
+
+    // delay closing loading to allow content to draw behind
+    timerFinalizeDelay = Timer(Design.LOADING_FINALIZE_DELAY, () {
+      print('App.loadContent.loading.close');
+      loadingVN.value = false;
+    });
+
+    print('App.loadContent.done');
   }
 
   @override

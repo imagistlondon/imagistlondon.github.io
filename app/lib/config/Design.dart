@@ -166,7 +166,7 @@ class Design {
 
   // duration of the progress bar to transition
   static const Duration PROGRESS_BAR_ANIMATION_DURATION =
-      Duration(milliseconds: 200);
+      Duration(milliseconds: 300);
 
   ///// LOADING PAGE
 
@@ -189,7 +189,10 @@ class Design {
 
   // when loading completes, this will delay the closing of the loading bar
   static const Duration LOADING_BAR_CLOSE_DELAY_DURATION =
-      Duration(milliseconds: 500);
+      Duration(milliseconds: 900);
+
+  // delay closing loading to allow content to draw behind
+  static const Duration LOADING_FINALIZE_DELAY = Duration(milliseconds: 1000);
 
   ///// HEADER
 
