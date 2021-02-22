@@ -217,7 +217,7 @@ class AppState extends State<App> {
               print('App.L1.contentComplete.' + complete.toString());
 
               // skip if not complete
-              if (!complete) return SizedBox.shrink();
+              // if (!complete) return SizedBox.shrink();
 
               // build window
               return Window(
