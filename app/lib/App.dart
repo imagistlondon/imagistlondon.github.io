@@ -73,45 +73,46 @@ class AppState extends State<App> {
     await Content.load();
     contentCompleteVN.value = true;
 
-    // // calculate remaining progress
-    // final double remainingProgess = 1 - progressFractionVN.value;
+    // calculate remaining progress
+    final double remainingProgess = 1 - progressFractionVN.value;
 
-    // // calculate each project progress value
-    // final double projectProgessValue =
-    //     (1 / Content.data.PROJECTS.length) * remainingProgess;
+    // calculate each project progress value
+    final double projectProgessValue =
+        (1 / Content.data.PROJECTS.length) * remainingProgess;
 
-    // // precache images
-    // for (final Project project in Content.data.PROJECTS) {
-    //   // homeImage
-    //   Images.precache(project.homeImage, context);
+    // precache images
+    for (final Project project in Content.data.PROJECTS) {
+      // homeImage
+      Images.precache(project.homeImage, context);
 
-    //   // showcaseImage
-    //   Images.precache(project.showcaseImage, context);
+      // showcaseImage
+      Images.precache(project.showcaseImage, context);
 
-    //   // archiveImage
-    //   Images.precache(project.archiveImage, context);
+      // archiveImage
+      Images.precache(project.archiveImage, context);
 
-    //   // tagImage
-    //   Images.precache(project.tagImage, context);
+      // tagImage
+      Images.precache(project.tagImage, context);
 
-    //   // studyImage
-    //   Images.precache(project.studyImage, context);
+      // studyImage
+      Images.precache(project.studyImage, context);
 
-    //   // studyBlocks (only enabled for the main projects on home and showcase)
-    //   if (project.home || project.showcase) {
-    //     if (project.studyBlocks != null) {
-    //       project.studyBlocks.forEach((key, studyBlocks) {
-    //         for (final ProjectStudyBlock studyBlock in studyBlocks) {
-    //           Images.precache(studyBlock.image, context);
-    //         }
-    //       });
-    //     }
-    //   }
+      // disabled as these will be loaded by the Study widgets anyway
+      // studyBlocks (only enabled for the main projects on home and showcase)
+      // if (project.home || project.showcase) {
+      //   if (project.studyBlocks != null) {
+      //     project.studyBlocks.forEach((key, studyBlocks) {
+      //       for (final ProjectStudyBlock studyBlock in studyBlocks) {
+      //         Images.precache(studyBlock.image, context);
+      //       }
+      //     });
+      //   }
+      // }
 
-    //   // increment progress
-    //   progressFractionVN.value = progressFractionVN.value + projectProgessValue;
-    // }
-    // print('App.loadData.images.done');
+      // increment progress
+      progressFractionVN.value = progressFractionVN.value + projectProgessValue;
+    }
+    print('App.loadData.images.done');
 
     // stop the download faker
     timerBarDownloadFake.cancel();
@@ -212,7 +213,6 @@ class AppState extends State<App> {
 
               // build window
               return Window(
-                  contentCompleteVN: contentCompleteVN,
                   drawCompleteVN: drawCompleteVN,
                   progressFractionVN: progressFractionVN,
                   indexVN: IndexNotifier(initIndex),

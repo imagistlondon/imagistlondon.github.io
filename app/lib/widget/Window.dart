@@ -2,7 +2,6 @@ import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
-import 'package:app/util/L1.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/widget/archive/Archive.dart';
 import 'package:app/widget/header/HeaderX1.dart';
@@ -23,7 +22,6 @@ import 'package:flutter/scheduler.dart';
 class Window extends StatefulWidget {
   const Window(
       {Key key,
-      @required this.contentCompleteVN,
       @required this.drawCompleteVN,
       @required this.progressFractionVN,
       @required this.indexVN,
@@ -32,7 +30,6 @@ class Window extends StatefulWidget {
       @required this.initStudyKey})
       : super(key: key);
 
-  final ValueNotifier<bool> contentCompleteVN;
   final ValueNotifier<bool> drawCompleteVN;
   final ValueNotifier<double> progressFractionVN;
   final IndexNotifier indexVN;
@@ -62,9 +59,6 @@ class WindowState extends State<Window> {
   @override
   Widget build(BuildContext context) {
     print('Window.build');
-
-    // skip if not complete
-    // if (!complete) return SizedBox.shrink();
 
     // use the initial study key
     final StudyEnabledNotifier studyEnabledVN = StudyEnabledNotifier(
