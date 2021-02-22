@@ -9,29 +9,26 @@ import 'package:app/widget/study/StudyContent.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix4_transform/matrix4_transform.dart';
 
-class Study extends StatefulWidget {
-  const Study(
+class StudyGeneric extends StatefulWidget {
+  const StudyGeneric(
       {Key key,
       @required this.indexVN,
       @required this.studyEnabledVN,
-      @required this.progressFractionVN,
-      @required this.project})
+      @required this.progressFractionVN})
       : super(key: key);
 
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<double> progressFractionVN;
-  final Project project;
 
   @override
-  StudyState createState() => StudyState();
+  StudyGenericState createState() => StudyGenericState();
 }
 
-class StudyState extends State<Study> {
-  // scroll controller
+class StudyGenericState extends State<StudyGeneric> {
   final ScrollController scrollController = ScrollController();
 
-  // static position A
+  // static
   static final Matrix4 matrixA = Matrix4Transform().up(0).matrix4;
 
   @override
@@ -45,9 +42,11 @@ class StudyState extends State<Study> {
     });
   }
 
+  Widget child;
+
   @override
   Widget build(BuildContext context) {
-    print('Study.build.' + widget.project.key);
+    print('StudyGeneric.build');
 
     // calculate sizes
     final double width = MediaQuery.of(context).size.width;
@@ -57,47 +56,47 @@ class StudyState extends State<Study> {
     final Matrix4 matrixB =
         Matrix4Transform().down(MediaQuery.of(context).size.height).matrix4;
 
-    // build main child
-    final Widget child = Container(
-        color: Design.BACKGROUND_COLOR,
-        width: width,
-        height: height,
-        child: Stack(children: <Widget>[
-          // content
-          StudyContent(
-              indexVN: widget.indexVN,
-              studyEnabledVN: widget.studyEnabledVN,
-              scrollController: scrollController,
-              project: widget.project),
-
-          // X
-          StudyClose(
-              indexVN: widget.indexVN,
-              studyEnabledVN: widget.studyEnabledVN,
-              progressFractionVN: widget.progressFractionVN,
-              scrollController: scrollController,
-              project: widget.project),
-
-          // ARROW
-          StudyArrow(
-              indexVN: widget.indexVN,
-              studyEnabledVN: widget.studyEnabledVN,
-              scrollController: scrollController,
-              project: widget.project)
-        ]));
-
-    // L1 (studyEnabled)
+    // L1
     return L1(widget.studyEnabledVN, (final Project studyEnabled) {
-      // whether the study enabled is my project
+      // mark match
       final bool match =
-          studyEnabled != null && studyEnabled.key == widget.project.key;
+          studyEnabled != null && !studyEnabled.home && !studyEnabled.showcase;
 
-      print('Study.L1.' +
-          widget.project.key +
-          '.studyEnabled.' +
+      print('StudyGeneric.L1.studyEnabled.' +
           (studyEnabled != null ? studyEnabled.key : 'null') +
           '.' +
           (match ? 'match' : 'skip'));
+
+      // if new study, rebuild child
+      if (match) {
+        child = Container(
+            color: Design.BACKGROUND_COLOR,
+            width: width,
+            height: height,
+            child: Stack(children: <Widget>[
+              // content
+              StudyContent(
+                  indexVN: widget.indexVN,
+                  studyEnabledVN: widget.studyEnabledVN,
+                  scrollController: scrollController,
+                  project: studyEnabled),
+
+              // X
+              StudyClose(
+                  indexVN: widget.indexVN,
+                  studyEnabledVN: widget.studyEnabledVN,
+                  progressFractionVN: widget.progressFractionVN,
+                  scrollController: scrollController,
+                  project: studyEnabled),
+
+              // ARROW
+              StudyArrow(
+                  indexVN: widget.indexVN,
+                  studyEnabledVN: widget.studyEnabledVN,
+                  scrollController: scrollController,
+                  project: studyEnabled)
+            ]));
+      }
 
       // animate slide up/down
       return AnimatedContainer(

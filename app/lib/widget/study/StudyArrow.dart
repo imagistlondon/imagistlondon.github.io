@@ -1,3 +1,4 @@
+import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
@@ -11,12 +12,14 @@ class StudyArrow extends StatefulWidget {
       {Key key,
       @required this.indexVN,
       @required this.studyEnabledVN,
-      @required this.scrollController})
+      @required this.scrollController,
+      @required this.project})
       : super(key: key);
 
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ScrollController scrollController;
+  final Project project;
 
   @override
   StudyArrowState createState() => StudyArrowState();

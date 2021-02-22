@@ -10,14 +10,17 @@ import 'package:app/util/L1.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/VideoFrame.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 class StudyContentBlocks extends StatefulWidget {
   const StudyContentBlocks(
-      {Key key, @required this.studyEnabledVN, @required this.letter})
+      {Key key,
+      @required this.studyEnabledVN,
+      @required this.project,
+      @required this.letter})
       : super(key: key);
 
   final StudyEnabledNotifier studyEnabledVN;
+  final Project project;
   final String letter;
 
   @override
@@ -45,8 +48,8 @@ class StudyContentBlocksState extends State<StudyContentBlocks> {
   @override
   Widget build(BuildContext context) {
     // skip if no blocks
-    if (widget.studyEnabledVN.value.studyBlocks == null ||
-        widget.studyEnabledVN.value.studyBlocks[widget.letter] == null)
+    if (widget.project.studyBlocks == null ||
+        widget.project.studyBlocks[widget.letter] == null)
       return SizedBox.shrink();
 
     // calculate fill width
@@ -67,7 +70,7 @@ class StudyContentBlocksState extends State<StudyContentBlocks> {
     // allocate rows
     int i = -1;
     for (final ProjectStudyBlock block
-        in widget.studyEnabledVN.value.studyBlocks[widget.letter]) {
+        in widget.project.studyBlocks[widget.letter]) {
       i++;
 
       // calculate block width
@@ -219,7 +222,7 @@ class StudyContentBlocksState extends State<StudyContentBlocks> {
                 (blockImageIndexVN.value + 1) % block.images.length;
 
             // print
-            print('blockImageIndexVN:' + blockImageIndexVN.value.toString());
+            // print('blockImageIndexVN:' + blockImageIndexVN.value.toString());
           }));
         }
 

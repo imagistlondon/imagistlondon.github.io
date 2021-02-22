@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/X.dart';
 import 'package:app/util/IndexNotifier.dart';
@@ -12,13 +13,15 @@ class StudyClose extends StatefulWidget {
       @required this.indexVN,
       @required this.studyEnabledVN,
       @required this.progressFractionVN,
-      @required this.scrollController})
+      @required this.scrollController,
+      @required this.project})
       : super(key: key);
 
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<double> progressFractionVN;
   final ScrollController scrollController;
+  final Project project;
 
   @override
   StudyCloseState createState() => StudyCloseState();

@@ -1,4 +1,5 @@
 import 'package:app/config/Break.dart';
+import 'package:app/config/Content.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/widget/study/StudyContentBlocks.dart';
@@ -12,12 +13,14 @@ class StudyContent extends StatelessWidget {
       {Key key,
       @required this.indexVN,
       @required this.studyEnabledVN,
-      @required this.scrollController})
+      @required this.scrollController,
+      @required this.project})
       : super(key: key);
 
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ScrollController scrollController;
+  final Project project;
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +38,27 @@ class StudyContent extends StatelessWidget {
                 // CHILDREN
                 children: <Widget>[
                   // StudyContentThumb
-                  StudyContentThumb(studyEnabledVN: studyEnabledVN),
+                  StudyContentThumb(
+                      studyEnabledVN: studyEnabledVN, project: project),
 
                   // StudyContentIntro
                   Break.x1(context)
-                      ? StudyContentIntroX1(studyEnabledVN: studyEnabledVN)
-                      : StudyContentIntroX234(studyEnabledVN: studyEnabledVN),
+                      ? StudyContentIntroX1(
+                          studyEnabledVN: studyEnabledVN, project: project)
+                      : StudyContentIntroX234(
+                          studyEnabledVN: studyEnabledVN, project: project),
 
                   // StudyContentBlocks (A)
                   StudyContentBlocks(
-                      studyEnabledVN: studyEnabledVN, letter: 'A'),
+                      studyEnabledVN: studyEnabledVN,
+                      project: project,
+                      letter: 'A'),
 
                   // StudyContentBlocks (B)
                   StudyContentBlocks(
-                      studyEnabledVN: studyEnabledVN, letter: 'B')
+                      studyEnabledVN: studyEnabledVN,
+                      project: project,
+                      letter: 'B')
                 ])));
   }
 }
