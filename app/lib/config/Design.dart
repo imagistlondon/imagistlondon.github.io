@@ -194,15 +194,11 @@ class Design {
   // fakes the progress bar loading when drawing the content
   static const double LOADING_BAR_DRAW_FAKE_MAX = 1;
   static const Duration LOADING_BAR_DRAW_FAKE_PERIODIC_DURATION =
-      Duration(milliseconds: 20);
+      Duration(milliseconds: 50);
   static const double LOADING_BAR_DRAW_FAKE_INCREMENT = 0.01;
 
-  // when loading completes, this will delay the closing of the loading bar
-  static const Duration LOADING_BAR_CLOSE_DELAY_DURATION =
-      Duration(milliseconds: 10000);
-
   // delay closing loading to allow content to draw behind
-  static const Duration LOADING_FINALIZE_DELAY = Duration(milliseconds: 15000);
+  static const Duration LOADING_FINALIZE_DELAY = Duration(milliseconds: 5000);
 
   ///// HEADER
 

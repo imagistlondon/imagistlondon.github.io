@@ -45,15 +45,9 @@ class WindowState extends State<Window> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      print('Window.postFrameCallback1');
+      print('Window.postFrameCallback');
       widget.drawCompleteVN.value = true;
     });
-    if (SchedulerBinding.instance.schedulerPhase ==
-        SchedulerPhase.persistentCallbacks) {
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        print('Window.postFrameCallback2');
-      });
-    }
   }
 
   @override

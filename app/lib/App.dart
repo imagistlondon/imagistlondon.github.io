@@ -28,8 +28,8 @@ class AppState extends State<App> {
 
   Timer timerBarDownloadFake;
   Timer timerBarDrawFake;
-  Timer timerBarCloseDelay;
-  Timer timerFinalizeDelay;
+  Timer timerFinalizeDelay1;
+  Timer timerFinalizeDelay2;
 
   @override
   void dispose() {
@@ -42,13 +42,13 @@ class AppState extends State<App> {
       timerBarDrawFake.cancel();
       timerBarDrawFake = null;
     }
-    if (timerBarCloseDelay != null) {
-      timerBarCloseDelay.cancel();
-      timerBarCloseDelay = null;
+    if (timerFinalizeDelay1 != null) {
+      timerFinalizeDelay1.cancel();
+      timerFinalizeDelay1 = null;
     }
-    if (timerFinalizeDelay != null) {
-      timerFinalizeDelay.cancel();
-      timerFinalizeDelay = null;
+    if (timerFinalizeDelay2 != null) {
+      timerFinalizeDelay2.cancel();
+      timerFinalizeDelay2 = null;
     }
   }
 
@@ -74,7 +74,8 @@ class AppState extends State<App> {
     contentCompleteVN.value = true;
 
     // calculate remaining progress
-    final double remainingProgess = 1 - progressFractionVN.value;
+    final double remainingProgess =
+        Design.LOADING_BAR_DOWNLOAD_FAKE_MAX - progressFractionVN.value;
 
     // calculate each project progress value
     final double projectProgessValue =
@@ -133,22 +134,32 @@ class AppState extends State<App> {
     drawCompleteVN.addListener(() {
       print('App.loadData.drawComplete');
 
-      // kill timer bar draw
-      timerBarDrawFake.cancel();
-      timerBarDrawFake = null;
-
       // max the progress bar
-      progressFractionVN.value = 1;
+      // progressFractionVN.value = 1;
 
-      // delay removal of progress bar
-      timerBarCloseDelay = Timer(Design.LOADING_BAR_CLOSE_DELAY_DURATION, () {
-        print('App.loadData.progress.close');
-        progressFractionVN.value = null;
+      // delay 1
+      timerFinalizeDelay1 = Timer(Design.LOADING_FINALIZE_DELAY, () {
+        print('App.loadData.finalize.delay1');
+
+        // kill timer bar draw
+        timerBarDrawFake.cancel();
+        timerBarDrawFake = null;
+
+        // move progress bar to end
+        progressFractionVN.value = 1;
       });
 
-      // delay closing loading to allow content to draw behind
-      timerFinalizeDelay = Timer(Design.LOADING_FINALIZE_DELAY, () {
-        print('App.loadData.loading.close');
+      // delay 2
+      timerFinalizeDelay2 = Timer(
+          Duration(
+              milliseconds: Design.LOADING_FINALIZE_DELAY.inMilliseconds + 500),
+          () {
+        print('App.loadData.finalize.delay2');
+
+        // remove progress bar
+        progressFractionVN.value = null;
+
+        // remove loading
         loadingVN.value = false;
       });
     });
