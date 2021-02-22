@@ -199,10 +199,10 @@ class Design {
 
   // when loading completes, this will delay the closing of the loading bar
   static const Duration LOADING_BAR_CLOSE_DELAY_DURATION =
-      Duration(milliseconds: 1800);
+      Duration(milliseconds: 10000);
 
   // delay closing loading to allow content to draw behind
-  static const Duration LOADING_FINALIZE_DELAY = Duration(milliseconds: 2000);
+  static const Duration LOADING_FINALIZE_DELAY = Duration(milliseconds: 15000);
 
   ///// HEADER
 
