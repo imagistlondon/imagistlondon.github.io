@@ -3,8 +3,11 @@ import 'dart:async';
 import 'package:app/Index.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
-import 'package:app/Window.dart';
 import 'package:app/util/Images.dart';
+import 'package:app/util/IndexNotifier.dart';
+import 'package:app/widget/Loading.dart';
+import 'package:app/widget/ProgressBar.dart';
+import 'package:app/widget/Window.dart';
 import 'package:flutter/material.dart';
 
 // App
@@ -14,9 +17,6 @@ class App extends StatefulWidget {
 }
 
 class AppState extends State<App> {
-  // content
-  final ValueNotifier<Content> contentVN = ValueNotifier(Content());
-
   // loading
   final ValueNotifier<bool> loadingVN = ValueNotifier(true);
 
@@ -62,18 +62,17 @@ class AppState extends State<App> {
     });
 
     // load
-    contentVN.value = await Content.load();
-    print('App.loadContent.api.done');
+    await Content.load();
 
     // calculate remaining progress
     final double remainingProgess = 1 - progressFractionVN.value;
 
     // calculate each project progress value
     final double projectProgessValue =
-        (1 / contentVN.value.PROJECTS.length) * remainingProgess;
+        (1 / Content.data.PROJECTS.length) * remainingProgess;
 
     // precache images
-    for (final Project project in contentVN.value.PROJECTS) {
+    for (final Project project in Content.data.PROJECTS) {
       // homeImage
       Images.precache(project.homeImage, context);
 
@@ -89,15 +88,16 @@ class AppState extends State<App> {
       // studyImage
       Images.precache(project.studyImage, context);
 
-      // disabled as it adds too much to intial page download
-      // studyBlocks
-      // if (project.studyBlocks != null) {
-      //   project.studyBlocks.forEach((key, studyBlocks) {
-      //     for (final ProjectStudyBlock studyBlock in studyBlocks) {
-      //       Images.precache(studyBlock.image, context);
-      //     }
-      //   });
-      // }
+      // studyBlocks (only enabled for the main projects on home and showcase)
+      if (project.home || project.showcase) {
+        if (project.studyBlocks != null) {
+          project.studyBlocks.forEach((key, studyBlocks) {
+            for (final ProjectStudyBlock studyBlock in studyBlocks) {
+              Images.precache(studyBlock.image, context);
+            }
+          });
+        }
+      }
 
       // increment progress
       progressFractionVN.value = progressFractionVN.value + projectProgessValue;
@@ -119,8 +119,6 @@ class AppState extends State<App> {
       print('App.loadContent.loading.close');
       loadingVN.value = false;
     });
-
-    print('App.loadContent.done');
   }
 
   @override
@@ -171,13 +169,26 @@ class AppState extends State<App> {
         }
 
         // build route
-        return MaterialPageRoute(
-            builder: (context) => Window(
-                contentVN: contentVN,
+        return MaterialPageRoute(builder: (context) {
+          return Stack(children: <Widget>[
+            // WINDOW
+            Window(
                 loadingVN: loadingVN,
                 progressFractionVN: progressFractionVN,
-                initIndex: initIndex,
-                initStudyKey: initStudyKey));
+                indexVN: IndexNotifier(initIndex),
+                bulletsEnabledVN: ValueNotifier(initIndex.isWork()),
+                studioEnabledVN: ValueNotifier(false),
+                initStudyKey: initStudyKey),
+
+            // LOADING
+            Loading(loadingVN: loadingVN),
+
+            // PROGRESS BAR
+            ProgressBar(
+                progressFractionVN: progressFractionVN,
+                max: MediaQuery.of(context).size.width)
+          ]);
+        });
       },
 
       // THEME
