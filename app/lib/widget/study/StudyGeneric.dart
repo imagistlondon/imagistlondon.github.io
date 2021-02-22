@@ -59,8 +59,9 @@ class StudyGenericState extends State<StudyGeneric> {
     // L1
     return L1(widget.studyEnabledVN, (final Project studyEnabled) {
       // mark match
-      final bool match =
-          studyEnabled != null && !studyEnabled.home && !studyEnabled.showcase;
+      final bool match = studyEnabled != null;
+      // final bool match =
+      //     studyEnabled != null && !studyEnabled.home && !studyEnabled.showcase;
 
       print('StudyGeneric.L1.studyEnabled.' +
           (studyEnabled != null ? studyEnabled.key : 'null') +

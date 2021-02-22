@@ -123,13 +123,13 @@ class WindowState extends State<Window> {
                   bulletsEnabledVN: widget.bulletsEnabledVN),
 
           // STUDY
-          for (final Project project in Content.data.PROJECTS)
-            if (project.home || project.showcase)
-              Study(
-                  indexVN: widget.indexVN,
-                  studyEnabledVN: studyEnabledVN,
-                  progressFractionVN: widget.progressFractionVN,
-                  project: project),
+          // for (final Project project in Content.data.PROJECTS)
+          //   if (project.home || project.showcase)
+          //     Study(
+          //         indexVN: widget.indexVN,
+          //         studyEnabledVN: studyEnabledVN,
+          //         progressFractionVN: widget.progressFractionVN,
+          //         project: project),
 
           // STUDY (generic)
           StudyGeneric(
