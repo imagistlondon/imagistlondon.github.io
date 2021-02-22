@@ -9,10 +9,8 @@ import 'package:app/util/Section.dart';
 import 'package:flutter/material.dart';
 
 class Terms extends StatelessWidget {
-  const Terms({Key key, @required this.contentVN, @required this.indexVN})
-      : super(key: key);
+  const Terms({Key key, @required this.indexVN}) : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
 
   @override
@@ -38,7 +36,7 @@ class Terms extends StatelessWidget {
                           // H1
                           H1(text: 'Terms & Conditions', selectable: true),
                           // TEXT
-                          P(text: contentVN.value.TERMS, selectable: true),
+                          P(text: Content.data.TERMS, selectable: true),
                           // VERTICAL SPACING
                           clearance
                         ])))));

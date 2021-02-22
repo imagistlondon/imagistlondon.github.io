@@ -1,4 +1,3 @@
-import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/studio/StudioFooterCopyright.dart';
@@ -7,13 +6,9 @@ import 'package:flutter/material.dart';
 
 class StudioFooter extends StatelessWidget {
   const StudioFooter(
-      {Key key,
-      @required this.contentVN,
-      @required this.indexVN,
-      @required this.studioEnabledVN})
+      {Key key, @required this.indexVN, @required this.studioEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final ValueNotifier<bool> studioEnabledVN;
 
@@ -26,16 +21,13 @@ class StudioFooter extends StatelessWidget {
         // CHILDREN
         children: <Widget>[
           // COPYRIGHT
-          StudioFooterCopyright(contentVN: contentVN),
+          StudioFooterCopyright(),
 
           // GAP
           const SizedBox(width: Design.SPACE),
 
           // TERMS
-          StudioFooterTerms(
-              contentVN: contentVN,
-              indexVN: indexVN,
-              studioEnabledVN: studioEnabledVN),
+          StudioFooterTerms(indexVN: indexVN, studioEnabledVN: studioEnabledVN),
         ]);
   }
 }

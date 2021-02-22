@@ -14,13 +14,11 @@ import 'package:flutter/material.dart';
 class Archive extends StatefulWidget {
   const Archive(
       {Key key,
-      @required this.contentVN,
       @required this.indexVN,
       @required this.bulletsEnabledVN,
       @required this.studyEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
   final StudyEnabledNotifier studyEnabledVN;
@@ -57,7 +55,7 @@ class ArchiveState extends State<Archive> {
               // STACK
               Stack(children: <Widget>[
                 // NONE
-                if (widget.contentVN.value.ARCHIVE_PROJECTS.isEmpty)
+                if (Content.data.ARCHIVE_PROJECTS.isEmpty)
                   Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: Design.gap(context)),
@@ -66,7 +64,6 @@ class ArchiveState extends State<Archive> {
 
                 // MENU
                 ArchiveMenu(
-                    contentVN: widget.contentVN,
                     indexVN: widget.indexVN,
                     studyEnabledVN: widget.studyEnabledVN,
                     projectEnabledVN: projectEnabledVN),
@@ -74,7 +71,6 @@ class ArchiveState extends State<Archive> {
                 // IMAGE
                 if (Break.x234(context))
                   ArchiveImage(
-                      contentVN: widget.contentVN,
                       indexVN: widget.indexVN,
                       studyEnabledVN: widget.studyEnabledVN,
                       projectEnabledVN: projectEnabledVN)

@@ -1,4 +1,3 @@
-import 'package:app/config/Content.dart';
 import 'package:app/widget/studio/StudioContactAddress.dart';
 import 'package:app/widget/studio/StudioContactEmail.dart';
 import 'package:app/widget/studio/StudioContactInstagram.dart';
@@ -6,9 +5,7 @@ import 'package:app/widget/studio/StudioContactPhone.dart';
 import 'package:flutter/material.dart';
 
 class StudioContact extends StatelessWidget {
-  const StudioContact({Key key, @required this.contentVN}) : super(key: key);
-
-  final ValueNotifier<Content> contentVN;
+  const StudioContact({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +15,16 @@ class StudioContact extends StatelessWidget {
         // CHILDREN
         children: <Widget>[
           // email
-          StudioContactEmail(contentVN: contentVN),
+          StudioContactEmail(),
 
           // phone
-          StudioContactPhone(contentVN: contentVN),
+          StudioContactPhone(),
 
           // address
-          StudioContactAddress(contentVN: contentVN),
+          StudioContactAddress(),
 
           // instagram
-          StudioContactInstagram(contentVN: contentVN)
+          StudioContactInstagram()
         ]);
   }
 }

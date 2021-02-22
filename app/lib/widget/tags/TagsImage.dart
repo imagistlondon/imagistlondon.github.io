@@ -10,20 +10,18 @@ import 'package:flutter/material.dart';
 class TagsImage extends StatelessWidget {
   const TagsImage(
       {Key key,
-      @required this.contentVN,
       @required this.indexVN,
       @required this.studyEnabledVN,
       @required this.image})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final String image;
 
   void onTap() {
-    final String projectKey = contentVN.value.TAG_IMAGE_TO_KEY[this.image];
-    final Project project = contentVN.value.KEY_PROJECTS[projectKey];
+    final String projectKey = Content.data.TAG_IMAGE_TO_KEY[this.image];
+    final Project project = Content.data.KEY_PROJECTS[projectKey];
     studyEnabledVN.value = project;
   }
 

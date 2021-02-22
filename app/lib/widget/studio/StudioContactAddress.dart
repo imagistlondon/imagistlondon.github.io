@@ -5,18 +5,15 @@ import 'package:app/text/P.dart';
 import 'package:flutter/material.dart';
 
 class StudioContactAddress extends StatelessWidget {
-  const StudioContactAddress({Key key, @required this.contentVN})
-      : super(key: key);
-
-  final ValueNotifier<Content> contentVN;
+  const StudioContactAddress({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return A(
-        url: contentVN.value.STUDIO_ADDRESS_GOOGLE_MAPS,
+        url: Content.data.STUDIO_ADDRESS_GOOGLE_MAPS,
         lineDuration: Design.STUDIO_ANCHOR_LINE_DURATION,
         lineCurve: Design.STUDIO_ANCHOR_LINE_CURVE,
         lineColor: Design.STUDIO_ANCHOR_LINE_COLOR,
-        child: P(text: contentVN.value.STUDIO_ADDRESS));
+        child: P(text: Content.data.STUDIO_ADDRESS));
   }
 }

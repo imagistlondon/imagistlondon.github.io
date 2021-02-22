@@ -9,6 +9,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Content {
+  static Content data = Content();
+
   static Future<Content> load() async {
     // call
     final String result =
@@ -292,6 +294,7 @@ class Content {
     final Map<String, Set<String>> tagAssociations = SplayTreeMap();
     final Map<String, Set<String>> tagImages = SplayTreeMap();
     final Map<String, String> tagImageToKey = SplayTreeMap();
+
     for (final Project project in projects) {
       // skip if no tags
       if (project.tags == null || project.tags.isEmpty) continue;
@@ -327,11 +330,8 @@ class Content {
       }
     }
 
-    return Content(
-      LOADING_LINE_1:
-          map['LOADING_LINE_1'] != null ? map['LOADING_LINE_1'] : '',
-      LOADING_LINE_2:
-          map['LOADING_LINE_2'] != null ? map['LOADING_LINE_2'] : '',
+    Content.data = Content(
+      loaded: true,
       HEADER_WORK: map['HEADER_WORK'] != null ? map['HEADER_WORK'] : 'Work',
       HEADER_STUDIO:
           map['HEADER_STUDIO'] != null ? map['HEADER_STUDIO'] : 'Studio',
@@ -397,10 +397,11 @@ class Content {
       TAG_IMAGES: tagImages,
       TAG_IMAGE_TO_KEY: tagImageToKey,
     );
+
+    print('Content.load.done');
   }
 
-  final String LOADING_LINE_1;
-  final String LOADING_LINE_2;
+  final bool loaded;
   final String HEADER_WORK;
   final String HEADER_STUDIO;
   final String STUDIO_EMAIL;
@@ -437,8 +438,7 @@ class Content {
   final Map<String, String> TAG_IMAGE_TO_KEY;
 
   const Content(
-      {this.LOADING_LINE_1 = 'The apparition of these faces in the crowd:',
-      this.LOADING_LINE_2 = 'Petals on a wet, black bough.',
+      {this.loaded = false,
       this.HEADER_WORK = '',
       this.HEADER_STUDIO = '',
       this.STUDIO_EMAIL = '',

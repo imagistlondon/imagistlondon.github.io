@@ -9,13 +9,11 @@ import 'package:flutter/material.dart';
 class ShowcaseMenuX34 extends StatefulWidget {
   const ShowcaseMenuX34({
     Key key,
-    @required this.contentVN,
     @required this.indexVN,
     @required this.studyEnabledVN,
     @required this.projectEnabledVN,
   }) : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<Project> projectEnabledVN;
@@ -60,8 +58,7 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
               onExit: onExit,
               child: Column(children: <Widget>[
                 // PROJECT LINKS
-                for (final Project project
-                    in widget.contentVN.value.SHOWCASE_PROJECTS)
+                for (final Project project in Content.data.SHOWCASE_PROJECTS)
                   ShowcaseLinkX34(
                       indexVN: widget.indexVN,
                       studyEnabledVN: widget.studyEnabledVN,

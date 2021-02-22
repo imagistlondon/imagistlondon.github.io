@@ -17,13 +17,11 @@ import 'package:flutter/material.dart';
 class Tags extends StatefulWidget {
   const Tags(
       {Key key,
-      @required this.contentVN,
       @required this.indexVN,
       @required this.bulletsEnabledVN,
       @required this.studyEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
   final StudyEnabledNotifier studyEnabledVN;
@@ -65,7 +63,7 @@ class TagsState extends State<Tags> {
     final SizedBox spacing = SizedBox(height: Design.clearance(context));
 
     // show no content if tag images are empty
-    final bool showNoContent = widget.contentVN.value.TAG_IMAGES.isEmpty;
+    final bool showNoContent = Content.data.TAG_IMAGES.isEmpty;
 
     // no content widget
     final Widget noContent = Column(
@@ -73,7 +71,6 @@ class TagsState extends State<Tags> {
 
     // _TagsMenu
     final TagsMenu _TagsMenu = TagsMenu(
-        contentVN: widget.contentVN,
         indexVN: widget.indexVN,
         studyEnabledVN: widget.studyEnabledVN,
         tagEnabledVN: tagEnabledVN,
@@ -107,7 +104,6 @@ class TagsState extends State<Tags> {
                         Column(children: <Widget>[
                             // TOP IMAGES ROW
                             TagsImagesX12(
-                                contentVN: widget.contentVN,
                                 indexVN: widget.indexVN,
                                 studyEnabledVN: widget.studyEnabledVN,
                                 tagEnabledVN: tagEnabledVN,
@@ -133,7 +129,6 @@ class TagsState extends State<Tags> {
                                   Expanded(
                                       flex: 4,
                                       child: TagsImagesX34(
-                                          contentVN: widget.contentVN,
                                           indexVN: widget.indexVN,
                                           studyEnabledVN: widget.studyEnabledVN,
                                           tagEnabledVN: tagEnabledVN,

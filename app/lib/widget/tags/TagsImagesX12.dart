@@ -11,14 +11,12 @@ import 'package:flutter/material.dart';
 class TagsImagesX12 extends StatelessWidget {
   const TagsImagesX12(
       {Key key,
-      @required this.contentVN,
       @required this.indexVN,
       @required this.studyEnabledVN,
       @required this.tagEnabledVN,
       @required this.tagsSelectedVN})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<String> tagEnabledVN;
@@ -36,11 +34,11 @@ class TagsImagesX12 extends StatelessWidget {
 
       // pull all images from selected
       for (String tag in tagsSelected)
-        for (String image in contentVN.value.TAG_IMAGES[tag]) images.add(image);
+        for (String image in Content.data.TAG_IMAGES[tag]) images.add(image);
 
       // pull all images from enabled (hovering)
       if (tagEnabled != null)
-        for (String image in contentVN.value.TAG_IMAGES[tagEnabled])
+        for (String image in Content.data.TAG_IMAGES[tagEnabled])
           images.add(image);
 
       // add placeholder (i.e at least 1 image);
@@ -54,7 +52,6 @@ class TagsImagesX12 extends StatelessWidget {
             // non-first element has left padding
             padding: i > 0 ? PADDING_LEFT : null,
             child: TagsImage(
-                contentVN: contentVN,
                 indexVN: indexVN,
                 studyEnabledVN: studyEnabledVN,
                 image: image)));

@@ -12,13 +12,11 @@ import 'package:flutter/material.dart';
 class ArchiveImage extends StatefulWidget {
   const ArchiveImage(
       {Key key,
-      @required this.contentVN,
       @required this.indexVN,
       @required this.studyEnabledVN,
       @required this.projectEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<Project> projectEnabledVN;
@@ -31,14 +29,12 @@ class ArchiveImageState extends State<ArchiveImage> {
   final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
 
   void onTap(int index) {
-    widget.studyEnabledVN.value =
-        widget.contentVN.value.ARCHIVE_PROJECTS[index];
+    widget.studyEnabledVN.value = Content.data.ARCHIVE_PROJECTS[index];
   }
 
   void onEnter(int index) {
     hoverIndexVN.value = index;
-    widget.projectEnabledVN.value =
-        widget.contentVN.value.ARCHIVE_PROJECTS[index];
+    widget.projectEnabledVN.value = Content.data.ARCHIVE_PROJECTS[index];
   }
 
   void onExit(int index) {
@@ -60,8 +56,7 @@ class ArchiveImageState extends State<ArchiveImage> {
     final double imageHeight = Design.ARCHIVE_MENU_ROW_HEIGHT * imageScale;
 
     // the max row size (so that the image does not overflow the table)
-    final int rowSizeMax =
-        widget.contentVN.value.ARCHIVE_PROJECTS.length - imageScale;
+    final int rowSizeMax = Content.data.ARCHIVE_PROJECTS.length - imageScale;
 
     // LISTEN
     return L1(widget.projectEnabledVN, (projectEnabled) {
@@ -73,8 +68,8 @@ class ArchiveImageState extends State<ArchiveImage> {
       if (image == null) return SizedBox.shrink();
 
       // init imageIndex
-      int imageIndex = widget
-          .contentVN.value.ARCHIVE_PROJECT_KEY_TO_INDEX[projectEnabled.key];
+      int imageIndex =
+          Content.data.ARCHIVE_PROJECT_KEY_TO_INDEX[projectEnabled.key];
 
       // limit the rowSize to max
       if (imageIndex > rowSizeMax) imageIndex = rowSizeMax;

@@ -8,13 +8,9 @@ import 'package:flutter/material.dart';
 
 class StudioFooterTerms extends StatelessWidget {
   const StudioFooterTerms(
-      {Key key,
-      @required this.contentVN,
-      @required this.indexVN,
-      @required this.studioEnabledVN})
+      {Key key, @required this.indexVN, @required this.studioEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final ValueNotifier<bool> studioEnabledVN;
 
@@ -29,7 +25,7 @@ class StudioFooterTerms extends StatelessWidget {
         lineCurve: Design.STUDIO_ANCHOR_LINE_CURVE,
         lineColor: Design.STUDIO_FOOTER_TEXT_COLOR,
         child: P(
-            text: contentVN.value.STUDIO_TERMS_LINK_TITLE,
+            text: Content.data.STUDIO_TERMS_LINK_TITLE,
             style: const TextStyle(color: Design.STUDIO_FOOTER_TEXT_COLOR)));
   }
 }

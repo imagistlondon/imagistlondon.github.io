@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 class TagsMenu extends StatelessWidget {
   const TagsMenu(
       {Key key,
-      @required this.contentVN,
       @required this.indexVN,
       @required this.studyEnabledVN,
       @required this.tagEnabledVN,
@@ -18,7 +17,6 @@ class TagsMenu extends StatelessWidget {
       @required this.tagToggle})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<String> tagEnabledVN;
@@ -46,7 +44,7 @@ class TagsMenu extends StatelessWidget {
     List<Widget> columns = List();
     int i = 0;
     int j = 0;
-    for (String tag in contentVN.value.TAG_IMAGES.keys) {
+    for (String tag in Content.data.TAG_IMAGES.keys) {
       if (i > 0 && i % columnSize == 0) {
         rows.add(Row(children: columns));
         columns = List();
@@ -60,7 +58,6 @@ class TagsMenu extends StatelessWidget {
         Expanded(
             flex: 1,
             child: TagsLink(
-                contentVN: contentVN,
                 indexVN: indexVN,
                 studyEnabledVN: studyEnabledVN,
                 tag: tag,

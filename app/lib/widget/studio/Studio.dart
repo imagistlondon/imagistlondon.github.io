@@ -6,13 +6,9 @@ import 'package:flutter/material.dart';
 
 class Studio extends StatelessWidget {
   const Studio(
-      {Key key,
-      @required this.contentVN,
-      @required this.indexVN,
-      @required this.studioEnabledVN})
+      {Key key, @required this.indexVN, @required this.studioEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
 
   // enabled flag (showing)
@@ -25,10 +21,7 @@ class Studio extends StatelessWidget {
       // OFFSET AREA
       StudioOffsetBackground(studioEnabledVN: studioEnabledVN),
       // BOX AREA
-      StudioBox(
-          contentVN: contentVN,
-          indexVN: indexVN,
-          studioEnabledVN: studioEnabledVN)
+      StudioBox(indexVN: indexVN, studioEnabledVN: studioEnabledVN)
     ]);
   }
 }

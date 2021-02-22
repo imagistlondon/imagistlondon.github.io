@@ -1,4 +1,3 @@
-import 'package:app/config/Content.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/header/HeaderStudioLinkX1.dart';
 import 'package:app/widget/header/HeaderWorkLinkX1.dart';
@@ -7,13 +6,11 @@ import 'package:flutter/material.dart';
 class HeaderX1 extends StatelessWidget {
   const HeaderX1(
       {Key key,
-      @required this.contentVN,
       @required this.indexVN,
       @required this.bulletsEnabledVN,
       @required this.studioEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final ValueNotifier<bool> studioEnabledVN;
   final ValueNotifier<bool> bulletsEnabledVN;
@@ -32,12 +29,9 @@ class HeaderX1 extends StatelessWidget {
           children: [
             // WORK
             HeaderWorkLinkX1(
-                contentVN: contentVN,
-                indexVN: indexVN,
-                bulletsEnabledVN: bulletsEnabledVN),
+                indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN),
             // STUDIO
-            HeaderStudioLinkX1(
-                contentVN: contentVN, studioEnabledVN: studioEnabledVN),
+            HeaderStudioLinkX1(studioEnabledVN: studioEnabledVN),
           ],
         ))
       ]),

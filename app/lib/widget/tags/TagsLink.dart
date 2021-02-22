@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 class TagsLink extends StatefulWidget {
   const TagsLink(
       {Key key,
-      @required this.contentVN,
       @required this.indexVN,
       @required this.studyEnabledVN,
       @required this.tag,
@@ -22,7 +21,6 @@ class TagsLink extends StatefulWidget {
       this.first})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final String tag;
@@ -83,7 +81,7 @@ class TagsLinkState extends State<TagsLink> {
     for (String tagSelected in tagsSelected) {
       // pull tag associations
       final Set<String> tagAssociations =
-          widget.contentVN.value.TAG_ASSOCIATIONS[tagSelected];
+          Content.data.TAG_ASSOCIATIONS[tagSelected];
 
       // if not in assciated tag then return ommited label
       if (!tagAssociations.contains(widget.tag)) return -1;

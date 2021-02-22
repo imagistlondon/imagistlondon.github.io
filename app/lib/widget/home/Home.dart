@@ -14,13 +14,11 @@ import 'package:flutter/material.dart';
 class Home extends StatefulWidget {
   const Home(
       {Key key,
-      @required this.contentVN,
       @required this.indexVN,
       @required this.studyEnabledVN,
       @required this.studioEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<bool> studioEnabledVN;
@@ -59,12 +57,12 @@ class HomeState extends State<Home> {
     projectKeysEnabledVN[projectEnabledVN.value.key].value = false;
 
     // update index
-    projectIndexEnabledVN.value = (projectIndexEnabledVN.value + 1) %
-        widget.contentVN.value.HOME_PROJECTS.length;
+    projectIndexEnabledVN.value =
+        (projectIndexEnabledVN.value + 1) % Content.data.HOME_PROJECTS.length;
 
     // update project
     projectEnabledVN.value =
-        widget.contentVN.value.HOME_PROJECTS[projectIndexEnabledVN.value];
+        Content.data.HOME_PROJECTS[projectIndexEnabledVN.value];
 
     // enable new project
     projectKeysEnabledVN[projectEnabledVN.value.key].value = true;
@@ -73,19 +71,16 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // only if there are projects
-    if (widget.contentVN.value.HOME_PROJECTS.length > 0) {
+    if (Content.data.HOME_PROJECTS.length > 0) {
       // current project enabled
-      projectEnabledVN = ValueNotifier(widget.contentVN.value.HOME_PROJECTS[0]);
+      projectEnabledVN = ValueNotifier(Content.data.HOME_PROJECTS[0]);
 
       // map projectKey -> projectEnabled flag
-      projectKeysEnabledVN = Map.fromIterable(
-          widget.contentVN.value.HOME_PROJECTS,
-          key: (p) => p.key,
-          value: (p) => ValueNotifier(false));
+      projectKeysEnabledVN = Map.fromIterable(Content.data.HOME_PROJECTS,
+          key: (p) => p.key, value: (p) => ValueNotifier(false));
 
       // init first to be true
-      projectKeysEnabledVN[widget.contentVN.value.HOME_PROJECTS[0].key].value =
-          true;
+      projectKeysEnabledVN[Content.data.HOME_PROJECTS[0].key].value = true;
 
       // kill any previous timer
       if (timer != null) {
@@ -100,7 +95,6 @@ class HomeState extends State<Home> {
 
     // MENU
     final HomeMenu _HomeMenu = HomeMenu(
-        contentVN: widget.contentVN,
         indexVN: widget.indexVN,
         studyEnabledVN: widget.studyEnabledVN,
         projectEnabledVN: projectEnabledVN,
@@ -108,7 +102,6 @@ class HomeState extends State<Home> {
 
     // IMAGE
     final HomeImage _HomeImage = HomeImage(
-        contentVN: widget.contentVN,
         indexVN: widget.indexVN,
         studyEnabledVN: widget.studyEnabledVN,
         projectEnabledVN: projectEnabledVN,

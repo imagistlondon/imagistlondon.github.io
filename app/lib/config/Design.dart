@@ -170,6 +170,10 @@ class Design {
 
   ///// LOADING PAGE
 
+  static const String LOADING_LINE_1 =
+      'The apparition of these faces in the crowd:';
+  static const String LOADING_LINE_2 = 'Petals on a wet, black bough.';
+
   // loading page background color
   static const Color LOADING_PAGE_COLOR = Color.fromRGBO(20, 20, 20, 1);
 

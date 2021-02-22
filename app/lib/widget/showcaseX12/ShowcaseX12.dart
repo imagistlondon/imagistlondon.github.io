@@ -13,13 +13,11 @@ import 'package:flutter/material.dart';
 class ShowcaseX12 extends StatelessWidget {
   const ShowcaseX12(
       {Key key,
-      @required this.contentVN,
       @required this.indexVN,
       @required this.bulletsEnabledVN,
       @required this.studyEnabledVN})
       : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
   final StudyEnabledNotifier studyEnabledVN;
@@ -46,7 +44,7 @@ class ShowcaseX12 extends StatelessWidget {
                       indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN)
                   : SizedBox.shrink(),
               // PROJECTS
-              for (final Project project in contentVN.value.SHOWCASE_PROJECTS)
+              for (final Project project in Content.data.SHOWCASE_PROJECTS)
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

@@ -10,12 +10,10 @@ import 'package:flutter/material.dart';
 class StudioContent extends StatelessWidget {
   const StudioContent({
     Key key,
-    @required this.contentVN,
     @required this.indexVN,
     @required this.studioEnabledVN,
   }) : super(key: key);
 
-  final ValueNotifier<Content> contentVN;
   final IndexNotifier indexVN;
   final ValueNotifier<bool> studioEnabledVN;
 
@@ -50,24 +48,22 @@ class StudioContent extends StatelessWidget {
                 clearance,
 
                 // CONTACT
-                StudioContact(contentVN: contentVN),
+                StudioContact(),
                 GAP,
 
                 // About:
-                P(text: contentVN.value.STUDIO_ABOUT_TITLE, selectable: true),
-                P(text: contentVN.value.STUDIO_ABOUT_TEXT, selectable: true),
+                P(text: Content.data.STUDIO_ABOUT_TITLE, selectable: true),
+                P(text: Content.data.STUDIO_ABOUT_TEXT, selectable: true),
                 GAP,
 
                 // Process:
-                P(text: contentVN.value.STUDIO_PROCESS_TITLE, selectable: true),
-                P(text: contentVN.value.STUDIO_PROCESS_TEXT, selectable: true),
+                P(text: Content.data.STUDIO_PROCESS_TITLE, selectable: true),
+                P(text: Content.data.STUDIO_PROCESS_TEXT, selectable: true),
                 GAP,
 
                 // FOOTER
                 StudioFooter(
-                    contentVN: contentVN,
-                    indexVN: indexVN,
-                    studioEnabledVN: studioEnabledVN),
+                    indexVN: indexVN, studioEnabledVN: studioEnabledVN),
 
                 // FOOTER CLEARANCE
                 clearance,
