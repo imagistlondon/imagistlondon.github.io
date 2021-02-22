@@ -128,6 +128,7 @@ class AppState extends State<App> {
       }
     });
 
+    // wait for draw (of Window) to complete
     drawCompleteVN.addListener(() {
       print('App.loadData.drawComplete');
 
@@ -147,7 +148,6 @@ class AppState extends State<App> {
       // delay closing loading to allow content to draw behind
       timerFinalizeDelay = Timer(Design.LOADING_FINALIZE_DELAY, () {
         print('App.loadData.loading.close');
-        progressFractionVN.value = null;
         loadingVN.value = false;
       });
     });
