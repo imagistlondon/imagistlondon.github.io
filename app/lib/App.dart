@@ -5,6 +5,7 @@ import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
+import 'package:app/util/L1.dart';
 import 'package:app/widget/Loading.dart';
 import 'package:app/widget/ProgressBar.dart';
 import 'package:app/widget/Window.dart';
@@ -20,20 +21,26 @@ class AppState extends State<App> {
   // loading
   final ValueNotifier<bool> loadingVN = ValueNotifier(true);
   final ValueNotifier<bool> contentCompleteVN = ValueNotifier(false);
+  final ValueNotifier<bool> drawCompleteVN = ValueNotifier(false);
 
   // progress bar fraction
   final ValueNotifier<double> progressFractionVN = ValueNotifier(0.0);
 
-  Timer timerBarInitialLoadFake;
+  Timer timerBarDownloadFake;
+  Timer timerBarDrawFake;
   Timer timerBarCloseDelay;
   Timer timerFinalizeDelay;
 
   @override
   void dispose() {
     super.dispose();
-    if (timerBarInitialLoadFake != null) {
-      timerBarInitialLoadFake.cancel();
-      timerBarInitialLoadFake = null;
+    if (timerBarDownloadFake != null) {
+      timerBarDownloadFake.cancel();
+      timerBarDownloadFake = null;
+    }
+    if (timerBarDrawFake != null) {
+      timerBarDrawFake.cancel();
+      timerBarDrawFake = null;
     }
     if (timerBarCloseDelay != null) {
       timerBarCloseDelay.cancel();
@@ -52,13 +59,13 @@ class AppState extends State<App> {
 
   void loadData(final BuildContext context) async {
     // slowly increase the progress bar
-    timerBarInitialLoadFake =
-        Timer.periodic(Design.LOADING_BAR_INITIAL_LOAD_FAKE_DURATION, (t) {
+    timerBarDownloadFake =
+        Timer.periodic(Design.LOADING_BAR_DOWNLOAD_FAKE_PERIODIC_DURATION, (t) {
       // limit to a maximum
-      if (progressFractionVN.value < Design.LOADING_BAR_INITIAL_LOAD_FAKE_MAX) {
+      if (progressFractionVN.value < Design.LOADING_BAR_DOWNLOAD_FAKE_MAX) {
         // increment
         progressFractionVN.value = progressFractionVN.value +
-            Design.LOADING_BAR_INITIAL_LOAD_FAKE_INCREMENT;
+            Design.LOADING_BAR_DOWNLOAD_FAKE_INCREMENT;
       }
     });
 
@@ -66,60 +73,83 @@ class AppState extends State<App> {
     await Content.load();
     contentCompleteVN.value = true;
 
-    // calculate remaining progress
-    final double remainingProgess = 1 - progressFractionVN.value;
+    // // calculate remaining progress
+    // final double remainingProgess = 1 - progressFractionVN.value;
 
-    // calculate each project progress value
-    final double projectProgessValue =
-        (1 / Content.data.PROJECTS.length) * remainingProgess;
+    // // calculate each project progress value
+    // final double projectProgessValue =
+    //     (1 / Content.data.PROJECTS.length) * remainingProgess;
 
-    // precache images
-    for (final Project project in Content.data.PROJECTS) {
-      // homeImage
-      Images.precache(project.homeImage, context);
+    // // precache images
+    // for (final Project project in Content.data.PROJECTS) {
+    //   // homeImage
+    //   Images.precache(project.homeImage, context);
 
-      // showcaseImage
-      Images.precache(project.showcaseImage, context);
+    //   // showcaseImage
+    //   Images.precache(project.showcaseImage, context);
 
-      // archiveImage
-      Images.precache(project.archiveImage, context);
+    //   // archiveImage
+    //   Images.precache(project.archiveImage, context);
 
-      // tagImage
-      Images.precache(project.tagImage, context);
+    //   // tagImage
+    //   Images.precache(project.tagImage, context);
 
-      // studyImage
-      Images.precache(project.studyImage, context);
+    //   // studyImage
+    //   Images.precache(project.studyImage, context);
 
-      // studyBlocks (only enabled for the main projects on home and showcase)
-      if (project.home || project.showcase) {
-        if (project.studyBlocks != null) {
-          project.studyBlocks.forEach((key, studyBlocks) {
-            for (final ProjectStudyBlock studyBlock in studyBlocks) {
-              Images.precache(studyBlock.image, context);
-            }
-          });
-        }
+    //   // studyBlocks (only enabled for the main projects on home and showcase)
+    //   if (project.home || project.showcase) {
+    //     if (project.studyBlocks != null) {
+    //       project.studyBlocks.forEach((key, studyBlocks) {
+    //         for (final ProjectStudyBlock studyBlock in studyBlocks) {
+    //           Images.precache(studyBlock.image, context);
+    //         }
+    //       });
+    //     }
+    //   }
+
+    //   // increment progress
+    //   progressFractionVN.value = progressFractionVN.value + projectProgessValue;
+    // }
+    // print('App.loadData.images.done');
+
+    // stop the download faker
+    timerBarDownloadFake.cancel();
+    timerBarDownloadFake = null;
+
+    // slowly increase the progress bar
+    timerBarDrawFake =
+        Timer.periodic(Design.LOADING_BAR_DRAW_FAKE_PERIODIC_DURATION, (t) {
+      // limit to a maximum
+      if (progressFractionVN.value < Design.LOADING_BAR_DRAW_FAKE_MAX) {
+        // increment
+        progressFractionVN.value =
+            progressFractionVN.value + Design.LOADING_BAR_DRAW_FAKE_INCREMENT;
       }
-
-      // increment progress
-      progressFractionVN.value = progressFractionVN.value + projectProgessValue;
-    }
-    print('App.loadData.images.done');
-
-    // stop the initial load faker
-    timerBarInitialLoadFake.cancel();
-    timerBarInitialLoadFake = null;
-
-    // delay removal of progress bar
-    timerBarCloseDelay = Timer(Design.LOADING_BAR_CLOSE_DELAY_DURATION, () {
-      print('App.loadData.progress.close');
-      progressFractionVN.value = null;
     });
 
-    // delay closing loading to allow content to draw behind
-    timerFinalizeDelay = Timer(Design.LOADING_FINALIZE_DELAY, () {
-      print('App.loadData.loading.close');
-      loadingVN.value = false;
+    drawCompleteVN.addListener(() {
+      print('App.loadData.drawComplete');
+
+      // kill timer bar draw
+      timerBarDrawFake.cancel();
+      timerBarDrawFake = null;
+
+      // max the progress bar
+      progressFractionVN.value = 1;
+
+      // delay removal of progress bar
+      timerBarCloseDelay = Timer(Design.LOADING_BAR_CLOSE_DELAY_DURATION, () {
+        print('App.loadData.progress.close');
+        progressFractionVN.value = null;
+      });
+
+      // delay closing loading to allow content to draw behind
+      timerFinalizeDelay = Timer(Design.LOADING_FINALIZE_DELAY, () {
+        print('App.loadData.loading.close');
+        progressFractionVN.value = null;
+        loadingVN.value = false;
+      });
     });
   }
 
@@ -173,14 +203,23 @@ class AppState extends State<App> {
         // build route
         return MaterialPageRoute(builder: (context) {
           return Stack(children: <Widget>[
-            // WINDOW
-            Window(
-                contentCompleteVN: contentCompleteVN,
-                progressFractionVN: progressFractionVN,
-                indexVN: IndexNotifier(initIndex),
-                bulletsEnabledVN: ValueNotifier(initIndex.isWork()),
-                studioEnabledVN: ValueNotifier(false),
-                initStudyKey: initStudyKey),
+            // WINDOW (listening to content complete)
+            L1(contentCompleteVN, (final bool complete) {
+              print('App.L1.contentComplete.' + complete.toString());
+
+              // skip if not complete
+              if (!complete) return SizedBox.shrink();
+
+              // build window
+              return Window(
+                  contentCompleteVN: contentCompleteVN,
+                  drawCompleteVN: drawCompleteVN,
+                  progressFractionVN: progressFractionVN,
+                  indexVN: IndexNotifier(initIndex),
+                  bulletsEnabledVN: ValueNotifier(initIndex.isWork()),
+                  studioEnabledVN: ValueNotifier(false),
+                  initStudyKey: initStudyKey);
+            }),
 
             // LOADING
             Loading(loadingVN: loadingVN),

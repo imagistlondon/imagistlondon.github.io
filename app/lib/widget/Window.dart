@@ -18,11 +18,13 @@ import 'package:app/widget/study/StudyGeneric.dart';
 import 'package:app/widget/tags/Tags.dart';
 import 'package:app/widget/terms/Terms.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class Window extends StatefulWidget {
   const Window(
       {Key key,
       @required this.contentCompleteVN,
+      @required this.drawCompleteVN,
       @required this.progressFractionVN,
       @required this.indexVN,
       @required this.bulletsEnabledVN,
@@ -31,6 +33,7 @@ class Window extends StatefulWidget {
       : super(key: key);
 
   final ValueNotifier<bool> contentCompleteVN;
+  final ValueNotifier<bool> drawCompleteVN;
   final ValueNotifier<double> progressFractionVN;
   final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
@@ -44,110 +47,111 @@ class Window extends StatefulWidget {
 class WindowState extends State<Window> {
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   print('Window.postFrameCallback');
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      print('Window.postFrameCallback1');
+      widget.drawCompleteVN.value = true;
+    });
+    if (SchedulerBinding.instance.schedulerPhase ==
+        SchedulerPhase.persistentCallbacks) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        print('Window.postFrameCallback2');
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     print('Window.build');
 
-    // LISTEN (LOADING)
-    return L1(widget.contentCompleteVN, (final bool complete) {
-      print('Window.L1.contentComplete.' + complete.toString());
+    // skip if not complete
+    // if (!complete) return SizedBox.shrink();
 
-      // skip if not complete
-      if (!complete) return SizedBox.shrink();
+    // use the initial study key
+    final StudyEnabledNotifier studyEnabledVN = StudyEnabledNotifier(
+        widget.initStudyKey != null
+            ? Content.data.KEY_PROJECTS[widget.initStudyKey]
+            : null);
 
-      // use the initial study key
-      final StudyEnabledNotifier studyEnabledVN = StudyEnabledNotifier(
-          widget.initStudyKey != null
-              ? Content.data.KEY_PROJECTS[widget.initStudyKey]
-              : null);
+    // CONTAINER
+    return Container(
+        // BACKGROUND COLOR
+        color: Design.BACKGROUND_COLOR,
+        // STACK
+        child: Stack(children: <Widget>[
+          // HOME (underneath header as it does not reach it all)
+          Home(
+            indexVN: widget.indexVN,
+            studyEnabledVN: studyEnabledVN,
+            studioEnabledVN: widget.studioEnabledVN,
+          ),
 
-      // CONTAINER
-      return Container(
-          // BACKGROUND COLOR
-          color: Design.BACKGROUND_COLOR,
-          // STACK
-          child: Stack(children: <Widget>[
-            // HOME (underneath header as it does not reach it all)
-            Home(
+          // TERMS
+          Terms(indexVN: widget.indexVN),
+
+          // ARCHIVE (underneath header as it scrolls behind header)
+          Archive(
               indexVN: widget.indexVN,
-              studyEnabledVN: studyEnabledVN,
-              studioEnabledVN: widget.studioEnabledVN,
-            ),
+              bulletsEnabledVN: widget.bulletsEnabledVN,
+              studyEnabledVN: studyEnabledVN),
 
-            // TERMS
-            Terms(indexVN: widget.indexVN),
+          // TAGS (underneath header as it scrolls behind header)
+          Tags(
+              indexVN: widget.indexVN,
+              bulletsEnabledVN: widget.bulletsEnabledVN,
+              studyEnabledVN: studyEnabledVN),
 
-            // ARCHIVE (underneath header as it scrolls behind header)
-            Archive(
+          // SHOWCASE-X12
+          if (Break.x12(context))
+            ShowcaseX12(
                 indexVN: widget.indexVN,
                 bulletsEnabledVN: widget.bulletsEnabledVN,
                 studyEnabledVN: studyEnabledVN),
 
-            // TAGS (underneath header as it scrolls behind header)
-            Tags(
-                indexVN: widget.indexVN,
-                bulletsEnabledVN: widget.bulletsEnabledVN,
-                studyEnabledVN: studyEnabledVN),
-
-            // SHOWCASE-X12
-            if (Break.x12(context))
-              ShowcaseX12(
+          // HEADER
+          Break.x1(context)
+              ? HeaderX1(
                   indexVN: widget.indexVN,
                   bulletsEnabledVN: widget.bulletsEnabledVN,
-                  studyEnabledVN: studyEnabledVN),
+                  studioEnabledVN: widget.studioEnabledVN)
+              : HeaderX234(
+                  indexVN: widget.indexVN,
+                  bulletsEnabledVN: widget.bulletsEnabledVN,
+                  studioEnabledVN: widget.studioEnabledVN),
 
-            // HEADER
-            Break.x1(context)
-                ? HeaderX1(
-                    indexVN: widget.indexVN,
-                    bulletsEnabledVN: widget.bulletsEnabledVN,
-                    studioEnabledVN: widget.studioEnabledVN)
-                : HeaderX234(
-                    indexVN: widget.indexVN,
-                    bulletsEnabledVN: widget.bulletsEnabledVN,
-                    studioEnabledVN: widget.studioEnabledVN),
+          // SHOWCASE-X34 (ontop of header because of right 50% image)
+          if (Break.x34(context))
+            ShowcaseX34(
+              indexVN: widget.indexVN,
+              studyEnabledVN: studyEnabledVN,
+            ),
 
-            // SHOWCASE-X34 (ontop of header because of right 50% image)
-            if (Break.x34(context))
-              ShowcaseX34(
-                indexVN: widget.indexVN,
-                studyEnabledVN: studyEnabledVN,
-              ),
+          // LOGO
+          Break.x1(context)
+              ? LogoX1(
+                  indexVN: widget.indexVN,
+                  bulletsEnabledVN: widget.bulletsEnabledVN)
+              : LogoX234(
+                  indexVN: widget.indexVN,
+                  bulletsEnabledVN: widget.bulletsEnabledVN),
 
-            // LOGO
-            Break.x1(context)
-                ? LogoX1(
-                    indexVN: widget.indexVN,
-                    bulletsEnabledVN: widget.bulletsEnabledVN)
-                : LogoX234(
-                    indexVN: widget.indexVN,
-                    bulletsEnabledVN: widget.bulletsEnabledVN),
+          // STUDY
+          for (final Project project in Content.data.PROJECTS)
+            if (project.home || project.showcase)
+              Study(
+                  indexVN: widget.indexVN,
+                  studyEnabledVN: studyEnabledVN,
+                  progressFractionVN: widget.progressFractionVN,
+                  project: project),
 
-            // STUDY
-            for (final Project project in Content.data.PROJECTS)
-              if (project.home || project.showcase)
-                Study(
-                    indexVN: widget.indexVN,
-                    studyEnabledVN: studyEnabledVN,
-                    progressFractionVN: widget.progressFractionVN,
-                    project: project),
+          // STUDY (generic)
+          StudyGeneric(
+              indexVN: widget.indexVN,
+              studyEnabledVN: studyEnabledVN,
+              progressFractionVN: widget.progressFractionVN),
 
-            // STUDY (generic)
-            StudyGeneric(
-                indexVN: widget.indexVN,
-                studyEnabledVN: studyEnabledVN,
-                progressFractionVN: widget.progressFractionVN),
-
-            // STUDIO
-            Studio(
-                indexVN: widget.indexVN,
-                studioEnabledVN: widget.studioEnabledVN),
-          ]));
-    });
+          // STUDIO
+          Studio(
+              indexVN: widget.indexVN, studioEnabledVN: widget.studioEnabledVN),
+        ]));
   }
 }
