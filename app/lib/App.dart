@@ -134,9 +134,6 @@ class AppState extends State<App> {
     drawCompleteVN.addListener(() {
       print('App.loadData.drawComplete');
 
-      // max the progress bar
-      // progressFractionVN.value = 1;
-
       // delay 1
       timerFinalizeDelay1 = Timer(Design.LOADING_FINALIZE_DELAY, () {
         print('App.loadData.finalize.delay1');
