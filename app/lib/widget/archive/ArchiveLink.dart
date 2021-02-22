@@ -51,6 +51,7 @@ class ArchiveLinkState extends State<ArchiveLink> {
 
   void onExit(PointerEvent pe) {
     hoverVN.value = false;
+    widget.projectEnabledVN.value = null;
   }
 
   @override

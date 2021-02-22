@@ -4,10 +4,12 @@ import 'package:app/config/Design.dart';
 import 'package:app/util/Images.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
+import 'package:app/util/L1C.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
+import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 
-class ArchiveImage extends StatelessWidget {
+class ArchiveImage extends StatefulWidget {
   const ArchiveImage(
       {Key key,
       @required this.contentVN,
@@ -22,20 +24,47 @@ class ArchiveImage extends StatelessWidget {
   final ValueNotifier<Project> projectEnabledVN;
 
   @override
+  ArchiveImageState createState() => ArchiveImageState();
+}
+
+class ArchiveImageState extends State<ArchiveImage> {
+  final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
+
+  void onTap(int index) {
+    widget.studyEnabledVN.value =
+        widget.contentVN.value.ARCHIVE_PROJECTS[index];
+  }
+
+  void onEnter(int index) {
+    hoverIndexVN.value = index;
+    widget.projectEnabledVN.value =
+        widget.contentVN.value.ARCHIVE_PROJECTS[index];
+  }
+
+  void onExit(int index) {
+    hoverIndexVN.value = null;
+    widget.projectEnabledVN.value = null;
+  }
+
+  @override
   Widget build(BuildContext context) {
     // the number of row heights the image takes up
     final int imageScale = Break.x12(context)
         ? Design.ARCHIVE_IMAGE_SCALE_X12
         : Design.ARCHIVE_IMAGE_SCALE_X34;
 
+    // image width
+    final double imageWidth = Design.screenInnerWidth(context) * 4 / 12;
+
     // image height
     final double imageHeight = Design.ARCHIVE_MENU_ROW_HEIGHT * imageScale;
 
     // the max row size (so that the image does not overflow the table)
-    final int rowSizeMax = contentVN.value.ARCHIVE_PROJECTS.length - imageScale;
+    final int rowSizeMax =
+        widget.contentVN.value.ARCHIVE_PROJECTS.length - imageScale;
 
     // LISTEN
-    return L1(projectEnabledVN, (projectEnabled) {
+    return L1(widget.projectEnabledVN, (projectEnabled) {
       // pull image to show
       final String image =
           projectEnabled != null ? projectEnabled.archiveImage : null;
@@ -44,8 +73,8 @@ class ArchiveImage extends StatelessWidget {
       if (image == null) return SizedBox.shrink();
 
       // init imageIndex
-      int imageIndex =
-          contentVN.value.ARCHIVE_PROJECT_KEY_TO_INDEX[projectEnabled.key];
+      int imageIndex = widget
+          .contentVN.value.ARCHIVE_PROJECT_KEY_TO_INDEX[projectEnabled.key];
 
       // limit the rowSize to max
       if (imageIndex > rowSizeMax) imageIndex = rowSizeMax;
@@ -60,23 +89,71 @@ class ArchiveImage extends StatelessWidget {
             for (int i = 0; i < imageIndex; i++)
               Container(height: Design.ARCHIVE_MENU_ROW_HEIGHT),
 
-            // IMAGE ROW
-            Row(children: <Widget>[
-              // OFFSET
-              Expanded(
-                  flex: 8,
-                  child: Container(
-                    height: Design.ARCHIVE_MENU_ROW_HEIGHT,
-                  )),
+            // STACK
+            Stack(children: [
+              // IMAGE BLOCK ROW
+              Row(children: <Widget>[
+                // OFFSET
+                Expanded(
+                    flex: 8,
+                    child: Container(
+                      height: Design.ARCHIVE_MENU_ROW_HEIGHT,
+                    )),
 
-              // IMAGE
-              Expanded(
+                // IMAGE
+                Expanded(
                   flex: 4,
                   child: Image(
                       fit: Design.ARCHIVE_IMAGE_BOX_FIT,
-                      width: Design.ARCHIVE_IMAGE_WIDTH,
+                      width: imageWidth,
                       height: imageHeight,
-                      image: Images.of(image)))
+                      image: Images.of(image)),
+                ),
+              ]),
+
+              // OVERLAY ROWS
+              Row(children: <Widget>[
+                // OFFSET OVERLAY (HOVER GREY)
+                Expanded(
+                    flex: 8,
+                    child: Column(children: <Widget>[
+                      for (int i = imageIndex; i < imageIndex + imageScale; i++)
+                        UA(
+                            onTap: () => this.onTap(i),
+                            onEnter: (pe) => this.onEnter(i),
+                            onExit: (pe) => this.onExit(i),
+                            child: L1C(
+                                hoverIndexVN,
+                                (hoverIndex, child) => Container(
+                                    // HEIGHT
+                                    height: Design.ARCHIVE_MENU_ROW_HEIGHT,
+
+                                    // OPACITY
+                                    color: Design
+                                        .ARCHIVE_MENU_LINK_HOVER_BACKGROUND_COLOR
+                                        .withOpacity(hoverIndex == i
+                                            ? Design
+                                                .ARCHIVE_MENU_LINK_HOVER_BACKGROUND_COLOR
+                                                .opacity
+                                            : 0)),
+                                // CHILD
+                                child: Container(
+                                    height: Design.ARCHIVE_MENU_ROW_HEIGHT)))
+                    ])),
+
+                // IMAGE OVERLAY
+                Expanded(
+                    flex: 4,
+                    child: Column(children: <Widget>[
+                      for (int i = imageIndex; i < imageIndex + imageScale; i++)
+                        UA(
+                            onTap: () => this.onTap(i),
+                            onEnter: (pe) => this.onEnter(i),
+                            onExit: (pe) => this.onExit(i),
+                            child: Container(
+                                height: Design.ARCHIVE_MENU_ROW_HEIGHT))
+                    ])),
+              ]),
             ])
           ]));
     });

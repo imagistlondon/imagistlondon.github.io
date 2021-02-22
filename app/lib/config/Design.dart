@@ -376,8 +376,6 @@ class Design {
   static const int ARCHIVE_IMAGE_SCALE_X12 = 3;
   static const int ARCHIVE_IMAGE_SCALE_X34 = 4;
 
-  // max width of the archive image
-  static const double ARCHIVE_IMAGE_WIDTH = Design.SPACE * 5;
   // how to fit the image
   static const BoxFit ARCHIVE_IMAGE_BOX_FIT = BoxFit.cover;
 
