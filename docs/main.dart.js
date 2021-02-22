@@ -16640,7 +16640,7 @@ $.a5p().Gb("__url_launcher::link",D.aqv())
 $.ae6=k.gY0()
 s=2
 return P.a8(P.ar3(),$async$a4Y)
-case 2:P.cn("v1.0.0")
+case 2:P.cn("v1.0.1")
 k=$.afs()
 k=k==null?null:k.getAttribute("href")
 if(k==null)H.f(P.da("Please add a <base> element to your index.html"))
