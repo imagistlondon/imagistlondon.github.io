@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 class Window extends StatefulWidget {
   const Window(
       {Key key,
-      @required this.loadingVN,
+      @required this.contentCompleteVN,
       @required this.progressFractionVN,
       @required this.indexVN,
       @required this.bulletsEnabledVN,
@@ -30,7 +30,7 @@ class Window extends StatefulWidget {
       @required this.initStudyKey})
       : super(key: key);
 
-  final ValueNotifier<bool> loadingVN;
+  final ValueNotifier<bool> contentCompleteVN;
   final ValueNotifier<double> progressFractionVN;
   final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
@@ -54,11 +54,11 @@ class WindowState extends State<Window> {
     print('Window.build');
 
     // LISTEN (LOADING)
-    return L1(widget.loadingVN, (final bool loading) {
-      print('Window.L1.loading.' + loading.toString());
+    return L1(widget.contentCompleteVN, (final bool complete) {
+      print('Window.L1.contentComplete.' + complete.toString());
 
-      // skip if loading
-      if (loading) return SizedBox.shrink();
+      // skip if not complete
+      if (!complete) return SizedBox.shrink();
 
       // use the initial study key
       final StudyEnabledNotifier studyEnabledVN = StudyEnabledNotifier(

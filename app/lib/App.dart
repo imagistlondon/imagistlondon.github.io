@@ -19,6 +19,7 @@ class App extends StatefulWidget {
 class AppState extends State<App> {
   // loading
   final ValueNotifier<bool> loadingVN = ValueNotifier(true);
+  final ValueNotifier<bool> contentCompleteVN = ValueNotifier(false);
 
   // progress bar fraction
   final ValueNotifier<double> progressFractionVN = ValueNotifier(0.0);
@@ -49,7 +50,7 @@ class AppState extends State<App> {
     super.initState();
   }
 
-  void loadContent(final BuildContext context) async {
+  void loadData(final BuildContext context) async {
     // slowly increase the progress bar
     timerBarInitialLoadFake =
         Timer.periodic(Design.LOADING_BAR_INITIAL_LOAD_FAKE_DURATION, (t) {
@@ -61,8 +62,9 @@ class AppState extends State<App> {
       }
     });
 
-    // load
+    // load content
     await Content.load();
+    contentCompleteVN.value = true;
 
     // calculate remaining progress
     final double remainingProgess = 1 - progressFractionVN.value;
@@ -102,7 +104,7 @@ class AppState extends State<App> {
       // increment progress
       progressFractionVN.value = progressFractionVN.value + projectProgessValue;
     }
-    print('App.loadContent.images.done');
+    print('App.loadData.images.done');
 
     // stop the initial load faker
     timerBarInitialLoadFake.cancel();
@@ -110,21 +112,21 @@ class AppState extends State<App> {
 
     // delay removal of progress bar
     timerBarCloseDelay = Timer(Design.LOADING_BAR_CLOSE_DELAY_DURATION, () {
-      print('App.loadContent.progress.close');
+      print('App.loadData.progress.close');
       progressFractionVN.value = null;
     });
 
     // delay closing loading to allow content to draw behind
     timerFinalizeDelay = Timer(Design.LOADING_FINALIZE_DELAY, () {
-      print('App.loadContent.loading.close');
+      print('App.loadData.loading.close');
       loadingVN.value = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // load content
-    loadContent(context);
+    // load data
+    loadData(context);
 
     // APP
     return MaterialApp(
@@ -173,7 +175,7 @@ class AppState extends State<App> {
           return Stack(children: <Widget>[
             // WINDOW
             Window(
-                loadingVN: loadingVN,
+                contentCompleteVN: contentCompleteVN,
                 progressFractionVN: progressFractionVN,
                 indexVN: IndexNotifier(initIndex),
                 bulletsEnabledVN: ValueNotifier(initIndex.isWork()),
