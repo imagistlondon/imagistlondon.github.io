@@ -559,6 +559,19 @@ class Design {
       color: Design.COLOR,
       decoration: TextDecoration.none);
 
+  // <a>
+  static const TextStyle X1_A = TextStyle(
+      fontFamily: 'UntitledSans',
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.w300,
+      fontSize: 14,
+      height: 1.6,
+      color: Design.COLOR,
+      decoration: TextDecoration.underline,
+      decorationStyle: TextDecorationStyle.solid,
+      decorationThickness: 1.0,
+      decorationColor: Design.COLOR);
+
   // X2
 
   // <h1>
@@ -596,6 +609,19 @@ class Design {
       height: 1.6,
       color: Design.COLOR,
       decoration: TextDecoration.none);
+
+  // <a>
+  static const TextStyle X2_A = TextStyle(
+      fontFamily: 'UntitledSans',
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.w300,
+      fontSize: 14,
+      height: 1.6,
+      color: Design.COLOR,
+      decoration: TextDecoration.underline,
+      decorationStyle: TextDecorationStyle.solid,
+      decorationThickness: 1.0,
+      decorationColor: Design.COLOR);
 
   // X3
 
@@ -635,6 +661,19 @@ class Design {
       color: Design.COLOR,
       decoration: TextDecoration.none);
 
+  // <a>
+  static const TextStyle X3_A = TextStyle(
+      fontFamily: 'UntitledSans',
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.w300,
+      fontSize: 15,
+      height: 1.6,
+      color: Design.COLOR,
+      decoration: TextDecoration.underline,
+      decorationStyle: TextDecorationStyle.solid,
+      decorationThickness: 1.0,
+      decorationColor: Design.COLOR);
+
   // X4
 
   // <h1>
@@ -672,6 +711,19 @@ class Design {
       height: 1.6,
       color: Design.COLOR,
       decoration: TextDecoration.none);
+
+  // <a>
+  static const TextStyle X4_A = TextStyle(
+      fontFamily: 'UntitledSans',
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.w300,
+      fontSize: 15,
+      height: 1.6,
+      color: Design.COLOR,
+      decoration: TextDecoration.underline,
+      decorationStyle: TextDecorationStyle.solid,
+      decorationThickness: 1.0,
+      decorationColor: Design.COLOR);
 
   static TextStyle H1(final BuildContext context) {
     try {
@@ -726,6 +778,14 @@ class Design {
       return Break.decide(context, X1_P, X2_P, X3_P, X4_P);
     } catch (e) {
       return X4_P;
+    }
+  }
+
+  static TextStyle A(final BuildContext context) {
+    try {
+      return Break.decide(context, X1_A, X2_A, X3_A, X4_A);
+    } catch (e) {
+      return X4_A;
     }
   }
 }
