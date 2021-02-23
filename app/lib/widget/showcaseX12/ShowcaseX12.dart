@@ -27,36 +27,45 @@ class ShowcaseX12 extends StatelessWidget {
     // HEADER CLEARANCE
     final SizedBox clearance = SizedBox(height: Design.clearance(context));
 
+    // HEADER BULLETS X1
+    final Widget bulletsX1 = Break.x1(context)
+        ? HeaderBulletLinksX1(
+            indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN)
+        : SizedBox.shrink();
+
+    // PROJECTS
+    final List<Widget> projects = [];
+    for (final Project project in Content.data.SHOWCASE_PROJECTS) {
+      projects.add(Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            // IMAGE
+            ShowcaseImageX12(
+                indexVN: indexVN,
+                studyEnabledVN: studyEnabledVN,
+                project: project),
+            // TITLE
+            ShowcaseLinkX12(
+                indexVN: indexVN,
+                studyEnabledVN: studyEnabledVN,
+                project: project)
+          ]));
+    }
+
+    final Widget scroll = SingleChildScrollView(
+        child: Column(children: <Widget>[
+      // HEADER CLEARANCE
+      clearance,
+      // HEADER BULLETS X1
+      bulletsX1,
+      // PROJECTS
+      ...projects
+    ]));
+
     // LISTEN
     return L1(
         indexVN,
-        (index) => Visibility(
-            visible: index == Index.WORK_SHOWCASE,
-            // SCROLL
-            child: ListView(children: <Widget>[
-              // HEADER CLEARANCE
-              clearance,
-              // HEADER BULLETS X1
-              Break.x1(context)
-                  ? HeaderBulletLinksX1(
-                      indexVN: indexVN, bulletsEnabledVN: bulletsEnabledVN)
-                  : SizedBox.shrink(),
-              // PROJECTS
-              for (final Project project in Content.data.SHOWCASE_PROJECTS)
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      // IMAGE
-                      ShowcaseImageX12(
-                          indexVN: indexVN,
-                          studyEnabledVN: studyEnabledVN,
-                          project: project),
-                      // TITLE
-                      ShowcaseLinkX12(
-                          indexVN: indexVN,
-                          studyEnabledVN: studyEnabledVN,
-                          project: project)
-                    ])
-            ])));
+        (index) =>
+            Visibility(visible: index == Index.WORK_SHOWCASE, child: scroll));
   }
 }
