@@ -28,11 +28,11 @@ class StudyContent extends StatelessWidget {
     return Scrollbar(
         controller: scrollController,
         isAlwaysShown: true,
-        child: ListView(
+        child: SingleChildScrollView(
             // CONTROLLER
             controller: scrollController,
-            // CHILDREN
-            children: <Widget>[
+            // COLUMN
+            child: Column(children: <Widget>[
               // StudyContentThumb
               StudyContentThumb(
                   studyEnabledVN: studyEnabledVN, project: project),
@@ -53,6 +53,6 @@ class StudyContent extends StatelessWidget {
               // StudyContentBlocks (B)
               StudyContentBlocks(
                   studyEnabledVN: studyEnabledVN, project: project, letter: 'B')
-            ]));
+            ])));
   }
 }
