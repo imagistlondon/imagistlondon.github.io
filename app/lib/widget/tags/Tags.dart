@@ -86,8 +86,7 @@ class TagsState extends State<Tags> {
                 // NO CONTENT
                 ? noContent
                 // SCROLLABLE
-                : SingleChildScrollView(
-                    child: Column(children: <Widget>[
+                : ListView(children: <Widget>[
                     // HEADER SPACING
                     spacing,
                     // HEADER BULLETS X1
@@ -136,6 +135,6 @@ class TagsState extends State<Tags> {
                                 ])),
                     // FOOTER SPACING
                     spacing
-                  ]))));
+                  ])));
   }
 }

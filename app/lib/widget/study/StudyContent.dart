@@ -28,37 +28,31 @@ class StudyContent extends StatelessWidget {
     return Scrollbar(
         controller: scrollController,
         isAlwaysShown: true,
-        child: SingleChildScrollView(
+        child: ListView(
             // CONTROLLER
             controller: scrollController,
-            // COLUMN
-            child: Column(
-                // ALIGNMENT
-                mainAxisAlignment: MainAxisAlignment.start,
-                // CHILDREN
-                children: <Widget>[
-                  // StudyContentThumb
-                  StudyContentThumb(
+            // CHILDREN
+            children: <Widget>[
+              // StudyContentThumb
+              StudyContentThumb(
+                  studyEnabledVN: studyEnabledVN, project: project),
+
+              // StudyContentIntro
+              Break.x1(context)
+                  ? StudyContentIntroX1(
+                      studyEnabledVN: studyEnabledVN, project: project)
+                  : StudyContentIntroX234(
                       studyEnabledVN: studyEnabledVN, project: project),
 
-                  // StudyContentIntro
-                  Break.x1(context)
-                      ? StudyContentIntroX1(
-                          studyEnabledVN: studyEnabledVN, project: project)
-                      : StudyContentIntroX234(
-                          studyEnabledVN: studyEnabledVN, project: project),
+              // StudyContentBlocks (A)
+              StudyContentBlocks(
+                  studyEnabledVN: studyEnabledVN,
+                  project: project,
+                  letter: 'A'),
 
-                  // StudyContentBlocks (A)
-                  StudyContentBlocks(
-                      studyEnabledVN: studyEnabledVN,
-                      project: project,
-                      letter: 'A'),
-
-                  // StudyContentBlocks (B)
-                  StudyContentBlocks(
-                      studyEnabledVN: studyEnabledVN,
-                      project: project,
-                      letter: 'B')
-                ])));
+              // StudyContentBlocks (B)
+              StudyContentBlocks(
+                  studyEnabledVN: studyEnabledVN, project: project, letter: 'B')
+            ]));
   }
 }

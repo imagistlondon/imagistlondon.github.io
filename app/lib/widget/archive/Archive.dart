@@ -42,8 +42,7 @@ class ArchiveState extends State<Archive> {
         (index) => Visibility(
             visible: index == Index.WORK_ARCHIVE,
             // SCROLLABLE
-            child: SingleChildScrollView(
-                child: Column(children: <Widget>[
+            child: ListView(children: <Widget>[
               // HEADER SPACING
               spacing,
               // HEADER BULLETS X1
@@ -77,6 +76,6 @@ class ArchiveState extends State<Archive> {
               ]),
               // FOOTER SPACING
               spacing
-            ]))));
+            ])));
   }
 }

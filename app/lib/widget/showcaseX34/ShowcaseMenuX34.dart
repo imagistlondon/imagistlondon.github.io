@@ -47,9 +47,7 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
         // 50% WIDTH
         width: width,
         // SCROLLABLE
-        child: SingleChildScrollView(
-            // COLUMN
-            child: Column(children: <Widget>[
+        child: ListView(children: <Widget>[
           // VERTICAL SPACING
           clearance,
           // MENU BLOCK
@@ -68,6 +66,6 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
               ])),
           // VERTICAL SPACING
           clearance
-        ])));
+        ]));
   }
 }

@@ -32,10 +32,8 @@ class ShowcaseX12 extends StatelessWidget {
         indexVN,
         (index) => Visibility(
             visible: index == Index.WORK_SHOWCASE,
-            child:
-                // SCROLL
-                SingleChildScrollView(
-                    child: Column(children: <Widget>[
+            // SCROLL
+            child: ListView(children: <Widget>[
               // HEADER CLEARANCE
               clearance,
               // HEADER BULLETS X1
@@ -59,6 +57,6 @@ class ShowcaseX12 extends StatelessWidget {
                           studyEnabledVN: studyEnabledVN,
                           project: project)
                     ])
-            ]))));
+            ])));
   }
 }
