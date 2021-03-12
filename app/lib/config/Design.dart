@@ -530,7 +530,7 @@ class Design {
       fontWeight: FontWeight.w300,
       fontSize: 25,
       height: 1.2,
-      letterSpacing: -0.75,
+      letterSpacing: -01,
       color: Design.COLOR,
       decoration: TextDecoration.none);
 
@@ -581,7 +581,7 @@ class Design {
       fontWeight: FontWeight.w300,
       fontSize: 25,
       height: 1.2,
-      letterSpacing: -0.75,
+      letterSpacing: -1,
       color: Design.COLOR,
       decoration: TextDecoration.none);
 
@@ -632,7 +632,7 @@ class Design {
       fontWeight: FontWeight.w300,
       fontSize: 40,
       height: 1.2,
-      letterSpacing: -0.75,
+      letterSpacing: -1,
       color: Design.COLOR,
       decoration: TextDecoration.none);
 
@@ -683,7 +683,7 @@ class Design {
       fontWeight: FontWeight.w300,
       fontSize: 60,
       height: 1.2,
-      letterSpacing: -0.75,
+      letterSpacing: -1,
       color: Design.COLOR,
       decoration: TextDecoration.none);
 
