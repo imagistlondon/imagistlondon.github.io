@@ -170,8 +170,8 @@ const RESOURCES = {
 "version.json": "fb800d37cb51ce25f91a8114a375508b",
 "manifest.json": "1063745475257257f2aa77a8c929cd93",
 "404.html": "f4e3edb53349945387e617abbd0fd231",
-"index.html": "96890411b86f3f17b91f6aad10044e40",
-"/": "96890411b86f3f17b91f6aad10044e40",
+"index.html": "624febaea82f05db1c5d71783060e146",
+"/": "624febaea82f05db1c5d71783060e146",
 "android-chrome-512x512.png": "78b6fbf11ebd07343a7b1584195bbee7",
 "android-chrome-192x192.png": "b86e1bedfeba2b7f0ee344c2c4007125"
 };
