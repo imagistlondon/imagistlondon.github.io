@@ -530,7 +530,7 @@ class Design {
       fontWeight: FontWeight.w300,
       fontSize: 25,
       height: 1.2,
-      letterSpacing: -01,
+      letterSpacing: -1,
       color: Design.COLOR,
       decoration: TextDecoration.none);
 
