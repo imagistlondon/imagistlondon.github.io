@@ -37,35 +37,34 @@ class ShowcaseMenuX34State extends State<ShowcaseMenuX34> {
 
   @override
   Widget build(BuildContext context) {
-    // width
-    final double width = MediaQuery.of(context).size.width / 2;
-
-    // clearance
-    final SizedBox clearance = SizedBox(height: Design.clearance(context));
-
     return Container(
         // 50% WIDTH
-        width: width,
-        // SCROLLABLE
-        child: ListView(children: <Widget>[
-          // VERTICAL SPACING
-          clearance,
-          // MENU BLOCK
-          UA(
-              onEnter: onEnter,
-              onExit: onExit,
-              child: Column(children: <Widget>[
-                // PROJECT LINKS
-                for (final Project project in Content.data.SHOWCASE_PROJECTS)
-                  ShowcaseLinkX34(
-                      indexVN: widget.indexVN,
-                      studyEnabledVN: widget.studyEnabledVN,
-                      projectEnabledVN: widget.projectEnabledVN,
-                      menuEnabledVN: menuEnabledVN,
-                      project: project)
-              ])),
-          // VERTICAL SPACING
-          clearance
-        ]));
+        width: MediaQuery.of(context).size.width / 2,
+
+        // CENTER (vertically)
+        child: Center(
+            // MENU HOVER AREA
+            child: UA(
+                onEnter: onEnter,
+                onExit: onExit,
+                // SCROLLABLE
+                child: ListView(
+                    // vertical padding
+                    padding: EdgeInsets.symmetric(
+                        vertical: Design.clearance(context)),
+                    // keep height wrapped to child height
+                    shrinkWrap: true,
+                    // items
+                    children: <Widget>[
+                      // PROJECT LINKS
+                      for (final Project project
+                          in Content.data.SHOWCASE_PROJECTS)
+                        ShowcaseLinkX34(
+                            indexVN: widget.indexVN,
+                            studyEnabledVN: widget.studyEnabledVN,
+                            projectEnabledVN: widget.projectEnabledVN,
+                            menuEnabledVN: menuEnabledVN,
+                            project: project),
+                    ]))));
   }
 }
