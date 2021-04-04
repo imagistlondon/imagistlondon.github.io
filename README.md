@@ -63,24 +63,49 @@ Then in the `Content.dart` you reference any of the images via `assets/my_image.
 
 Please note that only `PNG`, `JPG` or `GIF` are supported (`SVG` images are NOT supported).
 
-### Development
+
+### Install Fixed Version
 
 - Install Flutter (https://flutter.dev/docs/get-started/install)
 
-- Checkout this repository (via git)
+```
+cd app
+wget https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_2.0.4-stable.zip
+unzip flutter_macos_2.0.4-stable.zip
+rm flutter_macos_2.0.4-stable.zip
+./flutter/bin/flutter config --enable-web
+./flutter/bin/flutter doctor
+./flutter/bin/flutter pub get
+```
 
-- Open terminal and go to the app folder: `cd app`
-
-- Setup flutter:
+### Install via Homebrew
 
 ```
 cd app
-flutter channel beta
+brew install flutter
+flutter channel stable
 flutter upgrade
 flutter config --enable-web
 flutter doctor
 flutter pub get
 ```
+
+### Upgrade Dependencies
+
+```
+./flutter/bin/flutter pub outdated
+./flutter/bin/flutter pub upgrade
+./flutter/bin/flutter pub upgrade --major-versions
+```
+
+```
+flutter pub outdated
+flutter pub upgrade
+flutter pub upgrade --major-versions
+```
+
+
+### Running
 
 - Run the app:
 
