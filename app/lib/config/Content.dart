@@ -13,8 +13,9 @@ class Content {
 
   static Future<Content> load() async {
     // call
-    final String result =
-        (await http.get('https://admin.imagistlondon.com/api/getConfig')).body;
+    final String result = (await http
+            .get(Uri.parse('https://admin.imagistlondon.com/api/getConfig')))
+        .body;
 
     // convert json to map
     final Map map = json.decode(result);
