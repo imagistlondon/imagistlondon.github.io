@@ -8,19 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.4'
+          channel: 'stable'
 
       - name: Configure Github
         run: |
           git config --global user.name '@imagistlondon'
           git config --global user.email 'imagistlondon@users.noreply.github.com'
-
-      - name: Install Flutter
-        run: |
-          cd app
-          git clone --depth 1 --branch 1.26.0-17.6.pre https://github.com/flutter/flutter.git
-          ./flutter/bin/flutter --version
-          ./flutter/bin/flutter config --enable-web
-          ls -la
 
       - name: Build Release
         run: |
