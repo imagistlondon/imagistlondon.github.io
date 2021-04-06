@@ -67,17 +67,17 @@ class Images {
       // extract gif controller for this src
       final GifController gifController = gifControllers[src];
 
+      // gif duration
+      final Duration gifDurationChosen =
+          gifDuration != null ? gifDuration : Design.DEFAULT_GIF_DURATION;
+
       // initiate the gif repeat
       fetchGif(provider).then((gifInfos) {
         gifController.repeat(
-            min: 0,
-            max: gifInfos.length.toDouble(),
-            period: gifDuration != null
-                ? gifDuration
-                : Design.DEFAULT_GIF_DURATION);
+            min: 0, max: gifInfos.length.toDouble(), period: gifDurationChosen);
       });
 
-      print('Images.of.gif:' + src);
+      print('Images.gif:' + src + ':' + gifDurationChosen.toString());
       return GifImage(
           controller: gifController,
           width: width,
@@ -87,7 +87,7 @@ class Images {
           image: provider);
     }
 
-    print('Images.of.src:' + src);
+    print('Images.src:' + src);
 
     // normal image
     return Image(
