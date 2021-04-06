@@ -7573,22 +7573,23 @@ if(a==null||a==="")s=new M.hI($.alU())
 else s=J.ab4(a,"assets/")?new L.la(a):new D.oy(a)
 r.n(0,a,s)
 return s},
-hC:function(a,b,c,d,e,f,g){var s,r,q,p=Y.afY(a),o=J.ae2(a,".gif")||C.b.dH(a,".GIF"),n=new L.OR(),m=window.navigator.userAgent,l=window.navigator.vendor,k=window.navigator.appVersion
-n.Se(k==null?"":k,m,l)
-n=n.a
-n=n==null?null:n.a
-if(n==null)n=C.to
-if(o&&n===C.oa&&f!=null){s=f.i(0)
-n=$.adp()
-n.b4(0,s,new Y.UB())
-r=n.h(0,s)
-n=J.n(r)
-n.b4(r,a,new Y.UC(f))
-q=n.h(r,a)
-X.hn(p).am(0,new Y.UD(q,d),t.P)
-P.c8("Images.of.gif:"+a)
-return new X.tv(q,p,g,e,b,c,null)}P.c8("Images.of.src:"+a)
-return new U.tN(p,g,e,b,c,null)},
+hC:function(a,b,c,d,e,f,g){var s,r,q,p,o=Y.afY(a),n=J.ae2(a,".gif")||C.b.dH(a,".GIF"),m=new L.OR(),l=window.navigator.userAgent,k=window.navigator.vendor,j=window.navigator.appVersion
+m.Se(j==null?"":j,l,k)
+m=m.a
+m=m==null?null:m.a
+if(m==null)m=C.to
+if(n&&m===C.oa&&f!=null){s=f.i(0)
+m=$.adp()
+m.b4(0,s,new Y.UB())
+r=m.h(0,s)
+m=J.n(r)
+m.b4(r,a,new Y.UC(f))
+q=m.h(r,a)
+p=d!=null?d:C.oL
+X.hn(o).am(0,new Y.UD(q,p),t.P)
+P.c8("Images.gif:"+a+":"+p.i(0))
+return new X.tv(q,o,g,e,b,c,null)}P.c8("Images.src:"+a)
+return new U.tN(o,g,e,b,c,null)},
 aqx:function(a){var s,r=a.i(0)
 P.c8("Images.disposeGifControllers.widgetKey:"+r)
 s=$.adp()
@@ -18187,7 +18188,7 @@ $.aaM().IW("__url_launcher::link",D.ax7())
 $.ajL=k.ga1t()
 s=2
 return P.W(P.axI(),$async$aaj)
-case 2:P.c8("v2.0.3")
+case 2:P.c8("v2.0.4")
 k=$.ald()
 k=k==null?null:k.getAttribute("href")
 if(k==null)H.e(P.dB("Please add a <base> element to your index.html"))
@@ -32765,15 +32766,13 @@ r.B6(C.iI,s,s,s,0,this.a)
 return r},
 $S:181}
 Y.UD.prototype={
-$1:function(a){var s,r,q,p,o=this.a,n=J.aU(a)
-n.toString
-s=this.b
-s=s!=null?s:C.oL
-o.dS(0)
-r=o.gbx()
-q=o.gSg()
-p=s.a/1e6
-o.wc(new G.a7h(0,n,!1,q,p,n===0?0:r/(n-0)*p,C.eV))},
+$1:function(a){var s,r,q,p=this.a,o=J.aU(a)
+o.toString
+p.dS(0)
+s=p.gbx()
+r=p.gSg()
+q=this.b.a/1e6
+p.wc(new G.a7h(0,o,!1,r,q,o===0?0:s/(o-0)*q,C.eV))},
 $S:78}
 Y.UA.prototype={
 $2:function(a,b){b.q(0)},
