@@ -23,6 +23,9 @@ class Design {
   // number of units the finger must drag before a swip call-to-action
   static const double SWIPE_THRESHOLD = 30;
 
+  // the default gif duration (for a complete cycle)
+  static const Duration DEFAULT_GIF_DURATION = Duration(milliseconds: 2000);
+
   // the margin gutter spacing throughout app
   static const double GAP_X1 = Design.SPACE;
   static const double GAP_X2 = Design.SPACE * 3;

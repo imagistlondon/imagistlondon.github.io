@@ -1,3 +1,4 @@
+import 'package:app/config/Design.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gifimage/flutter_gifimage.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -40,7 +41,8 @@ class Images {
       final double height,
       final BoxFit fit,
       final Color color,
-      final TickerProvider vsync}) {
+      final TickerProvider vsync,
+      final Duration gifDuration}) {
     // pull the provider (from the cache)
     final ImageProvider provider = Images.provider(src);
 
@@ -70,7 +72,9 @@ class Images {
         gifController.repeat(
             min: 0,
             max: gifInfos.length.toDouble(),
-            period: Duration(milliseconds: 2000));
+            period: gifDuration != null
+                ? gifDuration
+                : Design.DEFAULT_GIF_DURATION);
       });
 
       print('Images.of.gif:' + src);
