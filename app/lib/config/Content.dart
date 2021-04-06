@@ -140,6 +140,40 @@ class Content {
               if (map[blockPrefix + '-IMAGE3'] != null)
                 images.add(map[blockPrefix + '-IMAGE3']);
 
+              // imageGifDuration
+              final String imageGifDurationString =
+                  map[blockPrefix + '-IMAGE-GIF-DURATION'];
+              final String image2GifDurationString =
+                  map[blockPrefix + '-IMAGE2-GIF-DURATION'];
+              final String image3GifDurationString =
+                  map[blockPrefix + '-IMAGE3-GIF-DURATION'];
+              final int imageGifDurationInt = imageGifDurationString != null
+                  ? int.tryParse(imageGifDurationString)
+                  : null;
+              final int image2GifDurationInt = image2GifDurationString != null
+                  ? int.tryParse(image2GifDurationString)
+                  : null;
+              final int image3GifDurationInt = image3GifDurationString != null
+                  ? int.tryParse(image3GifDurationString)
+                  : null;
+              final Duration imageGifDuration =
+                  imageGifDurationInt != null && imageGifDurationInt > 0
+                      ? Duration(milliseconds: imageGifDurationInt)
+                      : null;
+              final Duration image2GifDuration =
+                  image2GifDurationInt != null && image2GifDurationInt > 0
+                      ? Duration(milliseconds: image2GifDurationInt)
+                      : null;
+              final Duration image3GifDuration =
+                  image3GifDurationInt != null && image3GifDurationInt > 0
+                      ? Duration(milliseconds: image3GifDurationInt)
+                      : null;
+              final List<Duration> imageGifDurations = [
+                imageGifDuration,
+                image2GifDuration,
+                image3GifDuration
+              ];
+
               studyBlocksX.add(ProjectStudyBlock(
                 title: map[blockPrefix + '-TITLE'],
                 desc: map[blockPrefix + '-DESC'],
@@ -181,6 +215,12 @@ class Content {
                 image2: map[blockPrefix + '-IMAGE2'],
                 image3: map[blockPrefix + '-IMAGE3'],
                 images: images,
+
+                // imageGifDuration
+                imageGifDuration: imageGifDuration,
+                image2GifDuration: image2GifDuration,
+                image3GifDuration: image3GifDuration,
+                imageGifDurations: imageGifDurations,
 
                 // imageMinHeight
                 imageMinHeightX1: imageMinHeightX1 != null
@@ -530,7 +570,11 @@ class ProjectStudyBlock {
   final String image;
   final String image2;
   final String image3;
+  final Duration imageGifDuration;
+  final Duration image2GifDuration;
+  final Duration image3GifDuration;
   final List<String> images;
+  final List<Duration> imageGifDurations;
 
   final double imageMinHeightX1;
   final double imageMinHeightX2;
@@ -576,7 +620,11 @@ class ProjectStudyBlock {
     this.image,
     this.image2,
     this.image3,
+    this.imageGifDuration,
+    this.image2GifDuration,
+    this.image3GifDuration,
     this.images,
+    this.imageGifDurations,
     this.imageMinHeightX1,
     this.imageMinHeightX2,
     this.imageMinHeightX3,

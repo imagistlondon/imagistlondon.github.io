@@ -276,6 +276,9 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
                                       fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
                                       // width
                                       width: width,
+                                      // gif duration (for gifs in safari)
+                                      gifDuration:
+                                          block.imageGifDurations[imageIndex],
                                       // vsync (for gifs in safari)
                                       vsync: this))))
               ])
