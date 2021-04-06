@@ -64,8 +64,8 @@ class _XState extends State<X> with TickerProviderStateMixin {
             child: RotationTransition(
                 turns: animation,
                 // IMAGE
-                child: Image(
-                  image: Images.of(Design.ICON_CROSS),
+                child: Images.of(
+                  Design.ICON_CROSS,
                   width: xEdge,
                   height: xEdge,
                   color: widget.color,

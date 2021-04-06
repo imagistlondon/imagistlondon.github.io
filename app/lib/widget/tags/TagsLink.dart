@@ -44,10 +44,8 @@ class TagsLinkState extends State<TagsLink> {
       width: Design.TAGS_MENU_LINK_BORDER_WIDTH, color: Colors.transparent);
 
   // X image
-  static Image xImage = Image(
-      image: Images.of(Design.ICON_CROSS),
-      color: Design.COLOR,
-      height: Design.TAGS_MENU_ROW_HEIGHT / 6);
+  static Image xImage = Images.of(Design.ICON_CROSS,
+      color: Design.COLOR, height: Design.TAGS_MENU_ROW_HEIGHT / 6);
 
   // enabled (hover)
   final ValueNotifier<bool> enabledVN = ValueNotifier(false);

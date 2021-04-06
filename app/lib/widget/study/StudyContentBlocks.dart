@@ -267,14 +267,13 @@ class StudyContentBlocksState extends State<StudyContentBlocks> {
                                   opacity:
                                       imageIndexEnabled == imageIndex ? 1 : 0,
                                   // IMAGE
-                                  child: Image(
-                                      // fit
-                                      fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
-                                      // width
-                                      width: width,
-                                      // image
-                                      image: Images.of(
-                                          block.images[imageIndex])))))
+                                  child: Images.of(
+                                    block.images[imageIndex],
+                                    // fit
+                                    fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
+                                    // width
+                                    width: width,
+                                  ))))
               ])
             : SizedBox.shrink();
 

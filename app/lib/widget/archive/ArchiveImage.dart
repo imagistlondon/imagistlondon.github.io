@@ -98,11 +98,10 @@ class ArchiveImageState extends State<ArchiveImage> {
                 // IMAGE
                 Expanded(
                   flex: 4,
-                  child: Image(
+                  child: Images.of(image,
                       fit: Design.ARCHIVE_IMAGE_BOX_FIT,
                       width: imageWidth,
-                      height: imageHeight,
-                      image: Images.of(image)),
+                      height: imageHeight),
                 ),
               ]),
 

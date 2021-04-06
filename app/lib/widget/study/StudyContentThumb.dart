@@ -28,11 +28,7 @@ class StudyContentThumb extends StatelessWidget {
     if (height > Design.STUDY_THUMB_MAX_HEIGHT)
       height = Design.STUDY_THUMB_MAX_HEIGHT;
 
-    return Image(
-      width: width,
-      height: height,
-      fit: BoxFit.cover,
-      image: Images.of(project.studyImage),
-    );
+    return Images.of(project.studyImage,
+        width: width, height: height, fit: BoxFit.cover);
   }
 }

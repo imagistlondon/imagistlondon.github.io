@@ -34,6 +34,8 @@ dependencies:
   http: 0.13.1
   transparent_image: 2.0.0
   pointer_interceptor: 0.9.0
+  flutter_gifimage: 1.0.1
+  web_browser_detect: 2.0.1
 
 flutter:
   # uses-material-design: true

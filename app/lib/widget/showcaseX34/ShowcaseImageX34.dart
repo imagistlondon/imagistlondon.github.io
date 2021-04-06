@@ -40,8 +40,7 @@ class ShowcaseImageX34 extends StatelessWidget {
           if (image == null) return SizedBox.shrink();
 
           // IMAGE
-          return Image(
-              height: height, fit: BoxFit.cover, image: Images.of(image));
+          return Images.of(image, height: height, fit: BoxFit.cover);
         }));
   }
 }

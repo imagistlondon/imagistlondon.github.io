@@ -29,10 +29,8 @@ class StudyArrowState extends State<StudyArrow> {
   final ValueNotifier<bool> hoverVN = ValueNotifier(false);
 
   // IMAGE
-  static Image IMAGE = Image(
-      image: Images.of(Design.STUDY_ARROW_IMAGE),
-      width: Design.STUDY_ARROW_WIDTH,
-      color: Design.STUDY_ARROW_COLOR);
+  static Image IMAGE = Images.of(Design.STUDY_ARROW_IMAGE,
+      width: Design.STUDY_ARROW_WIDTH, color: Design.STUDY_ARROW_COLOR);
 
   void onEnter(PointerEvent pe) {
     hoverVN.value = true;

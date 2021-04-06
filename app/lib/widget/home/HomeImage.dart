@@ -57,9 +57,8 @@ class HomeImage extends StatelessWidget {
                   // opacity
                   opacity: enabled ? 1 : 0,
                   // IMAGE
-                  child: Image(
+                  child: Images.of(project.homeImage,
                       fit: BoxFit.cover,
-                      image: Images.of(project.homeImage),
                       width: double.infinity,
                       height: height))));
     });

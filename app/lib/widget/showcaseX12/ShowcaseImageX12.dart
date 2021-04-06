@@ -50,10 +50,7 @@ class ShowcaseImageX12 extends StatelessWidget {
         // CONTAINER
         child: Container(
             padding: padding,
-            child: Image(
-                fit: BoxFit.cover,
-                image: Images.of(project.showcaseImage),
-                width: width,
-                height: height)));
+            child: Images.of(project.showcaseImage,
+                fit: BoxFit.cover, width: width, height: height)));
   }
 }

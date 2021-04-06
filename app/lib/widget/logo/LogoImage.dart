@@ -79,8 +79,7 @@ class LogoImageState extends State<LogoImage>
                       offset: animation.value, child: child);
                 },
                 // IMAGE
-                child: Image(
-                    image: Images.of(Design.HEADER_LOGO_IMAGE),
+                child: Images.of(Design.HEADER_LOGO_IMAGE,
                     height: Design.HEADER_LOGO_SIZE))));
   }
 }
