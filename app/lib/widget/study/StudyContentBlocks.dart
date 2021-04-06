@@ -27,7 +27,8 @@ class StudyContentBlocks extends StatefulWidget {
   StudyContentBlocksState createState() => StudyContentBlocksState();
 }
 
-class StudyContentBlocksState extends State<StudyContentBlocks> {
+class StudyContentBlocksState extends State<StudyContentBlocks>
+    with TickerProviderStateMixin {
   List<Timer> timers = [];
 
   @override
@@ -43,6 +44,9 @@ class StudyContentBlocksState extends State<StudyContentBlocks> {
       }
       timers.clear();
     }
+
+    // clear gif controllers
+    Images.disposeGifControllers(this);
   }
 
   @override
@@ -267,13 +271,13 @@ class StudyContentBlocksState extends State<StudyContentBlocks> {
                                   opacity:
                                       imageIndexEnabled == imageIndex ? 1 : 0,
                                   // IMAGE
-                                  child: Images.of(
-                                    block.images[imageIndex],
-                                    // fit
-                                    fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
-                                    // width
-                                    width: width,
-                                  ))))
+                                  child: Images.of(block.images[imageIndex],
+                                      // fit
+                                      fit: Design.STUDY_CONTENT_IMAGE_BOX_FIT,
+                                      // width
+                                      width: width,
+                                      // vsync (for gifs in safari)
+                                      vsync: this))))
               ])
             : SizedBox.shrink();
 
