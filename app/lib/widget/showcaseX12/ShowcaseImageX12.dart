@@ -6,7 +6,7 @@ import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 
-class ShowcaseImageX12 extends StatelessWidget {
+class ShowcaseImageX12 extends StatefulWidget {
   const ShowcaseImageX12(
       {Key key,
       @required this.indexVN,
@@ -18,8 +18,22 @@ class ShowcaseImageX12 extends StatelessWidget {
   final StudyEnabledNotifier studyEnabledVN;
   final Project project;
 
+  @override
+  ShowcaseImageX12State createState() => ShowcaseImageX12State();
+}
+
+class ShowcaseImageX12State extends State<ShowcaseImageX12>
+    with SingleTickerProviderStateMixin {
+  final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
+
+  @override
+  void dispose() {
+    super.dispose();
+    Images.disposeGifControllers(this);
+  }
+
   void onTap() {
-    studyEnabledVN.value = project;
+    widget.studyEnabledVN.value = widget.project;
   }
 
   void onEnter(PointerEvent pe) {}
@@ -29,7 +43,7 @@ class ShowcaseImageX12 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // skip
-    if (project.showcaseImage == null) return SizedBox.shrink();
+    if (widget.project.showcaseImage == null) return SizedBox.shrink();
 
     // width
     final double width =
@@ -50,7 +64,11 @@ class ShowcaseImageX12 extends StatelessWidget {
         // CONTAINER
         child: Container(
             padding: padding,
-            child: Images.of(project.showcaseImage,
-                fit: BoxFit.cover, width: width, height: height)));
+            child: Images.of(widget.project.showcaseImage,
+                fit: BoxFit.cover,
+                width: width,
+                height: height,
+                gifDuration: widget.project.showcaseImageGifDuration,
+                vsync: this)));
   }
 }

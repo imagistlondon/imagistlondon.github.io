@@ -5,7 +5,7 @@ import 'package:app/config/Content.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:flutter/material.dart';
 
-class ShowcaseImageX34 extends StatelessWidget {
+class ShowcaseImageX34 extends StatefulWidget {
   const ShowcaseImageX34(
       {Key key,
       @required this.indexVN,
@@ -16,6 +16,20 @@ class ShowcaseImageX34 extends StatelessWidget {
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<Project> projectEnabledVN;
+
+  @override
+  ShowcaseImageX34State createState() => ShowcaseImageX34State();
+}
+
+class ShowcaseImageX34State extends State<ShowcaseImageX34>
+    with SingleTickerProviderStateMixin {
+  final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
+
+  @override
+  void dispose() {
+    super.dispose();
+    Images.disposeGifControllers(this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +45,7 @@ class ShowcaseImageX34 extends StatelessWidget {
         width: width,
 
         // LISTEN (projectEnabledVN)
-        child: L1(projectEnabledVN, (projectEnabled) {
+        child: L1(widget.projectEnabledVN, (Project projectEnabled) {
           // image
           final String image =
               projectEnabled != null ? projectEnabled.showcaseImage : null;
@@ -40,7 +54,11 @@ class ShowcaseImageX34 extends StatelessWidget {
           if (image == null) return SizedBox.shrink();
 
           // IMAGE
-          return Images.of(image, height: height, fit: BoxFit.cover);
+          return Images.of(image,
+              height: height,
+              fit: BoxFit.cover,
+              gifDuration: projectEnabled.showcaseImageGifDuration,
+              vsync: this);
         }));
   }
 }
