@@ -51,6 +51,8 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
 
   @override
   Widget build(BuildContext context) {
+    print('StudyContentBlocks.build.' + widget.project.key);
+
     // skip if no blocks
     if (widget.project.studyBlocks == null ||
         widget.project.studyBlocks[widget.letter] == null)
@@ -144,7 +146,7 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
         final bool hasTitle = block.title != null && block.title != "";
         final bool hasDesc = block.desc != null && block.desc != "";
         final bool hasText = hasTitle || hasDesc;
-        final bool hasFullText = hasTitle && hasDesc;
+        // final bool hasFullText = hasTitle && hasDesc;
 
         final bool hasVideo = block.videoId != null && block.videoId != "";
         final bool hasImage = block.image != null && block.image != "";
@@ -153,7 +155,7 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
 
         final bool hasMedia = hasVideo || hasImage;
 
-        final bool hasContent = hasText || hasImage || hasVideo;
+        // final bool hasContent = hasText || hasImage || hasVideo;
         final bool hasFullContent = hasText && hasMedia;
 
         // build title widget

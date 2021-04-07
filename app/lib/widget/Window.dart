@@ -12,12 +12,10 @@ import 'package:app/widget/logo/LogoX234.dart';
 import 'package:app/widget/showcaseX34/ShowcaseX34.dart';
 import 'package:app/widget/showcaseX12/ShowcaseX12.dart';
 import 'package:app/widget/studio/Studio.dart';
-import 'package:app/widget/study/Study.dart';
 import 'package:app/widget/study/StudyGeneric.dart';
 import 'package:app/widget/tags/Tags.dart';
 import 'package:app/widget/terms/Terms.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 class Window extends StatefulWidget {
   const Window(

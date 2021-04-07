@@ -1,4 +1,3 @@
-import 'package:app/config/Content.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/studio/StudioBox.dart';
 import 'package:app/widget/studio/StudioOffsetBackground.dart';

@@ -1,6 +1,5 @@
 import 'package:app/config/Design.dart';
 import 'package:app/text/P.dart';
-import 'package:app/util/HTML.dart';
 import 'package:app/util/L1C.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';

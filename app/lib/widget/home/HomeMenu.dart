@@ -33,7 +33,7 @@ class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // init elements in stack
-    final List<Widget> elements = List();
+    final List<Widget> elements = [];
 
     // loop through project
     Content.data.KEY_HOME_PROJECTS.forEach((key, project) {

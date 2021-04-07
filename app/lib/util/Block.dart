@@ -25,7 +25,7 @@ class Block extends StatelessWidget {
     final sectionWidth =
         gap ? Design.sectionInnerWidth(context) : Design.sectionWidth(context);
 
-    // calalculate width
+    // calculate width
     double width = sectionWidth * widthFactor;
 
     // limit width

@@ -24,6 +24,8 @@ class StudyContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('StudyContent.build.' + project.key);
+
     // SCROLL
     return Scrollbar(
         controller: scrollController,

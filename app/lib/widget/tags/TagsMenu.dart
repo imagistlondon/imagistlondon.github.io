@@ -40,14 +40,14 @@ class TagsMenu extends StatelessWidget {
         Design.TAGS_MENU_LINKS_PER_ROW_X4);
 
     // init cells list
-    final List<Row> rows = List();
-    List<Widget> columns = List();
+    final List<Row> rows = [];
+    List<Widget> columns = [];
     int i = 0;
     int j = 0;
     for (String tag in Content.data.TAG_IMAGES.keys) {
       if (i > 0 && i % columnSize == 0) {
         rows.add(Row(children: columns));
-        columns = List();
+        columns = [];
         j = 0;
       }
       if (j > 0 && j < columnSize) {
