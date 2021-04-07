@@ -45,7 +45,7 @@ class TagsImagesX12 extends StatelessWidget {
       if (images.isEmpty) images.add('assets/empty.png');
 
       // build image elements
-      final List<Widget> imageElements = List();
+      final List<Widget> imageElements = [];
       int i = 0;
       for (final String image in images) {
         imageElements.add(Container(
