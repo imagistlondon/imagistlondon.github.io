@@ -4,7 +4,7 @@ import 'package:app/util/Images.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:flutter/material.dart';
 
-class StudyContentThumb extends StatelessWidget {
+class StudyContentThumb extends StatefulWidget {
   const StudyContentThumb(
       {Key key, @required this.studyEnabledVN, @required this.project})
       : super(key: key);
@@ -13,9 +13,23 @@ class StudyContentThumb extends StatelessWidget {
   final Project project;
 
   @override
+  StudyContentThumbState createState() => StudyContentThumbState();
+}
+
+class StudyContentThumbState extends State<StudyContentThumb>
+    with SingleTickerProviderStateMixin {
+  final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
+
+  @override
+  void dispose() {
+    super.dispose();
+    Images.disposeGifControllers(this);
+  }
+
+  @override
   Widget build(BuildContext context) {
     // skip if no image
-    if (project.studyImage == null) return SizedBox.shrink();
+    if (widget.project.studyImage == null) return SizedBox.shrink();
 
     // width
     final double width = MediaQuery.of(context).size.width;
@@ -28,7 +42,11 @@ class StudyContentThumb extends StatelessWidget {
     if (height > Design.STUDY_THUMB_MAX_HEIGHT)
       height = Design.STUDY_THUMB_MAX_HEIGHT;
 
-    return Images.of(project.studyImage,
-        width: width, height: height, fit: BoxFit.cover);
+    return Images.of(widget.project.studyImage,
+        width: width,
+        height: height,
+        fit: BoxFit.cover,
+        gifDuration: widget.project.studyImageGifDuration,
+        vsync: this);
   }
 }
