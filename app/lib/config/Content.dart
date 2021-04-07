@@ -11,7 +11,7 @@ import 'dart:convert';
 class Content {
   static Content data = Content();
 
-  static Future<Content> load() async {
+  static void load() async {
     // call
     final String result = (await http.get(Uri.parse(
         //'http://localhost:3000/api/getConfig'
@@ -21,7 +21,7 @@ class Content {
     final Map map = json.decode(result);
 
     // init projects
-    final List<Project> projects = List();
+    final List<Project> projects = [];
 
     // PROJECTS
     if (map['PROJECT-length'] != null) {
