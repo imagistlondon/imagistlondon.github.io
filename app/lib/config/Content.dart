@@ -13,9 +13,9 @@ class Content {
 
   static Future<Content> load() async {
     // call
-    final String result = (await http
-            .get(Uri.parse('https://admin.imagistlondon.com/api/getConfig')))
-        .body;
+    final String result = (await http.get(Uri.parse(
+        //'http://localhost:3000/api/getConfig'
+        'https://admin.imagistlondon.com/api/getConfig'))).body;
 
     // convert json to map
     final Map map = json.decode(result);
@@ -34,7 +34,7 @@ class Content {
         final String prefix = 'PROJECT-' + i.toString() + '-';
 
         // init tags
-        final List<String> tags = List();
+        final List<String> tags = [];
 
         // load tags
         if (map[prefix + 'TAG-length'] != null) {
@@ -104,8 +104,8 @@ class Content {
 
         // init studyBlocks
         final Map<String, List<ProjectStudyBlock>> studyBlocks = Map();
-        studyBlocks['A'] = List();
-        studyBlocks['B'] = List();
+        studyBlocks['A'] = [];
+        studyBlocks['B'] = [];
 
         // load study blocks
         for (final String letter in studyBlocks.keys) {
@@ -345,13 +345,11 @@ class Content {
         // add project
         projects.add(Project(
             key: map[prefix + 'KEY'],
-            home: map[prefix + 'HOME'] != null ? map[prefix + 'HOME'] : false,
-            showcase: map[prefix + 'SHOWCASE'] != null
-                ? map[prefix + 'SHOWCASE']
-                : false,
-            archive: map[prefix + 'ARCHIVE'] != null
-                ? map[prefix + 'ARCHIVE']
-                : false,
+            home: map[prefix + 'HOME'] != null && map[prefix + 'HOME'] == true,
+            showcase: map[prefix + 'SHOWCASE'] != null &&
+                map[prefix + 'SHOWCASE'] == true,
+            archive: map[prefix + 'ARCHIVE'] != null &&
+                map[prefix + 'ARCHIVE'] == true,
             title:
                 map[prefix + 'TITLE'] != null ? map[prefix + 'TITLE'] : 'Title',
             subtitle: map[prefix + 'SUBTITLE'] != null
@@ -403,6 +401,7 @@ class Content {
     final Map<String, Set<String>> tagAssociations = SplayTreeMap();
     final Map<String, Set<String>> tagImages = SplayTreeMap();
     final Map<String, String> tagImageToKey = SplayTreeMap();
+    final Map<String, Duration> tagImageToGifDuration = SplayTreeMap();
 
     for (final Project project in projects) {
       // skip if no tags
@@ -436,76 +435,76 @@ class Content {
 
         // set tagImage -> project key
         tagImageToKey[project.tagImage] = project.key;
+        tagImageToGifDuration[project.tagImage] = project.tagImageGifDuration;
       }
     }
 
     Content.data = Content(
-      loaded: true,
-      HEADER_WORK: map['HEADER_WORK'] != null ? map['HEADER_WORK'] : 'Work',
-      HEADER_STUDIO:
-          map['HEADER_STUDIO'] != null ? map['HEADER_STUDIO'] : 'Studio',
-      STUDIO_EMAIL: map['STUDIO_EMAIL'] != null ? map['STUDIO_EMAIL'] : 'Email',
-      STUDIO_PHONE: map['STUDIO_PHONE'] != null ? map['STUDIO_PHONE'] : 'Phone',
-      STUDIO_ADDRESS:
-          map['STUDIO_ADDRESS'] != null ? map['STUDIO_ADDRESS'] : 'Address',
-      STUDIO_ADDRESS_GOOGLE_MAPS: map['STUDIO_ADDRESS_GOOGLE_MAPS'] != null
-          ? map['STUDIO_ADDRESS_GOOGLE_MAPS']
-          : 'Google Maps Address',
-      STUDIO_INSTAGRAM: map['STUDIO_INSTAGRAM'] != null
-          ? map['STUDIO_INSTAGRAM']
-          : 'Instagram',
-      STUDIO_ABOUT_TITLE: map['STUDIO_ABOUT_TITLE'] != null
-          ? map['STUDIO_ABOUT_TITLE']
-          : 'About',
-      STUDIO_ABOUT_TEXT: map['STUDIO_ABOUT_TEXT'] != null
-          ? map['STUDIO_ABOUT_TEXT']
-          : 'About Text',
-      STUDIO_PROCESS_TITLE: map['STUDIO_PROCESS_TITLE'] != null
-          ? map['STUDIO_PROCESS_TITLE']
-          : 'Process',
-      STUDIO_PROCESS_TEXT: map['STUDIO_PROCESS_TEXT'] != null
-          ? map['STUDIO_PROCESS_TEXT']
-          : 'Process Text',
-      STUDIO_COPYRIGHT_PREFIX: map['STUDIO_COPYRIGHT_PREFIX'] != null
-          ? map['STUDIO_COPYRIGHT_PREFIX']
-          : 'Copyright ',
-      STUDIO_TERMS_LINK_TITLE: map['STUDIO_TERMS_LINK_TITLE'] != null
-          ? map['STUDIO_TERMS_LINK_TITLE']
-          : 'Terms',
-      TERMS: map['TERMS'] != null ? map['TERMS'] : 'Terms',
-      PROJECTS: projects,
-      KEY_PROJECTS:
-          Map.fromIterable(projects, key: (p) => p.key, value: (p) => p),
-      PROJECT_KEY_TO_INDEX: Map.fromIterable(
-          List.generate(projects.length, (i) => i),
-          key: (i) => projects[i].key,
-          value: (i) => i),
-      HOME_PROJECTS: homeProjects,
-      KEY_HOME_PROJECTS:
-          Map.fromIterable(homeProjects, key: (p) => p.key, value: (p) => p),
-      HOME_PROJECT_KEY_TO_INDEX: Map.fromIterable(
-          List.generate(homeProjects.length, (i) => i),
-          key: (i) => homeProjects[i].key,
-          value: (i) => i),
-      SHOWCASE_PROJECTS: showcaseProjects,
-      KEY_SHOWCASE_PROJECTS: Map.fromIterable(showcaseProjects,
-          key: (p) => p.key, value: (p) => p),
-      SHOWCASE_PROJECT_KEY_TO_INDEX: Map.fromIterable(
-          List.generate(showcaseProjects.length, (i) => i),
-          key: (i) => showcaseProjects[i].key,
-          value: (i) => i),
-      ARCHIVE_PROJECTS: archiveProjects,
-      KEY_ARCHIVE_PROJECTS:
-          Map.fromIterable(archiveProjects, key: (p) => p.key, value: (p) => p),
-      ARCHIVE_PROJECT_KEY_TO_INDEX: Map.fromIterable(
-          List.generate(archiveProjects.length, (i) => i),
-          key: (i) => archiveProjects[i].key,
-          value: (i) => i),
-      TAGS: tags,
-      TAG_ASSOCIATIONS: tagAssociations,
-      TAG_IMAGES: tagImages,
-      TAG_IMAGE_TO_KEY: tagImageToKey,
-    );
+        loaded: true,
+        HEADER_WORK: map['HEADER_WORK'] != null ? map['HEADER_WORK'] : 'Work',
+        HEADER_STUDIO:
+            map['HEADER_STUDIO'] != null ? map['HEADER_STUDIO'] : 'Studio',
+        STUDIO_EMAIL:
+            map['STUDIO_EMAIL'] != null ? map['STUDIO_EMAIL'] : 'Email',
+        STUDIO_PHONE:
+            map['STUDIO_PHONE'] != null ? map['STUDIO_PHONE'] : 'Phone',
+        STUDIO_ADDRESS:
+            map['STUDIO_ADDRESS'] != null ? map['STUDIO_ADDRESS'] : 'Address',
+        STUDIO_ADDRESS_GOOGLE_MAPS: map['STUDIO_ADDRESS_GOOGLE_MAPS'] != null
+            ? map['STUDIO_ADDRESS_GOOGLE_MAPS']
+            : 'Google Maps Address',
+        STUDIO_INSTAGRAM: map['STUDIO_INSTAGRAM'] != null
+            ? map['STUDIO_INSTAGRAM']
+            : 'Instagram',
+        STUDIO_ABOUT_TITLE: map['STUDIO_ABOUT_TITLE'] != null
+            ? map['STUDIO_ABOUT_TITLE']
+            : 'About',
+        STUDIO_ABOUT_TEXT: map['STUDIO_ABOUT_TEXT'] != null
+            ? map['STUDIO_ABOUT_TEXT']
+            : 'About Text',
+        STUDIO_PROCESS_TITLE: map['STUDIO_PROCESS_TITLE'] != null
+            ? map['STUDIO_PROCESS_TITLE']
+            : 'Process',
+        STUDIO_PROCESS_TEXT: map['STUDIO_PROCESS_TEXT'] != null
+            ? map['STUDIO_PROCESS_TEXT']
+            : 'Process Text',
+        STUDIO_COPYRIGHT_PREFIX: map['STUDIO_COPYRIGHT_PREFIX'] != null
+            ? map['STUDIO_COPYRIGHT_PREFIX']
+            : 'Copyright ',
+        STUDIO_TERMS_LINK_TITLE: map['STUDIO_TERMS_LINK_TITLE'] != null
+            ? map['STUDIO_TERMS_LINK_TITLE']
+            : 'Terms',
+        TERMS: map['TERMS'] != null ? map['TERMS'] : 'Terms',
+        PROJECTS: projects,
+        KEY_PROJECTS:
+            Map.fromIterable(projects, key: (p) => p.key, value: (p) => p),
+        PROJECT_KEY_TO_INDEX: Map.fromIterable(
+            List.generate(projects.length, (i) => i),
+            key: (i) => projects[i].key,
+            value: (i) => i),
+        HOME_PROJECTS: homeProjects,
+        KEY_HOME_PROJECTS:
+            Map.fromIterable(homeProjects, key: (p) => p.key, value: (p) => p),
+        HOME_PROJECT_KEY_TO_INDEX: Map.fromIterable(
+            List.generate(homeProjects.length, (i) => i),
+            key: (i) => homeProjects[i].key,
+            value: (i) => i),
+        SHOWCASE_PROJECTS: showcaseProjects,
+        KEY_SHOWCASE_PROJECTS: Map.fromIterable(showcaseProjects,
+            key: (p) => p.key, value: (p) => p),
+        SHOWCASE_PROJECT_KEY_TO_INDEX: Map.fromIterable(
+            List.generate(showcaseProjects.length, (i) => i),
+            key: (i) => showcaseProjects[i].key,
+            value: (i) => i),
+        ARCHIVE_PROJECTS: archiveProjects,
+        KEY_ARCHIVE_PROJECTS:
+            Map.fromIterable(archiveProjects, key: (p) => p.key, value: (p) => p),
+        ARCHIVE_PROJECT_KEY_TO_INDEX: Map.fromIterable(List.generate(archiveProjects.length, (i) => i), key: (i) => archiveProjects[i].key, value: (i) => i),
+        TAGS: tags,
+        TAG_ASSOCIATIONS: tagAssociations,
+        TAG_IMAGES: tagImages,
+        TAG_IMAGE_TO_KEY: tagImageToKey,
+        TAG_IMAGE_TO_GIF_DURATION: tagImageToGifDuration);
 
     print('Content.load.done');
   }
@@ -545,6 +544,7 @@ class Content {
   final Map<String, Set<String>> TAG_ASSOCIATIONS;
   final Map<String, Set<String>> TAG_IMAGES;
   final Map<String, String> TAG_IMAGE_TO_KEY;
+  final Map<String, Duration> TAG_IMAGE_TO_GIF_DURATION;
 
   const Content(
       {this.loaded = false,
@@ -577,7 +577,8 @@ class Content {
       this.TAGS = const {},
       this.TAG_ASSOCIATIONS = const {},
       this.TAG_IMAGES = const {},
-      this.TAG_IMAGE_TO_KEY = const {}});
+      this.TAG_IMAGE_TO_KEY = const {},
+      this.TAG_IMAGE_TO_GIF_DURATION = const {}});
 }
 
 class Project {
