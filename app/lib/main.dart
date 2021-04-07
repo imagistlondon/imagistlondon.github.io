@@ -3,7 +3,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:app/App.dart';
 
 void main() {
-  print('v2.0.5');
+  print('v2.0.6');
 
   // set no # (hashbang) for web
   setUrlStrategy(PathUrlStrategy());
