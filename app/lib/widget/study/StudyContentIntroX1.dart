@@ -28,13 +28,13 @@ class StudyContentIntroX1 extends StatelessWidget {
               H1(
                   text: project.title,
                   selectable: true,
-                  style:
-                      TextStyle(color: Design.STUDY_CONTENT_INTRO_TITLE_COLOR)),
+                  style: const TextStyle(
+                      color: Design.STUDY_CONTENT_INTRO_TITLE_COLOR)),
               // subtitle
               H1(
                   text: project.subtitle,
                   selectable: true,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Design.STUDY_CONTENT_INTRO_SUBTITLE_COLOR)),
               // gap
               const SizedBox(height: Design.SPACE),

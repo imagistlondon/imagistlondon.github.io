@@ -33,6 +33,7 @@ class StudyGenericState extends State<StudyGeneric> {
 
   @override
   void initState() {
+    print('StudyGeneric.initState');
     super.initState();
 
     // scroll listener
@@ -40,6 +41,13 @@ class StudyGenericState extends State<StudyGeneric> {
       widget.progressFractionVN.value =
           scrollController.offset / scrollController.position.maxScrollExtent;
     });
+  }
+
+  @override
+  void dispose() {
+    print('StudyGeneric.dispose');
+    super.dispose();
+    scrollController.dispose();
   }
 
   Widget child;

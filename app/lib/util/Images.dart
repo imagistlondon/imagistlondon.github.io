@@ -111,7 +111,7 @@ class Images {
 
     // dispose of the the gif controllers for this widget
     gifControllers.forEach((src, gifController) {
-      gifController.dispose();
+      if (gifController != null) gifController.dispose();
     });
   }
 
