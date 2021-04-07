@@ -23,7 +23,8 @@ class TagsImage extends StatefulWidget {
   TagsImageState createState() => TagsImageState();
 }
 
-class TagsImageState extends State<TagsImage> with TickerProviderStateMixin {
+class TagsImageState extends State<TagsImage>
+    with SingleTickerProviderStateMixin {
   final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
 
   @override
