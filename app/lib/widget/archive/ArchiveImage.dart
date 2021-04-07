@@ -25,8 +25,15 @@ class ArchiveImage extends StatefulWidget {
   ArchiveImageState createState() => ArchiveImageState();
 }
 
-class ArchiveImageState extends State<ArchiveImage> {
+class ArchiveImageState extends State<ArchiveImage>
+    with TickerProviderStateMixin {
   final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
+
+  @override
+  void dispose() {
+    super.dispose();
+    Images.disposeGifControllers(this);
+  }
 
   void onTap(int index) {
     widget.studyEnabledVN.value = Content.data.ARCHIVE_PROJECTS[index];
@@ -59,7 +66,7 @@ class ArchiveImageState extends State<ArchiveImage> {
     final int rowSizeMax = Content.data.ARCHIVE_PROJECTS.length - imageScale;
 
     // LISTEN
-    return L1(widget.projectEnabledVN, (projectEnabled) {
+    return L1(widget.projectEnabledVN, (final Project projectEnabled) {
       // pull image to show
       final String image =
           projectEnabled != null ? projectEnabled.archiveImage : null;
@@ -101,7 +108,9 @@ class ArchiveImageState extends State<ArchiveImage> {
                   child: Images.of(image,
                       fit: Design.ARCHIVE_IMAGE_BOX_FIT,
                       width: imageWidth,
-                      height: imageHeight),
+                      height: imageHeight,
+                      gifDuration: projectEnabled.archiveImageGifDuration,
+                      vsync: this),
                 ),
               ]),
 
