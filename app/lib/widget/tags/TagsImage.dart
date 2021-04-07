@@ -7,7 +7,7 @@ import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 
-class TagsImage extends StatelessWidget {
+class TagsImage extends StatefulWidget {
   const TagsImage(
       {Key key,
       @required this.indexVN,
@@ -19,10 +19,23 @@ class TagsImage extends StatelessWidget {
   final StudyEnabledNotifier studyEnabledVN;
   final String image;
 
+  @override
+  TagsImageState createState() => TagsImageState();
+}
+
+class TagsImageState extends State<TagsImage> with TickerProviderStateMixin {
+  final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
+
+  @override
+  void dispose() {
+    super.dispose();
+    Images.disposeGifControllers(this);
+  }
+
   void onTap() {
-    final String projectKey = Content.data.TAG_IMAGE_TO_KEY[this.image];
+    final String projectKey = Content.data.TAG_IMAGE_TO_KEY[widget.image];
     final Project project = Content.data.KEY_PROJECTS[projectKey];
-    studyEnabledVN.value = project;
+    widget.studyEnabledVN.value = project;
   }
 
   void onEnter(PointerEvent pe) {}
@@ -32,7 +45,7 @@ class TagsImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // skip
-    if (image == null) return SizedBox.shrink();
+    if (widget.image == null) return SizedBox.shrink();
 
     // UA
     return UA(
@@ -40,29 +53,29 @@ class TagsImage extends StatelessWidget {
         onEnter: onEnter,
         onExit: onExit,
         // IMAGE
-        child: Images.of(
-          image,
-          fit: Design.TAGS_IMAGE_BOX_FIT,
-          width: Break.decide(
-              context,
-              // x1 (scaled by aspect ration)
-              Design.TAGS_IMAGE_HEIGHT_X1 / Design.TAGS_IMAGE_SCALE_X1,
-              // x2 (scaled by aspect ration)
-              Design.TAGS_IMAGE_HEIGHT_X2 / Design.TAGS_IMAGE_SCALE_X2,
-              // x3 (full width in right part of table)
-              double.infinity,
-              // x4 (full width in right part of table)
-              double.infinity),
-          height: Break.decide(
-              context,
-              // x1 (specific height)
-              Design.TAGS_IMAGE_HEIGHT_X1,
-              // x2 (specific height)
-              Design.TAGS_IMAGE_HEIGHT_X2,
-              // x3 (scale by rows)
-              Design.TAGS_IMAGE_SCALE_X3 * Design.TAGS_MENU_ROW_HEIGHT,
-              // x4
-              Design.TAGS_IMAGE_SCALE_X4 * Design.TAGS_MENU_ROW_HEIGHT),
-        ));
+        child: Images.of(widget.image,
+            fit: Design.TAGS_IMAGE_BOX_FIT,
+            width: Break.decide(
+                context,
+                // x1 (scaled by aspect ration)
+                Design.TAGS_IMAGE_HEIGHT_X1 / Design.TAGS_IMAGE_SCALE_X1,
+                // x2 (scaled by aspect ration)
+                Design.TAGS_IMAGE_HEIGHT_X2 / Design.TAGS_IMAGE_SCALE_X2,
+                // x3 (full width in right part of table)
+                double.infinity,
+                // x4 (full width in right part of table)
+                double.infinity),
+            height: Break.decide(
+                context,
+                // x1 (specific height)
+                Design.TAGS_IMAGE_HEIGHT_X1,
+                // x2 (specific height)
+                Design.TAGS_IMAGE_HEIGHT_X2,
+                // x3 (scale by rows)
+                Design.TAGS_IMAGE_SCALE_X3 * Design.TAGS_MENU_ROW_HEIGHT,
+                // x4
+                Design.TAGS_IMAGE_SCALE_X4 * Design.TAGS_MENU_ROW_HEIGHT),
+            gifDuration: Content.data.TAG_IMAGE_TO_GIF_DURATION[widget.image],
+            vsync: this));
   }
 }
