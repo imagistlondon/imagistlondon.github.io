@@ -8,7 +8,7 @@ import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 
-class HomeImage extends StatelessWidget {
+class HomeImage extends StatefulWidget {
   const HomeImage(
       {Key key,
       @required this.indexVN,
@@ -26,8 +26,19 @@ class HomeImage extends StatelessWidget {
 
   final Function moveProject;
 
+  @override
+  HomeImageState createState() => HomeImageState();
+}
+
+class HomeImageState extends State<HomeImage> with TickerProviderStateMixin {
+  @override
+  void dispose() {
+    super.dispose();
+    Images.disposeGifControllers(this);
+  }
+
   void onTap() {
-    studyEnabledVN.value = projectEnabledVN.value;
+    widget.studyEnabledVN.value = widget.projectEnabledVN.value;
   }
 
   @override
@@ -40,13 +51,13 @@ class HomeImage extends StatelessWidget {
             (Break.x12(context) ? Design.SPACE * 4 : 0));
 
     // init elements in stack
-    final List<Widget> elements = List();
+    final List<Widget> elements = [];
 
     // loop through project
-    Content.data.KEY_HOME_PROJECTS.forEach((key, project) {
+    Content.data.KEY_HOME_PROJECTS.forEach((key, Project project) {
       // LISTEN
       elements.add(L1(
-          projectKeysEnabledVN[key],
+          widget.projectKeysEnabledVN[key],
           (enabled) =>
               // ANIMATED OPACITY
               AnimatedOpacity(
@@ -60,7 +71,9 @@ class HomeImage extends StatelessWidget {
                   child: Images.of(project.homeImage,
                       fit: BoxFit.cover,
                       width: double.infinity,
-                      height: height))));
+                      height: height,
+                      gifDuration: project.homeImageGifDuration,
+                      vsync: this))));
     });
 
     // need at least 1 element so Stack can 'size' itself
@@ -73,16 +86,16 @@ class HomeImage extends StatelessWidget {
           print('details.delta: ' + details.delta.toString());
           if (details.delta.dx < -Design.SWIPE_THRESHOLD) {
             print('swiped-left');
-            moveProject();
+            widget.moveProject();
           } else if (details.delta.dx > Design.SWIPE_THRESHOLD) {
             print('swiped-right');
-            moveProject();
+            widget.moveProject();
           } else if (details.delta.dy > Design.SWIPE_THRESHOLD) {
             print('swiped-down');
-            moveProject();
+            widget.moveProject();
           } else if (details.delta.dy < -Design.SWIPE_THRESHOLD) {
             print('swiped-up');
-            moveProject();
+            widget.moveProject();
           }
         },
         // STACK
