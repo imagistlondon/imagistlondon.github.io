@@ -46,7 +46,7 @@ class Content {
 
         // homeImageGifDuration
         final String homeImageGifDurationString =
-            map[prefix + '-HOME_IMAGE_GIF_DURATION'];
+            map[prefix + 'HOME_IMAGE_GIF_DURATION'];
         final int homeImageGifDurationInt = homeImageGifDurationString != null
             ? int.tryParse(homeImageGifDurationString)
             : null;
@@ -57,7 +57,7 @@ class Content {
 
         // showcaseImageGifDuration
         final String showcaseImageGifDurationString =
-            map[prefix + '-SHOWCASE_IMAGE_GIF_DURATION'];
+            map[prefix + 'SHOWCASE_IMAGE_GIF_DURATION'];
         final int showcaseImageGifDurationInt =
             showcaseImageGifDurationString != null
                 ? int.tryParse(showcaseImageGifDurationString)
@@ -70,7 +70,7 @@ class Content {
 
         // archiveImageGifDuration
         final String archiveImageGifDurationString =
-            map[prefix + '-ARCHIVE_IMAGE_GIF_DURATION'];
+            map[prefix + 'ARCHIVE_IMAGE_GIF_DURATION'];
         final int archiveImageGifDurationInt =
             archiveImageGifDurationString != null
                 ? int.tryParse(archiveImageGifDurationString)
@@ -82,7 +82,7 @@ class Content {
 
         // tagImageGifDuration
         final String tagImageGifDurationString =
-            map[prefix + '-TAG_IMAGE_GIF_DURATION'];
+            map[prefix + 'TAG_IMAGE_GIF_DURATION'];
         final int tagImageGifDurationInt = tagImageGifDurationString != null
             ? int.tryParse(tagImageGifDurationString)
             : null;
@@ -93,7 +93,7 @@ class Content {
 
         // studyImageGifDuration
         final String studyImageGifDurationString =
-            map[prefix + '-STUDY_IMAGE_GIF_DURATION'];
+            map[prefix + 'STUDY_IMAGE_GIF_DURATION'];
         final int studyImageGifDurationInt = studyImageGifDurationString != null
             ? int.tryParse(studyImageGifDurationString)
             : null;
