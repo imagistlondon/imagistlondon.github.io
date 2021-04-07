@@ -7996,19 +7996,19 @@ if(k0.h(k1,"PROJECT-length")!=null){q=k0.h(k1,"PROJECT-length")
 for(p=t.s7,o=t.i,n=t.fG,m=t._J,l=0;l<q;++l){k="PROJECT-"+C.f.i(l)+"-"
 j=H.b([],o)
 if(k0.h(k1,k+"TAG-length")!=null){i=k0.h(k1,k+"TAG-length")
-for(h=0;h<i;++h)j.push(k0.h(k1,k+"TAG-"+C.f.i(h)+"-KEY"))}g=k0.h(k1,k+"-HOME_IMAGE_GIF_DURATION")
+for(h=0;h<i;++h)j.push(k0.h(k1,k+"TAG-"+C.f.i(h)+"-KEY"))}g=k0.h(k1,k+"HOME_IMAGE_GIF_DURATION")
 f=g!=null?H.j2(g,null):null
 e=f!=null&&f>0?new P.ap(1000*f):null
-d=k0.h(k1,k+"-SHOWCASE_IMAGE_GIF_DURATION")
+d=k0.h(k1,k+"SHOWCASE_IMAGE_GIF_DURATION")
 c=d!=null?H.j2(d,null):null
 b=c!=null&&c>0?new P.ap(1000*c):null
-a=k0.h(k1,k+"-ARCHIVE_IMAGE_GIF_DURATION")
+a=k0.h(k1,k+"ARCHIVE_IMAGE_GIF_DURATION")
 a0=a!=null?H.j2(a,null):null
 a1=a0!=null&&a0>0?new P.ap(1000*a0):null
-a2=k0.h(k1,k+"-TAG_IMAGE_GIF_DURATION")
+a2=k0.h(k1,k+"TAG_IMAGE_GIF_DURATION")
 a3=a2!=null?H.j2(a2,null):null
 a4=a3!=null&&a3>0?new P.ap(1000*a3):null
-a5=k0.h(k1,k+"-STUDY_IMAGE_GIF_DURATION")
+a5=k0.h(k1,k+"STUDY_IMAGE_GIF_DURATION")
 a6=a5!=null?H.j2(a5,null):null
 a7=a6!=null&&a6>0?new P.ap(1000*a6):null
 a8=new H.c4(m)
