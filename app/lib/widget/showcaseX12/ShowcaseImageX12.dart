@@ -24,8 +24,6 @@ class ShowcaseImageX12 extends StatefulWidget {
 
 class ShowcaseImageX12State extends State<ShowcaseImageX12>
     with SingleTickerProviderStateMixin {
-  final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
-
   @override
   void dispose() {
     super.dispose();

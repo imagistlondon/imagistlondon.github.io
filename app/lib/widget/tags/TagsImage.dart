@@ -25,8 +25,6 @@ class TagsImage extends StatefulWidget {
 
 class TagsImageState extends State<TagsImage>
     with SingleTickerProviderStateMixin {
-  final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
-
   @override
   void dispose() {
     super.dispose();

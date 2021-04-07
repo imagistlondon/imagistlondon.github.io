@@ -18,8 +18,6 @@ class StudyContentThumb extends StatefulWidget {
 
 class StudyContentThumbState extends State<StudyContentThumb>
     with SingleTickerProviderStateMixin {
-  final ValueNotifier<int> hoverIndexVN = ValueNotifier(null);
-
   @override
   void dispose() {
     super.dispose();
