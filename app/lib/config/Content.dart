@@ -44,6 +44,64 @@ class Content {
           }
         }
 
+        // homeImageGifDuration
+        final String homeImageGifDurationString =
+            map[prefix + '-HOME_IMAGE_GIF_DURATION'];
+        final int homeImageGifDurationInt = homeImageGifDurationString != null
+            ? int.tryParse(homeImageGifDurationString)
+            : null;
+        final Duration homeImageGifDuration =
+            homeImageGifDurationInt != null && homeImageGifDurationInt > 0
+                ? Duration(milliseconds: homeImageGifDurationInt)
+                : null;
+
+        // showcaseImageGifDuration
+        final String showcaseImageGifDurationString =
+            map[prefix + '-SHOWCASE_IMAGE_GIF_DURATION'];
+        final int showcaseImageGifDurationInt =
+            showcaseImageGifDurationString != null
+                ? int.tryParse(showcaseImageGifDurationString)
+                : null;
+        final Duration showcaseImageGifDuration =
+            showcaseImageGifDurationInt != null &&
+                    showcaseImageGifDurationInt > 0
+                ? Duration(milliseconds: showcaseImageGifDurationInt)
+                : null;
+
+        // archiveImageGifDuration
+        final String archiveImageGifDurationString =
+            map[prefix + '-ARCHIVE_IMAGE_GIF_DURATION'];
+        final int archiveImageGifDurationInt =
+            archiveImageGifDurationString != null
+                ? int.tryParse(archiveImageGifDurationString)
+                : null;
+        final Duration archiveImageGifDuration =
+            archiveImageGifDurationInt != null && archiveImageGifDurationInt > 0
+                ? Duration(milliseconds: archiveImageGifDurationInt)
+                : null;
+
+        // tagImageGifDuration
+        final String tagImageGifDurationString =
+            map[prefix + '-TAG_IMAGE_GIF_DURATION'];
+        final int tagImageGifDurationInt = tagImageGifDurationString != null
+            ? int.tryParse(tagImageGifDurationString)
+            : null;
+        final Duration tagImageGifDuration =
+            tagImageGifDurationInt != null && tagImageGifDurationInt > 0
+                ? Duration(milliseconds: tagImageGifDurationInt)
+                : null;
+
+        // studyImageGifDuration
+        final String studyImageGifDurationString =
+            map[prefix + '-STUDY_IMAGE_GIF_DURATION'];
+        final int studyImageGifDurationInt = studyImageGifDurationString != null
+            ? int.tryParse(studyImageGifDurationString)
+            : null;
+        final Duration studyImageGifDuration =
+            studyImageGifDurationInt != null && studyImageGifDurationInt > 0
+                ? Duration(milliseconds: studyImageGifDurationInt)
+                : null;
+
         // init studyBlocks
         final Map<String, List<ProjectStudyBlock>> studyBlocks = Map();
         studyBlocks['A'] = List();
@@ -142,11 +200,11 @@ class Content {
 
               // imageGifDuration
               final String imageGifDurationString =
-                  map[blockPrefix + '-IMAGE-GIF-DURATION'];
+                  map[blockPrefix + '-IMAGE_GIF_DURATION'];
               final String image2GifDurationString =
-                  map[blockPrefix + '-IMAGE2-GIF-DURATION'];
+                  map[blockPrefix + '-IMAGE2_GIF_DURATION'];
               final String image3GifDurationString =
-                  map[blockPrefix + '-IMAGE3-GIF-DURATION'];
+                  map[blockPrefix + '-IMAGE3_GIF_DURATION'];
               final int imageGifDurationInt = imageGifDurationString != null
                   ? int.tryParse(imageGifDurationString)
                   : null;
@@ -303,21 +361,31 @@ class Content {
                 ? map[prefix + 'DESC']
                 : 'Description',
             year: map[prefix + 'YEAR'] != null ? map[prefix + 'YEAR'] : '20XX',
+            // homeImage
             homeImage: map[prefix + 'HOME_IMAGE'] != null
                 ? map[prefix + 'HOME_IMAGE']
                 : 'assets/placeholder.png',
+            homeImageGifDuration: homeImageGifDuration,
+            // showcaseImage
             showcaseImage: map[prefix + 'SHOWCASE_IMAGE'] != null
                 ? map[prefix + 'SHOWCASE_IMAGE']
                 : 'assets/placeholder.png',
+            showcaseImageGifDuration: showcaseImageGifDuration,
+            // archiveImage
             archiveImage: map[prefix + 'ARCHIVE_IMAGE'] != null
                 ? map[prefix + 'ARCHIVE_IMAGE']
                 : 'assets/placeholder.png',
+            archiveImageGifDuration: archiveImageGifDuration,
+            // tagImage
             tagImage: map[prefix + 'TAG_IMAGE'] != null
                 ? map[prefix + 'TAG_IMAGE']
                 : 'assets/placeholder.png',
+            tagImageGifDuration: tagImageGifDuration,
+            // studyImage
             studyImage: map[prefix + 'STUDY_IMAGE'] != null
                 ? map[prefix + 'STUDY_IMAGE']
                 : 'assets/placeholder.png',
+            studyImageGifDuration: studyImageGifDuration,
             tags: tags,
             studyBlocks: studyBlocks));
       }
@@ -521,11 +589,22 @@ class Project {
   final String subtitle;
   final String desc;
   final String year;
+
   final String homeImage;
+  final Duration homeImageGifDuration;
+
   final String showcaseImage;
+  final Duration showcaseImageGifDuration;
+
   final String archiveImage;
+  final Duration archiveImageGifDuration;
+
   final String tagImage;
+  final Duration tagImageGifDuration;
+
   final String studyImage;
+  final Duration studyImageGifDuration;
+
   final List<String> tags;
   final Map<String, List<ProjectStudyBlock>> studyBlocks;
 
@@ -543,6 +622,11 @@ class Project {
     this.archiveImage = 'assets/placeholder.png',
     this.tagImage = 'assets/placeholder.png',
     this.studyImage = 'assets/placeholder.png',
+    this.homeImageGifDuration = null,
+    this.showcaseImageGifDuration = null,
+    this.archiveImageGifDuration = null,
+    this.tagImageGifDuration = null,
+    this.studyImageGifDuration = null,
     this.tags = const [],
     this.studyBlocks = const {},
   });
