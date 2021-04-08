@@ -41,7 +41,6 @@ class StudyState extends State<Study> {
 
     // scroll listener
     scrollController.addListener(() {
-      print('Study.scrollController.' + scrollController.offset.toString());
       widget.progressFractionVN.value =
           scrollController.offset / scrollController.position.maxScrollExtent;
     });
