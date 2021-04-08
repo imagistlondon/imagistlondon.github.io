@@ -1,4 +1,5 @@
 import 'package:app/config/Design.dart';
+import 'package:app/util/Browsers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gifimage/flutter_gifimage.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -48,10 +49,9 @@ class Images {
 
     // flag if gif
     final bool isGif = src.endsWith('.gif') || src.endsWith('.GIF');
-    final bool isSafari = Browser().browserAgent == BrowserAgent.Safari;
 
     // handle special gif
-    if (isGif && isSafari && vsync != null) {
+    if (isGif && Browsers.SAFARI && vsync != null) {
       final String widgetKey = vsync.toString();
 
       // create new gif controller map for this vsync class
