@@ -42,6 +42,7 @@ class HomeState extends State<Home> {
 
   @override
   void dispose() {
+    print('Home.dispose');
     super.dispose();
     if (timer != null) {
       timer.cancel();
@@ -52,6 +53,11 @@ class HomeState extends State<Home> {
   void moveProject() {
     // skip if studio enabled
     if (widget.studioEnabledVN.value) return;
+
+    // skip if not home view
+    if (widget.indexVN.value != Index.HOME) return;
+
+    print('Home.moveProject');
 
     // disable old project
     projectKeysEnabledVN[projectEnabledVN.value.key].value = false;
@@ -70,6 +76,8 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    print('Home.build');
+
     // only if there are projects
     if (Content.data.HOME_PROJECTS.length > 0) {
       // current project enabled
