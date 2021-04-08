@@ -33,6 +33,7 @@ class AppState extends State<App> {
 
   @override
   void dispose() {
+    print('App.dispose');
     super.dispose();
     if (timerBarDownloadFake != null) {
       timerBarDownloadFake.cancel();
@@ -54,6 +55,7 @@ class AppState extends State<App> {
 
   @override
   void initState() {
+    print('App.initState');
     super.initState();
   }
 
@@ -62,7 +64,8 @@ class AppState extends State<App> {
     timerBarDownloadFake =
         Timer.periodic(Design.LOADING_BAR_DOWNLOAD_FAKE_PERIODIC_DURATION, (t) {
       // limit to a maximum
-      if (progressFractionVN.value < Design.LOADING_BAR_DOWNLOAD_FAKE_MAX) {
+      if (progressFractionVN.value != null &&
+          progressFractionVN.value < Design.LOADING_BAR_DOWNLOAD_FAKE_MAX) {
         // increment
         progressFractionVN.value = progressFractionVN.value +
             Design.LOADING_BAR_DOWNLOAD_FAKE_INCREMENT;
@@ -164,6 +167,8 @@ class AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    print('App.build');
+
     // load data
     loadData(context);
 
