@@ -33,6 +33,7 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
 
   @override
   void dispose() {
+    print('StudyContentBlocks.dispose');
     super.dispose();
 
     // clear timers
@@ -56,7 +57,7 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
     // skip if no blocks
     if (widget.project.studyBlocks == null ||
         widget.project.studyBlocks[widget.letter] == null)
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
 
     // calculate fill width
     final double fullWidth = Design.screenWidth(context);
@@ -133,7 +134,8 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
 
         // add horizontal space
         if (j > 0) {
-          elements.add(SizedBox(width: Design.SPACE, height: Design.SPACE));
+          elements
+              .add(const SizedBox(width: Design.SPACE, height: Design.SPACE));
         }
 
         // figure out text align
@@ -163,19 +165,19 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
             ? Container(
                 child: H1(
                     text: block.title, textAlign: textAlign, selectable: true))
-            : SizedBox.shrink();
+            : const SizedBox.shrink();
 
         // build desc widget (if needed)
         final Widget descWidget = hasDesc
             ? Container(
                 child:
                     P(text: block.desc, textAlign: textAlign, selectable: true))
-            : SizedBox.shrink();
+            : const SizedBox.shrink();
 
         // text spacer
         final Widget textSpacer = hasText
-            ? SizedBox(width: Design.SPACE, height: Design.SPACE)
-            : SizedBox.shrink();
+            ? const SizedBox(width: Design.SPACE, height: Design.SPACE)
+            : const SizedBox.shrink();
 
         // figure out text align
         CrossAxisAlignment textAlignX = CrossAxisAlignment.start;
@@ -212,7 +214,7 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
                         block.videoHeightFactorX4,
                         9 / 16),
               ))
-            : SizedBox.shrink();
+            : const SizedBox.shrink();
 
         // build image widget (if needed)
 
@@ -284,15 +286,15 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
                                       // vsync (for gifs in safari)
                                       vsync: this))))
               ])
-            : SizedBox.shrink();
+            : const SizedBox.shrink();
 
         // media widget
         final Widget mediaWidget = hasVideo ? videoWidget : imageWidget;
 
         // build space widget (if needed)
         final Widget blockSpacer = hasFullContent
-            ? SizedBox(width: Design.SPACE, height: Design.SPACE)
-            : SizedBox.shrink();
+            ? const SizedBox(width: Design.SPACE, height: Design.SPACE)
+            : const SizedBox.shrink();
 
         // calculate width split (for rows)
         final double widthRowSplit = (width / 2) - (Design.SPACE / 2);
