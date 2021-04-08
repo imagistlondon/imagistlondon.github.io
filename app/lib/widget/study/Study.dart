@@ -36,13 +36,22 @@ class StudyState extends State<Study> {
 
   @override
   void initState() {
+    print('Study.initState.' + widget.project.key);
     super.initState();
 
     // scroll listener
     scrollController.addListener(() {
+      print('Study.scrollController.' + scrollController.offset.toString());
       widget.progressFractionVN.value =
           scrollController.offset / scrollController.position.maxScrollExtent;
     });
+  }
+
+  @override
+  void dispose() {
+    print('Study.dispose');
+    super.dispose();
+    scrollController.dispose();
   }
 
   @override
