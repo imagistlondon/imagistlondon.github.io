@@ -115,4 +115,13 @@ or
 
 ```
 flutter run -d chrome
+./flutter/bin/flutter run -d chrome
 ```
+
+### Profile
+
+```
+flutter run --profile
+./flutter/bin/flutter run --profile
+```
+
