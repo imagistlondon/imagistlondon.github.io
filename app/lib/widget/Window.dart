@@ -3,7 +3,9 @@ import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
+import 'package:app/util/Video.dart';
 import 'package:app/widget/archive/Archive.dart';
+import 'package:app/widget/cinema/Cinema.dart';
 import 'package:app/widget/header/HeaderX1.dart';
 import 'package:app/widget/header/HeaderX234.dart';
 import 'package:app/widget/home/Home.dart';
@@ -25,6 +27,7 @@ class Window extends StatefulWidget {
       @required this.indexVN,
       @required this.bulletsEnabledVN,
       @required this.studioEnabledVN,
+      @required this.cinemaEnabledVN,
       @required this.initStudyKey})
       : super(key: key);
 
@@ -33,6 +36,7 @@ class Window extends StatefulWidget {
   final IndexNotifier indexVN;
   final ValueNotifier<bool> bulletsEnabledVN;
   final ValueNotifier<bool> studioEnabledVN;
+  final ValueNotifier<Video> cinemaEnabledVN;
   final String initStudyKey;
 
   @override
@@ -120,12 +124,13 @@ class WindowState extends State<Window> {
                   indexVN: widget.indexVN,
                   bulletsEnabledVN: widget.bulletsEnabledVN),
 
-          // STUDY
+          // // STUDY
           // for (final Project project in Content.data.PROJECTS)
           //   if (project.home || project.showcase)
           //     Study(
           //         indexVN: widget.indexVN,
           //         studyEnabledVN: studyEnabledVN,
+          //         cinemaEnabledVN: widget.cinemaEnabledVN,
           //         progressFractionVN: widget.progressFractionVN,
           //         project: project),
 
@@ -133,7 +138,12 @@ class WindowState extends State<Window> {
           StudyGeneric(
               indexVN: widget.indexVN,
               studyEnabledVN: studyEnabledVN,
+              cinemaEnabledVN: widget.cinemaEnabledVN,
               progressFractionVN: widget.progressFractionVN),
+
+          // CINEMA
+          Cinema(
+              indexVN: widget.indexVN, cinemaEnabledVN: widget.cinemaEnabledVN),
 
           // STUDIO
           Studio(

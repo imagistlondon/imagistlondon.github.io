@@ -231,6 +231,7 @@ class AppState extends State<App> {
                   indexVN: IndexNotifier(initIndex),
                   bulletsEnabledVN: ValueNotifier(initIndex.isWork()),
                   studioEnabledVN: ValueNotifier(false),
+                  cinemaEnabledVN: ValueNotifier(null),
                   initStudyKey: initStudyKey);
             }),
 

@@ -59,7 +59,7 @@ class StudioBox extends StatelessWidget {
                   color: Design.STUDIO_BACKGROUND_COLOR,
                   // STACK
                   child: Stack(children: <Widget>[
-                    // CONTEXT
+                    // CONTENT
                     StudioContent(
                         indexVN: indexVN, studioEnabledVN: studioEnabledVN),
                     // CLOSE (X)

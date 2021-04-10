@@ -3,6 +3,7 @@ import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
+import 'package:app/util/Video.dart';
 import 'package:app/widget/study/StudyArrow.dart';
 import 'package:app/widget/study/StudyClose.dart';
 import 'package:app/widget/study/StudyContent.dart';
@@ -14,11 +15,13 @@ class StudyGeneric extends StatefulWidget {
       {Key key,
       @required this.indexVN,
       @required this.studyEnabledVN,
+      @required this.cinemaEnabledVN,
       @required this.progressFractionVN})
       : super(key: key);
 
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
+  final ValueNotifier<Video> cinemaEnabledVN;
   final ValueNotifier<double> progressFractionVN;
 
   @override
@@ -87,6 +90,7 @@ class StudyGenericState extends State<StudyGeneric> {
               StudyContent(
                   indexVN: widget.indexVN,
                   studyEnabledVN: widget.studyEnabledVN,
+                  cinemaEnabledVN: widget.cinemaEnabledVN,
                   scrollController: scrollController,
                   project: studyEnabled),
 

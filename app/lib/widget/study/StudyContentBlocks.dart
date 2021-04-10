@@ -8,18 +8,21 @@ import 'package:app/text/P.dart';
 import 'package:app/util/Images.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
-import 'package:app/util/VideoFrame.dart';
+import 'package:app/util/Video.dart';
+import 'package:app/util/VideoBox.dart';
 import 'package:flutter/material.dart';
 
 class StudyContentBlocks extends StatefulWidget {
   const StudyContentBlocks(
       {Key key,
       @required this.studyEnabledVN,
+      @required this.cinemaEnabledVN,
       @required this.project,
       @required this.letter})
       : super(key: key);
 
   final StudyEnabledNotifier studyEnabledVN;
+  final ValueNotifier<Video> cinemaEnabledVN;
   final Project project;
   final String letter;
 
@@ -193,27 +196,10 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
 
         // build video widget
         final Widget videoWidget = hasVideo
-            ?
-            // CONTAINER
-            Container(
-                // VIDEO FRAME
-                child: VideoFrame(
-                // provider
-                provider: block.videoProvider,
-                // id
-                id: block.videoId,
-                // width
+            ? VideoBox(
                 width: width,
-                // height (calculated by factor)
-                height: width *
-                    Break.decideOr(
-                        context,
-                        block.videoHeightFactorX1,
-                        block.videoHeightFactorX2,
-                        block.videoHeightFactorX3,
-                        block.videoHeightFactorX4,
-                        9 / 16),
-              ))
+                video: block.video,
+                cinemaEnabledVN: this.widget.cinemaEnabledVN)
             : const SizedBox.shrink();
 
         // build image widget (if needed)
@@ -332,25 +318,25 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
           textAlignY = CrossAxisAlignment.end;
 
         // LEFT
-        Widget widget = Row(
+        Widget w = Row(
             crossAxisAlignment: textAlignY,
             children: [textWidgetForRow, blockSpacer, mediaWidgetForRow]);
 
         // TOP
         if (block.textPosition == 'TOP')
-          widget = Column(
+          w = Column(
               crossAxisAlignment: textAlignX,
               children: [textWidget, blockSpacer, mediaWidget]);
 
         // RIGHT
         if (block.textPosition == 'RIGHT')
-          widget = Row(
+          w = Row(
               crossAxisAlignment: textAlignY,
               children: [mediaWidgetForRow, blockSpacer, textWidgetForRow]);
 
         // BOTTOM
         if (block.textPosition == 'BOTTOM')
-          widget = Column(
+          w = Column(
               crossAxisAlignment: textAlignX,
               children: [mediaWidget, blockSpacer, textWidget]);
 
@@ -379,7 +365,7 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
                     //     Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
                     //         .withOpacity(1.0),
                     width: width,
-                    child: widget)));
+                    child: w)));
       }
     }
 

@@ -344,6 +344,29 @@ class Design {
   // The spacing between the studio content
   static const double STUDIO_CONTENT_SPACING = Design.SPACE * 2;
 
+  ///// CINEMA
+
+  // cinema widget background color
+  static const Color CINEMA_BACKGROUND_COLOR = Color.fromRGBO(20, 20, 20, 0.9);
+
+  // the color of the cross icon to close the cinema
+  static const Color CINEMA_X_COLOR = Color.fromRGBO(240, 240, 240, 1);
+
+  // top spacing/clearance for cinema X icon
+  static const double CINEMA_X_CLEARANCE_X1 = GAP_X1;
+  static const double CINEMA_X_CLEARANCE_X2 = GAP_X2 - Design.SPACE;
+  static const double CINEMA_X_CLEARANCE_X3 = GAP_X3 - Design.SPACE;
+  static const double CINEMA_X_CLEARANCE_X4 = GAP_X4 - Design.SPACE;
+  static double cinemaCloseClearance(final BuildContext context) {
+    return Break.decide(context, CINEMA_X_CLEARANCE_X1, CINEMA_X_CLEARANCE_X2,
+        CINEMA_X_CLEARANCE_X3, CINEMA_X_CLEARANCE_X4);
+  }
+
+  // The Cinema widget to slide in/out animation
+  static const Duration CINEMA_SLIDE_ANIMATION_DURATION =
+      Duration(milliseconds: 500);
+  static const Curve CINEMA_SLIDE_ANIMATION_CURVE = Curves.easeInOut;
+
   ///// HOME
 
   // Home menu subtitle color (faded)

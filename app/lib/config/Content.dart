@@ -4,7 +4,7 @@
 
 import 'dart:collection';
 
-import 'package:app/util/VideoFrame.dart';
+import 'package:app/util/Video.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -120,12 +120,16 @@ class Content {
               final String blockPrefix =
                   prefix + 'STUDY_BLOCK_' + letter + '-' + j.toString();
 
-              // video provider
-              final VideoProvider videoProvider =
-                  map[blockPrefix + '-VIDEO_PROVIDER'] != null &&
-                          map[blockPrefix + '-VIDEO_PROVIDER'] == 'YOUTUBE'
-                      ? VideoProvider.YOUTUBE
-                      : VideoProvider.VIMEO;
+              // videoId
+              final String videoId = map[blockPrefix + '-VIDEO_ID'] != null &&
+                      map[blockPrefix + '-VIDEO_ID'] != ''
+                  ? map[blockPrefix + '-VIDEO_ID']
+                  : null;
+
+              // videoCinema
+              final bool videoCinema =
+                  map[blockPrefix + '-VIDEO_CINEMA'] != null &&
+                      map[blockPrefix + '-VIDEO_CINEMA'] == true;
 
               // videoWidthFactor
               final String videoWidthFactorX1 =
@@ -138,14 +142,32 @@ class Content {
                   map[blockPrefix + '-VIDEO_WIDTH_FACTOR_X4'];
 
               // videoHeightFactor
-              final String videoHeightFactorX1 =
+              final String videoHeightFactorX1_String =
                   map[blockPrefix + '-VIDEO_HEIGHT_FACTOR_X1'];
-              final String videoHeightFactorX2 =
+              final String videoHeightFactorX2_String =
                   map[blockPrefix + '-VIDEO_HEIGHT_FACTOR_X2'];
-              final String videoHeightFactorX3 =
+              final String videoHeightFactorX3_String =
                   map[blockPrefix + '-VIDEO_HEIGHT_FACTOR_X3'];
-              final String videoHeightFactorX4 =
+              final String videoHeightFactorX4_String =
                   map[blockPrefix + '-VIDEO_HEIGHT_FACTOR_X4'];
+
+              // videoHeightFactor
+              final double videoHeightFactorX1 =
+                  videoHeightFactorX1_String != null
+                      ? double.tryParse(videoHeightFactorX1_String)
+                      : null;
+              final double videoHeightFactorX2 =
+                  videoHeightFactorX2_String != null
+                      ? double.tryParse(videoHeightFactorX2_String)
+                      : null;
+              final double videoHeightFactorX3 =
+                  videoHeightFactorX3_String != null
+                      ? double.tryParse(videoHeightFactorX3_String)
+                      : null;
+              final double videoHeightFactorX4 =
+                  videoHeightFactorX4_String != null
+                      ? double.tryParse(videoHeightFactorX4_String)
+                      : null;
 
               // imageMinHeight
               final String imageMinHeightX1 =
@@ -239,8 +261,8 @@ class Content {
                 textAlignX: map[blockPrefix + '-TEXT_ALIGN_X'],
                 textAlignY: map[blockPrefix + '-TEXT_ALIGN_Y'],
                 // video
-                videoId: map[blockPrefix + '-VIDEO_ID'],
-                videoProvider: videoProvider,
+                videoId: videoId,
+                videoCinema: videoCinema,
                 // videoWidthFactor
                 videoWidthFactorX1: videoWidthFactorX1 != null
                     ? double.tryParse(videoWidthFactorX1)
@@ -255,17 +277,17 @@ class Content {
                     ? double.tryParse(videoWidthFactorX4)
                     : null,
                 // videoHeightFactor
-                videoHeightFactorX1: videoHeightFactorX1 != null
-                    ? double.tryParse(videoHeightFactorX1)
-                    : null,
-                videoHeightFactorX2: videoHeightFactorX2 != null
-                    ? double.tryParse(videoHeightFactorX2)
-                    : null,
-                videoHeightFactorX3: videoHeightFactorX3 != null
-                    ? double.tryParse(videoHeightFactorX3)
-                    : null,
-                videoHeightFactorX4: videoHeightFactorX4 != null
-                    ? double.tryParse(videoHeightFactorX4)
+                videoHeightFactorX1: videoHeightFactorX1,
+                videoHeightFactorX2: videoHeightFactorX2,
+                videoHeightFactorX3: videoHeightFactorX3,
+                videoHeightFactorX4: videoHeightFactorX4,
+                video: videoId != null
+                    ? Video(videoId,
+                        cinema: videoCinema,
+                        heightFactorX1: videoHeightFactorX1,
+                        heightFactorX2: videoHeightFactorX2,
+                        heightFactorX3: videoHeightFactorX3,
+                        heightFactorX4: videoHeightFactorX4)
                     : null,
 
                 // image
@@ -641,7 +663,7 @@ class ProjectStudyBlock {
   final String textAlignY;
 
   final String videoId;
-  final VideoProvider videoProvider;
+  final bool videoCinema;
   final double videoWidthFactorX1;
   final double videoWidthFactorX2;
   final double videoWidthFactorX3;
@@ -651,6 +673,7 @@ class ProjectStudyBlock {
   final double videoHeightFactorX2;
   final double videoHeightFactorX3;
   final double videoHeightFactorX4;
+  final Video video;
 
   final String image;
   final String image2;
@@ -693,7 +716,7 @@ class ProjectStudyBlock {
     this.textAlignX,
     this.textAlignY,
     this.videoId,
-    this.videoProvider,
+    this.videoCinema,
     this.videoWidthFactorX1,
     this.videoWidthFactorX2,
     this.videoWidthFactorX3,
@@ -702,6 +725,7 @@ class ProjectStudyBlock {
     this.videoHeightFactorX2,
     this.videoHeightFactorX3,
     this.videoHeightFactorX4,
+    this.video,
     this.image,
     this.image2,
     this.image3,

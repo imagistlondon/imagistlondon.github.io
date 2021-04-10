@@ -1,40 +1,37 @@
+import 'package:app/util/Video.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:html';
 import 'dart:ui' as ui;
 
-enum VideoProvider { VIMEO, YOUTUBE }
-
 class VideoFrame extends StatelessWidget {
-  const VideoFrame({
-    Key key,
-    this.provider = VideoProvider.VIMEO,
-    @required this.id,
-    this.width = 16.0 * 10,
-    this.height = 9.0 * 10,
-  }) : super(key: key);
+  const VideoFrame(
+      {Key key, this.width: Video.DEFAULT_WIDTH, @required this.video})
+      : super(key: key);
 
-  final VideoProvider provider;
-  final String id;
   final double width;
-  final double height;
+  final Video video;
 
-  static final Map<VideoProvider, String> PROVIDER_BASE = {
-    VideoProvider.VIMEO: 'https://player.vimeo.com/video/',
-    VideoProvider.YOUTUBE: 'https://www.youtube.com/embed/'
-  };
+  static final String BASE = 'https://player.vimeo.com/video/';
 
   @override
   Widget build(BuildContext context) {
+    // calculate height
+    final double height = video.height(context, width: width);
+
     // build iframe element
     final IFrameElement iframeElement = IFrameElement();
     iframeElement.width = width.toString();
     iframeElement.height = height.toString();
-    iframeElement.src = PROVIDER_BASE[this.provider] + id;
+    iframeElement.src = BASE + video.id;
     iframeElement.style.border = 'none';
+    iframeElement.allowFullscreen = false;
 
-    // define custom regustry id
-    final String registryId = 'videoFrame' + id;
+    // iframeElement.style.cursor = 'auto';
+
+    // define custom regitry id
+    final String registryId = 'videoFrame' + video.id + UniqueKey().toString();
+    print('VideoFrame.registryId.' + registryId);
 
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
@@ -42,7 +39,7 @@ class VideoFrame extends StatelessWidget {
       (int viewId) => iframeElement,
     );
 
-    // wrap in html element view
+    // build video widget
     return SizedBox(
         width: width,
         height: height,
