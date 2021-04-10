@@ -155,6 +155,6 @@ class P extends StatelessWidget {
         ? SelectableText.rich(textSpan,
             textAlign: textAlign,
             style: s) //SelectableText(text, textAlign: textAlign, style: s)
-        : Text(text, textAlign: textAlign, style: s);
+        : Text(t, textAlign: textAlign, style: s);
   }
 }

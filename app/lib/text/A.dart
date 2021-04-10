@@ -34,7 +34,7 @@ class A extends StatefulWidget {
 class _AState extends State<A> {
   final ValueNotifier<bool> hoverVN = ValueNotifier(false);
 
-  void onTap() async {
+  void onTap() {
     if (widget.onTap != null) {
       widget.onTap();
     }
