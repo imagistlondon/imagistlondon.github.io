@@ -18262,7 +18262,7 @@ $.O4().z9("__url_launcher::link",D.axz())
 $.aka=k.ga1y()
 s=2
 return P.X(P.ay9(),$async$aaH)
-case 2:P.aV("v2.0.8")
+case 2:P.aV("v2.0.9")
 k=$.alG()
 k=k==null?null:k.getAttribute("href")
 if(k==null)H.e(P.dC("Please add a <base> element to your index.html"))
