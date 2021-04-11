@@ -77,14 +77,15 @@ class ShowcaseX12 extends StatelessWidget {
           ]));
     }
 
-    final Widget scroll = ListView(children: <Widget>[
+    final Widget scroll = SingleChildScrollView(
+        child: Column(children: <Widget>[
       // HEADER CLEARANCE
       clearance,
       // HEADER BULLETS X1
       bulletsX1,
       // PROJECTS
       ...projects
-    ]);
+    ]));
 
     // LISTEN
     return L1(
