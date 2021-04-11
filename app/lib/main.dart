@@ -5,8 +5,9 @@ import 'package:app/App.dart';
 
 void main() {
   print('v2.2.1');
-  print('Browser.AGENT.' + Browsers.BROWSER_AGENT.toString());
-  print('Browser.MOBILE.' + Browsers.MOBILE.toString());
+  print('Browser.USER_AGENT: ' + Browsers.USER_AGENT);
+  print('Browser.BROWSER_AGENT: ' + Browsers.BROWSER_AGENT.toString());
+  print('Browser.MOBILE: ' + Browsers.MOBILE.toString());
 
   // set no # (hashbang) for web
   setUrlStrategy(PathUrlStrategy());

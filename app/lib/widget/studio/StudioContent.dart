@@ -69,6 +69,7 @@ class StudioContent extends StatelessWidget {
                 GAP,
                 P(text: 'Browser: ' + Browsers.BROWSER_AGENT.toString()),
                 P(text: 'Mobile: ' + Browsers.MOBILE.toString()),
+                P(text: 'Agent: ' + Browsers.USER_AGENT),
 
                 // FOOTER CLEARANCE
                 clearance,

@@ -7,6 +7,7 @@ class Browsers {
   static final bool SAFARI = BROWSER_AGENT == BrowserAgent.Safari;
   static final bool CHROME = BROWSER_AGENT == BrowserAgent.Chrome;
 
-  static final bool MOBILE =
-      new RegExp('/Mobi/i').hasMatch(window.navigator.userAgent);
+  static final String USER_AGENT = window.navigator.userAgent;
+
+  static final bool MOBILE = new RegExp('/Mobi/i').hasMatch(USER_AGENT);
 }
