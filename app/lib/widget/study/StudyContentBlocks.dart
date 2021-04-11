@@ -16,12 +16,14 @@ class StudyContentBlocks extends StatefulWidget {
   const StudyContentBlocks(
       {Key key,
       @required this.studyEnabledVN,
+      @required this.d_studyEnabledVN,
       @required this.cinemaEnabledVN,
       @required this.project,
       @required this.letter})
       : super(key: key);
 
   final StudyEnabledNotifier studyEnabledVN;
+  final StudyEnabledNotifier d_studyEnabledVN;
   final ValueNotifier<Video> cinemaEnabledVN;
   final Project project;
   final String letter;
@@ -214,9 +216,6 @@ class StudyContentBlocksState extends State<StudyContentBlocks>
             // increment
             blockImageIndexVN.value =
                 (blockImageIndexVN.value + 1) % block.images.length;
-
-            // print
-            // print('blockImageIndexVN:' + blockImageIndexVN.value.toString());
           }));
         }
 

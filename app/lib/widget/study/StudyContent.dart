@@ -54,6 +54,7 @@ class StudyContent extends StatelessWidget {
               // // StudyContentBlocks (A)
               // StudyContentBlocks(
               //     studyEnabledVN: studyEnabledVN,
+              //     d_studyEnabledVN: d_studyEnabledVN,
               //     cinemaEnabledVN: cinemaEnabledVN,
               //     project: project,
               //     letter: 'A'),
@@ -62,6 +63,7 @@ class StudyContent extends StatelessWidget {
               // StudyContentBlocks(
               //     studyEnabledVN: studyEnabledVN,
               //     cinemaEnabledVN: cinemaEnabledVN,
+              //     d_studyEnabledVN: d_studyEnabledVN,
               //     project: project,
               //     letter: 'B')
             ])));

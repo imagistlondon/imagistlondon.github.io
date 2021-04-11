@@ -159,6 +159,21 @@ class Design {
   static const Duration ICON_CROSS_ANIMATION_DURATION =
       Duration(milliseconds: 200);
 
+  ///// ARROW
+
+  // The arrow icon
+  static const String ICON_ARROW = 'assets/img-arrow.png';
+
+  // the width of the arrow icon
+  static const double ICON_ARROW_WIDTH = Design.SPACE * 2;
+
+  // the arrow icon animation settings
+  static const double ICON_ARROW_TRANSLATION_OFFSET = Design.SPACE;
+  static const Duration ICON_ARROW_ANIMATION_DURATION =
+      Duration(milliseconds: 200);
+  static const Curve ICON_ARROW_ANIMATION_CURVE = Curves.easeInOut;
+  static const double ICON_ARROW_ANIMATION_HEIGHT_SCALE = 0.6;
+
   ///// PROGRESS BAR
 
   // progress bar color
@@ -482,15 +497,8 @@ class Design {
   // the color of the cross icon to close the study
   static const Color STUDY_X_COLOR = Color.fromRGBO(171, 167, 171, 1);
 
-  // study arrow image
-  static const String STUDY_ARROW_IMAGE = 'assets/img-arrow.png';
+  // the color of the arrow icon to scroll to top the study
   static const Color STUDY_ARROW_COLOR = Color.fromRGBO(171, 167, 171, 1);
-  static const double STUDY_ARROW_WIDTH = Design.SPACE * 2;
-  static const double STUDY_ARROW_TRANSLATION_OFFSET = Design.SPACE;
-  static const Duration STUDY_ARROW_ANIMATION_DURATION =
-      Duration(milliseconds: 200);
-  static const Curve STUDY_ARROW_ANIMATION_CURVE = Curves.easeInOut;
-  static const double STUDY_ARROW_ANIMATION_HEIGHT_SCALE = 0.6;
 
   // study content intro block
   static const Color STUDY_CONTENT_INTRO_TITLE_COLOR = Design.COLOR;

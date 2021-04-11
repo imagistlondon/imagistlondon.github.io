@@ -1,37 +1,15 @@
 import 'package:app/config/Design.dart';
-import 'package:app/util/Images.dart';
-import 'package:app/util/L1C.dart';
-import 'package:app/util/UA.dart';
+import 'package:app/util/Arrow.dart';
 import 'package:flutter/material.dart';
 
-class StudyArrow extends StatefulWidget {
+class StudyArrow extends StatelessWidget {
   const StudyArrow({Key key, @required this.scrollController})
       : super(key: key);
 
   final ScrollController scrollController;
 
-  @override
-  StudyArrowState createState() => StudyArrowState();
-}
-
-class StudyArrowState extends State<StudyArrow> {
-  final ValueNotifier<bool> hoverVN = ValueNotifier(false);
-
-  // IMAGE
-  static final Image IMAGE = Images.of(Design.STUDY_ARROW_IMAGE,
-      width: Design.STUDY_ARROW_WIDTH, color: Design.STUDY_ARROW_COLOR);
-
-  void onEnter(PointerEvent pe) {
-    hoverVN.value = true;
-  }
-
-  void onExit(PointerEvent pe) {
-    hoverVN.value = false;
-  }
-
   void onTap() {
-    widget.scrollController.animateTo(
-        widget.scrollController.position.minScrollExtent,
+    scrollController.animateTo(scrollController.position.minScrollExtent,
         duration: Design.STUDY_SCROLL_TO_TOP_ANIMATION_DURATION,
         curve: Design.STUDY_SCROLL_TO_TOP_ANIMATION_CURVE);
   }
@@ -39,33 +17,16 @@ class StudyArrowState extends State<StudyArrow> {
   @override
   Widget build(BuildContext context) {
     print('StudyArrow.build');
-    // COLUMN
+    // ALIGN
     return Align(
         alignment: Alignment.bottomRight,
-        child: UA(
+        // ARROW
+        child: Arrow(
+            // TAP
             onTap: onTap,
-            onEnter: onEnter,
-            onExit: onExit,
-            // PADDED CONTAINER
-            child: Container(
-                padding: EdgeInsets.all(Design.gap(context)),
-                // CLIP
-                child: ClipRect(
-                    // LISTENER
-                    child: L1C(
-                        hoverVN,
-                        // ANIMATED ALIGN
-                        (hover, child) => AnimatedAlign(
-                            // DURATION
-                            duration: Design.STUDY_ARROW_ANIMATION_DURATION,
-                            curve: Design.STUDY_ARROW_ANIMATION_CURVE,
-                            alignment: Alignment.topCenter,
-                            widthFactor: 1.0,
-                            heightFactor: hover
-                                ? 1.0
-                                : Design.STUDY_ARROW_ANIMATION_HEIGHT_SCALE,
-                            child: child),
-                        // IMAGE
-                        child: IMAGE)))));
+            // PADDING
+            padding: EdgeInsets.all(Design.gap(context)),
+            // COLOR
+            color: Design.STUDY_ARROW_COLOR));
   }
 }

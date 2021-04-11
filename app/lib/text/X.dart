@@ -1,10 +1,12 @@
 import 'package:app/config/Design.dart';
-import 'package:app/util/Images.dart';
+import 'package:app/text/X_Default.dart';
+import 'package:app/text/X_Mobile.dart';
+import 'package:app/util/Browsers.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
 
 // X to close something
-class X extends StatefulWidget {
+class X extends StatelessWidget {
   const X({Key key, this.onTap, this.padding, this.color = Design.COLOR})
       : super(key: key);
 
@@ -13,62 +15,12 @@ class X extends StatefulWidget {
   final Color color;
 
   @override
-  _XState createState() => _XState();
-}
-
-class _XState extends State<X> with TickerProviderStateMixin {
-  // size of X
-  static const double xEdge = Design.SPACE * 2;
-
-  // animation rotaion
-  AnimationController controller;
-  Animation<double> animation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // animation controller
-    controller = AnimationController(
-      duration: Design.ICON_CROSS_ANIMATION_DURATION,
-      vsync: this,
-    );
-
-    // 90 degree turn
-    animation = Tween<double>(begin: 0, end: -90 / 360).animate(controller);
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
-  }
-
-  void onEnter(PointerEvent pe) {
-    controller.forward(from: 0);
-  }
-
-  void onExit(PointerEvent pe) {}
-
-  @override
   Widget build(BuildContext context) {
     // UA
     return UA(
-        onTap: widget.onTap,
-        onEnter: onEnter,
-        onExit: onExit,
-        // PADDED CONTAINER
-        child: Container(
-            padding: widget.padding,
-            // ROTATION TRANSITION
-            child: RotationTransition(
-                turns: animation,
-                // IMAGE
-                child: Images.of(
-                  Design.ICON_CROSS,
-                  width: xEdge,
-                  height: xEdge,
-                  color: widget.color,
-                ))));
+        onTap: onTap,
+        child: Browsers.MOBILE
+            ? X_Mobile(padding: padding, color: color)
+            : X_Default(padding: padding, color: color));
   }
 }
