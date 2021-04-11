@@ -14,7 +14,7 @@ import 'package:app/widget/logo/LogoX234.dart';
 import 'package:app/widget/showcaseX34/ShowcaseX34.dart';
 import 'package:app/widget/showcaseX12/ShowcaseX12.dart';
 import 'package:app/widget/studio/Studio.dart';
-import 'package:app/widget/study/StudyGeneric.dart';
+import 'package:app/widget/study/Study.dart';
 import 'package:app/widget/tags/Tags.dart';
 import 'package:app/widget/terms/Terms.dart';
 import 'package:flutter/material.dart';
@@ -124,18 +124,8 @@ class WindowState extends State<Window> {
                   indexVN: widget.indexVN,
                   bulletsEnabledVN: widget.bulletsEnabledVN),
 
-          // // STUDY
-          // for (final Project project in Content.data.PROJECTS)
-          //   if (project.home || project.showcase)
-          //     Study(
-          //         indexVN: widget.indexVN,
-          //         studyEnabledVN: studyEnabledVN,
-          //         cinemaEnabledVN: widget.cinemaEnabledVN,
-          //         progressFractionVN: widget.progressFractionVN,
-          //         project: project),
-
-          // STUDY (generic)
-          StudyGeneric(
+          // STUDY
+          Study(
               indexVN: widget.indexVN,
               studyEnabledVN: studyEnabledVN,
               cinemaEnabledVN: widget.cinemaEnabledVN,

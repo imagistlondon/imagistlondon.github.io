@@ -1,16 +1,17 @@
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/Images.dart';
+import 'package:app/util/L1.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:flutter/material.dart';
 
 class StudyContentThumb extends StatefulWidget {
   const StudyContentThumb(
-      {Key key, @required this.studyEnabledVN, @required this.project})
+      {Key key, @required this.studyEnabledVN, @required this.d_studyEnabledVN})
       : super(key: key);
 
   final StudyEnabledNotifier studyEnabledVN;
-  final Project project;
+  final StudyEnabledNotifier d_studyEnabledVN;
 
   @override
   StudyContentThumbState createState() => StudyContentThumbState();
@@ -26,8 +27,7 @@ class StudyContentThumbState extends State<StudyContentThumb>
 
   @override
   Widget build(BuildContext context) {
-    // skip if no image
-    if (widget.project.studyImage == null) return SizedBox.shrink();
+    print('StudyContentThumb.build');
 
     // width
     final double width = MediaQuery.of(context).size.width;
@@ -40,11 +40,14 @@ class StudyContentThumbState extends State<StudyContentThumb>
     if (height > Design.STUDY_THUMB_MAX_HEIGHT)
       height = Design.STUDY_THUMB_MAX_HEIGHT;
 
-    return Images.of(widget.project.studyImage,
-        width: width,
-        height: height,
-        fit: BoxFit.cover,
-        gifDuration: widget.project.studyImageGifDuration,
-        vsync: this);
+    return L1(
+        widget.d_studyEnabledVN,
+        (Project project) => Images.of(
+            project != null ? project.studyImage : null,
+            width: width,
+            height: height,
+            fit: BoxFit.cover,
+            gifDuration: project != null ? project.studyImageGifDuration : null,
+            vsync: this));
   }
 }

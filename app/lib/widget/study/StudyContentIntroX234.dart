@@ -1,22 +1,25 @@
-import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
-import 'package:app/text/H1.dart';
-import 'package:app/text/P.dart';
 import 'package:app/util/Block.dart';
 import 'package:app/util/SectionRow.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
+import 'package:app/widget/study/StudyContentIntroDesc.dart';
+import 'package:app/widget/study/StudyContentIntroSubtitle.dart';
+import 'package:app/widget/study/StudyContentIntroTitle.dart';
 import 'package:flutter/material.dart';
 
 class StudyContentIntroX234 extends StatelessWidget {
   const StudyContentIntroX234(
-      {Key key, @required this.studyEnabledVN, @required this.project})
+      {Key key, @required this.studyEnabledVN, @required this.d_studyEnabledVN})
       : super(key: key);
 
   final StudyEnabledNotifier studyEnabledVN;
-  final Project project;
+  final StudyEnabledNotifier d_studyEnabledVN;
+
+  static const SizedBox gap = const SizedBox(height: Design.SPACE);
 
   @override
   Widget build(BuildContext context) {
+    print('StudyContentIntroX234.build');
     // SECTION ROW
     return SectionRow(
         // GAP
@@ -38,28 +41,26 @@ class StudyContentIntroX234 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     // title
-                    H1(
-                        text: project.title,
-                        selectable: true,
-                        style: const TextStyle(
-                            color: Design.STUDY_CONTENT_INTRO_TITLE_COLOR)),
+                    StudyContentIntroTitle(
+                        studyEnabledVN: studyEnabledVN,
+                        d_studyEnabledVN: d_studyEnabledVN),
                     // subtitle
-                    H1(
-                        text: project.subtitle,
-                        selectable: true,
-                        style: const TextStyle(
-                            color: Design.STUDY_CONTENT_INTRO_SUBTITLE_COLOR))
+                    StudyContentIntroSubtitle(
+                        studyEnabledVN: studyEnabledVN,
+                        d_studyEnabledVN: d_studyEnabledVN),
                   ])),
 
           // gap
-          const SizedBox(width: Design.SPACE),
+          gap,
 
           // description
           Block(
               widthFactor: Design.STUDY_CONTENT_INTRO_BLOCK_WIDTH_FACTOR,
               minWidth: Design.STUDY_CONTENT_INTRO_BLOCK_MIN_WIDTH,
               maxWidth: Design.STUDY_CONTENT_INTRO_BLOCK_MAX_WIDTH,
-              child: P(text: project.desc, selectable: true)),
+              child: StudyContentIntroDesc(
+                  studyEnabledVN: studyEnabledVN,
+                  d_studyEnabledVN: d_studyEnabledVN)),
         ]);
   }
 }

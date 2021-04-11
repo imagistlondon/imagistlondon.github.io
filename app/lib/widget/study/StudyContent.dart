@@ -1,5 +1,4 @@
 import 'package:app/config/Break.dart';
-import 'package:app/config/Content.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/Video.dart';
@@ -14,20 +13,20 @@ class StudyContent extends StatelessWidget {
       {Key key,
       @required this.indexVN,
       @required this.studyEnabledVN,
+      @required this.d_studyEnabledVN,
       @required this.cinemaEnabledVN,
-      @required this.scrollController,
-      @required this.project})
+      @required this.scrollController})
       : super(key: key);
 
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
+  final StudyEnabledNotifier d_studyEnabledVN;
   final ValueNotifier<Video> cinemaEnabledVN;
   final ScrollController scrollController;
-  final Project project;
 
   @override
   Widget build(BuildContext context) {
-    print('StudyContent.build.' + project.key);
+    print('StudyContent.build');
 
     // SCROLL
     return Scrollbar(
@@ -40,28 +39,31 @@ class StudyContent extends StatelessWidget {
             child: Column(children: <Widget>[
               // StudyContentThumb
               StudyContentThumb(
-                  studyEnabledVN: studyEnabledVN, project: project),
+                  studyEnabledVN: studyEnabledVN,
+                  d_studyEnabledVN: d_studyEnabledVN),
 
               // StudyContentIntro
               Break.x1(context)
                   ? StudyContentIntroX1(
-                      studyEnabledVN: studyEnabledVN, project: project)
+                      studyEnabledVN: studyEnabledVN,
+                      d_studyEnabledVN: d_studyEnabledVN)
                   : StudyContentIntroX234(
-                      studyEnabledVN: studyEnabledVN, project: project),
+                      studyEnabledVN: studyEnabledVN,
+                      d_studyEnabledVN: d_studyEnabledVN),
 
-              // StudyContentBlocks (A)
-              StudyContentBlocks(
-                  studyEnabledVN: studyEnabledVN,
-                  cinemaEnabledVN: cinemaEnabledVN,
-                  project: project,
-                  letter: 'A'),
+              // // StudyContentBlocks (A)
+              // StudyContentBlocks(
+              //     studyEnabledVN: studyEnabledVN,
+              //     cinemaEnabledVN: cinemaEnabledVN,
+              //     project: project,
+              //     letter: 'A'),
 
-              // StudyContentBlocks (B)
-              StudyContentBlocks(
-                  studyEnabledVN: studyEnabledVN,
-                  cinemaEnabledVN: cinemaEnabledVN,
-                  project: project,
-                  letter: 'B')
+              // // StudyContentBlocks (B)
+              // StudyContentBlocks(
+              //     studyEnabledVN: studyEnabledVN,
+              //     cinemaEnabledVN: cinemaEnabledVN,
+              //     project: project,
+              //     letter: 'B')
             ])));
   }
 }

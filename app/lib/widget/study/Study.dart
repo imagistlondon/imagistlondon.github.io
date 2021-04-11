@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/util/IndexNotifier.dart';
@@ -10,46 +12,64 @@ import 'package:app/widget/study/StudyContent.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix4_transform/matrix4_transform.dart';
 
-/**
- * @deprecated Use StudyGeneric instead
- */
-@deprecated
 class Study extends StatefulWidget {
   const Study(
       {Key key,
       @required this.indexVN,
       @required this.studyEnabledVN,
       @required this.cinemaEnabledVN,
-      @required this.progressFractionVN,
-      @required this.project})
+      @required this.progressFractionVN})
       : super(key: key);
 
   final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final ValueNotifier<Video> cinemaEnabledVN;
   final ValueNotifier<double> progressFractionVN;
-  final Project project;
 
   @override
   StudyState createState() => StudyState();
 }
 
 class StudyState extends State<Study> {
+  // open position
+  static final Matrix4 matrixA = Matrix4Transform().translate(y: 0).matrix4;
+
   // scroll controller
   final ScrollController scrollController = ScrollController();
 
-  // static position A
-  static final Matrix4 matrixA = Matrix4Transform().up(0).matrix4;
+  // delayed studyEnabledVN (basically copies what happend to studyEnabled after delay)
+  final StudyEnabledNotifier d_studyEnabledVN = StudyEnabledNotifier(null);
+
+  // this waits for the close/open animation to end then calls animationNotifier
+  Timer d_studyEnabledTimer;
 
   @override
   void initState() {
-    print('Study.initState.' + widget.project.key);
+    print('Study.initState');
     super.initState();
 
     // scroll listener
     scrollController.addListener(() {
+      // updates the progress bar
       widget.progressFractionVN.value =
           scrollController.offset / scrollController.position.maxScrollExtent;
+    });
+
+    // listen on studyEnabled changes to update d_studyEnabledVN (after delay)
+    widget.studyEnabledVN.addListener(() {
+      print('Study.d_studyEnabledTimer.start');
+      // wait for study translation animation to finish
+      d_studyEnabledTimer =
+          Timer(Design.STUDY_TRANSLATE_ANIMATION_DURATION, () {
+        print('Study.d_studyEnabledTimer.end');
+
+        // copy over the value from normal studyEnabled
+        d_studyEnabledVN.value = widget.studyEnabledVN.value;
+
+        // if not showing study, then jump to (without animation to 0)
+        if (d_studyEnabledVN.value == null)
+          scrollController.jumpTo(scrollController.position.minScrollExtent);
+      });
     });
   }
 
@@ -58,63 +78,49 @@ class StudyState extends State<Study> {
     print('Study.dispose');
     super.dispose();
     scrollController.dispose();
+    d_studyEnabledVN.dispose();
+    if (d_studyEnabledTimer != null) {
+      d_studyEnabledTimer.cancel();
+      d_studyEnabledTimer = null;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    print('Study.build.' + widget.project.key);
+    print('Study.build');
 
     // calculate sizes
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
 
-    // move down (to close it)
-    final Matrix4 matrixB =
-        Matrix4Transform().down(MediaQuery.of(context).size.height).matrix4;
+    // hidden position
+    final Matrix4 matrixB = Matrix4Transform().translate(y: height).matrix4;
 
-    // build main child
-    final Widget child = Container(
+    // StudyContent
+    final StudyContent studyContent = StudyContent(
+        indexVN: widget.indexVN,
+        studyEnabledVN: widget.studyEnabledVN,
+        d_studyEnabledVN: d_studyEnabledVN,
+        cinemaEnabledVN: widget.cinemaEnabledVN,
+        scrollController: scrollController);
+
+    // StudyClose
+    final StudyClose studyClose =
+        StudyClose(studyEnabledVN: widget.studyEnabledVN);
+
+    // StudyArrow
+    final StudyArrow studyArrow =
+        StudyArrow(scrollController: scrollController);
+
+    // container
+    final Container container = Container(
         color: Design.BACKGROUND_COLOR,
         width: width,
         height: height,
-        child: Stack(children: <Widget>[
-          // content
-          StudyContent(
-              indexVN: widget.indexVN,
-              studyEnabledVN: widget.studyEnabledVN,
-              cinemaEnabledVN: widget.cinemaEnabledVN,
-              scrollController: scrollController,
-              project: widget.project),
-
-          // X
-          StudyClose(
-              indexVN: widget.indexVN,
-              studyEnabledVN: widget.studyEnabledVN,
-              progressFractionVN: widget.progressFractionVN,
-              scrollController: scrollController,
-              project: widget.project),
-
-          // ARROW
-          StudyArrow(
-              indexVN: widget.indexVN,
-              studyEnabledVN: widget.studyEnabledVN,
-              scrollController: scrollController,
-              project: widget.project)
-        ]));
+        child: Stack(children: <Widget>[studyContent, studyClose, studyArrow]));
 
     // L1 (studyEnabled)
-    return L1(widget.studyEnabledVN, (final Project studyEnabled) {
-      // whether the study enabled is my project
-      final bool match =
-          studyEnabled != null && studyEnabled.key == widget.project.key;
-
-      print('Study.L1.' +
-          widget.project.key +
-          '.studyEnabled.' +
-          (studyEnabled != null ? studyEnabled.key : 'null') +
-          '.' +
-          (match ? 'match' : 'skip'));
-
+    return L1(widget.studyEnabledVN, (Project studyEnabled) {
       // animate slide up/down
       return AnimatedContainer(
           // duration
@@ -122,9 +128,9 @@ class StudyState extends State<Study> {
           // curve
           curve: Design.STUDY_TRANSLATE_ANIMATION_CURVE,
           // transform
-          transform: match ? matrixA : matrixB,
+          transform: studyEnabled != null ? matrixA : matrixB,
           // child
-          child: child);
+          child: container);
     });
   }
 }
