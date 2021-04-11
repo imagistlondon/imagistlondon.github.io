@@ -48,7 +48,8 @@ class Images {
     final ImageProvider provider = Images.provider(src);
 
     // flag if gif
-    final bool isGif = src.endsWith('.gif') || src.endsWith('.GIF');
+    final bool isGif =
+        src != null && (src.endsWith('.gif') || src.endsWith('.GIF'));
 
     // handle special gif
     if (isGif && Browsers.SAFARI && vsync != null) {
@@ -87,7 +88,7 @@ class Images {
           image: provider);
     }
 
-    print('Images.src:' + src);
+    // print('Images.src:' + src);
 
     // normal image
     return Image(
