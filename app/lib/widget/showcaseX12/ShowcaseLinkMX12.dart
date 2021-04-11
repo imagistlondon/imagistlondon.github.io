@@ -31,6 +31,6 @@ class ShowcaseLinkMX12 extends StatelessWidget {
             // PADDING
             padding: padding,
             // TEXT
-            child: H1(text: 'Mobile' + project.title)));
+            child: H1(text: project.title)));
   }
 }
