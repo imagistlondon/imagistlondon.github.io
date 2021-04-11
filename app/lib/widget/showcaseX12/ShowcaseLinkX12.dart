@@ -1,6 +1,5 @@
 import 'package:app/config/Design.dart';
 import 'package:app/text/H1.dart';
-import 'package:app/util/IndexNotifier.dart';
 import 'package:app/util/L1.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
@@ -10,14 +9,14 @@ import 'package:flutter/material.dart';
 class ShowcaseLinkX12 extends StatefulWidget {
   const ShowcaseLinkX12(
       {Key key,
-      @required this.indexVN,
       @required this.studyEnabledVN,
-      @required this.project})
+      @required this.project,
+      @required this.padding})
       : super(key: key);
 
-  final IndexNotifier indexVN;
   final StudyEnabledNotifier studyEnabledVN;
   final Project project;
+  final EdgeInsets padding;
 
   @override
   ShowcaseLinkX12State createState() => ShowcaseLinkX12State();
@@ -40,6 +39,7 @@ class ShowcaseLinkX12State extends State<ShowcaseLinkX12> {
 
   @override
   Widget build(BuildContext context) {
+    print('ShowcaseLinkX12.build');
     return UA(
         onTap: onTap,
         onEnter: onEnter,
@@ -47,7 +47,7 @@ class ShowcaseLinkX12State extends State<ShowcaseLinkX12> {
         // CONTAINER
         child: Container(
             // PADDING
-            padding: EdgeInsets.all(Design.gap(context)),
+            padding: widget.padding,
             // LISTEN
             child: L1(
                 hoverVN,
