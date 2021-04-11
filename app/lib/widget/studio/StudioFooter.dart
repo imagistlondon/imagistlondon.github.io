@@ -1,4 +1,6 @@
 import 'package:app/config/Design.dart';
+import 'package:app/text/P.dart';
+import 'package:app/util/Browsers.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/studio/StudioFooterCopyright.dart';
 import 'package:app/widget/studio/StudioFooterTerms.dart';
@@ -28,6 +30,9 @@ class StudioFooter extends StatelessWidget {
 
           // TERMS
           StudioFooterTerms(indexVN: indexVN, studioEnabledVN: studioEnabledVN),
+
+          P(text: 'Browser: ' + Browsers.BROWSER_AGENT.toString()),
+          P(text: 'Mobile: ' + Browsers.MOBILE.toString())
         ]);
   }
 }
