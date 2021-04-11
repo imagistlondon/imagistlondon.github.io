@@ -1,6 +1,6 @@
 import 'package:app/config/Design.dart';
-import 'package:app/text/X_Default.dart';
-import 'package:app/text/X_Mobile.dart';
+import 'package:app/util/X_Default.dart';
+import 'package:app/util/X_Mobile.dart';
 import 'package:app/util/Browsers.dart';
 import 'package:app/util/UA.dart';
 import 'package:flutter/material.dart';
