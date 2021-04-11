@@ -9,5 +9,5 @@ class Browsers {
 
   static final String USER_AGENT = window.navigator.userAgent;
 
-  static final bool MOBILE = new RegExp('/Mobi/i').hasMatch(USER_AGENT);
+  static final bool MOBILE = USER_AGENT.contains('Mobi');
 }
