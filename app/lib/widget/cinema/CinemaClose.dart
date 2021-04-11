@@ -1,5 +1,5 @@
 import 'package:app/config/Design.dart';
-import 'package:app/text/X.dart';
+import 'package:app/util/X.dart';
 import 'package:app/util/Video.dart';
 import 'package:flutter/material.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
