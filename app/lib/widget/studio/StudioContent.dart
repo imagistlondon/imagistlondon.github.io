@@ -2,6 +2,7 @@ import 'package:app/config/Break.dart';
 import 'package:app/config/Content.dart';
 import 'package:app/config/Design.dart';
 import 'package:app/text/P.dart';
+import 'package:app/util/Browsers.dart';
 import 'package:app/util/IndexNotifier.dart';
 import 'package:app/widget/studio/StudioContact.dart';
 import 'package:app/widget/studio/StudioFooter.dart';
@@ -64,6 +65,10 @@ class StudioContent extends StatelessWidget {
                 // FOOTER
                 StudioFooter(
                     indexVN: indexVN, studioEnabledVN: studioEnabledVN),
+
+                GAP,
+                P(text: 'Browser: ' + Browsers.BROWSER_AGENT.toString()),
+                P(text: 'Mobile: ' + Browsers.MOBILE.toString()),
 
                 // FOOTER CLEARANCE
                 clearance,
