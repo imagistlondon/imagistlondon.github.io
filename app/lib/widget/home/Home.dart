@@ -51,11 +51,14 @@ class HomeState extends State<Home> {
   }
 
   void moveProject() {
+    // skip if not home view
+    if (widget.indexVN.value != Index.HOME) return;
+
     // skip if studio enabled
     if (widget.studioEnabledVN.value) return;
 
-    // skip if not home view
-    if (widget.indexVN.value != Index.HOME) return;
+    // skip if study enabled
+    if (widget.studyEnabledVN.value != null) return;
 
     print('Home.moveProject');
 
