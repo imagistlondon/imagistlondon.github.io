@@ -18285,7 +18285,7 @@ $.O3().z9("__url_launcher::link",D.axJ())
 $.aki=k.ga1x()
 s=2
 return P.X(P.ayj(),$async$aaR)
-case 2:P.al("v2.2.2")
+case 2:P.al("v3.0.0")
 P.al(C.b.H("Browser.USER_AGENT: ",$.adV()))
 P.al("Browser.BROWSER_AGENT: "+J.bj($.ab7()))
 P.al("Browser.MOBILE: "+J.bj($.NT()))
