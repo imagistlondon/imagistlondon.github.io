@@ -5,6 +5,7 @@
 import 'dart:collection';
 
 import 'package:app/util/Video.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -709,6 +710,25 @@ class ProjectStudyBlock {
   final double maxHeightX3;
   final double maxHeightX4;
 
+  final bool hasTitle;
+  final bool hasDesc;
+  final bool hasText;
+  final bool hasFullText;
+
+  final bool hasVideo;
+  final bool hasImage;
+  final bool hasImage2;
+  final bool hasMultiImages;
+
+  final bool hasMedia;
+  final bool hasContent;
+  final bool hasFullContent;
+
+  final TextAlign textAlign;
+
+  final CrossAxisAlignment textAlignCrossX;
+  final CrossAxisAlignment textAlignCrossY;
+
   const ProjectStudyBlock({
     this.title,
     this.desc,
@@ -754,5 +774,70 @@ class ProjectStudyBlock {
     this.maxHeightX2,
     this.maxHeightX3,
     this.maxHeightX4,
-  });
+  })  :
+        //
+        hasTitle = title != null && title != "",
+        hasDesc = desc != null && desc != "",
+        hasText =
+            // hasTitle
+            (title != null && title != "") ||
+                // hasDesc
+                (desc != null && desc != ""),
+        hasFullText =
+            // hasTitle
+            (title != null && title != "") &&
+                // hasDesc
+                (desc != null && desc != ""),
+
+        //
+        //
+        hasVideo = videoId != null && videoId != "",
+        hasImage = image != null && image != "",
+        hasImage2 = image2 != null && image2 != "",
+        hasMultiImages =
+            // hasImage
+            (image != null && image != "") &&
+                // hasImage2
+                (image2 != null && image2 != ""),
+        //
+        hasMedia =
+            // hasVideo
+            (videoId != null && videoId != "") ||
+                // hasImage
+                (image != null && image != ""),
+        //
+        hasContent =
+            // hasText
+            ((title != null && title != "") || (desc != null && desc != "")) ||
+                // hasImage
+                (image != null && image != "") ||
+                // hasVideo
+                (videoId != null && videoId != ""),
+        hasFullContent =
+            // hasText
+            ((title != null && title != "") || (desc != null && desc != "")) &&
+                // hasMedia
+                ((videoId != null && videoId != "") ||
+                    (image != null && image != "")),
+
+        // textAlign
+        textAlign = (textAlignX == 'CENTER' || textAlignX == 'center')
+            ? TextAlign.center
+            : (textAlignX == 'END' || textAlignX == 'end')
+                ? TextAlign.right
+                : TextAlign.left,
+
+        // figure out text align
+        textAlignCrossX = (textAlignX == 'CENTER' || textAlignX == 'center')
+            ? CrossAxisAlignment.center
+            : (textAlignX == 'END' || textAlignX == 'end')
+                ? CrossAxisAlignment.end
+                : CrossAxisAlignment.start,
+
+        // figure out text align vertical
+        textAlignCrossY = (textAlignY == 'CENTER' || textAlignY == 'center')
+            ? CrossAxisAlignment.center
+            : (textAlignY == 'END' || textAlignY == 'end')
+                ? CrossAxisAlignment.end
+                : CrossAxisAlignment.start;
 }

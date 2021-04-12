@@ -515,6 +515,13 @@ class Design {
 
   // how the blocks should align
   // (a) the horizontal alignment of elements in the same row
+  static const MainAxisAlignment STUDY_CONTENT_BLOCKS_ALIGNMENT_X =
+      MainAxisAlignment.center;
+  // (b) the vertical alignment of the elements in the same row
+  static const CrossAxisAlignment STUDY_CONTENT_BLOCKS_ALIGNMENT_Y =
+      CrossAxisAlignment.center;
+
+  // (a) the horizontal alignment of elements in the same row
   static const WrapAlignment STUDY_CONTENT_BLOCKS_ALIGNMENT =
       WrapAlignment.center;
   // (b)
@@ -539,11 +546,10 @@ class Design {
       Curves.easeInOut;
 
   // background color for the study content blocks A
-  static const Color STUDY_CONTENT_BLOCKS_A_BACKGROUND_COLOR = BACKGROUND_COLOR;
-
-  // background color for the study conent blocks B area
-  static const Color STUDY_CONTENT_BLOCKS_B_BACKGROUND_COLOR =
-      Color.fromRGBO(243, 232, 224, 1);
+  static const Map<String, Color> STUDY_CONTENT_BLOCKS_BACKGROUND_COLOR = {
+    'A': BACKGROUND_COLOR,
+    'B': Color.fromRGBO(243, 232, 224, 1)
+  };
 
   // top spacing/clearance for studio X icon
   static const double STUDY_X_CLEARANCE_X1 = GAP_X1;
