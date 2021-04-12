@@ -521,16 +521,6 @@ class Design {
   static const CrossAxisAlignment STUDY_CONTENT_BLOCKS_ALIGNMENT_Y =
       CrossAxisAlignment.center;
 
-  // (a) the horizontal alignment of elements in the same row
-  static const WrapAlignment STUDY_CONTENT_BLOCKS_ALIGNMENT =
-      WrapAlignment.center;
-  // (b)
-  static const WrapAlignment STUDY_CONTENT_BLOCKS_RUN_ALIGNMENT =
-      WrapAlignment.start;
-  // (c) the vertical alignment of the elements in the same row
-  static const WrapCrossAlignment STUDY_CONTENT_BLOCKS_CROSS_ALIGNMENT =
-      WrapCrossAlignment.center;
-
   // default width percent of content blocks (if none provided)
   static const double STUDY_CONTENT_BLOCKS_DEFAULT_WIDTH_PERCENT = 80;
 

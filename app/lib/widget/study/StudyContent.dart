@@ -7,7 +7,6 @@ import 'package:app/util/L1.dart';
 import 'package:app/util/StudyEnabledNotifier.dart';
 import 'package:app/util/Video.dart';
 import 'package:app/widget/study/StudyBlockCache.dart';
-import 'package:app/widget/study/StudyContentBlocks.dart';
 import 'package:app/widget/study/StudyContentIntroX1.dart';
 import 'package:app/widget/study/StudyContentIntroX234.dart';
 import 'package:app/widget/study/StudyContentThumb.dart';
@@ -131,22 +130,6 @@ class StudyContentState extends State<StudyContent>
                       index.toString());
                   return const SizedBox.shrink();
                 }
-
-                // // StudyContentBlocks (A)
-                // else if (index == 2)
-                //   return StudyContentBlocks(
-                //       studyEnabledVN: widget.studyEnabledVN,
-                //       d_studyEnabledVN: widget.d_studyEnabledVN,
-                //       cinemaEnabledVN: widget.cinemaEnabledVN,
-                //       letter: 'A');
-
-                // // StudyContentBlocks (B)
-                // else if (index == 3)
-                //   return StudyContentBlocks(
-                //       studyEnabledVN: widget.studyEnabledVN,
-                //       cinemaEnabledVN: widget.cinemaEnabledVN,
-                //       d_studyEnabledVN: widget.d_studyEnabledVN,
-                //       letter: 'B');
               }));
     });
   }
