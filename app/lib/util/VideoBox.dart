@@ -26,24 +26,17 @@ class VideoBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('VideoBox.build.' + video.id);
-    // Chrome requires this hack
-    if (Browsers.CHROME) {
-      // wrap in html element view
-      return Stack(children: [
-        // VIDEO FRAME
-        VideoFrame(width: width, video: video),
-        // SCROLL HACK
-        PointerInterceptor(
-            // UA
-            child: UA(
-                onTap: onTap,
-                child: SizedBox(
-                    width: width,
-                    height: video.height(context, width: width)))),
-      ]);
-    }
-
-    // otherwise return video frame as is
-    return VideoFrame(width: width, video: video);
+    // wrap in html element view
+    return Stack(children: [
+      // VIDEO FRAME
+      VideoFrame(width: width, video: video),
+      // SCROLL HACK (Affects all Chrome and also Safari Mobile)
+      PointerInterceptor(
+          // UA
+          child: UA(
+              onTap: onTap,
+              child: SizedBox(
+                  width: width, height: video.height(context, width: width)))),
+    ]);
   }
 }
